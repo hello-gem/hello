@@ -11,6 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140416051605) do
+
+  create_table "hello_identities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "strategy"
+    t.string   "email"
+    t.string   "username"
+    t.string   "password"
+    t.integer  "sessions_count", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hello_identities", ["user_id"], name: "index_hello_identities_on_user_id"
+
+  create_table "hello_sessions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "identity_id"
+    t.string   "ua"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hello_sessions", ["identity_id"], name: "index_hello_sessions_on_identity_id"
+  add_index "hello_sessions", ["user_id"], name: "index_hello_sessions_on_user_id"
+
+  create_table "hello_users", force: true do |t|
+    t.string   "name"
+    t.string   "role",             default: "user"
+    t.integer  "identities_count", default: 0
+    t.integer  "sessions_count",   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

@@ -8,6 +8,20 @@
 </head>
 <body>
 
+<header>
+  <% if current_user %>
+    <span>Hello, <%= current_user.name %>!</span>
+    <span><%= link_to "Edit Me", hello.user_path %></span>
+    <span><%= link_to "Sign Out", hello.sign_out_path %></span>
+  <% else %>
+    <span>Hello, Guest!</span>
+    <span><%= link_to "Sign Up", hello.password_sign_up_path %></span>
+    <span><%= link_to "Sign In", hello.password_sign_in_path %></span>
+  <% end %>
+</header>
+
+<%= notice %>
+
 <%= yield %>
 
 </body>

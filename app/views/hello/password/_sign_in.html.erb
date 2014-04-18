@@ -1,0 +1,15 @@
+<%= form_for(@password_sign_in, url: password_sign_in_path) do |f| %>
+  <%= render '/hello/shared/errors', model: @password_sign_in, found_when_msg: "signing in" %>
+
+  <div class="field">
+    <%= f.label :login, "Email or Username" %><br>
+    <%= f.text_field :login, name: 'login' %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password, name: 'password' %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Sign In" %>
+  </div>
+<% end %>

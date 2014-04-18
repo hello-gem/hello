@@ -7,9 +7,6 @@ require "action_mailer/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
-require 'rspec/rails'
-# require 'capybara/rspec' # instead of require 'rspec/rails' as it fixes a bugs
-
 Bundler.require(*Rails.groups)
 require "hello"
 
@@ -26,6 +23,14 @@ module Dummy
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # don't generate RSpec tests for views and helpers
+    config.generators do |g|
+      g.test_framework nil
+      g.stylesheets = false
+      g.javascripts = false
+      g.helper = false
+    end
   end
 end
 
