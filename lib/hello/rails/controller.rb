@@ -30,6 +30,7 @@ module Hello
       end
 
       def clear_hello_session
+        destroy_hello_session
         set_hello_session_id(nil)
         session[:hello_reset_token]=nil
       end
@@ -48,6 +49,10 @@ module Hello
       end
 
       private
+
+          def destroy_hello_session
+            hello_session && hello_session.destroy
+          end
 
           def set_hello_session_id(v)
             session[:hello_session_id]=v

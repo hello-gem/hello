@@ -10,7 +10,7 @@ describe "password" do
     when_I_ask_to_reset_my_password('wrong')
     expect(page).to have_content "found when locating your credentials"
     expect(Hello::Session.count).to eq(0)
-    then_I_should_not_be_logged_in
+    then_I_should_be_logged_out
     # pending "works with json"
 
 
@@ -29,9 +29,8 @@ describe "password" do
     expect(open_last_email.to_s).to have_content "/hello/password/reset/token/"
 
     expect(page).to have_content "Welcome from Forgot"
-    expect(Hello::Session.count).to eq(0)
     expect(current_path).to eq hello.password_forgot_welcome_path
-    then_I_should_not_be_logged_in
+    then_I_should_be_logged_out
   end
 
 

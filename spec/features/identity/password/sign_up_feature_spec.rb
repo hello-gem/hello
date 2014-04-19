@@ -17,7 +17,7 @@ describe "password" do
         expect(Hello::Identity.count).to eq(1)
         expect(current_path).to eq hello.password_sign_up_welcome_path
 
-    then_I_should_not_be_logged_in
+    then_I_should_be_logged_out
 
 
     # pending "works with json"
@@ -34,7 +34,7 @@ describe "password" do
         expect(Hello::Identity.count).to eq(1)
 
 
-    then_I_should_not_be_logged_in
+    then_I_should_be_logged_out
 
 
     # pending "works with json"

@@ -19,7 +19,7 @@ describe "password" do
         expect(current_path).to eq hello.password_reset_path
     when_I_update_a_password_form_with('1')
         expect(page).to have_content "found when resetting your password"
-    then_I_should_not_be_logged_in
+    then_I_should_be_logged_out
 
     #
     # GOOD TOKEN, GOOD PASSWORD
@@ -27,10 +27,7 @@ describe "password" do
     when_I_update_a_password_form_with('the-new-password')
         expect(page).to have_content "Your password has been updated!"
         expect(current_path).to eq hello.password_sign_in_path
-
-
-    then_I_should_not_be_logged_in
-    expect(Hello::Session.count).to eq(0)
+    then_I_should_be_logged_out
 
     #
     # TOKEN MUST GO BAD
@@ -44,7 +41,6 @@ describe "password" do
     #
     when_sign_in_with_standard_data('the-new-password')
         expect(page).to have_content "Welcome! Welcome from Sign In"
-        expect(Hello::Session.count).to eq(1)
         expect(current_path).to eq hello.password_sign_in_welcome_path
     then_I_should_be_logged_in
 
