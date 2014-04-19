@@ -24,6 +24,16 @@ Hello::Engine.routes.draw do
       post "password/sign_in"         => "password#authenticate"
       get  "password/sign_in/welcome" => "password#sign_in_welcome"
 
+      # forgot
+      get  "password/forgot"
+      post "password/forgot"         => "password#ask"
+      get  "password/forgot/welcome" => "password#forgot_welcome"
+      
+      # reset
+      get  "password/reset"
+      post "password/reset"          => "password#save"
+      get  "password/reset/welcome"  => "password#reset_welcome"
+
 
 
 

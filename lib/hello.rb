@@ -19,6 +19,10 @@ module Hello
     Manager.instance.sign_in
   end
 
+  def self.forgot
+    Manager.instance.forgot
+  end
+
   # def self.twitter
   #   Manager.instance.twitter
   # end

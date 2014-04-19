@@ -29,6 +29,29 @@ module Hello
                 get("/password/sign_in/welcome").should route_to("hello/password#sign_in_welcome")
               end
 
+      it "routes to #forgot" do
+        get("/password/forgot").should route_to("hello/password#forgot")
+      end
+
+          it "routes to #ask" do
+            post("/password/forgot").should route_to("hello/password#ask")
+          end
+
+              it "routes to #forgot_welcome" do
+                get("/password/forgot/welcome").should route_to("hello/password#forgot_welcome")
+              end
+
+      it "routes to #reset" do
+        get("/password/reset").should route_to("hello/password#reset")
+      end
+
+          it "routes to #save" do
+            post("/password/reset").should route_to("hello/password#save")
+          end
+
+              it "routes to #reset_welcome" do
+                get("/password/reset/welcome").should route_to("hello/password#reset_welcome")
+              end
       
     end
   end

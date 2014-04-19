@@ -46,6 +46,9 @@ GEM
       xpath (~> 2.0)
     colorize (0.7.2)
     diff-lcs (1.2.5)
+    email_spec (1.5.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
     erubis (2.7.0)
     hike (1.2.3)
     i18n (0.6.9)
@@ -116,6 +119,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  email_spec
   hello!
   launchy
   rspec-rails

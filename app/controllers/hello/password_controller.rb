@@ -51,5 +51,29 @@ module Hello
             def sign_in_welcome
             end
 
+
+
+
+    # GET /hello/forgot
+    def forgot
+      @password_forgot = PasswordForgot.new
+    end
+
+        # POST /hello/forgot
+        def ask
+          @password_forgot = PasswordForgot.new(params[:login])
+          @identity = @password_forgot.identity
+
+          if @password_forgot.reset
+            instance_eval(&Hello.forgot.success)
+          else
+            instance_eval(&Hello.forgot.error)
+          end
+        end
+
+            # GET /hello/forgot/welcome
+            def forgot_welcome
+            end
+
   end
 end

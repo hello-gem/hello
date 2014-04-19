@@ -44,6 +44,9 @@ module Hello
 
         def are_models_invalid?
           identity.invalid? || identity.user.invalid?
+          # a=identity.invalid?
+          # b=identity.user.invalid?
+          # a || b
         end
 
         def merge_errors_to_self

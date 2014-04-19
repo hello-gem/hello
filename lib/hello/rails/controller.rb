@@ -7,6 +7,15 @@ module Hello
       # module ClassMethods
       # end
 
+
+      def deliver_password_forgot
+        instance_eval(&Hello.forgot.deliver_password_forgot)
+      end
+
+      #
+      # Session
+      #
+
       included do
         helper_method :current_user
       end

@@ -22,7 +22,7 @@ Hello.sign_in.config do
       }
       format.json {
 
-        render json: @identity, status: :created, location: hello.password_sign_in_welcome_path
+        # render json: @identity, status: :created, location: hello.password_sign_in_welcome_path
         
 
       }
@@ -45,7 +45,7 @@ Hello.sign_in.config do
       }
       format.json {
         
-        render json: @identity.errors, status: :unprocessable_entity
+        # render json: @identity.errors, status: :unprocessable_entity
         
 
       }

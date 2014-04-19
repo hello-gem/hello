@@ -9,6 +9,13 @@ require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 
 require 'rspec/rails'
 require 'capybara/rails'
+require "email_spec"
+
+
+# https://github.com/bmabey/email-spec#rspec
+# https://github.com/bmabey/email-spec#rspec-1
+
+
 
 Rails.backtrace_cleaner.remove_silencers!
 
@@ -20,10 +27,17 @@ Dir[File.join(SPEC_ROOT, "support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
+
+
+
+
 RSpec.configure do |config|
   config.mock_with :rspec
   config.use_transactional_fixtures = true
   config.infer_base_class_for_anonymous_controllers = false
   # config.order = "random"
+
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
 end
 
