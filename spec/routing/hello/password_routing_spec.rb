@@ -5,6 +5,8 @@ module Hello
     describe "routing" do
       routes { Hello::Engine.routes }
 
+
+
       it "routes to #sign_up" do
         get("/password/sign_up").should route_to("hello/password#sign_up")
       end
@@ -16,6 +18,9 @@ module Hello
               it "routes to #sign_up_welcome" do
                 get("/password/sign_up/welcome").should route_to("hello/password#sign_up_welcome")
               end
+
+
+
 
       it "routes to #sign_in" do
         get("/password/sign_in").should route_to("hello/password#sign_in")
@@ -41,18 +46,22 @@ module Hello
                 get("/password/forgot/welcome").should route_to("hello/password#forgot_welcome")
               end
 
-      it "routes to #reset" do
-        get("/password/reset").should route_to("hello/password#reset")
+
+
+
+      it "routes to #reset_token" do
+        get("/password/reset/token/123").should route_to("hello/password#reset_token", token: '123')
       end
 
-          it "routes to #save" do
-            post("/password/reset").should route_to("hello/password#save")
+          it "routes to #reset" do
+            get("/password/reset").should route_to("hello/password#reset")
           end
 
-              it "routes to #reset_welcome" do
-                get("/password/reset/welcome").should route_to("hello/password#reset_welcome")
+              it "routes to #save" do
+                post("/password/reset").should route_to("hello/password#save")
               end
-      
+
+          
     end
   end
 end

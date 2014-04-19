@@ -54,7 +54,7 @@ Hello.forgot.config do
 
     if @identity.should_reset_token?
       token = @identity.reset_token
-      url = hello.password_forgot_url(token: token)
+      url = hello.password_reset_token_url(token)
       mailer = Hello::PasswordMailer.forgot(@identity, url)
       mailer.deliver
     end

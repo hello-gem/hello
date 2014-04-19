@@ -30,9 +30,9 @@ Hello::Engine.routes.draw do
       get  "password/forgot/welcome" => "password#forgot_welcome"
       
       # reset
+      get  "password/reset/token/:token" => "password#reset_token", as: 'password_reset_token'
       get  "password/reset"
-      post "password/reset"          => "password#save"
-      get  "password/reset/welcome"  => "password#reset_welcome"
+      post "password/reset"              => "password#save"
 
 
 

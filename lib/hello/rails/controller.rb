@@ -31,6 +31,7 @@ module Hello
 
       def clear_hello_session
         set_hello_session_id(nil)
+        session[:hello_reset_token]=nil
       end
 
       def hello_user

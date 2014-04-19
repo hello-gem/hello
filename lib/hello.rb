@@ -23,6 +23,10 @@ module Hello
     Manager.instance.forgot
   end
 
+  def self.reset
+    Manager.instance.reset
+  end
+
   # def self.twitter
   #   Manager.instance.twitter
   # end

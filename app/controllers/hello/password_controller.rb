@@ -30,6 +30,9 @@ module Hello
 
 
 
+
+
+
     # GET /hello/sign_in
     def sign_in
       @password_sign_in = PasswordSignIn.new
@@ -54,6 +57,8 @@ module Hello
 
 
 
+
+
     # GET /hello/forgot
     def forgot
       @password_forgot = PasswordForgot.new
@@ -73,6 +78,47 @@ module Hello
 
             # GET /hello/forgot/welcome
             def forgot_welcome
+            end
+
+
+
+
+
+    # GET /hello/reset/token/:token
+    def reset_token
+      clear_hello_session
+
+      @password_reset = PasswordReset.new(params[:token])
+      if @password_reset.identity
+        session[:hello_reset_token] = params[:token]
+        redirect_to password_reset_path
+      else
+        redirect_to password_forgot_path, alert: "This link has expired, please ask for a new link"
+      end
+    end
+
+        # GET /hello/reset
+        def reset
+          # authorization
+          redirect_to password_forgot_path unless session[:hello_reset_token]
+
+          @password_reset = PasswordReset.new(session[:hello_reset_token])
+        end
+
+            # POST /hello/reset
+            def save
+              # authorization
+              redirect_to password_forgot_path unless session[:hello_reset_token]
+
+              @password_reset = PasswordReset.new(session[:hello_reset_token])
+              @identity = @password_reset.identity
+
+              if @password_reset.update_password(params[:password])
+                @identity.invalidate_token
+                instance_eval(&Hello.reset.success)
+              else
+                instance_eval(&Hello.reset.error)
+              end
             end
 
   end

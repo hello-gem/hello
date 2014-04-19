@@ -26,7 +26,7 @@ describe "password" do
 
     # open_last_email Mail::Message
 
-    expect(open_last_email.to_s).to have_content "/hello/password/forgot?token"
+    expect(open_last_email.to_s).to have_content "/hello/password/reset/token/"
 
     expect(page).to have_content "Welcome from Forgot"
     expect(Hello::Session.count).to eq(0)

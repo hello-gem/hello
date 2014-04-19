@@ -1,0 +1,20 @@
+<%= form_for(@password_reset, url: password_reset_path) do |f| %>
+  <%= render '/hello/shared/errors', model: @password_reset, found_when_msg: "resetting your password" %>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <strong><%= @password_reset.identity.email %></strong>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <strong><%= @password_reset.identity.username %></strong>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password, name: 'password' %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Save" %>
+  </div>
+<% end %>

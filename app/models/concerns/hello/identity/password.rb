@@ -30,6 +30,9 @@ module Hello
 
 
       module ClassMethods
+        def encrypt(unencrypted_string)
+          Digest::MD5.hexdigest(unencrypted_string)
+        end
       end
 
 
@@ -39,9 +42,13 @@ module Hello
 
       def reset_token
         uuid = SecureRandom.hex(8) # probability = 1 / (16 ** 16)
-        digest = Digest::MD5.hexdigest(uuid)
+        digest = self.class.encrypt(uuid)
         update(token_digest: digest, token_digested_at: 1.second.ago)
         return uuid
+      end
+
+      def invalidate_token
+        update(token_digest: nil, token_digested_at: nil)
       end
 
 
