@@ -2,6 +2,7 @@ require "hello/manager/password/sign_up"
 require "hello/manager/password/sign_up_scope"
 require "hello/manager/password/sign_in"
 require "hello/manager/password/sign_in_scope"
+require "hello/manager/password/sign_out"
 require "hello/manager/password/forgot"
 require "hello/manager/password/forgot_scope"
 require "hello/manager/password/reset"
@@ -20,6 +21,10 @@ module Hello
 
     def sign_in
       @sign_in ||= SignIn.new
+    end
+
+    def sign_out
+      @sign_out ||= SignOut.new
     end
 
     def forgot

@@ -19,6 +19,10 @@ module Hello
     Manager.instance.sign_in
   end
 
+  def self.sign_out
+    Manager.instance.sign_out
+  end
+
   def self.forgot
     Manager.instance.forgot
   end
