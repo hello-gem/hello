@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 
   s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency "rails", "~> 4.0.0"
+  s.add_dependency "rails", "~> 4", "< 5"
   s.add_dependency "validates_email_format_of", '~> 1.5.3' # October 12, 2011
   s.add_dependency "before_actions"
   s.add_dependency "colorize"

@@ -4,7 +4,7 @@ PATH
     hello (0.0.1)
       before_actions
       colorize
-      rails (~> 4.0.0)
+      rails (~> 4, < 5)
       validates_email_format_of (~> 1.5.3)
 
 GEM
