@@ -31,21 +31,21 @@ module Hello
 
       def clear_hello_session
         destroy_hello_session
-        set_hello_session_id(nil)
-        session[:hello_reset_token]=nil
+        session.clear
+        @hello_user = @hello_identity = @hello_session = nil
       end
 
       def hello_user
-        hellovars[:user] ||= hello_session && hello_session.user
+        @hello_user ||= hello_session && hello_session.user
       end
 
       # not used yet
       # def hello_identity
-      #   hellovars[:identity] ||= hello_session && hello_session.identity
+      #   @hello_identity ||= hello_session && hello_session.identity
       # end
 
       def hello_session
-        hellovars[:session] ||= hello_session_id && Hello::Session.find(hello_session_id)
+        @hello_session ||= get_hello_session
       end
 
       private
@@ -55,6 +55,7 @@ module Hello
           end
 
           def set_hello_session_id(v)
+            clear_hello_session
             session[:hello_session_id]=v
             @hellovars = nil
           end
@@ -63,8 +64,12 @@ module Hello
             session[:hello_session_id]
           end
 
-          def hellovars
-            @hellovars ||= {}
+          def get_hello_session
+            return nil unless hello_session_id
+            return Hello::Session.find(hello_session_id)
+            rescue ActiveRecord::RecordNotFound
+              session.clear
+              nil
           end
 
           # helper
