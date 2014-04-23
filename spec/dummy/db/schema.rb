@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416051605) do
+ActiveRecord::Schema.define(version: 3) do
 
-  create_table "hello_identities", force: true do |t|
+  create_table "identities", force: true do |t|
     t.integer  "user_id"
     t.string   "strategy"
     t.string   "email"
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20140416051605) do
     t.datetime "updated_at"
   end
 
-  add_index "hello_identities", ["user_id"], name: "index_hello_identities_on_user_id"
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
-  create_table "hello_sessions", force: true do |t|
+  create_table "sessions", force: true do |t|
     t.integer  "user_id"
     t.integer  "identity_id"
     t.string   "ua"
@@ -36,16 +36,16 @@ ActiveRecord::Schema.define(version: 20140416051605) do
     t.datetime "updated_at"
   end
 
-  add_index "hello_sessions", ["identity_id"], name: "index_hello_sessions_on_identity_id"
-  add_index "hello_sessions", ["user_id"], name: "index_hello_sessions_on_user_id"
+  add_index "sessions", ["identity_id"], name: "index_sessions_on_identity_id"
+  add_index "sessions", ["user_id"], name: "index_sessions_on_user_id"
 
-  create_table "hello_users", force: true do |t|
+  create_table "users", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "name"
     t.string   "role",             default: "user"
     t.integer  "identities_count", default: 0
     t.integer  "sessions_count",   default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
 end

@@ -1,4 +1,4 @@
-module Hello
+# module Hello
   class Identity < ActiveRecord::Base
     module Password
       extend ActiveSupport::Concern
@@ -62,4 +62,4 @@ module Hello
 
     end
   end
-end
+# end

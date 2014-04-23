@@ -12,7 +12,7 @@ describe "password" do
     #
     # Session gets destroyed on server-side
     #
-    Hello::Session.destroy_all
+    Session.destroy_all
     visit hello.root_path
     then_I_should_be_logged_out
   end

@@ -1,6 +1,6 @@
-class CreateHelloIdentities < ActiveRecord::Migration
+class CreateIdentities < ActiveRecord::Migration
   def change
-    create_table :hello_identities do |t|
+    create_table :identities do |t|
       t.references :user, index: true
       t.string :strategy
       t.string :email

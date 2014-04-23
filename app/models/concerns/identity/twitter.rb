@@ -1,4 +1,4 @@
-module Hello
+# module Hello
   class Identity < ActiveRecord::Base
     module Twitter
       extend ActiveSupport::Concern
@@ -55,4 +55,4 @@ module Hello
 
     end
   end
-end
+# end

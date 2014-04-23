@@ -25,7 +25,7 @@ module Hello
       end
 
       def create_hello_session
-        s = Hello::Session.create!(identity: @identity, ua: user_agent)
+        s = Session.create!(identity: @identity, ua: user_agent)
         set_hello_session_id(s.id)
       end
 
@@ -66,7 +66,7 @@ module Hello
 
           def get_hello_session
             return nil unless hello_session_id
-            return Hello::Session.find(hello_session_id)
+            return Session.find(hello_session_id)
             rescue ActiveRecord::RecordNotFound
               session.clear
               nil
