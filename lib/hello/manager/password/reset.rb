@@ -27,7 +27,7 @@ module Hello
           end
 
           def reload
-            config_file = ::Rails.root.join "app/hello/reset.rb"
+            config_file = ::Rails.root.join "app/lib/hello/reset.rb"
             unless File.exists? config_file
               #`rails g hello:install`
               raise "should have config reset file"

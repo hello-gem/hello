@@ -31,7 +31,7 @@ module Hello
           end
 
           def reload
-            config_file = ::Rails.root.join "app/hello/forgot.rb"
+            config_file = ::Rails.root.join "app/lib/hello/forgot.rb"
             unless File.exists? config_file
               #`rails g hello:install`
               raise "should have config forgot file"

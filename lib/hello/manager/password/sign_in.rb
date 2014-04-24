@@ -27,7 +27,7 @@ module Hello
           end
 
           def reload
-            config_file = ::Rails.root.join "app/hello/sign_in.rb"
+            config_file = ::Rails.root.join "app/lib/hello/sign_in.rb"
             unless File.exists? config_file
               #`rails g hello:install`
               raise "should have config sign_in file"
