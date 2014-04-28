@@ -1,9 +1,5 @@
-module Hello
-  class ApplicationController < ActionController::Base
-    include BeforeActions::Controller
+class Hello::ApplicationController < ApplicationController
+  include BeforeActions::Controller
 
-    layout "application"
-
-    puts "there should be authorization for these controllers"
-  end
+  puts "there should be authorization for these controllers"
 end
