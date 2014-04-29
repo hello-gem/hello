@@ -78,7 +78,7 @@ module Hello
           it "length" do
             @identity.password = '1' * 1
             @identity.valid?
-            expect(@identity.errors[:password]).to eq ["pick a shorter password"]
+            expect(@identity.errors[:password]).to eq ["minimum of 4 characters"]
 
             @identity.password = '1' * 4
             @identity.valid?
@@ -86,7 +86,7 @@ module Hello
 
             @identity.password = '1' * 201
             @identity.valid?
-            expect(@identity.errors[:password]).to eq ["pick a longer password"]
+            expect(@identity.errors[:password]).to eq ["maximum of 200 characters"]
           end
           
         end

@@ -17,8 +17,8 @@
         # password
         validates_length_of :password,
                             in: 4..200,
-                            too_long: 'pick a longer password',
-                            too_short: 'pick a shorter password',
+                            too_long:  'maximum of %{count} characters',
+                            too_short: 'minimum of %{count} characters',
                             if: :is_password?
       end
 
