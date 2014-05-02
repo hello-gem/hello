@@ -1,7 +1,7 @@
-Hello.forgot.config do
+Hello.config.forgot.config do
   
   # controller scope
-  success do
+  set :success do
     # @identity
 
     # SignUpMailer.forgot(@identity).deliver
@@ -27,7 +27,7 @@ Hello.forgot.config do
   end
 
 
-  error do
+  set :error do
     #@identity
     # user = @identity.user
 
@@ -49,7 +49,7 @@ Hello.forgot.config do
     end
   end
 
-  deliver_password_forgot do
+  set :deliver_password_forgot do
     # @identity
 
     if @identity.should_reset_token?

@@ -1,7 +1,7 @@
-Hello.sign_out.config do
+Hello.config.sign_out.config do
   
   # controller scope
-  success do
+  set :success do
 
     respond_to do |format|
       format.html {

@@ -1,7 +1,7 @@
-Hello.reset.config do
+Hello.config.reset.config do
   
   # controller scope
-  success do
+  set :success do
     # @identity
 
 
@@ -24,7 +24,7 @@ Hello.reset.config do
   end
 
 
-  error do
+  set :error do
     #@identity
     # user = @identity.user
 

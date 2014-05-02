@@ -11,7 +11,7 @@ module Hello
     # GET /hello/sign_out
     def sign_out
       clear_hello_session
-      instance_eval(&Hello.sign_out.success)
+      instance_eval(&Hello.config.sign_out.success)
     end
 
 

@@ -17,9 +17,9 @@ module Hello
           @identity = @password_sign_up.identity
 
           if @password_sign_up.save
-            instance_eval(&Hello.sign_up.success)
+            instance_eval(&Hello.config.sign_up.success)
           else
-            instance_eval(&Hello.sign_up.error)
+            instance_eval(&Hello.config.sign_up.error)
           end
         end
 
@@ -44,9 +44,9 @@ module Hello
           @identity = @password_sign_in.identity
 
           if @password_sign_in.authenticate
-            instance_eval(&Hello.sign_in.success)
+            instance_eval(&Hello.config.sign_in.success)
           else
-            instance_eval(&Hello.sign_in.error)
+            instance_eval(&Hello.config.sign_in.error)
           end
         end
 
@@ -70,9 +70,9 @@ module Hello
           @identity = @password_forgot.identity
 
           if @password_forgot.reset
-            instance_eval(&Hello.forgot.success)
+            instance_eval(&Hello.config.forgot.success)
           else
-            instance_eval(&Hello.forgot.error)
+            instance_eval(&Hello.config.forgot.error)
           end
         end
 
@@ -115,9 +115,9 @@ module Hello
 
               if @password_reset.update_password(params[:password])
                 @identity.invalidate_token
-                instance_eval(&Hello.reset.success)
+                instance_eval(&Hello.config.reset.success)
               else
-                instance_eval(&Hello.reset.error)
+                instance_eval(&Hello.config.reset.error)
               end
             end
 

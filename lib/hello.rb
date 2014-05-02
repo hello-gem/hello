@@ -1,6 +1,6 @@
 require "hello/engine"
 
-require "hello/manager/manager"
+require "hello/config"
 
 require "hello/rails/controller"
 require "hello/rails/helper"
@@ -11,27 +11,8 @@ require 'validates_email_format_of'
 
 module Hello
 
-  def self.sign_up
-    Manager.instance.sign_up
+  def self.config
+    Config.instance
   end
 
-  def self.sign_in
-    Manager.instance.sign_in
-  end
-
-  def self.sign_out
-    Manager.instance.sign_out
-  end
-
-  def self.forgot
-    Manager.instance.forgot
-  end
-
-  def self.reset
-    Manager.instance.reset
-  end
-
-  # def self.twitter
-  #   Manager.instance.twitter
-  # end
 end

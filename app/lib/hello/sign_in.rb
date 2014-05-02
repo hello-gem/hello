@@ -1,7 +1,7 @@
-Hello.sign_in.config do
+Hello.config.sign_in.config do
   
   # controller scope
-  success do
+  set :success do
     #@identity
     # user = @identity.user
 
@@ -30,7 +30,7 @@ Hello.sign_in.config do
   end
 
 
-  error do
+  set :error do
     #@identity
     # user = @identity.user
 

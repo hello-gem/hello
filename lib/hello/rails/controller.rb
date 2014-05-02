@@ -9,7 +9,7 @@ module Hello
 
 
       def deliver_password_forgot
-        instance_eval(&Hello.forgot.deliver_password_forgot)
+        instance_eval(&Hello.config.forgot.deliver_password_forgot)
       end
 
       #
