@@ -15,6 +15,7 @@ module Hello
             identity = Identity.new
             identity.valid?
             expect(identity.errors[:strategy]).to include "can't be blank"
+            expect(identity.errors[:user]).to     include "can't be blank"
           end
 
           it "inclusion" do
@@ -56,8 +57,9 @@ module Hello
 
           it "uniqueness" do
             email = 'email@hello.com'
+            a_user = User.create!(name: 'James Pinto', city: 'Brasilia')
 
-            identity = Identity.new(strategy: Identity.password, email: email, password: '1234')
+            identity = Identity.new(strategy: Identity.password, email: email, password: '1234', user: a_user)
             identity.save.should be_true
 
             identity = Identity.new(strategy: Identity.password, email: email, password: '1111')

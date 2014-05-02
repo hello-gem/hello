@@ -14,18 +14,17 @@ module Hello
     # PATCH /hello/user
     def update
       if @user.update(user_params)
-        redirect_to hello.user_path, notice: 'Your profile was successfully updated.'
+        instance_eval(&Hello.config.user.success)
       else
-        render action: 'edit'
+        instance_eval(&Hello.config.user.error)
       end
     end
-
 
     private
 
         def user_params
-          puts "user_params should be configurable"
-          params.require(:user).permit(:name)
+          column_names = User.hello_profile_column_names
+          params.require(:user).permit(*column_names)
         end
 
   end

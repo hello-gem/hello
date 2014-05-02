@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe "edit" do
 describe "user" do
+describe "edit" do
 
   it "success and error" do
     given_I_am_logged_in
@@ -13,6 +13,7 @@ describe "user" do
     #
     within("form") do
       fill_in 'user_name',    with: 'Yakko'
+      fill_in 'user_city',    with: 'Brasilia'
       # fill_in 'password', with: 'foobar'
     end
     click_button 'Update'

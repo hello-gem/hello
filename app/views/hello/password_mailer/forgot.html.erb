@@ -1,6 +1,6 @@
 <h1>PasswordMailer#forgot</h1>
 
-<p>Hi <%= @identity.user.name %>,</p>
+<p>Hi <%= @user.name %>,</p>
 <p>Here is a link to <%= link_to "reset your password", @url %></p>
 
 <p><%= link_to @url, @url %></p>

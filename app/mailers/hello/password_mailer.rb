@@ -20,6 +20,7 @@ module Hello
     #
     def forgot(identity, url)
       @identity = identity
+      @user     = identity.user
       @url      = url
 
       mail to: identity.email

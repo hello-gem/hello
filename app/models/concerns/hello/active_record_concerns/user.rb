@@ -4,6 +4,15 @@ module Hello
 
       extend ActiveSupport::Concern
 
+
+
+        # {"name" => "...", "city" => "..."}
+        def hello_profile_attributes
+          attributes.slice(*self.class.hello_profile_column_names)
+        end
+
+
+
       included do
         has_many :identities
         has_many :sessions
@@ -26,6 +35,13 @@ module Hello
 
         def admin
           'admin'
+        end
+
+        # ['name', 'city']
+        def hello_profile_column_names
+          ignore_columns = ['id', 'created_at', 'updated_at', 'role']
+          the_columns = column_names - ignore_columns
+          the_columns.reject { |column| column.ends_with? '_count' }
         end
       end
 

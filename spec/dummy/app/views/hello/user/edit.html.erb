@@ -1,0 +1,24 @@
+<%= render '/hello/shared/profile' %>
+
+<%= form_for(@user) do |f| %>
+  <%= render '/hello/shared/errors', model: @user, found_when_msg: "updating your profile" %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+
+
+
+  <!-- city is a custom field -->
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "Update Profile" %>
+  </div>
+<% end %>
