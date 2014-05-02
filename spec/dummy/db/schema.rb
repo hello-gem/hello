@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 20140502043304) do
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 3) do
     t.string   "role",             default: "user"
     t.integer  "identities_count", default: 0
     t.integer  "sessions_count",   default: 0
+    t.string   "city"
   end
 
 end

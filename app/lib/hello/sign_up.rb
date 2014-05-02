@@ -1,5 +1,8 @@
 Hello.config.sign_up.config do
   
+  # fields :email, :password
+  fields :name, :email, :username, :password
+
   # controller scope
   set :success do
     #@identity

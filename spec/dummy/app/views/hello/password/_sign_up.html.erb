@@ -1,0 +1,33 @@
+<%= form_for(@password_sign_up, url: password_sign_up_path) do |f| %>
+  <%= render '/hello/shared/errors', model: @password_sign_up, found_when_msg: "signing up" %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, name: 'name' %>
+  </div>
+
+
+  <!-- city is a custom field -->
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_field :city, name: 'city' %>
+  </div>
+
+
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.email_field :email, name: 'email' %>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username, name: 'username' %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password, name: 'password' %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Sign Up" %>
+  </div>
+<% end %>

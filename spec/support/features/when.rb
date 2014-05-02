@@ -24,6 +24,7 @@ def when_sign_up_with_standard_data
     fill_in 'email',    with: 'foo@bar.com'
     fill_in 'username', with: 'foobar'
     fill_in 'password', with: 'foobar'
+    fill_in 'city',     with: 'OMG! I can customize Hello!'
     click_button 'Sign Up'
   end
 end

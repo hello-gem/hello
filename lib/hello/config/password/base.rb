@@ -7,6 +7,15 @@ module Hello
         @scope.instance_eval(&block)
       end
 
+      def fields
+        raise NotImplementedError # becase you need to call has_fields
+      end
+
+      def self.has_fields
+        define_method :fields do
+          get_scope.get_fields
+        end
+      end
 
       
       def self.has_scopes(*scope_names)
@@ -27,6 +36,14 @@ module Hello
 
           def get(name)
             blocks[name]
+          end
+
+          def fields(*field_names)
+            @fields = field_names
+          end
+
+          def get_fields
+            @fields
           end
 
           private
@@ -57,7 +74,7 @@ module Hello
                       raise "should have config #{filename} file"
                     end
                   end
-                      
+
                       def config_file
                         ::Rails.root.join "app/lib/hello/#{filename}.rb"
                       end
