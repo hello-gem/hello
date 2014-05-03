@@ -17,7 +17,8 @@ class HelloGenerator < Rails::Generators::Base
   def tell_programmer_what_to_do_next
     the_root = File.expand_path("../../../../../", __FILE__)
     app_html_erb = File.join(the_root, "spec/dummy/app/views/layouts/application.html.erb")
-    user_rb      = File.join(the_root, "spec/dummy/app/models/user.rb")
+    user_rb      = File.join(the_root, "app/models/user.rb")
+    identity_rb  = File.join(the_root, "app/models/identity.rb")
 
 
     puts "-" * 100
@@ -32,6 +33,11 @@ class HelloGenerator < Rails::Generators::Base
     puts "\t\t\t\t\tapp/models/user.rb".green
       puts "-" * 100
       puts open(user_rb).read.green
+      puts "\n" * 3
+      puts "-" * 100
+    puts "\t\t\t\t\tapp/models/identity.rb".green
+      puts "-" * 100
+      puts open(identity_rb).read.green
       puts "\n" * 3
       puts "-" * 100
   end

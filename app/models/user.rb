@@ -1,4 +1,4 @@
+# programmers can override this file in their own projects :)
 class User < ActiveRecord::Base
-  # programmers can override this file in their own projects :)
-  include Hello::ActiveRecordConcerns::User
+  include Hello::UserModel
 end

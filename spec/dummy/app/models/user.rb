@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include Hello::ActiveRecordConcerns::User
+  include Hello::UserModel
 
   validates_presence_of :city
 

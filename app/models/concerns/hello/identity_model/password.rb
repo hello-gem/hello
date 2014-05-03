@@ -1,9 +1,18 @@
-# module Hello
-  class Identity < ActiveRecord::Base
+module Hello
+  module IdentityModel
     module Password
       extend ActiveSupport::Concern
 
+
+      def password=(value)
+        @password = value
+        self.password_digest = encrypt_password(value)
+      end
+
+
       included do
+        attr_reader :password
+
         validates_presence_of :email, :password, if: :is_password?
 
         # email
@@ -30,8 +39,8 @@
 
 
       module ClassMethods
-        def encrypt(unencrypted_string)
-          Digest::MD5.hexdigest(unencrypted_string)
+        def encrypt_token(plain_text_string)
+          Digest::MD5.hexdigest(plain_text_string)
         end
       end
 
@@ -42,7 +51,7 @@
 
       def reset_token
         uuid = SecureRandom.hex(8) # probability = 1 / (16 ** 16)
-        digest = self.class.encrypt(uuid)
+        digest = self.class.encrypt_token(uuid)
         update(token_digest: digest, token_digested_at: 1.second.ago)
         return uuid
       end
@@ -62,4 +71,4 @@
 
     end
   end
-# end
+end
