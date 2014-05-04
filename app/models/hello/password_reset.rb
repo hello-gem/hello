@@ -29,8 +29,8 @@ module Hello
 
         def find_identity(unencrypted_token)
           token_digest = Identity.encrypt_token(unencrypted_token)
-          query_hash   = {token_digest: token_digest, strategy: 'password'}
-          @identity    = Identity.where(query_hash).first
+          query_hash   = {password_token_digest: token_digest}
+          @identity    = Identity.strategy_password.where(query_hash).first
         end
 
         # update password helpers

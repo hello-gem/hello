@@ -50,19 +50,19 @@ module Hello
       end
 
 
-      def should_reset_token?
-        token_digested_at.blank? || token_digested_at < 7.days.ago
+      def should_reset_password_token?
+        password_token_digested_at.blank? || password_token_digested_at < 7.days.ago
       end
 
-      def reset_token
+      def reset_password_token
         uuid = SecureRandom.hex(8) # probability = 1 / (16 ** 16)
         digest = self.class.encrypt_token(uuid)
-        update(token_digest: digest, token_digested_at: 1.second.ago)
+        update(password_token_digest: digest, password_token_digested_at: 1.second.ago)
         return uuid
       end
 
-      def invalidate_token
-        update(token_digest: nil, token_digested_at: nil)
+      def invalidate_password_token
+        update(password_token_digest: nil, password_token_digested_at: nil)
       end
 
 

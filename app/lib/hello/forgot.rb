@@ -52,8 +52,8 @@ Hello.config.forgot.config do
   set :deliver_password_forgot do
     # @identity
 
-    if @identity.should_reset_token?
-      token = @identity.reset_token
+    if @identity.should_reset_password_token?
+      token = @identity.reset_password_token
       url = hello.password_reset_token_url(token)
       mailer = Hello::PasswordMailer.forgot(@identity, url)
       mailer.deliver

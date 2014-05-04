@@ -114,7 +114,7 @@ module Hello
               @identity = @password_reset.identity
 
               if @password_reset.update_password(params[:password])
-                @identity.invalidate_token
+                @identity.invalidate_password_token
                 instance_eval(&Hello.config.reset.success)
               else
                 instance_eval(&Hello.config.reset.error)

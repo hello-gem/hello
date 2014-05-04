@@ -19,9 +19,11 @@ ActiveRecord::Schema.define(version: 20140502043304) do
     t.string   "email"
     t.string   "username"
     t.string   "password_digest"
-    t.string   "token_digest"
-    t.datetime "token_digested_at"
-    t.integer  "sessions_count",    default: 0
+    t.integer  "sessions_count",             default: 0
+    t.string   "password_token_digest"
+    t.datetime "password_token_digested_at"
+    t.string   "email_token_digest"
+    t.datetime "email_confirmed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
