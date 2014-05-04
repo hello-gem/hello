@@ -17,7 +17,7 @@ module Hello
       #
 
       included do
-        helper_method :current_user
+        helper_method :current_user, :hello_identity
       end
 
       def current_user
@@ -39,10 +39,9 @@ module Hello
         @hello_user ||= hello_session && hello_session.user
       end
 
-      # not used yet
-      # def hello_identity
-      #   @hello_identity ||= hello_session && hello_session.identity
-      # end
+      def hello_identity
+        @hello_identity ||= hello_session && hello_session.identity
+      end
 
       def hello_session
         @hello_session ||= get_hello_session

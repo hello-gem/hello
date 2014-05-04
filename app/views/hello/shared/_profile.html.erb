@@ -1,6 +1,13 @@
 <p>
-  <span><%= link_to "Profile",  hello.user_path %></span>
-  <span><%#= link_to "Email",    hello.identity_email_path %></span>
-  <span><%#= link_to "Username", hello.identity_username_path %></span>
-  <span><%#= link_to "Password", hello.identity_password_path %></span>
+  <span><%= link_to "Edit Profile",  hello.user_path %></span>
+</p>
+
+<p>
+  <% current_user.password_entity.tap do |identity| %>
+    <span><%= link_to "Edit Email",    identity %></span> |
+    <span><%= link_to "Edit Username", identity %></span> |
+    <span><%= link_to "Edit Password", identity %></span>
+  <% end %>
+
+  <span><%#= link_to 'Add Email', hello.new_identity_path %></span>
 </p>

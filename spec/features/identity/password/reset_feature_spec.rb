@@ -11,10 +11,20 @@ describe "password" do
         expect(current_path).to eq hello.password_forgot_path
         expect(page).to have_content "This link has expired, please ask for a new link"
 
+    reset_token = given_I_have_a_password_identity_and_forgot_my_password
+
+    #
+    # GOOD TOKEN, EMPTY PASSWORD
+    #
+    visit hello.password_reset_token_path(reset_token)
+        expect(current_path).to eq hello.password_reset_path
+    when_I_update_a_password_form_with('')
+        expect(page).to have_content "found when resetting your password"
+    then_I_should_be_logged_out
+
     #
     # GOOD TOKEN, BAD PASSWORD
     #
-    reset_token = given_I_have_a_password_identity_and_forgot_my_password
     visit hello.password_reset_token_path(reset_token)
         expect(current_path).to eq hello.password_reset_path
     when_I_update_a_password_form_with('1')

@@ -8,6 +8,10 @@ module Hello
       attributes.slice(*self.class.hello_profile_column_names)
     end
 
+    def password_entity
+      identities.first
+    end
+
 
 
     included do

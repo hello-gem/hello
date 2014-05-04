@@ -13,7 +13,8 @@ module Hello
       included do
         attr_reader :password
 
-        validates_presence_of :email, :password, if: :is_password?
+        validates_presence_of :email,    if: :is_password?
+        validates_presence_of :password, if: :is_password?, on: :create
 
         # email
         validates_email_format_of :email, if: :is_password?
@@ -28,12 +29,16 @@ module Hello
                             in: 4..200,
                             too_long:  'maximum of %{count} characters',
                             too_short: 'minimum of %{count} characters',
-                            if: :is_password?
+                            if: :is_password_and_password_changed?
       end
 
 
       def is_password?
         strategy.to_s.inquiry.password?
+      end
+
+      def is_password_and_password_changed?
+        is_password? && password_digest_changed?
       end
 
 

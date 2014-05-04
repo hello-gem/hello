@@ -4,6 +4,22 @@
   <%= render '/hello/shared/errors', model: @user, found_when_msg: "updating your profile" %>
 
   <div class="field">
+    <%= f.label :email %><br>
+    <span><%= hello_identity.email %></span>
+    <%= link_to "(edit)", hello.identity_path(hello_identity) %>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <span><%= hello_identity.username %></span>
+    <%= link_to "(edit)", hello.identity_path(hello_identity) %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <strong>********</strong>
+    <%= link_to "(edit)", hello.identity_path(hello_identity) %>
+  </div>
+
+  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>

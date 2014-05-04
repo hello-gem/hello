@@ -40,9 +40,9 @@ module Hello
             end
 
         def initialize_identity
-          hash = {email: email, username: username, password: password, strategy: 'password'}
+          hash = {email: email, username: username, password: password}
           # @identity = Identity.where(hash).first_or_initialize
-          @identity = Identity.new(hash)
+          @identity = Identity.strategy_password.new(hash)
         end
 
         # save helpers

@@ -35,7 +35,7 @@ module Hello
       describe "strategy-password" do
 
         before(:each) do
-          @identity = Identity.new(strategy: Identity.password)
+          @identity = Identity.strategy_password.new
         end
 
         describe "email validations" do
@@ -59,10 +59,10 @@ module Hello
             email = 'email@hello.com'
             a_user = User.create!(name: 'James Pinto', city: 'Brasilia')
 
-            identity = Identity.new(strategy: Identity.password, email: email, password: '1234', user: a_user)
+            identity = Identity.strategy_password.new(email: email, password: '1234', user: a_user)
             identity.save.should be_true
 
-            identity = Identity.new(strategy: Identity.password, email: email, password: '1111')
+            identity = Identity.strategy_password.new(email: email, password: '1111')
             identity.valid?
             # identity.errors[:email].should == ["has already been taken"]
             identity.errors[:email].should == ["already exists"]

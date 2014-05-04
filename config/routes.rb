@@ -2,6 +2,7 @@ Hello::Engine.routes.draw do
   
 
 
+
   root "welcome#index"
 
   get  "sign_out" => "welcome#sign_out"
@@ -10,6 +11,7 @@ Hello::Engine.routes.draw do
     # user
     get   'user' => "user#edit"
     patch 'user' => "user#update"
+    resources :identities, only: [:show, :update]
 
 
   # sign up
