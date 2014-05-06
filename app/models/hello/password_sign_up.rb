@@ -3,20 +3,20 @@ module Hello
     include ActiveModel::Model
 
     
-    attr_reader :identity
+    attr_reader :credential
 
     def initialize(params=nil)
       self.class.send :attr_accessor, *permitted_fields
       if params
         write_attributes_to_self(params)
-        initialize_identity
+        initialize_credential
       end
     end
 
     def save
-      identity.build_user(user_attributes)
+      credential.build_user(user_attributes)
       merge_errors_to_self and return false if are_models_invalid?
-      identity.save
+      credential.save
     end
 
     def errors
@@ -39,9 +39,9 @@ module Hello
               Hello.config.sign_up.fields
             end
 
-        def initialize_identity
+        def initialize_credential
           hash = {email: email, username: username, password: password}
-          @identity = Identity.classic.new(hash)
+          @credential = Credential.classic.new(hash)
         end
 
         # save helpers
@@ -60,14 +60,14 @@ module Hello
             end
 
         def are_models_invalid?
-          identity.invalid? || identity.user.invalid?
-          # a=identity.invalid?
-          # b=identity.user.invalid?
+          credential.invalid? || credential.user.invalid?
+          # a=credential.invalid?
+          # b=credential.user.invalid?
           # a || b
         end
 
         def merge_errors_to_self
-          hash = identity.errors.to_hash.merge(identity.user.errors)
+          hash = credential.errors.to_hash.merge(credential.user.errors)
           hash.each { |k,v| v.each { |v1| errors.add(k, v1) } }
         end
 

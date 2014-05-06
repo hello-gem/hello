@@ -1,5 +1,5 @@
 module Hello
-  module IdentityModel
+  module CredentialModel
     extend ActiveSupport::Concern
 
     included do

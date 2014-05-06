@@ -11,11 +11,11 @@ FactoryGirl.define do
     city { Faker::Address.city  } # for dummy's customized sign up
   end
 
-  factory :identity do
+  factory :credential do
     user
 
-    factory :classic_identity do
-      strategy Identity._classic
+    factory :classic_credential do
+      strategy Credential._classic
       email    { Faker::Internet.email }
       username { Faker::Internet.user_name.parameterize }
       password '1234'

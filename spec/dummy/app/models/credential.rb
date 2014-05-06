@@ -1,6 +1,6 @@
 # programmers can override this file in their own projects :)
-class Identity < ActiveRecord::Base
-  include Hello::IdentityModel
+class Credential < ActiveRecord::Base
+  include Hello::CredentialModel
 
   def encrypt_password(plain_text_password)
     salt     = "write-a-random-string-here"

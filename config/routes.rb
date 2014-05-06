@@ -14,7 +14,7 @@ Hello::Engine.routes.draw do
 
   namespace "classic" do
     
-    resources :identities, only: [:update] do
+    resources :credentials, only: [:update] do
       member do
         get :email, :username, :password
       end

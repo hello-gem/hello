@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140502043304) do
 
-  create_table "identities", force: true do |t|
+  create_table "credentials", force: true do |t|
     t.integer  "user_id"
     t.string   "strategy"
     t.string   "email"
@@ -28,26 +28,26 @@ ActiveRecord::Schema.define(version: 20140502043304) do
     t.datetime "updated_at"
   end
 
-  add_index "identities", ["user_id"], name: "index_identities_on_user_id"
+  add_index "credentials", ["user_id"], name: "index_credentials_on_user_id"
 
   create_table "sessions", force: true do |t|
     t.integer  "user_id"
-    t.integer  "identity_id"
+    t.integer  "credential_id"
     t.string   "ua"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["identity_id"], name: "index_sessions_on_identity_id"
+  add_index "sessions", ["credential_id"], name: "index_sessions_on_credential_id"
   add_index "sessions", ["user_id"], name: "index_sessions_on_user_id"
 
   create_table "users", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.string   "role",             default: "user"
-    t.integer  "identities_count", default: 0
-    t.integer  "sessions_count",   default: 0
+    t.string   "role",              default: "user"
+    t.integer  "credentials_count", default: 0
+    t.integer  "sessions_count",    default: 0
     t.string   "city"
   end
 

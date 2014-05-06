@@ -9,12 +9,12 @@ describe "registration" do
     # SUCCESS
     #
     expect(User.count).to     eq(0)
-    expect(Identity.count).to eq(0)
+    expect(Credential.count).to eq(0)
 
     when_sign_up_with_standard_data
         expect(page).to have_content "Welcome! Welcome from Sign Up"
         expect(User.count).to     eq(1)
-        expect(Identity.count).to eq(1)
+        expect(Credential.count).to eq(1)
         expect(current_path).to eq hello.classic_sign_up_welcome_path
 
     then_I_should_be_logged_out
@@ -31,7 +31,7 @@ describe "registration" do
     when_sign_up_with_standard_data
         expect(page).to have_content "found when signing up"
         expect(User.count).to     eq(1)
-        expect(Identity.count).to eq(1)
+        expect(Credential.count).to eq(1)
 
 
     then_I_should_be_logged_out
@@ -85,7 +85,7 @@ describe "registration" do
     #
     # SUCCESS
     #
-    given_I_have_a_password_identity
+    given_I_have_a_password_credential
 
 
     # Hello::PasswordMailer.should_receive(:forgot)    
@@ -105,7 +105,7 @@ describe "registration" do
         expect(current_path).to eq hello.classic_forgot_path
         expect(page).to have_content "This link has expired, please ask for a new link"
 
-    reset_token = given_I_have_a_password_identity_and_forgot_my_password
+    reset_token = given_I_have_a_password_credential_and_forgot_my_password
 
     #
     # GOOD TOKEN, EMPTY PASSWORD

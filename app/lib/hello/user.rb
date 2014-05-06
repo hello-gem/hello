@@ -13,7 +13,7 @@ Hello.config.user.config do
       }
       format.json {
 
-        # render json: @identity, status: :created, location: hello.password_sign_in_welcome_path
+        # render json: @credential, status: :created, location: hello.password_sign_in_welcome_path
 
       }
     end

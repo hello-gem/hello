@@ -19,81 +19,81 @@
 # # that an instance is receiving a specific message.
 
 # module Hello
-#   describe IdentitiesController do
+#   describe CredentialsController do
 
 #     # This should return the minimal set of attributes required to create a valid
-#     # Identity. As you add validations to Identity, be sure to
+#     # Credential. As you add validations to Credential, be sure to
 #     # adjust the attributes here as well.
 #     let(:valid_attributes) { { "email" => "MyString" } }
 
 #     # This should return the minimal set of values that should be in the session
 #     # in order to pass any filters (e.g. authentication) defined in
-#     # IdentitiesController. Be sure to keep this updated too.
+#     # CredentialsController. Be sure to keep this updated too.
 #     let(:valid_session) { {} }
 
 #     describe "GET index" do
-#       it "assigns all identities as @identities" do
-#         identity = Identity.create! valid_attributes
+#       it "assigns all credentials as @credentials" do
+#         credential = Credential.create! valid_attributes
 #         get :index, {}, valid_session
-#         expect(assigns(:identities)).to eq([identity])
+#         expect(assigns(:credentials)).to eq([credential])
 #       end
 #     end
 
 #     describe "GET show" do
-#       it "assigns the requested identity as @identity" do
-#         identity = Identity.create! valid_attributes
-#         get :show, {:id => identity.to_param}, valid_session
-#         expect(assigns(:identity)).to eq(identity)
+#       it "assigns the requested credential as @credential" do
+#         credential = Credential.create! valid_attributes
+#         get :show, {:id => credential.to_param}, valid_session
+#         expect(assigns(:credential)).to eq(credential)
 #       end
 #     end
 
 #     describe "GET new" do
-#       it "assigns a new identity as @identity" do
+#       it "assigns a new credential as @credential" do
 #         get :new, {}, valid_session
-#         expect(assigns(:identity)).to be_a_new(Identity)
+#         expect(assigns(:credential)).to be_a_new(Credential)
 #       end
 #     end
 
 #     describe "GET edit" do
-#       it "assigns the requested identity as @identity" do
-#         identity = Identity.create! valid_attributes
-#         get :edit, {:id => identity.to_param}, valid_session
-#         expect(assigns(:identity)).to eq(identity)
+#       it "assigns the requested credential as @credential" do
+#         credential = Credential.create! valid_attributes
+#         get :edit, {:id => credential.to_param}, valid_session
+#         expect(assigns(:credential)).to eq(credential)
 #       end
 #     end
 
 #     describe "POST create" do
 #       describe "with valid params" do
-#         it "creates a new Identity" do
+#         it "creates a new Credential" do
 #           expect {
-#             post :create, {:identity => valid_attributes}, valid_session
-#           }.to change(Identity, :count).by(1)
+#             post :create, {:credential => valid_attributes}, valid_session
+#           }.to change(Credential, :count).by(1)
 #         end
 
-#         it "assigns a newly created identity as @identity" do
-#           post :create, {:identity => valid_attributes}, valid_session
-#           expect(assigns(:identity)).to be_a(Identity)
-#           expect(assigns(:identity)).to be_persisted
+#         it "assigns a newly created credential as @credential" do
+#           post :create, {:credential => valid_attributes}, valid_session
+#           expect(assigns(:credential)).to be_a(Credential)
+#           expect(assigns(:credential)).to be_persisted
 #         end
 
-#         it "redirects to the created identity" do
-#           post :create, {:identity => valid_attributes}, valid_session
-#           expect(response).to redirect_to(Identity.last)
+#         it "redirects to the created credential" do
+#           post :create, {:credential => valid_attributes}, valid_session
+#           expect(response).to redirect_to(Credential.last)
 #         end
 #       end
 
 #       describe "with invalid params" do
-#         it "assigns a newly created but unsaved identity as @identity" do
+#         it "assigns a newly created but unsaved credential as @credential" do
 #           # Trigger the behavior that occurs when invalid params are submitted
-#           allow_any_instance_of(Identity).to receive(:save).and_return(false)
-#           post :create, {:identity => { "email" => "invalid value" }}, valid_session
-#           expect(assigns(:identity)).to be_a_new(Identity)
+#           allow_any_instance_of(Credential).to receive(:save).and_return(false)
+#           post :create, {:credential => { "email" => "invalid value" }}, valid_session
+#           expect(assigns(:credential)).to be_a_new(Credential)
 #         end
 
 #         it "re-renders the 'new' template" do
 #           # Trigger the behavior that occurs when invalid params are submitted
-#           allow_any_instance_of(Identity).to receive(:save).and_return(false)
-#           post :create, {:identity => { "email" => "invalid value" }}, valid_session
+#           allow_any_instance_of(Credential).to receive(:save).and_return(false)
+#           post :create, {:credential => { "email" => "invalid value" }}, valid_session
 #           expect(response).to render_template("new")
 #         end
 #       end
@@ -101,60 +101,60 @@
 
 #     describe "PUT update" do
 #       describe "with valid params" do
-#         it "updates the requested identity" do
-#           identity = Identity.create! valid_attributes
-#           # Assuming there are no other identities in the database, this
-#           # specifies that the Identity created on the previous line
+#         it "updates the requested credential" do
+#           credential = Credential.create! valid_attributes
+#           # Assuming there are no other credentials in the database, this
+#           # specifies that the Credential created on the previous line
 #           # receives the :update_attributes message with whatever params are
 #           # submitted in the request.
-#           expect_any_instance_of(Identity).to receive(:update).with({ "email" => "MyString" })
-#           put :update, {:id => identity.to_param, :identity => { "email" => "MyString" }}, valid_session
+#           expect_any_instance_of(Credential).to receive(:update).with({ "email" => "MyString" })
+#           put :update, {:id => credential.to_param, :credential => { "email" => "MyString" }}, valid_session
 #         end
 
-#         it "assigns the requested identity as @identity" do
-#           identity = Identity.create! valid_attributes
-#           put :update, {:id => identity.to_param, :identity => valid_attributes}, valid_session
-#           expect(assigns(:identity)).to eq(identity)
+#         it "assigns the requested credential as @credential" do
+#           credential = Credential.create! valid_attributes
+#           put :update, {:id => credential.to_param, :credential => valid_attributes}, valid_session
+#           expect(assigns(:credential)).to eq(credential)
 #         end
 
-#         it "redirects to the identity" do
-#           identity = Identity.create! valid_attributes
-#           put :update, {:id => identity.to_param, :identity => valid_attributes}, valid_session
-#           expect(response).to redirect_to(identity)
+#         it "redirects to the credential" do
+#           credential = Credential.create! valid_attributes
+#           put :update, {:id => credential.to_param, :credential => valid_attributes}, valid_session
+#           expect(response).to redirect_to(credential)
 #         end
 #       end
 
 #       describe "with invalid params" do
-#         it "assigns the identity as @identity" do
-#           identity = Identity.create! valid_attributes
+#         it "assigns the credential as @credential" do
+#           credential = Credential.create! valid_attributes
 #           # Trigger the behavior that occurs when invalid params are submitted
-#           allow_any_instance_of(Identity).to receive(:save).and_return(false)
-#           put :update, {:id => identity.to_param, :identity => { "email" => "invalid value" }}, valid_session
-#           expect(assigns(:identity)).to eq(identity)
+#           allow_any_instance_of(Credential).to receive(:save).and_return(false)
+#           put :update, {:id => credential.to_param, :credential => { "email" => "invalid value" }}, valid_session
+#           expect(assigns(:credential)).to eq(credential)
 #         end
 
 #         it "re-renders the 'edit' template" do
-#           identity = Identity.create! valid_attributes
+#           credential = Credential.create! valid_attributes
 #           # Trigger the behavior that occurs when invalid params are submitted
-#           allow_any_instance_of(Identity).to receive(:save).and_return(false)
-#           put :update, {:id => identity.to_param, :identity => { "email" => "invalid value" }}, valid_session
+#           allow_any_instance_of(Credential).to receive(:save).and_return(false)
+#           put :update, {:id => credential.to_param, :credential => { "email" => "invalid value" }}, valid_session
 #           expect(response).to render_template("edit")
 #         end
 #       end
 #     end
 
 #     describe "DELETE destroy" do
-#       it "destroys the requested identity" do
-#         identity = Identity.create! valid_attributes
+#       it "destroys the requested credential" do
+#         credential = Credential.create! valid_attributes
 #         expect {
-#           delete :destroy, {:id => identity.to_param}, valid_session
-#         }.to change(Identity, :count).by(-1)
+#           delete :destroy, {:id => credential.to_param}, valid_session
+#         }.to change(Credential, :count).by(-1)
 #       end
 
-#       it "redirects to the identities list" do
-#         identity = Identity.create! valid_attributes
-#         delete :destroy, {:id => identity.to_param}, valid_session
-#         expect(response).to redirect_to(identities_url)
+#       it "redirects to the credentials list" do
+#         credential = Credential.create! valid_attributes
+#         delete :destroy, {:id => credential.to_param}, valid_session
+#         expect(response).to redirect_to(credentials_url)
 #       end
 #     end
 

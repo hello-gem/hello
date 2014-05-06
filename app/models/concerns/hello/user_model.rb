@@ -9,13 +9,13 @@ module Hello
     end
 
     def classic_entity
-      identities.first
+      credentials.first
     end
 
 
 
     included do
-      has_many :identities
+      has_many :credentials
       has_many :sessions
 
       validates_presence_of :name

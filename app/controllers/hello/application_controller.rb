@@ -36,7 +36,7 @@ class Hello::ApplicationController < ApplicationController
         save:             guest,
       },
       user:       user,
-      identities: user,
+      credentials: user,
     }
 
     autho_c = autho_data[controller_name.to_sym]

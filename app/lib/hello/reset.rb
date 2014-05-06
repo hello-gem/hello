@@ -2,7 +2,7 @@ Hello.config.reset.config do
   
   # controller scope
   set :success do
-    # @identity
+    # @credential
 
 
 
@@ -16,7 +16,7 @@ Hello.config.reset.config do
       }
       format.json {
 
-        # render json: @identity, status: :created, location: hello.classic_sign_in_path
+        # render json: @credential, status: :created, location: hello.classic_sign_in_path
         
 
       }
@@ -25,8 +25,8 @@ Hello.config.reset.config do
 
 
   set :error do
-    #@identity
-    # user = @identity.user
+    #@credential
+    # user = @credential.user
 
     # register failed attempt
 
@@ -39,7 +39,7 @@ Hello.config.reset.config do
       }
       format.json {
         
-        # render json: @identity.errors, status: :unprocessable_entity
+        # render json: @credential.errors, status: :unprocessable_entity
         
 
       }

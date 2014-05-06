@@ -15,7 +15,7 @@ module Classic
         # POST /hello/sign_up
         def create
           @password_sign_up = PasswordSignUp.new(params)
-          @identity = @password_sign_up.identity
+          @credential = @password_sign_up.credential
 
           if @password_sign_up.save
             instance_eval(&Hello.config.sign_up.success)
@@ -42,7 +42,7 @@ module Classic
         # POST /hello/sign_in
         def authenticate
           @password_sign_in = PasswordSignIn.new(self)
-          @identity = @password_sign_in.identity
+          @credential = @password_sign_in.credential
 
           if @password_sign_in.authenticate
             instance_eval(&Hello.config.sign_in.success)
@@ -68,7 +68,7 @@ module Classic
         # POST /hello/forgot
         def ask
           @password_forgot = PasswordForgot.new(params[:login])
-          @identity = @password_forgot.identity
+          @credential = @password_forgot.credential
 
           if @password_forgot.reset
             instance_eval(&Hello.config.forgot.success)
@@ -90,7 +90,7 @@ module Classic
       clear_hello_session
 
       @password_reset = PasswordReset.new(params[:token])
-      if @password_reset.identity
+      if @password_reset.credential
         session[:hello_reset_token] = params[:token]
         redirect_to classic_reset_path
       else
@@ -112,10 +112,10 @@ module Classic
               redirect_to classic_forgot_path unless session[:hello_reset_token]
 
               @password_reset = PasswordReset.new(session[:hello_reset_token])
-              @identity = @password_reset.identity
+              @credential = @password_reset.credential
 
               if @password_reset.update_password(params[:password])
-                @identity.invalidate_password_token
+                @credential.invalidate_password_token
                 instance_eval(&Hello.config.reset.success)
               else
                 instance_eval(&Hello.config.reset.error)

@@ -2,16 +2,16 @@
 
 
 
-def given_I_have_a_password_identity
-  Identity.classic.create!  user:     User.create!(name: 'James Pinto', city: 'Brasilia'),
+def given_I_have_a_password_credential
+  Credential.classic.create!  user:     User.create!(name: 'James Pinto', city: 'Brasilia'),
                             email:    'foo@bar.com',
                             username: 'foobar',
                             password: 'foobar'
 end
 
-def given_I_have_a_password_identity_and_forgot_my_password
-  identity = given_I_have_a_password_identity
-  return unencrypted_token = identity.reset_password_token
+def given_I_have_a_password_credential_and_forgot_my_password
+  credential = given_I_have_a_password_credential
+  return unencrypted_token = credential.reset_password_token
 end
 
 def given_I_am_logged_in

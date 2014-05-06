@@ -3,11 +3,11 @@
 </p>
 
 <p>
-  <% current_user.classic_entity.tap do |identity| %>
-    <span><%= link_to "Edit Email",    email_classic_identity_path(identity) %></span> |
-    <span><%= link_to "Edit Username", username_classic_identity_path(identity) %></span> |
-    <span><%= link_to "Edit Password", password_classic_identity_path(identity) %></span>
+  <% current_user.classic_entity.tap do |credential| %>
+    <span><%= link_to "Edit Email",    email_classic_credential_path(credential) %></span> |
+    <span><%= link_to "Edit Username", username_classic_credential_path(credential) %></span> |
+    <span><%= link_to "Edit Password", password_classic_credential_path(credential) %></span>
   <% end %>
 
-  <span><%#= link_to 'Add Email', hello.new_identity_path %></span>
+  <span><%#= link_to 'Add Email', hello.new_credential_path %></span>
 </p>

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "identity" do
+describe "credential" do
 describe "password" do
 
 

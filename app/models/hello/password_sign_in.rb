@@ -3,18 +3,18 @@ module Hello
     include ActiveModel::Model
 
     attr_accessor :login, :password
-    attr_reader :identity, :controller
+    attr_reader :credential, :controller
 
     def initialize(controller=nil)
       if controller
         write_attributes_to_self(controller)
-        initialize_identity
+        initialize_credential
       end
     end
 
     def authenticate
-      add_errors_for_login_not_found    and return false if identity.new_record?
-      add_errors_for_password_incorrect and return false if not identity.password_is?(password)
+      add_errors_for_login_not_found    and return false if credential.new_record?
+      add_errors_for_password_incorrect and return false if not credential.password_is?(password)
       return true
     end
 
@@ -35,8 +35,8 @@ module Hello
           attrs.each { |k, v| instance_variable_set(:"@#{k}", v) }
         end
 
-        def initialize_identity
-          @identity = Identity.classic.where(key => login).first_or_initialize
+        def initialize_credential
+          @credential = Credential.classic.where(key => login).first_or_initialize
         end
 
         # authenticate helpers

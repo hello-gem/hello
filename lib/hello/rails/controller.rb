@@ -17,7 +17,7 @@ module Hello
       #
 
       included do
-        helper_method :current_user, :hello_identity
+        helper_method :current_user, :hello_credential
       end
 
       def current_user
@@ -25,22 +25,22 @@ module Hello
       end
 
       def create_hello_session
-        s = Session.create!(identity: @identity, ua: user_agent)
+        s = Session.create!(credential: @credential, ua: user_agent)
         set_hello_session_id(s.id)
       end
 
       def clear_hello_session
         destroy_hello_session
         session.clear
-        @hello_user = @hello_identity = @hello_session = nil
+        @hello_user = @hello_credential = @hello_session = nil
       end
 
       def hello_user
         @hello_user ||= hello_session && hello_session.user
       end
 
-      def hello_identity
-        @hello_identity ||= hello_session && hello_session.identity
+      def hello_credential
+        @hello_credential ||= hello_session && hello_session.credential
       end
 
       def hello_session

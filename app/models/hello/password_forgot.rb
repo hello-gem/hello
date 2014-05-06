@@ -3,17 +3,17 @@ module Hello
     include ActiveModel::Model
 
     attr_accessor :login
-    attr_reader :identity
+    attr_reader :credential
 
     def initialize(login=nil)
       if login
         @login = login
-        find_identity
+        find_credential
       end
     end
 
     def reset
-      add_errors_for_login_not_found and return false if identity.nil?
+      add_errors_for_login_not_found and return false if credential.nil?
       return true
     end
 
@@ -28,8 +28,8 @@ module Hello
 
         # initialize helpers
 
-        def find_identity
-          @identity = Identity.classic.where(key => login).first
+        def find_credential
+          @credential = Credential.classic.where(key => login).first
         end
 
         # reset helpers

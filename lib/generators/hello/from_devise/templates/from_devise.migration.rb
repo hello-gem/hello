@@ -1,7 +1,7 @@
 # customize this migration if you need, PRs accepted
 class FromDevise < ActiveRecord::Migration
   def up
-    from_users_to_identities
+    from_users_to_credentials
     remove_devise_columns
   end
 
@@ -11,15 +11,15 @@ class FromDevise < ActiveRecord::Migration
 
   private
 
-      def from_users_to_identities
-        puts "before Identity.count (#{Identity.count.to_s.red})"
+      def from_users_to_credentials
+        puts "before Credential.count (#{Credential.count.to_s.red})"
         User.find_each do |user|
           puts "starting User ##{user.id} #{user.email}"
           username = user.username rescue ""
-          identity_fields = {email: user.email, username: username, password: SecureRandom.hex(8)}
-          user.identities.strategy_password.create!(identity_fields)
+          credential_fields = {email: user.email, username: username, password: SecureRandom.hex(8)}
+          user.credentials.strategy_password.create!(credential_fields)
         end
-        puts "after Identity.count (#{Identity.count.to_s.green})"
+        puts "after Credential.count (#{Credential.count.to_s.green})"
       end
 
       def remove_devise_columns

@@ -18,7 +18,7 @@ class HelloGenerator < Rails::Generators::Base
     the_root = File.expand_path("../../../../../", __FILE__)
     app_html_erb = File.join(the_root, "spec/dummy/app/views/layouts/application.html.erb")
     user_rb      = File.join(the_root, "app/models/user.rb")
-    identity_rb  = File.join(the_root, "app/models/identity.rb")
+    credential_rb  = File.join(the_root, "app/models/credential.rb")
 
 
     puts "-" * 100
@@ -35,9 +35,9 @@ class HelloGenerator < Rails::Generators::Base
       puts open(user_rb).read.green
       puts "\n" * 3
       puts "-" * 100
-    puts "\t\t\t\t\tapp/models/identity.rb".green
+    puts "\t\t\t\t\tapp/models/credential.rb".green
       puts "-" * 100
-      puts open(identity_rb).read.green
+      puts open(credential_rb).read.green
       puts "\n" * 3
       puts "-" * 100
   end

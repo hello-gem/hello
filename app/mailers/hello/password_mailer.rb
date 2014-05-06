@@ -18,12 +18,12 @@ module Hello
     #
     #   en.password_mailer.forgot.subject
     #
-    def forgot(identity, url)
-      @identity = identity
-      @user     = identity.user
+    def forgot(credential, url)
+      @credential = credential
+      @user     = credential.user
       @url      = url
 
-      mail to: identity.email
+      mail to: credential.email
     end
 
     # Subject can be set in your I18n file at config/locales/en.yml

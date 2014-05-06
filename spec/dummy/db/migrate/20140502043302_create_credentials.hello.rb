@@ -1,6 +1,7 @@
-class CreateIdentities < ActiveRecord::Migration
+# This migration comes from hello (originally 1)
+class CreateCredentials < ActiveRecord::Migration
   def change
-    create_table :identities do |t|
+    create_table :credentials do |t|
       t.references :user, index: true
       t.string :strategy
       t.string :email
@@ -13,6 +14,7 @@ class CreateIdentities < ActiveRecord::Migration
       
       t.string   :email_token_digest
       t.datetime :email_confirmed_at
+
 
       t.timestamps
     end

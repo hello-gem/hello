@@ -8,20 +8,20 @@ module Hello
     end
 
     describe "validations" do
-      it "presence of user and identity" do
+      it "presence of user and credential" do
         @session.valid?
         expect(@session.errors[:user]).to include "can't be blank"
-        expect(@session.errors[:identity]).to include "can't be blank"
+        expect(@session.errors[:credential]).to include "can't be blank"
       end
     end
  
 
     describe "before validations, on creation" do
-      it "auto attribution of user through identity" do
-        @session.identity = FactoryGirl.create(:classic_identity)
+      it "auto attribution of user through credential" do
+        @session.credential = FactoryGirl.create(:classic_credential)
         @session.save # trigger before_validation on creation
         expect(@session.errors[:user]).to     eq []
-        expect(@session.errors[:identity]).to eq []
+        expect(@session.errors[:credential]).to eq []
       end
     end
 

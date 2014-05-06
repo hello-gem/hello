@@ -5,13 +5,13 @@ Hello.config.sign_up.config do
 
   # controller scope
   set :success do
-    #@identity
-    # user = @identity.user
+    #@credential
+    # user = @credential.user
 
 
 
-    # SignUpMailer.welcome(@identity).deliver
-    # SignUpMailer.confirmation(@identity).deliver
+    # SignUpMailer.welcome(@credential).deliver
+    # SignUpMailer.confirmation(@credential).deliver
 
 
 
@@ -25,7 +25,7 @@ Hello.config.sign_up.config do
       }
       format.json {
 
-        # render json: @identity, status: :created, location: hello.classic_sign_up_welcome_path
+        # render json: @credential, status: :created, location: hello.classic_sign_up_welcome_path
         
 
       }
@@ -34,8 +34,8 @@ Hello.config.sign_up.config do
 
 
   set :error do
-    #@identity
-    # user = @identity.user
+    #@credential
+    # user = @credential.user
 
     # register failed attempt if email was found
 
@@ -48,7 +48,7 @@ Hello.config.sign_up.config do
       }
       format.json {
         
-        # render json: @identity.errors, status: :unprocessable_entity
+        # render json: @credential.errors, status: :unprocessable_entity
         
 
       }

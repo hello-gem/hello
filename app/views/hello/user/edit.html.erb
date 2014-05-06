@@ -5,18 +5,18 @@
 
   <div class="field">
     <%= f.label :email %><br>
-    <span><%= hello_identity.email %></span>
-    <%= link_to "(edit)", hello.email_classic_identity_path(hello_identity) %>
+    <span><%= hello_credential.email %></span>
+    <%= link_to "(edit)", hello.email_classic_credential_path(hello_credential) %>
   </div>
   <div class="field">
     <%= f.label :username %><br>
-    <span><%= hello_identity.username %></span>
-    <%= link_to "(edit)", hello.username_classic_identity_path(hello_identity) %>
+    <span><%= hello_credential.username %></span>
+    <%= link_to "(edit)", hello.username_classic_credential_path(hello_credential) %>
   </div>
   <div class="field">
     <%= f.label :password %><br>
     <strong>********</strong>
-    <%= link_to "(edit)", hello.password_classic_identity_path(hello_identity) %>
+    <%= link_to "(edit)", hello.password_classic_credential_path(hello_credential) %>
   </div>
 
   <div class="field">

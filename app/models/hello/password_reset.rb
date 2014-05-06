@@ -2,17 +2,17 @@ module Hello
   class PasswordReset
     include ActiveModel::Model
 
-    attr_reader :identity
+    attr_reader :credential
 
     def initialize(unencrypted_token=nil)
       if unencrypted_token
-        find_identity(unencrypted_token)
+        find_credential(unencrypted_token)
       end
     end
 
     def update_password(password)
-      identity.password = password
-      merge_errors_to_self and return false unless identity.save
+      credential.password = password
+      merge_errors_to_self and return false unless credential.save
       return true
     end
 
@@ -27,15 +27,15 @@ module Hello
 
         # initialize helpers
 
-        def find_identity(unencrypted_token)
-          token_digest = Identity.encrypt_token(unencrypted_token)
-          @identity    = Identity.classic.where(password_token_digest: token_digest).first
+        def find_credential(unencrypted_token)
+          token_digest = Credential.encrypt_token(unencrypted_token)
+          @credential    = Credential.classic.where(password_token_digest: token_digest).first
         end
 
         # update password helpers
 
         def merge_errors_to_self
-          hash = identity.errors.to_hash
+          hash = credential.errors.to_hash
           hash.each { |k,v| v.each { |v1| errors.add(k, v1) } }
         end
 

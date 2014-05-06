@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration
     
     add_users_column_safe :name, :string
     add_users_column_safe :role, :string, default: 'user'
-    add_users_column_safe :identities_count, :integer, default: 0
+    add_users_column_safe :credentials_count, :integer, default: 0
     add_users_column_safe :sessions_count,   :integer, default: 0
   end
 
