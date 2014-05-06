@@ -1,4 +1,4 @@
-<%= form_for(@password_forgot, url: password_forgot_path) do |f| %>
+<%= form_for(@password_forgot, url: classic_forgot_path) do |f| %>
   <%= render '/hello/shared/errors', model: @password_forgot, found_when_msg: "locating your credentials" %>
 
   <div class="field">

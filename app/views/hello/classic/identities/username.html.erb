@@ -1,0 +1,17 @@
+<%= render '/hello/shared/profile' %>
+
+<h1>Editing Username</h1>
+
+<%= form_for([:classic, @identity]) do |f| %>
+  <%= render '/hello/shared/errors', model: @identity, found_when_msg: "updating your username" %>
+
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update Username" %>
+  </div>
+<% end %>
+

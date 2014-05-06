@@ -3,11 +3,10 @@
 
 
 def given_I_have_a_password_identity
-  Identity.create!  strategy: Identity.password,
-                    user:     User.create!(name: 'James Pinto', city: 'Brasilia'),
-                    email:    'foo@bar.com',
-                    username: 'foobar',
-                    password: 'foobar'
+  Identity.classic.create!  user:     User.create!(name: 'James Pinto', city: 'Brasilia'),
+                            email:    'foo@bar.com',
+                            username: 'foobar',
+                            password: 'foobar'
 end
 
 def given_I_have_a_password_identity_and_forgot_my_password

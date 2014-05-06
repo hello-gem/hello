@@ -19,13 +19,13 @@ Hello.config.sign_up.config do
       format.html {
 
         # create_hello_session
-        redirect_to hello.password_sign_up_welcome_path, notice: 'Welcome!'
+        redirect_to hello.classic_sign_up_welcome_path, notice: 'Welcome!'
 
 
       }
       format.json {
 
-        # render json: @identity, status: :created, location: hello.password_sign_up_welcome_path
+        # render json: @identity, status: :created, location: hello.classic_sign_up_welcome_path
         
 
       }

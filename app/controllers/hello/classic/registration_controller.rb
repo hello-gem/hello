@@ -1,7 +1,8 @@
 require_dependency "hello/application_controller"
 
 module Hello
-  class PasswordController < ApplicationController
+module Classic
+  class RegistrationController < ApplicationController
 
 
 
@@ -91,16 +92,16 @@ module Hello
       @password_reset = PasswordReset.new(params[:token])
       if @password_reset.identity
         session[:hello_reset_token] = params[:token]
-        redirect_to password_reset_path
+        redirect_to classic_reset_path
       else
-        redirect_to password_forgot_path, alert: "This link has expired, please ask for a new link"
+        redirect_to classic_forgot_path, alert: "This link has expired, please ask for a new link"
       end
     end
 
         # GET /hello/reset
         def reset
           # authorization
-          redirect_to password_forgot_path unless session[:hello_reset_token]
+          redirect_to classic_forgot_path unless session[:hello_reset_token]
 
           @password_reset = PasswordReset.new(session[:hello_reset_token])
         end
@@ -108,7 +109,7 @@ module Hello
             # POST /hello/reset
             def save
               # authorization
-              redirect_to password_forgot_path unless session[:hello_reset_token]
+              redirect_to classic_forgot_path unless session[:hello_reset_token]
 
               @password_reset = PasswordReset.new(session[:hello_reset_token])
               @identity = @password_reset.identity
@@ -122,4 +123,6 @@ module Hello
             end
 
   end
+
+end
 end

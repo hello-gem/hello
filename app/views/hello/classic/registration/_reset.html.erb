@@ -1,4 +1,4 @@
-<%= form_for(@password_reset, url: password_reset_path) do |f| %>
+<%= form_for(@password_reset, url: classic_reset_path) do |f| %>
   <%= render '/hello/shared/errors', model: @password_reset, found_when_msg: "resetting your password" %>
 
   <div class="field">

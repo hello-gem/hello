@@ -1,0 +1,17 @@
+<%= render '/hello/shared/profile' %>
+
+<h1>Editing Email</h1>
+
+<%= form_for([:classic, @identity]) do |f| %>
+  <%= render '/hello/shared/errors', model: @identity, found_when_msg: "updating your email" %>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update Email" %>
+  </div>
+<% end %>
+

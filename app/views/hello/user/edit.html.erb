@@ -6,17 +6,17 @@
   <div class="field">
     <%= f.label :email %><br>
     <span><%= hello_identity.email %></span>
-    <%= link_to "(edit)", hello.identity_path(hello_identity) %>
+    <%= link_to "(edit)", hello.email_classic_identity_path(hello_identity) %>
   </div>
   <div class="field">
     <%= f.label :username %><br>
     <span><%= hello_identity.username %></span>
-    <%= link_to "(edit)", hello.identity_path(hello_identity) %>
+    <%= link_to "(edit)", hello.username_classic_identity_path(hello_identity) %>
   </div>
   <div class="field">
     <%= f.label :password %><br>
     <strong>********</strong>
-    <%= link_to "(edit)", hello.identity_path(hello_identity) %>
+    <%= link_to "(edit)", hello.password_classic_identity_path(hello_identity) %>
   </div>
 
   <div class="field">

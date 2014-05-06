@@ -1,5 +1,9 @@
-<%= form_for(@identity) do |f| %>
-  <%= render '/hello/shared/errors', model: @identity, found_when_msg: "updating your account" %>
+<%= render '/hello/shared/profile' %>
+
+<h1>New identity</h1>
+
+<%= form_for(@classic_identity) do |f| %>
+  <%= render '/hello/shared/errors', model: @classic_identity, found_when_msg: "creating your identity" %>
 
   <div class="field">
     <%= f.label :username %><br>
@@ -12,6 +16,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Save" %>
+    <%= f.submit %>
   </div>
 <% end %>
+

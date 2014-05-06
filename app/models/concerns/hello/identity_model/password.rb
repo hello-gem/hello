@@ -5,6 +5,9 @@ module Hello
 
 
       def password=(value)
+        if value.blank?
+          @password_digest = @password = nil
+        end
         @password = value
         self.password_digest = encrypt_password(value)
       end
@@ -13,32 +16,30 @@ module Hello
       included do
         attr_reader :password
 
-        validates_presence_of :email,    if: :is_password?
-        validates_presence_of :password, if: :is_password?, on: :create
+        validates_presence_of :email,    if: :is_classic?
+        validates_presence_of :password, if: :is_classic?, on: :create
 
         # email
-        validates_email_format_of :email, if: :is_password?
+        validates_email_format_of :email, if: :is_classic?
         validates_uniqueness_of :email,
                                 message: 'already exists',
-                                if: :is_password?
+                                if: :is_classic?
 
-
-        puts "username should be unique too".on_red
         # password
         validates_length_of :password,
                             in: 4..200,
                             too_long:  'maximum of %{count} characters',
                             too_short: 'minimum of %{count} characters',
-                            if: :is_password_and_password_changed?
+                            if: :is_classic_and_password_changed?
       end
 
 
-      def is_password?
-        strategy.to_s.inquiry.password?
+      def is_classic?
+        strategy.to_s.inquiry.classic?
       end
 
-      def is_password_and_password_changed?
-        is_password? && password_digest_changed?
+      def is_classic_and_password_changed?
+        is_classic? && password_digest_changed?
       end
 
 

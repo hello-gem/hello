@@ -10,13 +10,13 @@ Hello.config.reset.config do
       format.html {
 
         # create_hello_session
-        redirect_to hello.password_sign_in_path, notice: 'Your password has been updated!'
+        redirect_to hello.classic_sign_in_path, notice: 'Your password has been updated!'
 
 
       }
       format.json {
 
-        # render json: @identity, status: :created, location: hello.password_sign_in_path
+        # render json: @identity, status: :created, location: hello.classic_sign_in_path
         
 
       }

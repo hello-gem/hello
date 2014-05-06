@@ -29,8 +29,7 @@ module Hello
         # initialize helpers
 
         def find_identity
-          query_hash = {key => login, strategy: 'password'}
-          @identity = Identity.where(query_hash).first
+          @identity = Identity.classic.where(key => login).first
         end
 
         # reset helpers

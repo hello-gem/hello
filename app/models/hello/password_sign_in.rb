@@ -36,8 +36,7 @@ module Hello
         end
 
         def initialize_identity
-          query_hash = {key => login, strategy: 'password'}
-          @identity = Identity.where(query_hash).first_or_initialize
+          @identity = Identity.classic.where(key => login).first_or_initialize
         end
 
         # authenticate helpers

@@ -4,7 +4,8 @@ Hello.config.forgot.config do
   set :success do
     # @identity
 
-    # SignUpMailer.forgot(@identity).deliver
+
+    # rant, shouldn't this logic just be expressed inline here?
     deliver_password_forgot
 
 
@@ -13,13 +14,13 @@ Hello.config.forgot.config do
       format.html {
 
         
-        redirect_to hello.password_forgot_welcome_path, notice: 'Check your mail box!'
+        redirect_to hello.classic_forgot_welcome_path, notice: 'Check your mail box!'
 
 
       }
       format.json {
 
-        # render json: @identity, status: :created, location: hello.password_forgot_welcome_path
+        # render json: @identity, status: :created, location: hello.classic_forgot_welcome_path
         
 
       }
@@ -54,7 +55,7 @@ Hello.config.forgot.config do
 
     if @identity.should_reset_password_token?
       token = @identity.reset_password_token
-      url = hello.password_reset_token_url(token)
+      url = hello.classic_reset_token_url(token)
       mailer = Hello::PasswordMailer.forgot(@identity, url)
       mailer.deliver
     end

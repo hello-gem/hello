@@ -17,7 +17,7 @@ class Hello::ApplicationController < ApplicationController
         index:    guest,
         sign_out: either
       },
-      password: {
+      registration: {
         #
         sign_up:          guest,
         create:           guest,

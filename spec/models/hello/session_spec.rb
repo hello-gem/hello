@@ -18,7 +18,7 @@ module Hello
 
     describe "before validations, on creation" do
       it "auto attribution of user through identity" do
-        @session.identity = Identity.new(strategy: Identity.password, user: User.create(name: 'James Pinto'))
+        @session.identity = FactoryGirl.create(:classic_identity)
         @session.save # trigger before_validation on creation
         expect(@session.errors[:user]).to     eq []
         expect(@session.errors[:identity]).to eq []
