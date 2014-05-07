@@ -44,6 +44,16 @@ module Hello
       end
     end
 
+    # we recommend programmers to override this method in their apps
+    def encrypt_password(plain_text_password)
+      Digest::MD5.hexdigest(plain_text_password)
+    end
+
+    def password_is?(plain_text_password)
+      password_digest == encrypt_password(plain_text_password)
+    end
+
+
     def make_up_new_username_if_none_before_validation_on_create
       string = make_up_new_username
       string = make_up_new_username until not username_used_by_another?(string)

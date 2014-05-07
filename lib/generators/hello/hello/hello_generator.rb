@@ -1,9 +1,9 @@
 class HelloGenerator < Rails::Generators::Base
-  # source_root File.expand_path('../templates', __FILE__)
-  source_root File.expand_path("../../../../../", __FILE__)
+  source_root File.expand_path('../templates', __FILE__)
 
   def copy_the_configurators
-    directory "app/lib/hello"
+    the_root = File.expand_path("../../../../../", __FILE__)
+    directory "#{the_root}/app/lib/hello", "app/lib/hello"
   end
 
   def append_to_the_routes
@@ -14,30 +14,29 @@ class HelloGenerator < Rails::Generators::Base
     rake "hello:install:migrations"
   end
 
+  def inject_suggested_header
+    puts "\t\t\tapp/views/layouts/application.html.erb".green
+
+    the_template_path = File.expand_path('../templates', __FILE__)
+    suggested_header_erb = File.join(the_template_path, "suggested_header.html.erb")
+    inject_into_file 'app/views/layouts/application.html.erb', open(suggested_header_erb).read, after: "<body>"
+  end
+
+  def create_models
+    copy_file "credential.rb", "app/models/credential.rb"
+    copy_file "user.rb", "app/models/user.rb"
+  end
+
   def tell_programmer_what_to_do_next
     the_root = File.expand_path("../../../../../", __FILE__)
-    app_html_erb = File.join(the_root, "spec/dummy/app/views/layouts/application.html.erb")
-    user_rb      = File.join(the_root, "app/models/user.rb")
-    credential_rb  = File.join(the_root, "app/models/credential.rb")
-
+    user_rb  = File.join(the_root, "app/models/user.rb")
 
     puts "-" * 100
-    puts "Hello Developer,\nfor a better experience using this gem,\nplease modify the files below: ".red
+    puts "Hello Developer,\nplease keep the user model in mind: ".red
 
-    puts "-" * 100
-    puts "\t\t\tapp/views/layouts/application.html.erb".green
-      puts "-" * 100
-      puts open(app_html_erb).read.green
-      puts "\n" * 3
-      puts "-" * 100
     puts "\t\t\t\t\tapp/models/user.rb".green
       puts "-" * 100
       puts open(user_rb).read.green
-      puts "\n" * 3
-      puts "-" * 100
-    puts "\t\t\t\t\tapp/models/credential.rb".green
-      puts "-" * 100
-      puts open(credential_rb).read.green
       puts "\n" * 3
       puts "-" * 100
   end

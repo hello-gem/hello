@@ -1,4 +1,4 @@
-<%= form_for(@password_sign_up, url: password_sign_up_path) do |f| %>
+<%= form_for(@password_sign_up, url: classic_sign_up_path) do |f| %>
   <%= render '/hello/shared/errors', model: @password_sign_up, found_when_msg: "signing up" %>
 
   <div class="field">
