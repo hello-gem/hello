@@ -6,6 +6,7 @@ module Hello
     # GET /hello
     def index
       @password_sign_up = PasswordSignUp.new
+      @password_sign_in = PasswordSignIn.new
     end
 
     # GET /hello/sign_out
