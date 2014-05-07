@@ -1,6 +1,6 @@
 # Hello
 
-[![Build Status](https://travis-ci.org/yakko/hello.svg)](https://travis-ci.org/yakko/hello)
+[![Build Status](https://travis-ci.org/hi/hello.svg)](https://travis-ci.org/hi/hello)
 
 This project rocks and uses MIT-LICENSE.
 
