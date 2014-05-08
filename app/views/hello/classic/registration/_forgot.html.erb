@@ -1,11 +1,16 @@
-<%= form_for(@password_forgot, url: classic_forgot_path) do |f| %>
+<%= form_for @password_forgot, url: classic_forgot_path, html: {class: "form-horizontal", role: "form"} do |f| %>
   <%= render '/hello/shared/errors', model: @password_forgot, found_when_msg: "locating your credentials" %>
 
-  <div class="field">
-    <%= f.label :login, "Email or Username" %><br>
-    <%= f.text_field :login, name: 'login' %>
+  <div class="form-group">
+    <%= f.label :login, "Email or Username", class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :login, name: 'login', class: "form-control", placeholder: "Email or Username" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit "Ask to reset my password" %>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-4">
+      <%= f.submit "Ask to reset my password", class: "btn btn-default" %>
+    </div>
   </div>
 <% end %>

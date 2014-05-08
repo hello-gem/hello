@@ -5,8 +5,8 @@ describe "credentials" do
 
   it "email" do
     given_I_am_logged_in
-    click_link "Edit Me"
-    click_link "Edit Email"
+    click_link "Settings"
+    click_link "Email"
     expect(current_path).to eq hello.email_classic_credential_path(Credential.last)
 
     #
@@ -36,8 +36,8 @@ describe "credentials" do
 
   it "username" do
     given_I_am_logged_in
-    click_link "Edit Me"
-    click_link "Edit Username"
+    click_link "Settings"
+    click_link "Username"
     expect(current_path).to eq hello.username_classic_credential_path(Credential.last)
 
     #
@@ -67,8 +67,8 @@ describe "credentials" do
 
   it "password" do
     given_I_am_logged_in
-    click_link "Edit Me"
-    click_link "Edit Password"
+    click_link "Settings"
+    click_link "Password"
     expect(current_path).to eq hello.password_classic_credential_path(Credential.last)
 
     #

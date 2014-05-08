@@ -1,15 +1,14 @@
-<h1>This is my website</h1>
-
-
-<table width="80%" align="center">
-<tr>
-  <td>
-    <h1>Sign Up</h1>
-    <%= render 'hello/classic/registration/sign_up' %>
-  </td>
-  <td>
-    <h1>Sign In</h1>
-    <%= render 'hello/classic/registration/sign_in' %>
-  </td>
-</tr>
-</table>
+<div class="table-responsive">
+  <table class="table">
+    <tr>
+      <td width="50%" style="vertical-align: top">
+        <h2 class="page-header">Sign Up</h2>
+        <%= render 'hello/classic/registration/sign_up' %>
+      </td>
+      <td width="50%" style="vertical-align: top">
+        <h2 class="page-header">Sign In</h2>
+        <%= render 'hello/classic/registration/sign_in' %>
+      </td>
+    </tr>
+  </table>
+</div>

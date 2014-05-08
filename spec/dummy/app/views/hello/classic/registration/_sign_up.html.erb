@@ -1,33 +1,46 @@
-<%= form_for(@password_sign_up, url: classic_sign_up_path) do |f| %>
+<%= form_for @password_sign_up, url: classic_sign_up_path, html: {class: "form-horizontal", role: "form"} do |f| %>
   <%= render '/hello/shared/errors', model: @password_sign_up, found_when_msg: "signing up" %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, name: 'name' %>
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :name, name: 'name', class: "form-control", placeholder: "Name" %>
+    </div>
   </div>
 
 
   <!-- city is a custom field -->
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city, name: 'city' %>
+  <div class="form-group">
+    <%= f.label :city, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :city, name: 'city', class: "form-control", placeholder: "City" %>
+    </div>
   </div>
 
 
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email, name: 'email' %>
+
+  <div class="form-group">
+    <%= f.label :email, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :email, name: 'email', class: "form-control", placeholder: "Email" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username, name: 'username' %>
+  <div class="form-group">
+    <%= f.label :username, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :username, name: 'username', class: "form-control", placeholder: "Username" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password, name: 'password' %>
+  <div class="form-group">
+    <%= f.label :password, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.password_field :password, name: 'password', class: "form-control", placeholder: "Password" %>
+    </div>
   </div>
-  
-  <div class="actions">
-    <%= f.submit "Sign Up" %>
+
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-4">
+      <%= f.submit "Sign Up", class: "btn btn-default" %>
+    </div>
   </div>
 <% end %>

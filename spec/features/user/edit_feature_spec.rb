@@ -5,7 +5,7 @@ describe "edit" do
 
   it "success and error" do
     given_I_am_logged_in
-    click_link "Edit Me"
+    click_link "Settings"
     expect(current_path).to eq hello.user_path
 
     #

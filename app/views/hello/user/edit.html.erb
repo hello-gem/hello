@@ -1,29 +1,49 @@
-<%= render '/hello/shared/profile' %>
+<%= render '/hello/shared/settings' %>
 
-<%= form_for(@user) do |f| %>
+<div class="col-sm-3-offset col-md-2-offset col-sm-9 col-md-10">
+
+<%= form_for @user, html: {class: "form-horizontal", role: "form"} do |f| %>
   <%= render '/hello/shared/errors', model: @user, found_when_msg: "updating your profile" %>
 
-  <div class="field">
-    <%= f.label :email %><br>
-    <span><%= hello_credential.email %></span>
-    <%= link_to "(edit)", hello.email_classic_credential_path(hello_credential) %>
+  <div class="form-group">
+    <%= f.label :email, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <span class="form-control" style="border: 0px; box-shadow: none">
+        <%= hello_credential.email %>
+        <%= link_to "edit", hello.email_classic_credential_path(hello_credential) %>
+      </span>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :username %><br>
-    <span><%= hello_credential.username %></span>
-    <%= link_to "(edit)", hello.username_classic_credential_path(hello_credential) %>
+  <div class="form-group">
+    <%= f.label :username, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <span class="form-control" style="border: 0px; box-shadow: none">
+        <%= hello_credential.username %>
+        <%= link_to "edit", hello.username_classic_credential_path(hello_credential) %>
+      </span>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <strong>********</strong>
-    <%= link_to "(edit)", hello.password_classic_credential_path(hello_credential) %>
+  <div class="form-group">
+    <%= f.label :password, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <span class="form-control" style="border: 0px; box-shadow: none">
+        ********
+        <%= link_to "edit", hello.password_classic_credential_path(hello_credential) %>
+      </span>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit "Update Profile" %>
+
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-4">
+      <%= f.submit "Update Profile", class: "btn btn-default" %>
+    </div>
   </div>
 <% end %>

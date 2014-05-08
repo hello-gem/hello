@@ -31,8 +31,7 @@ end
 
 def when_sign_in_with_standard_data(custom_password=nil)
   visit hello.root_path
-  click_link "Sign In"
-  within("form") do
+  within("form#new_password_sign_in") do
     fill_in 'login',    with: 'foobar'
     fill_in 'password', with: (custom_password || 'foobar')
     click_button 'Sign In'

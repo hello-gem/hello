@@ -10,22 +10,47 @@
 
 <!-- hello begin -->
 
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-<header>
-  <% if current_user %>
-    <span>Hello, <%= current_user.name %>!</span>
-    <span><%= link_to "Edit Me", hello.user_path %></span>
-    <span><%= link_to "Sign Out", hello.sign_out_path %></span>
-  <% else %>
-    <span>Hello, Guest!</span>
-    <span><%= link_to "Sign Up", hello.classic_sign_up_path %></span>
-    <span><%= link_to "Sign In", hello.classic_sign_in_path %></span>
-    <span><%= link_to "Forgot Password", hello.classic_forgot_path %></span>
+
+  <div class="container">
+    <div class="header">
+      <ul class="nav nav-pills pull-right">
+
+        <% if current_user %>
+          <li><%= link_to "Settings", hello.user_path %></li>
+          <li><%= link_to "Sign Out", hello.sign_out_path %></li>
+        <% else %>
+          <li><%= link_to "Sign Up", hello.classic_sign_up_path %></li>
+          <li><%= link_to "Sign In", hello.classic_sign_in_path %></li>
+          <li><%= link_to "Forgot Password", hello.classic_forgot_path %></li>
+        <% end %>
+
+      </ul>
+      <h3 class="text-muted"><a href="/">Project name</a></h3>
+      <p class="lead">
+        <% if current_user %>
+        Hello, <%= current_user.name %>!
+        <% else %>
+        Hello, Guest!
+        <% end %>
+      </p>
+    </div>
+
+
+  <% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
   <% end %>
-</header>
 
-<strong style="color: green"><%= notice %></strong>
-<strong style="color: red"><%= alert %></strong>
+  <% if alert %>
+    <div class="alert alert-warning"><%= alert %></div>
+  <% end %>
+
 
 
 <!-- hello end -->

@@ -1,20 +1,32 @@
-<%= form_for(@password_reset, url: classic_reset_path) do |f| %>
+<%= form_for @password_reset, url: classic_reset_path, html: {class: "form-horizontal", role: "form"} do |f| %>
   <%= render '/hello/shared/errors', model: @password_reset, found_when_msg: "resetting your password" %>
 
-  <div class="field">
-    <%= f.label :email %><br>
-    <strong><%= @password_reset.credential.email %></strong>
+  <div class="form-group">
+    <%= f.label :email, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <span class="form-control" style="border: 0px; box-shadow: none">
+        <%= @password_reset.credential.email %>
+      </span>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :username %><br>
-    <strong><%= @password_reset.credential.username %></strong>
+  <div class="form-group">
+    <%= f.label :username, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <span class="form-control" style="border: 0px; box-shadow: none">
+        <%= @password_reset.credential.username %>
+      </span>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password, name: 'password' %>
+  <div class="form-group">
+    <%= f.label :password, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.password_field :password, name: 'password', class: "form-control", placeholder: "Password" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit "Save" %>
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-4">
+      <%= f.submit "Save", class: "btn btn-default" %>
+    </div>
   </div>
 <% end %>

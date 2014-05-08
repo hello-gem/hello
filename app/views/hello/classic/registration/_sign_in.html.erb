@@ -1,15 +1,23 @@
-<%= form_for(@password_sign_in, url: classic_sign_in_path) do |f| %>
+<%= form_for @password_sign_in, url: classic_sign_in_path, html: {class: "form-horizontal", role: "form"} do |f| %>
   <%= render '/hello/shared/errors', model: @password_sign_in, found_when_msg: "signing in" %>
 
-  <div class="field">
-    <%= f.label :login, "Email or Username" %><br>
-    <%= f.text_field :login, name: 'login' %>
+  <div class="form-group">
+    <%= f.label :login, "Email or Username", class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :login, name: 'login', class: "form-control", placeholder: "Email or Username" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password, name: 'password' %>
+  
+  <div class="form-group">
+    <%= f.label :password, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.password_field :password, name: 'password', class: "form-control", placeholder: "Password" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit "Sign In" %>
+
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-4">
+      <%= f.submit "Sign In", class: "btn btn-default" %>
+    </div>
   </div>
 <% end %>
