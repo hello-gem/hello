@@ -3,6 +3,8 @@ Hello::Engine.routes.draw do
 
 
 
+  resources :sessions, only: [:index, :show]
+
   root "welcome#index"
 
   get  "sign_out" => "welcome#sign_out"
