@@ -50,11 +50,6 @@ module Hello
         end
       end
 
-
-      def should_reset_password_token?
-        password_token_digested_at.blank? || password_token_digested_at < 7.days.ago
-      end
-
       def reset_password_token
         uuid = SecureRandom.hex(8) # probability = 1 / (16 ** 16)
         digest = self.class.encrypt_token(uuid)

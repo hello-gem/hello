@@ -4,9 +4,15 @@ Hello.config.forgot.config do
   set :success do
     # @credential
 
-
-    # rant, shouldn't this logic just be expressed inline here?
-    deliver_password_forgot
+    digested_at = @credential.password_token_digested_at
+    should_reset_password_token = (digested_at.blank? || digested_at < 7.days.ago)
+    
+    if should_reset_password_token
+      token = @credential.reset_password_token
+      url = hello.classic_reset_token_url(token)
+      mailer = Hello::PasswordMailer.forgot(@credential, url)
+      mailer.deliver
+    end
 
 
 
@@ -49,18 +55,6 @@ Hello.config.forgot.config do
       }
     end
   end
-
-  set :deliver_password_forgot do
-    # @credential
-
-    if @credential.should_reset_password_token?
-      token = @credential.reset_password_token
-      url = hello.classic_reset_token_url(token)
-      mailer = Hello::PasswordMailer.forgot(@credential, url)
-      mailer.deliver
-    end
-  end
-
 
 
 end
