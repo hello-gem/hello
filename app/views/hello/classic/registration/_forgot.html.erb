@@ -1,10 +1,10 @@
-<%= form_for @password_forgot, url: classic_forgot_path, html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= render '/hello/shared/errors', model: @password_forgot, found_when_msg: "locating your credentials" %>
+<%= form_for @registration_forgot, url: classic_forgot_path, html: {class: "form-horizontal", role: "form"} do |f| %>
+  <%= render '/hello/shared/errors', model: @registration_forgot, found_when_msg: "locating your credentials" %>
 
   <div class="form-group">
     <%= f.label :login, "Email or Username", class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
-      <%= f.text_field :login, name: 'login', class: "form-control", placeholder: "Email or Username" %>
+      <%= f.text_field :login, class: "form-control", placeholder: "Email or Username" %>
     </div>
   </div>
   

@@ -112,7 +112,7 @@ describe "registration" do
     #
     visit hello.classic_reset_token_path(reset_token)
         expect(current_path).to eq hello.classic_reset_path
-    when_I_update_a_password_form_with('')
+    when_I_update_a_reset_password_form_with('')
         expect(page).to have_content "found when resetting your password"
     then_I_should_be_logged_out
 
@@ -121,14 +121,14 @@ describe "registration" do
     #
     visit hello.classic_reset_token_path(reset_token)
         expect(current_path).to eq hello.classic_reset_path
-    when_I_update_a_password_form_with('1')
+    when_I_update_a_reset_password_form_with('1')
         expect(page).to have_content "found when resetting your password"
     then_I_should_be_logged_out
 
     #
     # GOOD TOKEN, GOOD PASSWORD
     #
-    when_I_update_a_password_form_with('the-new-password')
+    when_I_update_a_reset_password_form_with('the-new-password')
         expect(page).to have_content "Your password has been updated!"
         expect(current_path).to eq hello.classic_sign_in_path
     then_I_should_be_logged_out

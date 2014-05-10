@@ -1,5 +1,5 @@
 module Hello
-  class PasswordSignIn
+  class RegistrationSignIn
     include ActiveModel::Model
 
     attr_accessor :login, :password
@@ -30,8 +30,9 @@ module Hello
         # initialize helpers
 
         def write_attributes_to_self(controller)
-          attrs = controller.params.slice(:login, :password)
-          attrs[:controller] = controller
+          attrs = controller.params.require(:registration_sign_in).permit(:login, :password)
+          # attrs = #controller.params.slice(:login, :password)
+          instance_variable_set(:@controller, controller)
           attrs.each { |k, v| instance_variable_set(:"@#{k}", v) }
         end
 

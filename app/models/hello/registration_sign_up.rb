@@ -1,14 +1,14 @@
 module Hello
-  class PasswordSignUp
+  class RegistrationSignUp
     include ActiveModel::Model
 
     
     attr_reader :credential
 
-    def initialize(params=nil)
+    def initialize(sign_up_params=nil)
       self.class.send :attr_accessor, *permitted_fields
-      if params
-        write_attributes_to_self(params)
+      if sign_up_params
+        write_attributes_to_self(sign_up_params)
         initialize_credential
       end
     end

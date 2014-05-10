@@ -1,17 +1,17 @@
-<%= form_for @password_sign_in, url: classic_sign_in_path, html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= render '/hello/shared/errors', model: @password_sign_in, found_when_msg: "signing in" %>
+<%= form_for @registration_sign_in, url: classic_sign_in_path, html: {class: "form-horizontal", role: "form"} do |f| %>
+  <%= render '/hello/shared/errors', model: @registration_sign_in, found_when_msg: "signing in" %>
 
   <div class="form-group">
     <%= f.label :login, "Email or Username", class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
-      <%= f.text_field :login, name: 'login', class: "form-control", placeholder: "Email or Username" %>
+      <%= f.text_field :login, class: "form-control", placeholder: "Email or Username" %>
     </div>
   </div>
   
   <div class="form-group">
     <%= f.label :password, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
-      <%= f.password_field :password, name: 'password', class: "form-control", placeholder: "Password" %>
+      <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
     </div>
   </div>
 

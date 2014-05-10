@@ -1,28 +1,28 @@
-<%= form_for @password_sign_up, url: classic_sign_up_path, html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= render '/hello/shared/errors', model: @password_sign_up, found_when_msg: "signing up" %>
+<%= form_for @registration_sign_up, url: classic_sign_up_path, html: {class: "form-horizontal", role: "form"} do |f| %>
+  <%= render '/hello/shared/errors', model: @registration_sign_up, found_when_msg: "signing up" %>
 
   <div class="form-group">
     <%= f.label :name, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
-      <%= f.text_field :name, name: 'name', class: "form-control", placeholder: "Name" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :email, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
-      <%= f.text_field :email, name: 'email', class: "form-control", placeholder: "Email" %>
+      <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :username, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
-      <%= f.text_field :username, name: 'username', class: "form-control", placeholder: "Username" %>
+      <%= f.text_field :username, class: "form-control", placeholder: "Username" %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :password, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
-      <%= f.password_field :password, name: 'password', class: "form-control", placeholder: "Password" %>
+      <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
     </div>
   </div>
 
