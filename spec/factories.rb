@@ -17,7 +17,6 @@ FactoryGirl.define do
     factory :classic_credential do
       strategy Credential._classic
       email    { Faker::Internet.email }
-      username { Faker::Internet.user_name.parameterize }
       password '1234'
     end
   end
