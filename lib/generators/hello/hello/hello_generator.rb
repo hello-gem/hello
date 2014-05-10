@@ -19,7 +19,14 @@ class HelloGenerator < Rails::Generators::Base
 
     the_template_path = File.expand_path('../templates', __FILE__)
     suggested_header_erb = File.join(the_template_path, "suggested_header.html.erb")
-    inject_into_file 'app/views/layouts/application.html.erb', open(suggested_header_erb).read, after: "<body>"
+    after_regex = /<body(.*)>/i
+    destination = 'app/views/layouts/application.html.erb'
+    content = open(suggested_header_erb).read
+
+    inject_into_file destination, content, after: after_regex
+
+  rescue Errno::ENOENT
+    copy_file "suggested_application.html.erb", destination
   end
 
   def create_models
