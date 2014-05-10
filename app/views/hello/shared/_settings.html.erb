@@ -4,7 +4,7 @@
 <div class="list-group">
   <%= active_link_to "Profile", hello.user_path, class: "list-group-item" %>
 
-  <% current_user.classic_entity.tap do |c| %>
+  <% current_user.classic_credential.tap do |c| %>
     <%= active_link_to "Email",    email_classic_credential_path(c),    class: "list-group-item" %>
     <%= active_link_to "Username", username_classic_credential_path(c), class: "list-group-item" %>
     <%= active_link_to "Password", password_classic_credential_path(c), class: "list-group-item" %>

@@ -8,8 +8,8 @@ module Hello
       attributes.slice(*self.class.hello_profile_column_names)
     end
 
-    def classic_entity
-      credentials.first
+    def classic_credential
+      credentials.classic.first
     end
 
 
