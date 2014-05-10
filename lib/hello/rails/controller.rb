@@ -17,7 +17,7 @@ module Hello
       #
 
       included do
-        helper_method :current_user, :hello_credential
+        helper_method :current_user, :hello_credential, :hello_session
       end
 
       def current_user
@@ -74,15 +74,6 @@ module Hello
           # helper
 
           def user_agent
-            # actual
-            # Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:27.0) Gecko/20100101 Firefox/27.0
-            # Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/537.75.14
-            # Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36
-
-            # expect
-            # Mac OS X - Firefox
-            # Mac OS X - Chrome
-            # Mac OS X - Safari
             request.user_agent || "blank_user_agent"
           end
 

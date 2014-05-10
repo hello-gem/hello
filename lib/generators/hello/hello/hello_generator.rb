@@ -32,7 +32,8 @@ class HelloGenerator < Rails::Generators::Base
 
   def create_models
     copy_file "credential.rb", "app/models/credential.rb"
-    copy_file "user.rb", "app/models/user.rb"
+    copy_file "session.rb",    "app/models/session.rb"
+    copy_file "user.rb",       "app/models/user.rb"
   end
 
   def tell_programmer_what_to_do_next

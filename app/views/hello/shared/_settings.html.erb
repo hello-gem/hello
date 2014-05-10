@@ -10,5 +10,7 @@
     <%= active_link_to "Password", password_classic_credential_path(c), class: "list-group-item" %>
     <%#= active_link_to 'Add Email', hello.new_credential_path, class: "list-group-item" %>
   <% end %>
+
+  <%= active_link_to "Devices (#{current_user.sessions_count})", hello.sessions_path, class: "list-group-item" %>
 </div>
 </div>
