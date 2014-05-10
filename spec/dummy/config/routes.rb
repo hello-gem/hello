@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
 
-  root to: 'welcome#index'
+  root to: redirect('/hello') # TODO: change this
   mount Hello::Engine => "/hello"
 end

@@ -7,6 +7,7 @@ class HelloGenerator < Rails::Generators::Base
   end
 
   def append_to_the_routes
+    route "root to: redirect('/hello') # TODO: add a custom root route :)"
     route 'mount Hello::Engine => "/hello"'
   end
 
