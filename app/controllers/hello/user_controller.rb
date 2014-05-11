@@ -13,10 +13,11 @@ module Hello
 
     # PATCH /hello/user
     def update
+      config = Hello.config.user
       if @user.update(user_params)
-        instance_eval(&Hello.config.user.success)
+        instance_eval(&config.success)
       else
-        instance_eval(&Hello.config.user.error)
+        instance_eval(&config.error)
       end
     end
 
