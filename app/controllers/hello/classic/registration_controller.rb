@@ -18,10 +18,12 @@ module Classic
           @registration_sign_up = RegistrationSignUp.new(sign_up_params)
           @credential = @registration_sign_up.credential
 
+          config = Hello.config.sign_up
+
           if @registration_sign_up.save
-            instance_eval(&Hello.config.sign_up.success)
+            instance_eval(&config.success)
           else
-            instance_eval(&Hello.config.sign_up.error)
+            instance_eval(&config.error)
           end
         end
 
@@ -45,10 +47,12 @@ module Classic
           @registration_sign_in = RegistrationSignIn.new(self)
           @credential = @registration_sign_in.credential
 
+          config = Hello.config.sign_in
+
           if @registration_sign_in.authenticate
-            instance_eval(&Hello.config.sign_in.success)
+            instance_eval(&config.success)
           else
-            instance_eval(&Hello.config.sign_in.error)
+            instance_eval(&config.error)
           end
         end
 
@@ -72,10 +76,12 @@ module Classic
           @registration_forgot = RegistrationForgot.new(login)
           @credential = @registration_forgot.credential
 
+          config = Hello.config.forgot
+
           if @registration_forgot.reset
-            instance_eval(&Hello.config.forgot.success)
+            instance_eval(&config.success)
           else
-            instance_eval(&Hello.config.forgot.error)
+            instance_eval(&config.error)
           end
         end
 
@@ -116,13 +122,14 @@ module Classic
               @registration_reset = RegistrationReset.new(session[:hello_reset_token])
               @credential = @registration_reset.credential
 
+              config = Hello.config.reset
 
               new_password = params.require(:registration_reset)[:password]
               if @registration_reset.update_password(new_password)
                 @credential.invalidate_password_token
-                instance_eval(&Hello.config.reset.success)
+                instance_eval(&config.success)
               else
-                instance_eval(&Hello.config.reset.error)
+                instance_eval(&config.error)
               end
             end
 
