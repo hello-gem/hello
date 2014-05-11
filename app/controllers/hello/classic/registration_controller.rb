@@ -4,7 +4,10 @@ module Hello
 module Classic
   class RegistrationController < ApplicationController
 
-
+    before_actions do
+      actions(:reset, :save) { fetch_registration_reset_ivar }
+      actions(:reset_token)  { clear_hello_session }
+    end
 
 
     # GET /hello/sign_up
@@ -14,16 +17,13 @@ module Classic
 
         # POST /hello/sign_up
         def create
-          sign_up_params = params.require(:registration_sign_up)
           @registration_sign_up = RegistrationSignUp.new(sign_up_params)
           @credential = @registration_sign_up.credential
 
-          config = Hello.config.sign_up
-
           if @registration_sign_up.save
-            instance_eval(&config.success)
+            instance_eval(&sign_up_config.success)
           else
-            instance_eval(&config.error)
+            instance_eval(&sign_up_config.error)
           end
         end
 
@@ -47,12 +47,10 @@ module Classic
           @registration_sign_in = RegistrationSignIn.new(self)
           @credential = @registration_sign_in.credential
 
-          config = Hello.config.sign_in
-
           if @registration_sign_in.authenticate
-            instance_eval(&config.success)
+            instance_eval(&sign_in_config.success)
           else
-            instance_eval(&config.error)
+            instance_eval(&sign_in_config.error)
           end
         end
 
@@ -72,16 +70,13 @@ module Classic
 
         # POST /hello/forgot
         def ask
-          login = params.require(:registration_forgot)[:login]
-          @registration_forgot = RegistrationForgot.new(login)
+          @registration_forgot = RegistrationForgot.new(forgot_login_param)
           @credential = @registration_forgot.credential
 
-          config = Hello.config.forgot
-
           if @registration_forgot.reset
-            instance_eval(&config.success)
+            instance_eval(&forgot_config.success)
           else
-            instance_eval(&config.error)
+            instance_eval(&forgot_config.error)
           end
         end
 
@@ -95,8 +90,6 @@ module Classic
 
     # GET /hello/reset/token/:token
     def reset_token
-      clear_hello_session
-
       @registration_reset = RegistrationReset.new(params[:token])
       if @registration_reset.credential
         session[:hello_reset_token] = params[:token]
@@ -108,34 +101,65 @@ module Classic
 
         # GET /hello/reset
         def reset
-          # authorization
-          redirect_to classic_forgot_path unless session[:hello_reset_token]
-
-          @registration_reset = RegistrationReset.new(session[:hello_reset_token])
         end
 
             # POST /hello/reset
             def save
-              # authorization
-              redirect_to classic_forgot_path unless session[:hello_reset_token]
-
-              @registration_reset = RegistrationReset.new(session[:hello_reset_token])
-              @credential = @registration_reset.credential
-
-              config = Hello.config.reset
-
-              new_password = params.require(:registration_reset)[:password]
-              if @registration_reset.update_password(new_password)
+              if @registration_reset.update_password(reset_password_param)
                 @credential.invalidate_password_token
-                instance_eval(&config.success)
+                instance_eval(&reset_config.success)
               else
-                instance_eval(&config.error)
+                instance_eval(&reset_config.error)
               end
             end
 
                 # GET /hello/after_reset
                 def after_reset
                 end
+
+
+
+
+
+    private
+
+        def fetch_registration_reset_ivar
+          return redirect_to classic_forgot_path unless session[:hello_reset_token]
+          @registration_reset = RegistrationReset.new(session[:hello_reset_token])
+          @credential = @registration_reset.credential
+        end
+
+        def sign_up_params
+          params.require(:registration_sign_up)
+        end
+
+        def forgot_login_param
+          params.require(:registration_forgot)[:login]
+        end
+
+        def reset_password_param
+          params.require(:registration_reset)[:password]
+        end
+
+        def sign_up_config
+          Hello.config.sign_up
+        end
+
+        def sign_in_config
+          Hello.config.sign_in
+        end
+
+        def forgot_config
+          Hello.config.forgot
+        end
+
+        def reset_config
+          Hello.config.reset
+        end
+
+
+
+
 
   end
 
