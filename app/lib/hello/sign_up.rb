@@ -18,7 +18,7 @@ Hello.config.sign_up.config do
     respond_to do |format|
       format.html {
 
-        # create_hello_session
+        create_hello_session
         redirect_to hello.classic_after_sign_up_path, notice: 'Welcome!'
 
 

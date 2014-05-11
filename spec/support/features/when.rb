@@ -38,4 +38,6 @@ def when_sign_in_with_standard_data(custom_password=nil)
   end
 end
 
-
+def when_I_sign_out
+  click_link 'Sign Out'
+end

@@ -17,8 +17,9 @@ describe "registration" do
         expect(Credential.count).to eq(1)
         expect(current_path).to eq hello.classic_after_sign_up_path
 
-    then_I_should_be_logged_out
+    then_I_should_be_logged_in
 
+    when_I_sign_out
 
     # pending "works with json"
     # pending "sends confirmation email"
@@ -43,6 +44,7 @@ describe "registration" do
 
   it "sign in" do
     when_sign_up_with_standard_data
+    when_I_sign_out
     then_I_should_be_logged_out
     
     #

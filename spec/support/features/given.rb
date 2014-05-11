@@ -16,7 +16,7 @@ end
 
 def given_I_am_logged_in
   when_sign_up_with_standard_data
-  when_sign_in_with_standard_data
+  # when_sign_in_with_standard_data
   then_I_should_be_logged_in
 end
 
