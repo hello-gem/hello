@@ -63,6 +63,11 @@ module Classic
                 post("/classic/reset").should route_to("hello/classic/registration#save")
               end
 
+                  it "routes to #after_reset" do
+                    get("/classic/after_reset").should route_to("hello/classic/registration#after_reset")
+                  end
+
+
           
     end
   end

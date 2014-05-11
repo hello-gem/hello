@@ -9,8 +9,8 @@ Hello.config.reset.config do
     respond_to do |format|
       format.html {
 
-        # create_hello_session
-        redirect_to hello.classic_sign_in_path, notice: 'Your password has been updated!'
+        create_hello_session
+        redirect_to hello.classic_after_reset_path, notice: 'Your password has been updated!'
 
 
       }

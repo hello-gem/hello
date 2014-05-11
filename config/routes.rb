@@ -42,6 +42,7 @@ Hello::Engine.routes.draw do
     get  "reset/token/:token" => "registration#reset_token", as: 'reset_token'
     get  "reset"              => "registration#reset"
     post "reset"              => "registration#save"
+    get  "after_reset"        => "registration#after_reset"
 
   end
 

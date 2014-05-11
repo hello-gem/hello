@@ -34,6 +34,7 @@ class Hello::ApplicationController < ApplicationController
         reset_token:      guest,
         reset:            guest,
         save:             guest,
+        after_reset:      either,
       },
       user:       user,
       credentials: user,

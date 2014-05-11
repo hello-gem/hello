@@ -132,8 +132,9 @@ describe "registration" do
     #
     when_I_update_a_reset_password_form_with('the-new-password')
         expect(page).to have_content "Your password has been updated!"
-        expect(current_path).to eq hello.classic_sign_in_path
-    then_I_should_be_logged_out
+        expect(current_path).to eq hello.classic_after_reset_path
+    then_I_should_be_logged_in
+    when_I_sign_out
 
     #
     # TOKEN MUST GO BAD

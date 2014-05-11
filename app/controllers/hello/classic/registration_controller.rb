@@ -126,6 +126,10 @@ module Classic
               end
             end
 
+                # GET /hello/after_reset
+                def after_reset
+                end
+
   end
 
 end
