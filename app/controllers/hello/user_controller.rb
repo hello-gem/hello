@@ -13,11 +13,10 @@ module Hello
 
     # PATCH /hello/user
     def update
-      config = Hello.config.user
       if @user.update(user_params)
-        instance_eval(&config.success)
+        instance_eval(&user_config.success)
       else
-        instance_eval(&config.error)
+        instance_eval(&user_config.error)
       end
     end
 
@@ -26,6 +25,10 @@ module Hello
         def user_params
           column_names = User.hello_profile_column_names
           params.require(:user).permit(*column_names)
+        end
+
+        def user_config
+          Hello.config.user
         end
 
   end
