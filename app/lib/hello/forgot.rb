@@ -20,13 +20,13 @@ Hello.config.forgot.config do
       format.html {
 
         
-        redirect_to hello.classic_forgot_welcome_path, notice: 'Check your mail box!'
+        redirect_to hello.classic_after_forgot_path, notice: 'Check your mail box!'
 
 
       }
       format.json {
 
-        # render json: @credential, status: :created, location: hello.classic_forgot_welcome_path
+        # render json: @credential, status: :created, location: hello.classic_after_forgot_path
         
 
       }

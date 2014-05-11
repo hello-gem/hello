@@ -15,7 +15,7 @@ describe "registration" do
         expect(page).to have_content "Welcome! Welcome from Sign Up"
         expect(User.count).to     eq(1)
         expect(Credential.count).to eq(1)
-        expect(current_path).to eq hello.classic_sign_up_welcome_path
+        expect(current_path).to eq hello.classic_after_sign_up_path
 
     then_I_should_be_logged_out
 
@@ -58,7 +58,7 @@ describe "registration" do
     #
     when_sign_in_with_standard_data
         expect(page).to have_content "Welcome! Welcome from Sign In"
-        expect(current_path).to eq hello.classic_sign_in_welcome_path
+        expect(current_path).to eq hello.classic_after_sign_in_path
     then_I_should_be_logged_in
     # pending "works with json"
     # pending "remember me"
@@ -93,7 +93,7 @@ describe "registration" do
     when_I_ask_to_reset_my_password
         expect(open_last_email.to_s).to have_content "/hello/classic/reset/token/"
         expect(page).to have_content "Welcome from Forgot"
-        expect(current_path).to eq hello.classic_forgot_welcome_path
+        expect(current_path).to eq hello.classic_after_forgot_path
     then_I_should_be_logged_out
   end
 
@@ -145,7 +145,7 @@ describe "registration" do
     #
     when_sign_in_with_standard_data('the-new-password')
         expect(page).to have_content "Welcome! Welcome from Sign In"
-        expect(current_path).to eq hello.classic_sign_in_welcome_path
+        expect(current_path).to eq hello.classic_after_sign_in_path
     then_I_should_be_logged_in
 
   end

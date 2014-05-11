@@ -17,8 +17,8 @@ module Classic
             post("/classic/sign_up").should route_to("hello/classic/registration#create")
           end
 
-              it "routes to #sign_up_welcome" do
-                get("/classic/sign_up/welcome").should route_to("hello/classic/registration#sign_up_welcome")
+              it "routes to #after_sign_up" do
+                get("/classic/after_sign_up").should route_to("hello/classic/registration#after_sign_up")
               end
 
 
@@ -32,8 +32,8 @@ module Classic
             post("/classic/sign_in").should route_to("hello/classic/registration#authenticate")
           end
 
-              it "routes to #sign_in_welcome" do
-                get("/classic/sign_in/welcome").should route_to("hello/classic/registration#sign_in_welcome")
+              it "routes to #after_sign_in" do
+                get("/classic/after_sign_in").should route_to("hello/classic/registration#after_sign_in")
               end
 
       it "routes to #forgot" do
@@ -44,8 +44,8 @@ module Classic
             post("/classic/forgot").should route_to("hello/classic/registration#ask")
           end
 
-              it "routes to #forgot_welcome" do
-                get("/classic/forgot/welcome").should route_to("hello/classic/registration#forgot_welcome")
+              it "routes to #after_forgot" do
+                get("/classic/after_forgot").should route_to("hello/classic/registration#after_forgot")
               end
 
 

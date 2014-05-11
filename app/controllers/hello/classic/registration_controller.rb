@@ -25,8 +25,8 @@ module Classic
           end
         end
 
-            # GET /hello/sign_up/welcome
-            def sign_up_welcome
+            # GET /hello/after_sign_up
+            def after_sign_up
             end
 
 
@@ -52,8 +52,8 @@ module Classic
           end
         end
 
-            # GET /hello/sign_in/welcome
-            def sign_in_welcome
+            # GET /hello/after_sign_in
+            def after_sign_in
             end
 
 
@@ -79,8 +79,8 @@ module Classic
           end
         end
 
-            # GET /hello/forgot/welcome
-            def forgot_welcome
+            # GET /hello/after_forgot
+            def after_forgot
             end
 
 

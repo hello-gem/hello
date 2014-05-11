@@ -16,13 +16,13 @@ Hello.config.sign_in.config do
       format.html {
 
         create_hello_session
-        redirect_to hello.classic_sign_in_welcome_path, notice: 'Welcome!'
+        redirect_to hello.classic_after_sign_in_path, notice: 'Welcome!'
 
 
       }
       format.json {
 
-        # render json: @credential, status: :created, location: hello.classic_sign_in_welcome_path
+        # render json: @credential, status: :created, location: hello.classic_after_sign_in_path
         
 
       }

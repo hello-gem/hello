@@ -26,18 +26,18 @@ Hello::Engine.routes.draw do
     # sign up
     get  "sign_up"         => "registration#sign_up"
     post "sign_up"         => "registration#create"
-    get  "sign_up/welcome" => "registration#sign_up_welcome"
+    get  "after_sign_up"   => "registration#after_sign_up"
 
     # sign in
     get  "sign_in"         => "registration#sign_in"
     post "sign_in"         => "registration#authenticate"
-    get  "sign_in/welcome" => "registration#sign_in_welcome"
+    get  "after_sign_in"   => "registration#after_sign_in"
 
     # forgot
     get  "forgot"         => "registration#forgot"
     post "forgot"         => "registration#ask"
-    get  "forgot/welcome" => "registration#forgot_welcome"
-    
+    get  "after_forgot"   => "registration#after_forgot"
+
     # reset
     get  "reset/token/:token" => "registration#reset_token", as: 'reset_token'
     get  "reset"              => "registration#reset"

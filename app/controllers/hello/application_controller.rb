@@ -21,15 +21,15 @@ class Hello::ApplicationController < ApplicationController
         #
         sign_up:          guest,
         create:           guest,
-        sign_up_welcome:  either,
+        after_sign_up:    either,
         #
         sign_in:          guest,
         authenticate:     guest,
-        sign_in_welcome:  user,
+        after_sign_in:    user,
         #
         forgot:           guest,
         ask:              guest,
-        forgot_welcome:   guest,
+        after_forgot:     guest,
         #
         reset_token:      guest,
         reset:            guest,
