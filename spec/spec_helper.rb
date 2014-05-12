@@ -1,11 +1,19 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-# code climate
-ENV['CODECLIMATE_REPO_TOKEN'] ||= '93a882bd452f48c185cb6b823dbb4ea1c65e7a188b850c498eac1fb8501a2ea8'
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
+SPEC_ROOT=File.dirname(__FILE__)
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+
+# code climate
+# def get_code_climate_token
+#   travis_yml = "#{SPEC_ROOT}/../.travis.yml"
+#   travis_hash = YAML.load_file(travis_yml)
+#   travis_hash['addons']['code_climate']['repo_token']
+# end
+
+# ENV['CODECLIMATE_REPO_TOKEN'] ||= get_code_climate_token
+# require "codeclimate-test-reporter"
+# CodeClimate::TestReporter.start
 
 # require 'rspec/rails'
 # require 'rspec/autorun'
@@ -26,7 +34,6 @@ require "email_spec"
 Rails.backtrace_cleaner.remove_silencers!
 
 # Load support files
-SPEC_ROOT=File.dirname(__FILE__)
 Dir[File.join(SPEC_ROOT, "support/**/*.rb")].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
