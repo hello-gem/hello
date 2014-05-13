@@ -2,7 +2,7 @@
 # original = File.expand_path("../../../../../../app/lib/hello/#{fname}", __FILE__)
 # require original
 
-Hello.config.sign_up.config do
+Hello.config.sign_up do
   
   # fields :email, :password
   fields :name, :email, :username, :password, :city

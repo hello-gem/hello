@@ -1,4 +1,4 @@
-Hello.config.user.config do
+Hello.config.user do
   
   # controller scope
   set :success do

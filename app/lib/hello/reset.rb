@@ -1,4 +1,4 @@
-Hello.config.reset.config do
+Hello.config.reset do
   
   # controller scope
   set :success do

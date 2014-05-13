@@ -1,4 +1,4 @@
-Hello.config.forgot.config do
+Hello.config.forgot do
   
   # controller scope
   set :success do

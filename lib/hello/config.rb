@@ -11,29 +11,35 @@ require "hello/config/user"
 module Hello
   class Config
     include Singleton
-
-    def sign_up
-      @sign_up ||= SignUp.new
+    
+    def sign_in(&block)
+      v = @sign_in ||= SignIn.new
+      block_given? ? v.config(&block) : v
     end
 
-    def sign_in
-      @sign_in ||= SignIn.new
+    def sign_up(&block)
+      v = @sign_up ||= SignUp.new
+      block_given? ? v.config(&block) : v
     end
 
-    def sign_out
-      @sign_out ||= SignOut.new
+    def sign_out(&block)
+      v = @sign_out ||= SignOut.new
+      block_given? ? v.config(&block) : v
     end
 
-    def forgot
-      @forgot ||= Forgot.new
+    def forgot(&block)
+      v = @forgot ||= Forgot.new
+      block_given? ? v.config(&block) : v
     end
 
-    def reset
-      @reset ||= Reset.new
+    def reset(&block)
+      v = @reset ||= Reset.new
+      block_given? ? v.config(&block) : v
     end
 
-    def user
-      @user ||= User.new
+    def user(&block)
+      v = @user ||= User.new
+      block_given? ? v.config(&block) : v
     end
 
     # def twitter

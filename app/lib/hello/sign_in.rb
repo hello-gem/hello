@@ -1,4 +1,4 @@
-Hello.config.sign_in.config do
+Hello.config.sign_in do
   
   # controller scope
   set :success do

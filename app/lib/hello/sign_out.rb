@@ -1,4 +1,4 @@
-Hello.config.sign_out.config do
+Hello.config.sign_out do
   
   # controller scope
   set :success do
