@@ -31,9 +31,8 @@ module Hello
 
         def write_attributes_to_self(controller)
           attrs = controller.params.require(:registration_sign_in).permit(:login, :password)
-          # attrs = #controller.params.slice(:login, :password)
-          instance_variable_set(:@controller, controller)
           attrs.each { |k, v| instance_variable_set(:"@#{k}", v) }
+          instance_variable_set(:@controller, controller)
         end
 
         def initialize_credential

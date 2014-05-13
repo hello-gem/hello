@@ -14,6 +14,17 @@
       <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
     </div>
   </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-4">
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag :keep_me, '1', false %>
+          Keep me signed in for <strong>30</strong> days
+        </label>
+      </div>
+    </div>
+  </div>
 
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-4">

@@ -29,11 +29,12 @@ def when_sign_up_with_standard_data
   end
 end
 
-def when_sign_in_with_standard_data(custom_password=nil)
+def when_sign_in_with_standard_data(options={})
   visit hello.root_path
   within("form#new_registration_sign_in") do
     fill_in 'registration_sign_in_login',    with: 'foobar'
-    fill_in 'registration_sign_in_password', with: (custom_password || 'foobar')
+    fill_in 'registration_sign_in_password', with: (options[:password] || 'foobar')
+    check 'keep_me' if options[:keep_me]
     click_button 'Sign In'
   end
 end

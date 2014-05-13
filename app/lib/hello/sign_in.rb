@@ -15,7 +15,8 @@ Hello.config.sign_in.config do
     respond_to do |format|
       format.html {
 
-        create_hello_session
+        keep_me = !!params[:keep_me]
+        create_hello_session(keep_me)
         redirect_to hello.classic_after_sign_in_path, notice: 'Welcome!'
 
 

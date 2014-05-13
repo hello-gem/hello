@@ -50,7 +50,7 @@ describe "registration" do
     #
     # ERROR
     #
-    when_sign_in_with_standard_data('wrong')
+    when_sign_in_with_standard_data(password: 'wrong')
         expect(page).to have_content "found when signing in"
     then_I_should_be_logged_out
     # pending "works with json"
@@ -146,11 +146,73 @@ describe "registration" do
     #
     # NEW PASSWORD MUST BE GOOD NOW
     #
-    when_sign_in_with_standard_data('the-new-password')
+    when_sign_in_with_standard_data(password: 'the-new-password')
         expect(page).to have_content "Welcome! Welcome from Sign In"
         expect(current_path).to eq hello.classic_after_sign_in_path
     then_I_should_be_logged_in
 
+  end
+
+  it "don't keep me signed in" do
+    when_sign_up_with_standard_data
+    when_I_sign_out
+    then_I_should_be_logged_out
+    when_sign_in_with_standard_data
+        expect(Session.last.expires_at).to be > 29.minutes.from_now
+
+    #
+    # 25 minutes to expire, doesn't renew expiracy
+    #
+    Session.last.update_attribute :expires_at, 25.minutes.from_now
+    visit root_path
+        then_I_should_be_logged_in
+        expect(Session.last.expires_at).to be < 26.minutes.from_now
+    
+    #
+    # 19 minutes to expire, renews expiracy to 30 minutes
+    #
+    Session.last.update_attribute :expires_at, 19.minutes.from_now
+    visit root_path
+        then_I_should_be_logged_in
+        expect(Session.last.expires_at).to be > 29.minutes.from_now
+    
+    #
+    # 1 second after expire, expires your session
+    #
+    Session.last.update_attribute :expires_at, 1.seconds.ago
+    visit root_path
+        then_I_should_be_logged_out
+  end
+
+  it "keep me signed in" do
+    when_sign_up_with_standard_data
+    when_I_sign_out
+    then_I_should_be_logged_out
+    when_sign_in_with_standard_data(keep_me: true)
+        expect(Session.last.expires_at).to be > 29.days.from_now
+
+    #
+    # 20 days later, doesn't renew expiracy
+    #
+    Session.last.update_attribute :expires_at, 10.days.from_now
+    visit root_path
+        then_I_should_be_logged_in
+        expect(Session.last.expires_at).to be < 11.days.from_now
+    
+    #
+    # 19 minutes to expire, renews expiracy to 30 minutes
+    #
+    Session.last.update_attribute :expires_at, 19.minutes.from_now
+    visit root_path
+        then_I_should_be_logged_in
+        expect(Session.last.expires_at).to be > 29.minutes.from_now
+    
+    #
+    # 1 second after expire, expires your session
+    #
+    Session.last.update_attribute :expires_at, 1.seconds.ago
+    visit root_path
+        then_I_should_be_logged_out
   end
 
 end

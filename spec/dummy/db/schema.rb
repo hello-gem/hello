@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20140502043304) do
     t.integer  "user_id"
     t.integer  "credential_id"
     t.string   "ua"
+    t.datetime "expires_at"
+    t.datetime "sudo_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
