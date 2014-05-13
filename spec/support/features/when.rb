@@ -42,3 +42,15 @@ end
 def when_I_sign_out
   click_link 'Sign Out'
 end
+
+def when_I_confirm_my_credential_password(custom_password=nil)
+  within("form") do
+    fill_in 'credential_password', with: (custom_password || 'foobar')
+    click_button 'Confirm Password'
+  end
+end
+
+
+
+
+

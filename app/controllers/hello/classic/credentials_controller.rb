@@ -3,6 +3,8 @@ require_dependency "hello/application_controller"
 module Hello
 module Classic
   class CredentialsController < ApplicationController
+    restrict_access_to_sudo_mode
+    
     before_actions do
       # actions(:index)   { @credentials = hello_user.credentials }
       # actions(:new)     { @credential   = hello_user.credentials.build }

@@ -36,17 +36,18 @@ class Hello::ApplicationController < ApplicationController
         save:             guest,
         after_reset:      either,
       },
-      user:       user,
+      user:        user,
       credentials: user,
-      sessions: user,
+      sessions:    user,
+      sudo_mode:   user,
     }
 
     autho_c = autho_data[controller_name.to_sym]
     must_be_a = autho_c.is_a?(Hash) ? autho_c[action_name.to_sym] : autho_c
 
     case must_be_a
-    when guest then redirect_to user_homepage  if hello_session.present?
-    when user then  redirect_to guest_homepage if hello_session.blank?
+    when guest     then redirect_to user_homepage  if hello_session.present?
+    when user      then redirect_to guest_homepage if hello_session.blank?
     when either # nothing to do, yay
     else
       raise "No Authorization Rules for '#{controller_name}##{action_name}'"

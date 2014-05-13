@@ -7,6 +7,7 @@ describe "credentials" do
     given_I_am_logged_in
     click_link "Settings"
     click_link "Email"
+    when_I_confirm_my_credential_password
     expect(current_path).to eq hello.email_classic_credential_path(Credential.last)
 
     #
@@ -38,6 +39,7 @@ describe "credentials" do
     given_I_am_logged_in
     click_link "Settings"
     click_link "Username"
+    when_I_confirm_my_credential_password
     expect(current_path).to eq hello.username_classic_credential_path(Credential.last)
 
     #
@@ -69,6 +71,7 @@ describe "credentials" do
     given_I_am_logged_in
     click_link "Settings"
     click_link "Password"
+    when_I_confirm_my_credential_password
     expect(current_path).to eq hello.password_classic_credential_path(Credential.last)
 
     #

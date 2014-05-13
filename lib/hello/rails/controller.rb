@@ -4,8 +4,11 @@ module Hello
       
       extend ActiveSupport::Concern
 
-      # module ClassMethods
-      # end
+      module ClassMethods
+        def restrict_access_to_sudo_mode
+          before_action(:restrict_access_to_sudo_mode)
+        end
+      end
 
 
 
@@ -49,6 +52,21 @@ module Hello
       def hello_session
         @hello_session ||= get_hello_session
       end
+
+      #
+      # Sudo Mode
+      #
+
+      def restrict_access_to_sudo_mode
+        if hello_session.nil? || hello_session.sudo_expires_at.past?
+          render_hello_sudo_mode
+        end
+      end
+
+          def render_hello_sudo_mode
+            session[:hello_url] = url_for(params.merge only_path: true)
+            render '/hello/sudo_mode/form'
+          end
 
       private
 

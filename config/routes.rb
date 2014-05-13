@@ -14,6 +14,10 @@ Hello::Engine.routes.draw do
     get   'user' => "user#edit"
     patch 'user' => "user#update"
 
+  # sudo mode
+    get   'sudo_mode' => 'sudo_mode#form'
+    patch 'sudo_mode' => 'sudo_mode#authenticate'
+
   namespace "classic" do
     
     resources :credentials, only: [:update] do

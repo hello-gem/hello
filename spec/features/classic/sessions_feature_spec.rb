@@ -8,6 +8,7 @@ describe "sessions" do
 
     click_link "Settings"
     click_link "Devices (2)"
+    when_I_confirm_my_credential_password
     expect(current_path).to eq hello.sessions_path
 
     expect(page).not_to have_content "Devices (1)"

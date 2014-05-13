@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20140502043304) do
     t.string   "password_digest"
     t.integer  "sessions_count",             default: 0
     t.string   "password_token_digest"
-    t.datetime "password_token_digested_at"
+    t.datetime "password_token_digested_at", default: '2000-01-01 00:00:00'
     t.string   "email_token_digest"
-    t.datetime "email_confirmed_at"
+    t.datetime "email_confirmed_at",         default: '2000-01-01 00:00:00'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 20140502043304) do
     t.integer  "user_id"
     t.integer  "credential_id"
     t.string   "ua"
-    t.datetime "expires_at"
-    t.datetime "sudo_expires_at"
+    t.datetime "expires_at",      default: '2000-01-01 00:00:00'
+    t.datetime "sudo_expires_at", default: '2000-01-01 00:00:00'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
