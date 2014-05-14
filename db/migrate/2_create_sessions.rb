@@ -4,10 +4,12 @@ class CreateSessions < ActiveRecord::Migration
       t.references :user, index: true
       t.references :credential, index: true
       t.string :ua
+      t.string :token
       t.datetime :expires_at,      default:  DateTime.new(2000, 1,1)
       t.datetime :sudo_expires_at, default:  DateTime.new(2000, 1,1)
 
       t.timestamps
+      t.index :token
     end
   end
 end

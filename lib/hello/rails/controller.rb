@@ -32,7 +32,7 @@ module Hello
       def create_hello_session(keep_me=false)
         expires_at = keep_me ? 30.days.from_now : 30.minutes.from_now
         s = Session.create!(credential: @credential, ua: user_agent, expires_at: expires_at)
-        set_hello_session_id(s.id)
+        set_hello_session_token(s.token)
       end
 
       def clear_hello_session
@@ -74,24 +74,23 @@ module Hello
             hello_session && hello_session.destroy
           end
 
-          def set_hello_session_id(v)
+          def set_hello_session_token(v)
             clear_hello_session
-            session[:hello_session_id]=v
+            session[:hello_session_token]=v
             @hellovars = nil
           end
 
-          def hello_session_id
-            session[:hello_session_id]
+          def hello_session_token
+            session[:hello_session_token]
           end
 
           def get_hello_session
-            return nil unless hello_session_id
-            s = Session.find(hello_session_id)
-            return s if s.expires_at.future?
-            s.destroy
-            session.clear
-            nil
-          rescue ActiveRecord::RecordNotFound
+            return nil unless hello_session_token
+            
+            s = Session.where(token: hello_session_token).first
+            return s if s && s.expires_at.future?
+            
+            s && s.destroy
             session.clear
             nil
           end

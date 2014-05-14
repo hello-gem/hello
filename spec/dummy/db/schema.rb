@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140502043304) do
     t.integer  "user_id"
     t.integer  "credential_id"
     t.string   "ua"
+    t.string   "token"
     t.datetime "expires_at",      default: '2000-01-01 00:00:00'
     t.datetime "sudo_expires_at", default: '2000-01-01 00:00:00'
     t.datetime "created_at"
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140502043304) do
   end
 
   add_index "sessions", ["credential_id"], name: "index_sessions_on_credential_id"
+  add_index "sessions", ["token"], name: "index_sessions_on_token"
   add_index "sessions", ["user_id"], name: "index_sessions_on_user_id"
 
   create_table "users", force: true do |t|

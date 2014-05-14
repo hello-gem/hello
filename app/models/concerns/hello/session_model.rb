@@ -12,10 +12,12 @@ module Hello
       belongs_to :user, counter_cache: true
       belongs_to :credential, counter_cache: true
 
-      validates_presence_of :credential, :user, :ua
+      validates_presence_of :credential, :user, :ua, :token
+      validates_uniqueness_of :token
 
       before_validation on: :create do
         self.user = credential && credential.user
+        self.token = SecureRandom.hex(16) # probability = 1 / (32 ** 32)
       end
     end
 
