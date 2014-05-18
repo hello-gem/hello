@@ -19,6 +19,7 @@ module Classic
         def create
           @registration_sign_up = RegistrationSignUp.new(sign_up_params)
           @credential = @registration_sign_up.credential
+          @password = sign_up_params[:password]
 
           if @registration_sign_up.save
             instance_eval(&sign_up_config.success)
