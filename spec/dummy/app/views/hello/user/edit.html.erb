@@ -41,6 +41,20 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <%= f.label :time_zone, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.time_zone_select :time_zone, nil, {}, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :language, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.select :language, [['English', 'en']], {}, class: "form-control" %>
+    </div>
+  </div>
+
 
 
   <!-- city is a custom field -->

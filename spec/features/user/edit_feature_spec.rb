@@ -8,13 +8,14 @@ describe "edit" do
     click_link "Settings"
     expect(current_path).to eq hello.user_path
 
+    puts "test time_zone and language"
+
     #
     # SUCCESS
     #
     within("form") do
       fill_in 'user_name',    with: 'Yakko'
       fill_in 'user_city',    with: 'Brasilia'
-      # fill_in 'password', with: 'foobar'
     end
     click_button 'Update'
     expect(page).to have_content "Your profile was successfully updated."
@@ -28,7 +29,6 @@ describe "edit" do
     #
     within("form") do
       fill_in 'user_name',    with: ''
-      # fill_in 'password', with: 'foobar'
     end
     click_button 'Update'
     expect(page).to have_content "found when updating your profile"

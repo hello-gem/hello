@@ -12,5 +12,3 @@ if defined? ActionView::Base
     include Hello::Rails::Helper
   end
 end
-
-puts "this should be a Railtie"
