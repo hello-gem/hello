@@ -23,7 +23,7 @@ module Hello
       @user     = credential.user
       @url      = url
 
-      mail to: credential.email
+      mail to: credential.email, subject: "Password Reset"
     end
 
     # Subject can be set in your I18n file at config/locales/en.yml
