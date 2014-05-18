@@ -19,6 +19,12 @@ module Hello
       end
     end
 
+    # GET /hello/sudo_mode/expire
+    def expire
+      hello_session.update_attribute :sudo_expires_at, 1.second.ago
+      redirect_to root_path, notice: "We will now ask your password for sensitive access"
+    end
+
     private
 
         def credential_password_param

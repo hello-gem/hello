@@ -35,9 +35,18 @@ describe "classic" do
     #
     when_I_confirm_my_credential_password
         expect(page).to have_content "Now we know it's really you"
+        expect(page).to have_content "Sudo Mode expires in"
         expect(page).not_to have_content "Confirm Password to Continue"
         expect(current_path).to eq hello.sessions_path
         expect(Session.last.sudo_expires_at).to be > 29.minutes.from_now
+
+    #
+    # EXPIRE
+    #
+    click_link "expire"
+        expect(page).to have_content "We will now ask your password for sensitive access"
+        expect(page).not_to have_content "Sudo Mode expires in"
+        expect(current_path).to eq hello.user_path
 
   end
 

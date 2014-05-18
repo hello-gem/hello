@@ -15,8 +15,9 @@ Hello::Engine.routes.draw do
     patch 'user' => "user#update"
 
   # sudo mode
-    get   'sudo_mode' => 'sudo_mode#form'
-    patch 'sudo_mode' => 'sudo_mode#authenticate'
+    get   'sudo_mode'        => 'sudo_mode#form'
+    patch 'sudo_mode'        => 'sudo_mode#authenticate'
+    get   'sudo_mode/expire' => 'sudo_mode#expire'
 
   namespace "classic" do
     

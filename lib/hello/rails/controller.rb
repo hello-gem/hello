@@ -17,7 +17,7 @@ module Hello
       #
 
       included do
-        helper_method :current_user, :hello_credential, :hello_session
+        helper_method :current_user, :hello_credential, :hello_session, :sudo_mode?
         before_action :hello_keep_alive, if: :hello_session
       end
 
@@ -52,6 +52,11 @@ module Hello
       #
       # Sudo Mode
       #
+
+      # helper method
+      def sudo_mode?
+        hello_session && hello_session.sudo_expires_at.future?
+      end
 
       def restrict_access_to_sudo_mode
         if hello_session.nil? || hello_session.sudo_expires_at.past?
