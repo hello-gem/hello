@@ -11,7 +11,10 @@ class Credential < ActiveRecord::Base
 
     # we recommend programmers to override this method in their apps
     def password_is?(plain_text_password)
-      BCrypt::Password.new(password_digest) == plain_text_password
+      bc_password = BCrypt::Password.new(password_digest)
+      bc_password == plain_text_password 
+    rescue BCrypt::Errors::InvalidHash
+      false
     end
 
 end
