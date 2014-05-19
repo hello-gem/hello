@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     hello (0.1.0)
-      bcrypt
       before_actions
       colorize
       rails (~> 4, < 5)
@@ -135,6 +134,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   capybara
   codeclimate-test-reporter
   email_spec

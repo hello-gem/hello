@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
   s.add_dependency "validates_email_format_of", '~> 1.5.3' # October 12, 2011
   s.add_dependency "before_actions"
   s.add_dependency "colorize"
-  s.add_dependency "bcrypt"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'rspec-rails'
