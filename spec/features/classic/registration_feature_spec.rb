@@ -158,6 +158,7 @@ describe "registration" do
     when_I_sign_out
     then_I_should_be_logged_out
     when_sign_in_with_standard_data
+        then_I_should_be_logged_in
         expect(Session.last.expires_at).to be > 29.minutes.from_now
 
     #

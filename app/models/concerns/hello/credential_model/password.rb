@@ -12,7 +12,6 @@ module Hello
         self.password_digest = encrypt_password(value)
       end
 
-
       included do
         attr_reader :password
 
