@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hello (0.0.1)
+    hello (0.1.0)
       bcrypt
       before_actions
       colorize
