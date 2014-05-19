@@ -7,13 +7,13 @@ require "hello/version"
 Gem::Specification.new do |s|
   s.name        = "hello"
   s.version     = Hello::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Hello."
-  s.description = "TODO: Description of Hello."
+  s.authors     = ["James Pinto"]
+  s.email       = ["tjamespinto@gmail.com"]
+  s.homepage    = "http://github.com/hi/hello"
+  s.summary     = "Rails 4.* authentication solution"
+  s.description = "Rails 4.* authentication solution"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   s.test_files = Dir["spec/**/*"]
 
