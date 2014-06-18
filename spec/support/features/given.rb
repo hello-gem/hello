@@ -9,6 +9,13 @@ def given_I_have_a_password_credential
                             password: 'foobar'
 end
 
+def given_I_have_an_admin_password_credential
+  Credential.classic.create!  user:     User.create!(name: 'Admin', city: 'Brasilia', role: 'admin'),
+                            email:    'admin@bar.com',
+                            username: 'admin',
+                            password: 'admin'
+end
+
 def given_I_have_a_password_credential_and_forgot_my_password
   credential = given_I_have_a_password_credential
   return unencrypted_token = credential.reset_password_token

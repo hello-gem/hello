@@ -17,7 +17,7 @@ module Hello
       #
 
       included do
-        helper_method :current_user, :hello_credential, :hello_session, :sudo_mode?
+        helper_method :current_user, :hello_credential, :hello_session, :sudo_mode?, :impersonated?
         before_action :hello_keep_alive, if: :hello_session
       end
 
@@ -49,6 +49,22 @@ module Hello
         @hello_session ||= get_hello_session
       end
 
+      def hello_impersonate(credential)
+        store_impersonator
+        @credential = credential
+        create_hello_session(true)
+      end
+
+      def hello_back_to_myself
+        destroy_hello_session
+        set_hello_session_token(hello_impersonator_token)
+      end
+
+      # helper method
+      def impersonated?
+        hello_impersonator_token.present?
+      end
+
       #
       # Sudo Mode
       #
@@ -76,13 +92,21 @@ module Hello
           end
 
           def set_hello_session_token(v)
-            clear_hello_session
+            # clear_hello_session
             session[:hello_session_token]=v
             @hellovars = nil
           end
 
           def hello_session_token
             session[:hello_session_token]
+          end
+
+          def store_impersonator
+            session[:hello_impersonator] = hello_session_token
+          end
+
+          def hello_impersonator_token
+            session[:hello_impersonator]
           end
 
           def get_hello_session

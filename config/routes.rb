@@ -19,6 +19,14 @@ Hello::Engine.routes.draw do
     patch 'sudo_mode'        => 'sudo_mode#authenticate'
     get   'sudo_mode/expire' => 'sudo_mode#expire'
 
+  
+  namespace "admin" do
+    get '' => 'admin#index'
+    # impersonation
+      get  'impersonate' => 'impersonation#destroy'
+      post 'impersonate' => 'impersonation#create'
+  end
+
   namespace "classic" do
     
     resources :credentials, only: [:update] do

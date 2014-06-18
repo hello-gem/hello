@@ -26,6 +26,9 @@
         <% if current_user %>
           <li><%= link_to "Settings", hello.user_path %></li>
           <li><%= link_to "Sign Out", hello.sign_out_path %></li>
+          <% if impersonated? %>
+            <li><%= link_to "Back to Myself", hello.admin_impersonate_path %></li>
+          <% end %>
         <% else %>
           <li><%= link_to "Sign Up", hello.classic_sign_up_path %></li>
           <li><%= link_to "Sign In", hello.classic_sign_in_path %></li>
@@ -41,6 +44,14 @@
         Hello, Guest!
         <% end %>
       </p>
+      <% if current_user && current_user.admin? %>
+      <p>
+        Admin Features:
+        <% if @user && @user != current_user %>
+          <%= button_to "Impersonate #{@user.name}", hello.admin_impersonate_path(credential_id: @user.credentials.first.id) %>
+        <% end %>
+      </p>
+      <% end %>
     </div>
 
 

@@ -39,6 +39,16 @@ def when_sign_in_with_standard_data(options={})
   end
 end
 
+def when_sign_in_with_admin_data
+  visit hello.root_path
+  within("form#new_registration_sign_in") do
+    fill_in 'registration_sign_in_login',    with: 'admin'
+    fill_in 'registration_sign_in_password', with: 'admin'
+    click_button 'Sign In'
+  end
+end
+
+
 def when_I_sign_out
   click_link 'Sign Out'
 end

@@ -12,7 +12,9 @@ module Hello
       credentials.classic.first
     end
 
-
+    def admin?
+      role == self.class.admin
+    end
 
     included do
       has_many :credentials

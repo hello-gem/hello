@@ -8,9 +8,11 @@ class Hello::ApplicationController < ApplicationController
     either = 0
     guest  = 1
     user   = 2
+    admin  = 10
 
     guest_homepage = hello.root_path
     user_homepage  = hello.user_path
+    admin_homepage = hello.admin_path
 
     autho_data = {
       welcome:  {
@@ -40,6 +42,12 @@ class Hello::ApplicationController < ApplicationController
       credentials: user,
       sessions:    user,
       sudo_mode:   user,
+      
+      admin: admin,
+      impersonation: {
+        create:  admin,
+        destroy: user
+      },
     }
 
     autho_c = autho_data[controller_name.to_sym]
@@ -48,6 +56,7 @@ class Hello::ApplicationController < ApplicationController
     case must_be_a
     when guest     then redirect_to user_homepage  if hello_session.present?
     when user      then redirect_to guest_homepage if hello_session.blank?
+    when admin     then redirect_to admin_homepage if hello_session.present? && !hello_user.admin?
     when either # nothing to do, yay
     else
       raise "No Authorization Rules for '#{controller_name}##{action_name}'"
