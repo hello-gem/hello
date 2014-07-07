@@ -1,16 +1,9 @@
-def get_code_climate_token
-  travis_yml = "#{SPEC_ROOT}/../.travis.yml"
-  travis_hash = YAML.load_file(travis_yml)
-  travis_hash['addons']['code_climate']['repo_token']
-end
+ENV['RAILS_ENV'] ||= 'test'
 
-ENV['CODECLIMATE_REPO_TOKEN'] ||= get_code_climate_token
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
 
-
-ENV['RAILS_ENV'] ||= 'test'
 
 SPEC_ROOT=File.dirname(__FILE__)
 
