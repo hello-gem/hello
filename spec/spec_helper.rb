@@ -12,8 +12,8 @@ require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 # end
 
 # ENV['CODECLIMATE_REPO_TOKEN'] ||= get_code_climate_token
-# require "codeclimate-test-reporter"
-# CodeClimate::TestReporter.start
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 
 # require 'rspec/rails'
 # require 'rspec/autorun'
