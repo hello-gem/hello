@@ -13,6 +13,8 @@ gemspec
 # To use debugger
 # gem 'debugger'
 
+gem 'rails', '~> 4.0' #  June 25, 2013
+
 gem "codeclimate-test-reporter", group: :test, require: nil
 
 gem 'bcrypt'
