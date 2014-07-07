@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Hello::VERSION
   s.authors     = ["James Pinto"]
   s.email       = ["tjamespinto@gmail.com"]
-  s.homepage    = "http://github.com/hi/hello"
-  s.summary     = "Rails 4.* authentication solution"
-  s.description = "Rails 4.* authentication solution"
+  s.homepage    = "http://github.com/hello-gem/hello"
+  s.summary     = "Rails Gem to authenticate you and your users"
+  s.description = "We want enjoyable Rails authentication"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 

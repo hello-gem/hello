@@ -1,71 +1,82 @@
-# READ ME
+# Hello
 
-[![Build Status](https://travis-ci.org/hi/hello.svg)](https://travis-ci.org/hi/hello)
+We want enjoyable Rails authentication
 
-This is a brand new code base catered for real world needs for our Rails apps and we want to share it with the world.
+__This gem is in rapid development, can be used in production by Rails experts__
 
-
-
-
-## With Great test coverage comes great readability
-
-[![Code Climate](https://codeclimate.com/github/hi/hello.png)](https://codeclimate.com/github/hi/hello)
-[![Code Climate](https://codeclimate.com/github/hi/hello/coverage.png)](https://codeclimate.com/github/hi/hello)
-
-
-
-## Rails support
-
-Ruby __1.9.3__ through __2.1.0__
-
-Rails __4.0__ and above
+* Share Experiences: https://gitter.im/hello-gem/hello
 
 
 
 
-## What makes it so awesome and unique?
+
+## Status
+
+[![Build Status](https://travis-ci.org/hello-gem/hello.svg?branch=master)](https://travis-ci.org/hello-gem/hello)
+
+[![Code Climate](https://codeclimate.com/github/hello-gem/hello.png)](https://codeclimate.com/github/hello-gem/hello)
+
+[![Code Climate](https://codeclimate.com/github/hello-gem/hello/coverage.png)](https://codeclimate.com/github/hello-gem/hello)
+
+[![Dependency Status](https://gemnasium.com/hello-gem/hello.svg)](https://gemnasium.com/hello-gem/hello)
+
+[![Inline docs](http://inch-ci.org/github/hello-gem/hello.png?branch=master)](http://inch-ci.org/github/hello-gem/hello)
 
 
-  Hello assumes every web application has special needs regarding authentication,
-  So we give you a high quality vanilla and let you cater in from the start.
+
+
+
+## References
+
+* Home page: https://github.com/hello-gem/hello
+* API Doc: https://github.com/hello-gem/hello
+* Version: https://github.com/hello-gem/hello
+* Trello Board: https://trello.com/b/WwNptyVM/hello-gem
+
+## Support
+
+* Bugs/Issues: https://github.com/hello-gem/hello/issues
+* Support: http://stackoverflow.com/questions/tagged/hello
+* Support/Chat: [![Gitter chat](https://badges.gitter.im/hello-gem/hello.png)](https://gitter.im/hello-gem/hello)
+
+## Requirements and Compatibility
+
+* Ruby 1.9+
+* Rails 4.0+
+
+## Demo
+
+Want to see it in action?
+
+* Visit https://bit.ly/hellogem
+* Sources at https://github.com/hello-gem/hello_demo
+
+
+
+
+
 
 ## Installation
 
-Add to your Gemfile:
+Add this line to your application's Gemfile:
 
 ```ruby
-gem 'hello', github: 'hi/hello', branch: 'v0.1.0'
-gem 'bcrypt'
+gem 'hello', github: 'hello-gem/hello', branch: 'v0.1.0'
 ```
 
-Then run:
+And then execute:
 
 ```bash
-rails g hello
+bundle
+rails g hello:install
+rake db:migrate
 rails g hello:views # optional
 ```
 
-Yes, Hello only requires a few columns at your users table
+## Customizing - behavior and views
 
-```ruby
-create_table "users" do |t|
-  t.string   "name"
-  t.string   "role", default: "user"
-  t.string   "language"
-  t.string   "time_zone"
-end
-```
-
-All your authentication routes go inside _/hello_
-
-```ruby
-Rails.application.routes.draw do
-  mount Hello::Engine => "/hello"
-end
-
-```
-
-Customize what you need
+These files are generated when you install this gem.
+They are simple to customize, just open them
 
     + app/
     | + lib/
@@ -82,7 +93,12 @@ Customize what you need
 
 
 
+
+
+
 ## Usage
+
+TODO: review usage instructions
 
 You only need to include our module in your User class
 
@@ -115,16 +131,23 @@ end
 
 
 
-## Demo App
-
-Want to see it live?
-
-Then play with it at [https://bit.ly/hellogem](https://bit.ly/hellogem)
-Sources at [https://github.com/hi/hello_demo](https://github.com/hi/hello_demo)
 
 
 
 
 
-This project rocks and uses MIT-LICENSE.
+## Contributing
 
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+## Versioning
+
+__Hello__ uses [Semantic Versioning 2.0.0](http://semver.org)
+
+## Copyright
+
+Copyright 2013-2014 James Pinto – Released under [MIT License](http://www.opensource.org/licenses/MIT)
