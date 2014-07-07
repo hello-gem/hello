@@ -17,9 +17,12 @@ Gem::Specification.new do |s|
 
   s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency "validates_email_format_of", '~> 1.5.3' # October 12, 2011
-  s.add_dependency "before_actions"
-  s.add_dependency "colorize"
+
+  s.add_runtime_dependency 'rails', '>= 3.0.0'
+  s.add_runtime_dependency 'bcrypt'
+  s.add_runtime_dependency "validates_email_format_of"
+  s.add_runtime_dependency "before_actions"
+  s.add_runtime_dependency "colorize"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'rspec-rails'
