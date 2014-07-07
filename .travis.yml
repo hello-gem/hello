@@ -8,4 +8,4 @@ cache:
   - apt
 addons:
   code_climate:
-    repo_token: 93a882bd452f48c185cb6b823dbb4ea1c65e7a188b850c498eac1fb8501a2ea8
+    repo_token: 6aaf7f088c020571433a2ddd872072efcbe05aba1b68d66ed96593e8d101a74d
