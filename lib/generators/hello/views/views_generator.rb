@@ -6,6 +6,10 @@ class Hello::ViewsGenerator < Rails::Generators::Base
     directory "app/views/hello"
   end
 
+  def copy_the_locales
+    copy_file "config/locales/hello.en.yml", "config/locales/hello.en.yml"
+  end
+
 
   protected
 
