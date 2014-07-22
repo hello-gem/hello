@@ -7,13 +7,15 @@ module Hello
     def create
       credential = Credential.find(params[:credential_id])
       hello_impersonate(credential)
-      redirect_to :back, notice: "You are now #{credential.user.name}"
+      flash[:notice] = t("hello.messages.admin.impersonation.create.notice", name: credential.user.name)
+      redirect_to :back
     end
 
     # GET /hello/admin/impersonate
     def destroy
       hello_back_to_myself
-      redirect_to :back, notice: "You are yourself again"
+      flash[:notice] = t("hello.messages.admin.impersonation.destroy.notice")
+      redirect_to :back
     end
 
   end

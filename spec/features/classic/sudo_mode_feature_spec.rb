@@ -16,7 +16,7 @@ describe "classic" do
     # BLANK
     #
     when_I_confirm_my_credential_password('')
-        expect(page).to have_content "Incorrect Password"
+        expect_flash_alert "Incorrect Password"
         expect(page).to have_content "Confirm Password to Continue"
         expect(current_path).to eq hello.sudo_mode_path
         expect(Session.last.sudo_expires_at).to be < Time.now
@@ -25,7 +25,7 @@ describe "classic" do
     # ERROR
     #
     when_I_confirm_my_credential_password('wrong')
-        expect(page).to have_content "Incorrect Password"
+        expect_flash_alert "Incorrect Password"
         expect(page).to have_content "Confirm Password to Continue"
         expect(current_path).to eq hello.sudo_mode_path
         expect(Session.last.sudo_expires_at).to be < Time.now
@@ -34,7 +34,7 @@ describe "classic" do
     # SUCCESS
     #
     when_I_confirm_my_credential_password
-        expect(page).to have_content "Now we know it's really you"
+        expect_flash_notice "Now we know it's really you. We won't be asking your password again for 60 minutes"
         expect(page).to have_content "Sudo Mode expires in"
         expect(page).not_to have_content "Confirm Password to Continue"
         expect(current_path).to eq hello.sessions_path
@@ -44,7 +44,7 @@ describe "classic" do
     # EXPIRE
     #
     click_link "expire"
-        expect(page).to have_content "We will now ask your password for sensitive access"
+        expect_flash_notice "We will now ask your password for sensitive access"
         expect(page).not_to have_content "Sudo Mode expires in"
         expect(current_path).to eq hello.user_path
 

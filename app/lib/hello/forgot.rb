@@ -20,7 +20,7 @@ Hello.config.forgot do
       format.html {
 
         
-        redirect_to hello.classic_after_forgot_path, notice: 'Check your mail box!'
+        redirect_to hello.classic_after_forgot_path
 
 
       }

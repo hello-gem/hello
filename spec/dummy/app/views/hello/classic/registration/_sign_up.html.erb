@@ -1,5 +1,5 @@
 <%= form_for @registration_sign_up, url: classic_sign_up_path, html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= render '/hello/shared/errors', model: @registration_sign_up, found_when_msg: "signing up" %>
+  <%= render '/hello/shared/errors', active_model: @registration_sign_up %>
 
   <div class="form-group">
     <%= f.label :name, class: "col-sm-4 control-label" %>

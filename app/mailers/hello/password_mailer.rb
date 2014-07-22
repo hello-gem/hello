@@ -1,11 +1,11 @@
 module Hello
   class PasswordMailer < ActionMailer::Base
-    default from: "from@example.com"
+    default from: "hello@example.com"
 
     # Subject can be set in your I18n file at config/locales/en.yml
     # with the following lookup:
     #
-    #   en.password_mailer.sign_up.subject
+    #   en.hello.password_mailer.sign_up.subject
     #
     # def sign_up
     #   @greeting = "Hi"
@@ -16,25 +16,21 @@ module Hello
     # Subject can be set in your I18n file at config/locales/en.yml
     # with the following lookup:
     #
-    #   en.password_mailer.forgot.subject
-    #
-    def forgot(credential, url)
-      @credential = credential
-      @user     = credential.user
-      @url      = url
-
-      mail to: credential.email, subject: "Password Reset"
-    end
-
-    # Subject can be set in your I18n file at config/locales/en.yml
-    # with the following lookup:
-    #
-    #   en.password_mailer.confirmation.subject
+    #   en.hello.password_mailer.confirmation.subject
     #
     # def confirmation
     #   @greeting = "Hi"
 
     #   mail to: "to@example.org"
     # end
+
+    def forgot(credential, url)
+      @credential = credential
+      @user     = credential.user
+      @url      = url
+
+      mail to: credential.email
+    end
+
   end
 end

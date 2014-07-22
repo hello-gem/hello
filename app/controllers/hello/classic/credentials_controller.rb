@@ -55,10 +55,12 @@ module Classic
 
         # PATCH/PUT /hello/classic/credentials/1
         def update
+          the_action = credential_params.keys.first
           if @credential.update(credential_params)
-            redirect_to hello.user_path, notice: 'Your credential was successfully updated.'
+            flash[:notice] = I18n.t("hello.messages.classic.credential.edit.notice", field: the_action)
+            redirect_to hello.user_path
           else
-            the_action = credential_params.keys.first
+            flash[:alert] = I18n.t("hello.messages.classic.credential.edit.alert", field: the_action)
             render the_action
           end
         end

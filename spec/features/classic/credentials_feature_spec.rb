@@ -17,19 +17,19 @@ describe "credentials" do
       fill_in 'credential_email',    with: 'a'
     end
     click_button 'Update'
-    expect(page).to have_content "found when updating your email"
+        expect_flash_alert "1 error was found while updating your email"
 
     #
     # SUCCESS
     #
     within("form") do
-      fill_in 'credential_email', with: 'yakko@someemail.com'
+      fill_in 'credential_email', with: 'thejamespinto@someemail.com'
     end
     click_button 'Update'
-    expect(page).to have_content "Your credential was successfully updated."
-    expect(current_path).to eq hello.user_path
-    updated_credential = Credential.last
-    expect(updated_credential.email).to eq 'yakko@someemail.com'
+        expect_flash_notice "Your email was successfully updated"
+        expect(current_path).to eq hello.user_path
+        updated_credential = Credential.last
+        expect(updated_credential.email).to eq 'thejamespinto@someemail.com'
 
     # pending "works with json"
 
@@ -49,19 +49,19 @@ describe "credentials" do
       fill_in 'credential_username', with: ''
     end
     click_button 'Update'
-    expect(page).to have_content "found when updating your username"
+        expect_flash_alert "1 error was found while updating your username"
 
     #
     # SUCCESS
     #
     within("form") do
-      fill_in 'credential_username', with: 'yakko'
+      fill_in 'credential_username', with: 'thejamespinto'
     end
     click_button 'Update'
-    expect(page).to have_content "Your credential was successfully updated."
-    expect(current_path).to eq hello.user_path
-    updated_credential = Credential.last
-    expect(updated_credential.username).to eq 'yakko'
+        expect_flash_notice "Your username was successfully updated"
+        expect(current_path).to eq hello.user_path
+        updated_credential = Credential.last
+        expect(updated_credential.username).to eq 'thejamespinto'
 
     # pending "works with json"
 
@@ -81,7 +81,7 @@ describe "credentials" do
       fill_in 'credential_password', with: 'a'
     end
     click_button 'Update'
-    expect(page).to have_content "found when updating your password"
+        expect_flash_alert "1 error was found while updating your password"
 
     #
     # SUCCESS
@@ -90,10 +90,10 @@ describe "credentials" do
       fill_in 'credential_password', with: '123456'
     end
     click_button 'Update'
-    expect(page).to have_content "Your credential was successfully updated."
-    expect(current_path).to eq hello.user_path
-    updated_credential = Credential.last
-    expect(updated_credential.password_is? '123456').to eq true
+        expect_flash_notice "Your password was successfully updated"
+        expect(current_path).to eq hello.user_path
+        updated_credential = Credential.last
+        expect(updated_credential.password_is? '123456').to eq true
 
     # pending "works with json"
 

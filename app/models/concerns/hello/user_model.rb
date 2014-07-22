@@ -25,6 +25,11 @@ module Hello
 
 
 
+    def error_message
+      I18n.t("hello.messages.common.user.edit.error", count: errors.count)
+    end
+
+
     module ClassMethods
       def roles
         [guest, user, admin]

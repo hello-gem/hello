@@ -26,5 +26,6 @@
     expect(page).to have_content text
   end
 
-
-
+  def then_I_should_not_see(text)
+    expect(page).not_to have_content text
+  end

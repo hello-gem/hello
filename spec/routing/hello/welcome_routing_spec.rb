@@ -9,10 +9,6 @@ module Hello
         get("/").should route_to("hello/welcome#index")
       end
 
-      it "routes to #sign_out" do
-        get("/sign_out").should route_to("hello/welcome#sign_out")
-      end
-      
     end
   end
 end

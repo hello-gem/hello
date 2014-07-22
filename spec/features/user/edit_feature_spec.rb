@@ -6,7 +6,7 @@ describe "edit" do
   it "success and error" do
     given_I_am_logged_in
     click_link "Settings"
-    expect(current_path).to eq hello.user_path
+        expect(current_path).to eq hello.user_path
 
     puts "test time_zone and language"
 
@@ -14,13 +14,13 @@ describe "edit" do
     # SUCCESS
     #
     within("form") do
-      fill_in 'user_name',    with: 'Yakko'
+      fill_in 'user_name',    with: 'James Pinto'
       fill_in 'user_city',    with: 'Brasilia'
     end
     click_button 'Update'
-    expect(page).to have_content "Your profile was successfully updated."
-    expect(page).to have_content "Hello, Yakko!"
-    expect(current_path).to eq hello.user_path
+        expect_flash_notice "You have updated your profile successfully"
+        expect(page).to have_content "Hello, James Pinto!"
+        expect(current_path).to eq hello.user_path
 
     # pending "works with json"
 
@@ -31,7 +31,7 @@ describe "edit" do
       fill_in 'user_name',    with: ''
     end
     click_button 'Update'
-    expect(page).to have_content "found when updating your profile"
+        expect_error_message "1 error was found while updating your profile"
   end
 
 

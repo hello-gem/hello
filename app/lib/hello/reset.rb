@@ -10,7 +10,7 @@ Hello.config.reset do
       format.html {
 
         create_hello_session
-        redirect_to hello.classic_after_reset_path, notice: 'Your password has been updated!'
+        redirect_to hello.classic_after_reset_path
 
 
       }

@@ -1,0 +1,60 @@
+# https://github.com/hello-gem/hello
+
+en:
+  hello:
+    password_mailer:
+      forgot:
+        subject: "Reset password instructions"
+    messages:
+      admin:
+        impersonation:
+          create:
+            notice: "You are now %{name}"
+          destroy:
+            notice: "You are yourself again"
+      common:
+        sudo_mode:
+          authenticate:
+            notice: "Now we know it's really you. We won't be asking your password again for 60 minutes"
+            alert: "Incorrect Password"
+          expire:
+            notice: "We will now ask your password for sensitive access"
+        sessions:
+          destroy:
+            notice: "Device has been unlinked from your account"
+            alert: "There was an error while unlinking this device"
+        sign_out:
+          sign_out:
+            notice: "You have signed out!"
+        user:
+          edit:
+            notice: "You have updated your profile successfully"
+            error:
+              one: "1 error was found while updating your profile"
+              other: "%{count} errors were found while updating your profile"
+      classic:
+        credential:
+          edit:
+            notice: "Your %{field} was successfully updated"
+            alert: "1 error was found while updating your %{field}"
+        registration:
+          sign_up:
+            notice: "You have signed up successfully"
+            error:
+              one: "1 error was found while trying to sign up"
+              other: "%{count} errors were found while trying to sign up"
+          sign_in:
+            notice: "You have signed in successfully"
+            error:
+              one: "1 error was found while trying to sign in"
+              other: "%{count} errors were found while trying to sign in"
+          forgot_password:
+            notice: "We have just sent you an email with instructions to reset your password"
+            error:
+              one: "1 error was found while locating your credentials"
+              other: "%{count} errors were found while locating your credentials"
+          reset_password:
+            notice: "You have reset your password successfully"
+            error:
+              one: "1 error was found while reseting your password"
+              other: "%{count} errors were found while reseting your password"

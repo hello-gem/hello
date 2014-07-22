@@ -6,8 +6,8 @@ Hello.config.sign_out do
     respond_to do |format|
       format.html {
 
-        # redirect_to hello.root_path, notice: 'You have signed out!'
-        # redirect_to root_path, notice: 'You have signed out!'
+        # redirect_to hello.root_path
+        # redirect_to root_path
         render :sign_out
 
 

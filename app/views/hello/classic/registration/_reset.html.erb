@@ -1,5 +1,5 @@
 <%= form_for @registration_reset, url: classic_reset_path, html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= render '/hello/shared/errors', model: @registration_reset, found_when_msg: "resetting your password" %>
+  <%= render '/hello/shared/errors', active_model: @registration_reset %>
 
   <div class="form-group">
     <%= f.label :email, class: "col-sm-4 control-label" %>

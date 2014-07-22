@@ -20,6 +20,10 @@ module Hello
       @errors ||= ActiveModel::Errors.new(self)
     end
 
+    def error_message
+      I18n.t("hello.messages.classic.registration.reset_password.error", count: errors.count)
+    end
+
 
 
 

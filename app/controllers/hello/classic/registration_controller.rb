@@ -22,6 +22,7 @@ module Classic
           @password = sign_up_params[:password]
 
           if @registration_sign_up.save
+            flash[:notice] = t("hello.messages.classic.registration.sign_up.notice")
             instance_eval(&sign_up_config.success)
           else
             instance_eval(&sign_up_config.error)
@@ -49,6 +50,7 @@ module Classic
           @credential = @registration_sign_in.credential
 
           if @registration_sign_in.authenticate
+            flash[:notice] = t("hello.messages.classic.registration.sign_in.notice")
             instance_eval(&sign_in_config.success)
           else
             instance_eval(&sign_in_config.error)
@@ -75,6 +77,7 @@ module Classic
           @credential = @registration_forgot.credential
 
           if @registration_forgot.reset
+            flash[:notice] = t("hello.messages.classic.registration.forgot_password.notice")
             instance_eval(&forgot_config.success)
           else
             instance_eval(&forgot_config.error)
@@ -108,6 +111,7 @@ module Classic
             def save
               if @registration_reset.update_password(reset_password_param)
                 @credential.invalidate_password_token
+                flash[:notice] = t("hello.messages.classic.registration.reset_password.notice")
                 instance_eval(&reset_config.success)
               else
                 instance_eval(&reset_config.error)

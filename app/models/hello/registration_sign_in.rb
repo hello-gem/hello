@@ -22,6 +22,10 @@ module Hello
       @errors ||= ActiveModel::Errors.new(self)
     end
 
+    def error_message
+      I18n.t("hello.messages.classic.registration.sign_in.error", count: errors.count)
+    end
+
 
 
 

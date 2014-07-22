@@ -14,6 +14,7 @@ module Hello
     # PATCH /hello/user
     def update
       if @user.update(user_params)
+        flash[:notice] = I18n.t("hello.messages.common.user.edit.notice")
         instance_eval(&user_config.success)
       else
         instance_eval(&user_config.error)

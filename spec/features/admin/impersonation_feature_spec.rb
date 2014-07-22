@@ -13,19 +13,20 @@ describe "admin" do
     then_I_should_be_logged_in_as_an_admin
 
 
+    user = User.first
     #
     # IMPERSONATES
     #
-    visit user_path(User.first)
+    visit user_path(user)
     click_button 'Impersonate'
-    then_I_should_see("You are now")
+    expect_flash_notice "You are now #{user.name}"
     then_I_should_be_logged_in_as_a_user(2)
 
     #
     # BACK TO SELF
     #
     click_link 'Back to Myself'
-    then_I_should_see("You are yourself again")
+    expect_flash_notice "You are yourself again"
     then_I_should_be_logged_in_as_an_admin
   end
 

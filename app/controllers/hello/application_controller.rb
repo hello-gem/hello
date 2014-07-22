@@ -15,10 +15,8 @@ class Hello::ApplicationController < ApplicationController
     admin_homepage = hello.admin_path
 
     autho_data = {
-      welcome:  {
-        index:    guest,
-        sign_out: either
-      },
+      welcome: guest,
+      sign_out: either,
       registration: {
         #
         sign_up:          guest,

@@ -7,7 +7,7 @@ Hello::Engine.routes.draw do
 
   root "welcome#index"
 
-  get  "sign_out" => "welcome#sign_out"
+  get  "sign_out" => "sign_out#sign_out"
 
   # editing profile
     # user

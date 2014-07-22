@@ -8,7 +8,7 @@ Hello.config.user do
     respond_to do |format|
       format.html {
 
-        redirect_to hello.user_path, notice: 'Your profile was successfully updated.'
+        redirect_to hello.user_path
 
       }
       format.json {
