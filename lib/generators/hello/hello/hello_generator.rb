@@ -6,6 +6,10 @@ class HelloGenerator < Rails::Generators::Base
     directory "#{the_root}/app/lib/hello", "app/lib/hello"
   end
 
+  def locale_fix
+    gsub_file 'config/locales/en.yml', 'hello: "Hello world"', 'hello_world: "Hello world"'
+  end
+
   def append_to_the_routes
     route "root to: redirect('/hello') # TODO: add a custom root route :)"
     route 'mount Hello::Engine => "/hello"'
