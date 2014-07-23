@@ -1,9 +1,9 @@
 require "spec_helper"
 
 module Hello
-  describe PasswordMailer do
-    # describe "sign_up" do
-    #   let(:mail) { PasswordMailer.sign_up }
+  describe RegistrationMailer do
+    # describe "welcome" do
+    #   let(:mail) { RegistrationMailer.welcome }
 
     #   it "renders the headers" do
     #     expect(mail.subject).to eq("Sign up")
@@ -15,8 +15,8 @@ module Hello
     #     expect(mail.body.encoded).to match("Hi")
     #   end
     # end
-    # describe "confirmation" do
-    #   let(:mail) { PasswordMailer.confirmation }
+    # describe "confirm_email" do
+    #   let(:mail) { RegistrationMailer.confirm_email }
 
     #   it "renders the headers" do
     #     expect(mail.subject).to eq("Confirmation")
@@ -29,9 +29,9 @@ module Hello
     #   end
     # end
 
-    describe "forgot" do
+    describe "forgot_password" do
       let(:credential) { create(:classic_credential) }
-      let(:mail) { PasswordMailer.forgot(credential, "THE_URL") }
+      let(:mail) { RegistrationMailer.forgot_password(credential, "THE_URL") }
 
       it "renders the headers" do
         expect(mail.subject).to eq("Reset password instructions")

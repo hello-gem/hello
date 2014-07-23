@@ -10,9 +10,9 @@ Hello.config.sign_up do
 
 
 
-    # SignUpMailer.welcome(@credential).deliver
-    # SignUpMailer.confirmation(@credential).deliver
-    # SignUpMailer.confirmation(@credential, @password).deliver
+    # RegistrationMailer.welcome(@credential).deliver
+    # RegistrationMailer.confirm_email(@credential).deliver
+    # RegistrationMailer.confirm_email(@credential, @password).deliver
 
 
     respond_to do |format|

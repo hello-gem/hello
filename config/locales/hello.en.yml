@@ -2,8 +2,8 @@
 
 en:
   hello:
-    password_mailer:
-      forgot:
+    registration_mailer:
+      forgot_password:
         subject: "Reset password instructions"
     messages:
       admin:

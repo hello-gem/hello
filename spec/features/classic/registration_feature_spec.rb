@@ -90,7 +90,7 @@ describe "registration" do
     given_I_have_a_password_credential
 
 
-    # Hello::PasswordMailer.should_receive(:forgot)    
+    # Hello::RegistrationMailer.should_receive(:forgot)    
     # open_last_email Mail::Message
     when_I_ask_to_reset_my_password
         expect_flash_notice "We have just sent you an email with instructions to reset your password"

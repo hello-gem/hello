@@ -10,7 +10,7 @@ Hello.config.forgot do
     if should_reset_password_token
       token = @credential.reset_password_token
       url = hello.classic_reset_token_url(token)
-      mailer = Hello::PasswordMailer.forgot(@credential, url)
+      mailer = Hello::RegistrationMailer.forgot_password(@credential, url)
       mailer.deliver
     end
 
