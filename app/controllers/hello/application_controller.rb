@@ -35,6 +35,11 @@ class Hello::ApplicationController < ApplicationController
         reset:            guest,
         save:             guest,
         after_reset:      either,
+        #
+        confirm_email_send:    user,
+        confirm_email_token:   either,
+        after_confirm_email:   either,
+        confirm_email_expired: either,
       },
       user:        user,
       credentials: user,

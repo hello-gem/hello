@@ -67,6 +67,26 @@ module Classic
                     get("/classic/after_reset").should route_to("hello/classic/registration#after_reset")
                   end
 
+      
+
+      it "routes to #confirm_email_send" do
+        get("/classic/confirm_email/send").should route_to("hello/classic/registration#confirm_email_send")
+      end
+
+      it "routes to #confirm_email_token" do
+        get("/classic/confirm_email/token/123").should route_to("hello/classic/registration#confirm_email_token", token: '123')
+      end
+
+          it "routes to #confirm_email_expired" do
+            get("/classic/confirm_email/expired").should route_to("hello/classic/registration#confirm_email_expired")
+          end
+
+          it "routes to #after_confirm_email" do
+            get("/classic/after_confirm_email").should route_to("hello/classic/registration#after_confirm_email")
+          end
+
+
+
 
           
     end

@@ -3,8 +3,12 @@
 en:
   hello:
     registration_mailer:
+      welcome:
+        subject: "Welcome to our website"
+      confirm_email:
+        subject: "Confirm This Email"
       forgot_password:
-        subject: "Reset password instructions"
+        subject: "Reset Password Instructions"
     messages:
       admin:
         impersonation:
@@ -58,3 +62,11 @@ en:
             error:
               one: "1 error was found while reseting your password"
               other: "%{count} errors were found while reseting your password"
+          send_confirmation:
+            notice: "We have sent a confirmation email to %{email}"
+            info1: "%{email} has not been confirmed yet."
+            info2: "Send email confirmation now."
+          confirm_email:
+            notice: "%{email} has been confirmed successfully."
+            alert: "This link has expired, please ask for a new link"
+            info: "We have sent a confirmation email to foo@bar.com. Next, simply open this email and click the confirm button to finish."

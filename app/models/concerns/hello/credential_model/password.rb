@@ -60,10 +60,21 @@ module Hello
         update(password_token_digest: nil, password_token_digested_at: nil)
       end
 
+      def reset_email_token!
+        uuid = SecureRandom.hex(8) # probability = 1 / (16 ** 16)
+        digest = self.class.encrypt_token(uuid)
+        update!(email_token_digest: digest, email_token_digested_at: 1.second.ago)
+        return uuid
+      end
+
+      def confirm_email!
+        update! email_token_digest: nil, email_token_digested_at: nil, email_confirmed_at: 1.second.ago
+      end
+
+
+
 
       private
-
-
 
 
 

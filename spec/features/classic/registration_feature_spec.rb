@@ -11,6 +11,8 @@ describe "registration" do
     expect(User.count).to     eq(0)
     expect(Credential.count).to eq(0)
 
+    Hello::RegistrationMailer.should_receive(:welcome).and_return(double("mailer", deliver: true))
+
     when_sign_up_with_standard_data
         expect_flash_notice "You have signed up successfully"
         expect(User.count).to     eq(1)
@@ -22,8 +24,6 @@ describe "registration" do
     when_I_sign_out
 
     # pending "works with json"
-    # pending "sends confirmation email"
-    # pending "sends welcome email"
 
 
     #
@@ -90,11 +90,10 @@ describe "registration" do
     given_I_have_a_password_credential
 
 
-    # Hello::RegistrationMailer.should_receive(:forgot)    
-    # open_last_email Mail::Message
+    Hello::RegistrationMailer.should_receive(:forgot_password).and_return(double("mailer", deliver: true)) 
     when_I_ask_to_reset_my_password
         expect_flash_notice "We have just sent you an email with instructions to reset your password"
-        expect(open_last_email.to_s).to have_content "/hello/classic/reset/token/"
+        # expect(open_last_email.to_s).to have_content "/hello/classic/reset/token/"
         expect(current_path).to eq hello.classic_after_forgot_path
     then_I_should_be_logged_out
   end
@@ -140,7 +139,7 @@ describe "registration" do
     # TOKEN MUST GO BAD
     #
     visit hello.classic_reset_token_path(reset_token)
-        expect(page).to have_content "This link has expired, please ask for a new link"
+        expect_flash_alert "This link has expired, please ask for a new link"
         expect(current_path).to eq hello.classic_forgot_path
 
     #
@@ -214,6 +213,53 @@ describe "registration" do
     Session.last.update_attribute :expires_at, 1.seconds.ago
     visit root_path
         then_I_should_be_logged_out
+  end
+
+  it "email confirmation" do
+    #
+    # SEND EMAIL
+    #
+    given_I_am_logged_in #_with_a_classic_credential_password
+    visit hello.root_path
+        expect_flash_info "foo@bar.com has not been confirmed yet. Send email confirmation now"
+
+    #Hello::RegistrationMailer.should_receive(:confirm_email).and_return(double("mailer", deliver!: true))
+    click_link "Send email confirmation now"
+        expect_flash_notice "We have sent a confirmation email to foo@bar.com"
+        expect_flash_info "We have sent a confirmation email to foo@bar.com. Next, simply open this email and click the confirm button to finish."
+
+
+
+    body = open_last_email.body.to_s
+    href_value_regex = /href=\"(.*)"/
+    matchdata = body.match(href_value_regex)
+    good_token_url = matchdata[1]
+        expect(good_token_url).to start_with('http://')
+
+
+
+    #
+    # BAD TOKEN
+    #
+    visit hello.classic_confirm_email_token_path('wrong')
+        expect(current_path).to eq hello.classic_confirm_email_expired_path
+        expect_flash_alert "This link has expired, please ask for a new link"
+
+    #
+    # GOOD TOKEN, CONFIRMING NOW
+    #
+    visit good_token_url
+        expect(current_path).to eq hello.classic_after_confirm_email_path
+        expect_flash_notice "foo@bar.com has been confirmed successfully."
+        expect_flash_info_blank
+
+    #
+    # GOOD TOKEN, ALREADY CONFIRMED
+    #
+    visit good_token_url
+        expect(current_path).to eq hello.classic_confirm_email_expired_path
+        expect_flash_alert "This link has expired, please ask for a new link"
+
   end
 
 end

@@ -57,6 +57,12 @@ Hello::Engine.routes.draw do
     post "reset"              => "registration#save"
     get  "after_reset"        => "registration#after_reset"
 
+    # confirm email
+    get  "confirm_email/send"         => "registration#confirm_email_send"
+    get  "confirm_email/token/:token" => "registration#confirm_email_token", as: 'confirm_email_token'
+    get  "confirm_email/expired"      => "registration#confirm_email_expired"
+    get  "after_confirm_email"        => "registration#after_confirm_email"
+
   end
 
 

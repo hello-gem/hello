@@ -21,9 +21,12 @@ def given_I_have_a_password_credential_and_forgot_my_password
   return unencrypted_token = credential.reset_password_token
 end
 
-def given_I_am_logged_in
+def given_I_am_logged_in_with_a_classic_credential_password
   when_sign_up_with_standard_data
-  # when_sign_in_with_standard_data
   then_I_should_be_logged_in
+end
+
+def given_I_am_logged_in
+  given_I_am_logged_in_with_a_classic_credential_password
 end
 

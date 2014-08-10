@@ -1,5 +1,12 @@
-<h1>RegistrationMailer#confirmation</h1>
+<h1>Confirm this email address</h1>
 
-<p>
-  <%= @greeting %>, find me in app/views/hello/password_mailer/confirmation.html.erb
-</p>
+<p>Hello <%= @user.name %>,</p>
+<p>Confirm this email address on the link bellow</p>
+
+<p><%= '-' * 40 %></p>
+<p><%= link_to @url, @url %></p>
+<p><%= '-' * 40 %></p>
+
+<p>Awesome Regards,</p>
+<p>Awesome Team</p>
+<p>Awesome Site</p>

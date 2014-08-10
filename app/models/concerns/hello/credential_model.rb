@@ -58,6 +58,28 @@ module Hello
     end
 
 
+    #
+    # email confirmation
+    #
+
+    def show_alert_for_email_confirmation_suggestion?
+      is_classic? && !email_confirmed? && email_token_expired?
+    end
+
+    def show_alert_for_email_confirmation_pending?
+      is_classic? && !email_confirmed? && !email_token_expired?
+    end
+
+        def email_confirmed?
+          !!email_confirmed_at
+        end
+
+        def email_token_expired?
+          email_token_digested_at < 7.days.ago
+        end
+
+
+
     def make_up_new_username_if_none_before_validation_on_create
       string = make_up_new_username
       string = make_up_new_username until not username_used_by_another?(string)

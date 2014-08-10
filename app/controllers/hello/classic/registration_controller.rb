@@ -10,12 +10,12 @@ module Classic
     end
 
 
-    # GET /hello/sign_up
+    # GET /hello/classic/sign_up
     def sign_up
       @registration_sign_up = RegistrationSignUp.new
     end
 
-        # POST /hello/sign_up
+        # POST /hello/classic/sign_up
         def create
           @registration_sign_up = RegistrationSignUp.new(sign_up_params)
           @credential = @registration_sign_up.credential
@@ -29,7 +29,7 @@ module Classic
           end
         end
 
-            # GET /hello/after_sign_up
+            # GET /hello/classic/after_sign_up
             def after_sign_up
             end
 
@@ -39,12 +39,12 @@ module Classic
 
 
 
-    # GET /hello/sign_in
+    # GET /hello/classic/sign_in
     def sign_in
       @registration_sign_in = RegistrationSignIn.new
     end
 
-        # POST /hello/sign_in
+        # POST /hello/classic/sign_in
         def authenticate
           @registration_sign_in = RegistrationSignIn.new(self)
           @credential = @registration_sign_in.credential
@@ -57,7 +57,7 @@ module Classic
           end
         end
 
-            # GET /hello/after_sign_in
+            # GET /hello/classic/after_sign_in
             def after_sign_in
             end
 
@@ -66,12 +66,12 @@ module Classic
 
 
 
-    # GET /hello/forgot
+    # GET /hello/classic/forgot
     def forgot
       @registration_forgot = RegistrationForgot.new
     end
 
-        # POST /hello/forgot
+        # POST /hello/classic/forgot
         def ask
           @registration_forgot = RegistrationForgot.new(forgot_login_param)
           @credential = @registration_forgot.credential
@@ -84,7 +84,7 @@ module Classic
           end
         end
 
-            # GET /hello/after_forgot
+            # GET /hello/classic/after_forgot
             def after_forgot
             end
 
@@ -92,7 +92,7 @@ module Classic
 
 
 
-    # GET /hello/reset/token/:token
+    # GET /hello/classic/reset/token/:token
     def reset_token
       @registration_reset = RegistrationReset.new(params[:token])
       if @registration_reset.credential
@@ -103,11 +103,11 @@ module Classic
       end
     end
 
-        # GET /hello/reset
+        # GET /hello/classic/reset
         def reset
         end
 
-            # POST /hello/reset
+            # POST /hello/classic/reset
             def save
               if @registration_reset.update_password(reset_password_param)
                 @credential.invalidate_password_token
@@ -118,12 +118,41 @@ module Classic
               end
             end
 
-                # GET /hello/after_reset
+                # GET /hello/classic/after_reset
                 def after_reset
                 end
 
 
 
+    # GET /hello/classic/confirm_email/send
+    def confirm_email_send
+      token = hello_credential.reset_email_token!
+      url = classic_confirm_email_token_url(token)
+      Hello::RegistrationMailer.confirm_email(hello_credential, url).deliver!
+      flash[:notice] = t("hello.messages.classic.registration.send_confirmation.notice", email: hello_credential.email)
+      redirect_to :back
+    end
+
+        # GET /hello/classic/confirm_email/token/:token
+        def confirm_email_token
+          @confirm_email = Registration::ConfirmEmail.new(params[:token])
+          if @confirm_email.found_credential?
+            @confirm_email.confirm_email!
+            flash[:notice] = @confirm_email.message
+            redirect_to classic_after_confirm_email_path
+          else
+            flash[:alert] = @confirm_email.alert_message
+            redirect_to classic_confirm_email_expired_path
+          end
+        end
+
+            # GET /hello/classic/confirm_email/expired
+            def confirm_email_expired
+            end
+
+            # GET /hello/classic/after_confirm_email
+            def after_confirm_email
+            end
 
 
     private

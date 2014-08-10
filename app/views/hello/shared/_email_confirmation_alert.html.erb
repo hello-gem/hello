@@ -1,0 +1,19 @@
+<%# keep this code in a partial file, even if you intend on adapting it's use to other places %>
+<%# TIP: review this file when upgrading this gem, the recommended code might have changed %>
+
+<% if hello_credential && hello_credential.show_alert_for_email_confirmation_suggestion? %>
+  <div class="alert alert-info">
+    <% scope = "hello.messages.classic.registration.send_confirmation" %>
+    <%= I18n.t("info1", scope: scope, email: hello_credential.email) %>
+    <%= link_to I18n.t("info2", scope: scope), hello.classic_confirm_email_send_path %>
+  </div>
+<% end %>
+
+
+<% if hello_credential && hello_credential.show_alert_for_email_confirmation_pending? %>
+  <div class="alert alert-info">
+    <% scope = "hello.messages.classic.registration.confirm_email" %>
+    <%= I18n.t("info", scope: scope, email: hello_credential.email) %>
+  </div>
+<% end %>
+

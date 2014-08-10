@@ -23,7 +23,8 @@ ActiveRecord::Schema.define(version: 20140502043304) do
     t.string   "password_token_digest"
     t.datetime "password_token_digested_at", default: '2000-01-01 00:00:00'
     t.string   "email_token_digest"
-    t.datetime "email_confirmed_at",         default: '2000-01-01 00:00:00'
+    t.datetime "email_token_digested_at",    default: '2000-01-01 00:00:00'
+    t.datetime "email_confirmed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

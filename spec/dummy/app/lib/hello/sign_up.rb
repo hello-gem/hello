@@ -12,12 +12,11 @@ Hello.config.sign_up do
     #@credential
     # user = @credential.user
 
+    Hello::RegistrationMailer.welcome(@credential).deliver
+    # Hello::RegistrationMailer.welcome(@credential, password: @password).deliver
 
-
-    # SignUpMailer.welcome(@credential).deliver
-    # SignUpMailer.confirmation(@credential).deliver
-    # SignUpMailer.confirmation(@credential, @password).deliver
     
+
 
     respond_to do |format|
       format.html {

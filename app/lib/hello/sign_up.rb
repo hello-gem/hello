@@ -8,11 +8,8 @@ Hello.config.sign_up do
     #@credential
     # user = @credential.user
 
-
-
-    # RegistrationMailer.welcome(@credential).deliver
-    # RegistrationMailer.confirm_email(@credential).deliver
-    # RegistrationMailer.confirm_email(@credential, @password).deliver
+    Hello::RegistrationMailer.welcome(@credential).deliver
+    # Hello::RegistrationMailer.welcome(@credential, password: @password).deliver
 
 
     respond_to do |format|
