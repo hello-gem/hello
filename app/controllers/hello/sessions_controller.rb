@@ -1,5 +1,9 @@
 require_dependency "hello/application_controller"
 
+#
+# IT IS RECOMMENDED THAT YOU DO NOT OVERRIDE THIS FILE IN YOUR APP
+#
+
 module Hello
   class SessionsController < ApplicationController
     restrict_access_to_sudo_mode

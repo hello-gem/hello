@@ -1,3 +1,7 @@
+#
+# IT IS RECOMMENDED THAT YOU DO NOT OVERRIDE THIS FILE IN YOUR APP
+#
+
 class Hello::ApplicationController < ApplicationController
   include BeforeActions::Controller
 
