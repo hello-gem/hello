@@ -11,8 +11,8 @@ require 'validates_email_format_of'
 
 module Hello
 
-  def self.config
-    Config.instance
+  def self.config(name, &block)
+    Config.instance.config_for(name, &block)
   end
 
 end

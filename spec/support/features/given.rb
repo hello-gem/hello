@@ -1,6 +1,14 @@
 
 
 
+def given_I_have_a_classic_session
+  user = User.create!(name: 'James Pinto', city: 'Brasilia')
+  credential = Credential.classic.create! user:     user,
+                                          email:    'foo@bar.com',
+                                          username: 'foobar',
+                                          password: 'foobar'
+  Session.create!(credential: credential, ua: 'testing', expires_at: 24.hours.from_now)
+end
 
 def given_I_have_a_password_credential
   Credential.classic.create!  user:     User.create!(name: 'James Pinto', city: 'Brasilia'),

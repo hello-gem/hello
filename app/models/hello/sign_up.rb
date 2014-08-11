@@ -1,5 +1,5 @@
 module Hello
-  class RegistrationSignUp
+  class SignUp
     include ActiveModel::Model
 
     
@@ -40,7 +40,7 @@ module Hello
         end
 
             def permitted_fields
-              Hello.config.sign_up.fields
+              Hello.config(:sign_up).fields
             end
 
         def initialize_credential

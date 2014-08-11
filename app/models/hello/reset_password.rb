@@ -1,5 +1,5 @@
 module Hello
-  class RegistrationReset
+  class ResetPassword
     include ActiveModel::Model
 
     attr_reader :credential

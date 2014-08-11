@@ -23,9 +23,6 @@ describe "registration" do
 
     when_I_sign_out
 
-    # pending "works with json"
-
-
     #
     # ERROR
     #
@@ -36,10 +33,6 @@ describe "registration" do
 
 
     then_I_should_be_logged_out
-
-
-    # pending "works with json"
-    puts "should work with json"
   end
 
   it "sign in" do
@@ -53,7 +46,6 @@ describe "registration" do
     when_sign_in_with_standard_data(password: 'wrong')
         expect_error_message "1 error was found while trying to sign in"
     then_I_should_be_logged_out
-    # pending "works with json"
 
     #
     # SUCCESS
@@ -62,8 +54,6 @@ describe "registration" do
         expect_flash_notice_signed_in
         expect(current_path).to eq hello.classic_after_sign_in_path
     then_I_should_be_logged_in
-    # pending "works with json"
-    # pending "remember me"
 
     #
     # Sign Out
@@ -74,14 +64,13 @@ describe "registration" do
 
   end
 
-  it "forgot" do
+  it "forgot password" do
     #
     # ERROR
     #
     when_I_ask_to_reset_my_password('wrong')
         expect_error_message "1 error was found while locating your credentials"
     then_I_should_be_logged_out
-    # pending "works with json"
 
 
     #
@@ -98,7 +87,7 @@ describe "registration" do
     then_I_should_be_logged_out
   end
 
-  it "reset" do
+  it "reset password" do
     #
     # BAD TOKEN
     #
@@ -152,7 +141,9 @@ describe "registration" do
 
   end
 
-  it "don't keep me signed in" do
+  describe "keep me" do
+
+    it "don't keep me signed in" do
     when_sign_up_with_standard_data
     when_I_sign_out
     then_I_should_be_logged_out
@@ -167,7 +158,7 @@ describe "registration" do
     visit root_path
         then_I_should_be_logged_in
         expect(Session.last.expires_at).to be < 26.minutes.from_now
-    
+
     #
     # 19 minutes to expire, renews expiracy to 30 minutes
     #
@@ -175,16 +166,16 @@ describe "registration" do
     visit root_path
         then_I_should_be_logged_in
         expect(Session.last.expires_at).to be > 29.minutes.from_now
-    
+
     #
     # 1 second after expire, expires your session
     #
     Session.last.update_attribute :expires_at, 1.seconds.ago
     visit root_path
         then_I_should_be_logged_out
-  end
+    end
 
-  it "keep me signed in" do
+    it "keep me signed in" do
     when_sign_up_with_standard_data
     when_I_sign_out
     then_I_should_be_logged_out
@@ -198,7 +189,7 @@ describe "registration" do
     visit root_path
         then_I_should_be_logged_in
         expect(Session.last.expires_at).to be < 11.days.from_now
-    
+
     #
     # 19 minutes to expire, renews expiracy to 30 minutes
     #
@@ -206,13 +197,15 @@ describe "registration" do
     visit root_path
         then_I_should_be_logged_in
         expect(Session.last.expires_at).to be > 29.minutes.from_now
-    
+
     #
     # 1 second after expire, expires your session
     #
     Session.last.update_attribute :expires_at, 1.seconds.ago
     visit root_path
         then_I_should_be_logged_out
+    end
+
   end
 
   it "email confirmation" do

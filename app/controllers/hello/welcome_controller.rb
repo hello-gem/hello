@@ -9,8 +9,8 @@ module Hello
 
     # GET /hello
     def index
-      @registration_sign_up = RegistrationSignUp.new
-      @registration_sign_in = RegistrationSignIn.new
+      @sign_up = SignUp.new
+      @sign_in = SignIn.new
     end
 
   end

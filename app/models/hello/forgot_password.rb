@@ -1,5 +1,5 @@
 module Hello
-  class RegistrationForgot
+  class ForgotPassword
     include ActiveModel::Model
 
     attr_accessor :login

@@ -1,7 +1,7 @@
-require 'spec_helper'
+# require 'spec_helper'
 
-module Hello
-  describe Admin::ImpersonationController do
+# module Hello
+#   describe Admin::ImpersonationController do
 
-  end
-end
+#   end
+# end

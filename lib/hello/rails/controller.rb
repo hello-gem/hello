@@ -29,6 +29,7 @@ module Hello
         expires_at = keep_me ? 30.days.from_now : 30.minutes.from_now
         s = Session.create!(credential: @credential, ua: user_agent, expires_at: expires_at)
         set_hello_session_token(s.token)
+        return s
       end
 
       def clear_hello_session

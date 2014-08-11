@@ -1,5 +1,5 @@
-<%= form_for @registration_forgot, url: classic_forgot_path, html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= render '/hello/shared/errors', active_model: @registration_forgot %>
+<%= form_for @forgot_password, url: classic_forgot_path, html: {class: "form-horizontal", role: "form"} do |f| %>
+  <%= render '/hello/shared/errors', active_model: @forgot_password %>
 
   <div class="form-group">
     <%= f.label :login, "Email or Username", class: "col-sm-4 control-label" %>

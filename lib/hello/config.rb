@@ -1,50 +1,87 @@
-require "hello/config/base"
-require "hello/config/password/sign_up"
-require "hello/config/password/sign_in"
-require "hello/config/password/sign_out"
-require "hello/config/password/forgot"
-require "hello/config/password/reset"
-require "hello/config/user"
-
-# require "hello/config/oauth2/twitter"
+require "hello/config/master"
 
 module Hello
   class Config
     include Singleton
     
-    def sign_in(&block)
-      v = @sign_in ||= SignIn.new
-      block_given? ? v.config(&block) : v
+    def config_for(name, &block)
+      v = pool[name] ||= Master.new(name)
+      block_given? ? v.write(&block) : v.read
     end
 
-    def sign_up(&block)
-      v = @sign_up ||= SignUp.new
-      block_given? ? v.config(&block) : v
+    private
+
+    def pool
+      @pool ||= {}
     end
 
-    def sign_out(&block)
-      v = @sign_out ||= SignOut.new
-      block_given? ? v.config(&block) : v
+
+
+
+
+    class Master
+
+      def initialize(name)
+        @filename = name
+      end
+
+      def write(&block)
+        # puts "write"
+        @scope.instance_eval(&block)
+      end
+
+      def read
+        # puts "read"
+        get_scope
+      end
+
+
+      class Scope
+        attr_reader :success_block, :failure_block, :fields
+
+        def permitted_fields(*the_fields)
+          @fields = the_fields
+        end
+
+        def success_strategy(&block)
+          @success_block = block
+        end
+
+        def failure_strategy(&block)
+          @failure_block = block
+        end
+      end
+
+
+      private
+
+          def get_scope
+            @scope ||= Scope.new
+            reload
+            @scope
+          end
+
+              def reload
+                ensure_config_file
+                load(config_file)
+                self
+              end
+
+                  def ensure_config_file
+                    unless File.exists? config_file
+                      #`rails g hello:install`
+                      raise "should have config #{@filename} file"
+                    end
+                  end
+
+                      def config_file
+                        ::Rails.root.join "app/lib/hello/#{@filename}_strategy.rb"
+                        # ::Rails.root.join "config/hello/#{@filename}.rb"
+                      end
+
     end
 
-    def forgot(&block)
-      v = @forgot ||= Forgot.new
-      block_given? ? v.config(&block) : v
-    end
 
-    def reset(&block)
-      v = @reset ||= Reset.new
-      block_given? ? v.config(&block) : v
-    end
-
-    def user(&block)
-      v = @user ||= User.new
-      block_given? ? v.config(&block) : v
-    end
-
-    # def twitter
-    #   @twitter ||= Twitter.new
-    # end
 
   end
 end

@@ -70,5 +70,22 @@ class Hello::ApplicationController < ApplicationController
     end
   end
 
+  rescue_from ActionController::ParameterMissing do |exception|
+    data = {
+      maintenance: false,
+      action:      "#{controller_name}##{action_name}",
+      exception: {
+        class:       exception.class.name,
+        message:     exception.message,
+        # backtrace:   exception.backtrace
+      }
+    }
+
+    respond_to do |format|
+      format.html { raise exception }
+      format.json { render json: data, status: :bad_request } # 400
+    end
+  end
+
 
 end

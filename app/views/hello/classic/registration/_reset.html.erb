@@ -1,11 +1,11 @@
-<%= form_for @registration_reset, url: classic_reset_path, html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= render '/hello/shared/errors', active_model: @registration_reset %>
+<%= form_for @reset_password, url: classic_reset_path, html: {class: "form-horizontal", role: "form"} do |f| %>
+  <%= render '/hello/shared/errors', active_model: @reset_password %>
 
   <div class="form-group">
     <%= f.label :email, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
       <span class="form-control" style="border: 0px; box-shadow: none">
-        <%= @registration_reset.credential.email %>
+        <%= @reset_password.credential.email %>
       </span>
     </div>
   </div>
@@ -13,7 +13,7 @@
     <%= f.label :username, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
       <span class="form-control" style="border: 0px; box-shadow: none">
-        <%= @registration_reset.credential.username %>
+        <%= @reset_password.credential.username %>
       </span>
     </div>
   </div>

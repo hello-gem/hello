@@ -23,6 +23,14 @@ module Hello
 
 
 
+    #
+    # JSON
+    #
+    def to_json_api
+      attributes.slice('expires_at', 'sudo_expires_at', 'token')
+    end
+
+
     module ClassMethods
     end
 
