@@ -147,7 +147,7 @@ module Classic
 
         # GET /hello/classic/confirm_email/token/:token
         def confirm_email_token
-          @confirm_email = Registration::ConfirmEmail.new(params[:token])
+          @confirm_email = ConfirmEmail.new(params[:token])
           if @confirm_email.found_credential?
             @confirm_email.confirm_email!
             flash[:notice] = @confirm_email.message

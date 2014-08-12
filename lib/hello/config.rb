@@ -1,5 +1,3 @@
-require "hello/config/master"
-
 module Hello
   class Config
     include Singleton

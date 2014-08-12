@@ -1,5 +1,4 @@
 module Hello
-module Registration
 
   class ConfirmEmail
     include ActiveModel::Model
@@ -47,5 +46,4 @@ module Registration
         end
 
   end
-end
 end
