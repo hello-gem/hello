@@ -39,7 +39,7 @@ module Classic
           json_body = JSON(response.body)
           expect(response.status).to eq(422)
           expect(response.status_message).to eq("Unprocessable Entity")
-          expect(json_body).to eq({"errors"=>{"email"=>["can't be blank", "does not appear to be valid"], "password"=>["can't be blank", "minimum of 4 characters"]}})
+          expect(json_body).to eq({"email"=>["can't be blank", "does not appear to be valid"], "password"=>["can't be blank", "minimum of 4 characters"]})
         end
 
       end
@@ -80,7 +80,7 @@ module Classic
           json_body = JSON(response.body)
           expect(response.status).to eq(422)
           expect(response.status_message).to eq("Unprocessable Entity")
-          expect(json_body).to eq({"errors" => {"username"=>["was not found"]}})
+          expect(json_body).to eq({"username"=>["was not found"]})
         end
 
         it "username was not found" do
@@ -90,7 +90,7 @@ module Classic
           json_body = JSON(response.body)
           expect(response.status).to eq(422)
           expect(response.status_message).to eq("Unprocessable Entity")
-          expect(json_body).to eq({"errors" => {"username"=>["was not found"]}})
+          expect(json_body).to eq({"username"=>["was not found"]})
         end
 
         it "email was not found" do
@@ -100,7 +100,7 @@ module Classic
           json_body = JSON(response.body)
           expect(response.status).to eq(422)
           expect(response.status_message).to eq("Unprocessable Entity")
-          expect(json_body).to eq({"errors" => {"email"=>["was not found"]}})
+          expect(json_body).to eq({"email"=>["was not found"]})
         end
 
         it "password is incorrect" do
@@ -111,7 +111,7 @@ module Classic
           json_body = JSON(response.body)
           expect(response.status).to eq(422)
           expect(response.status_message).to eq("Unprocessable Entity")
-          expect(json_body).to eq({"errors"=>{"password"=>["is incorrect"]}})
+          expect(json_body).to eq({"password"=>["is incorrect"]})
         end
 
       end

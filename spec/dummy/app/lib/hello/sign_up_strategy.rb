@@ -27,7 +27,7 @@ Hello.config :sign_up do
 
     respond_to do |format|
       format.html { render :sign_up }
-      format.json { render json: {errors: @sign_up.errors}, status: :unprocessable_entity }
+      format.json { render json: @sign_up.errors, status: :unprocessable_entity }
     end
   end
 
