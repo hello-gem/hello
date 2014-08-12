@@ -117,6 +117,68 @@ module Classic
       end
     end
 
+
+    # POST /hello/classic/forgot
+    describe "POST forgot" do
+      describe "works" do
+
+        it "OK" do
+          given_I_have_a_password_credential
+          params = {format: :json, forgot_password: {login: "foo@bar.com"}}
+          post :ask, params
+          
+          json_body = JSON(response.body)
+          expect(response.status).to eq(201)
+          expect(response.status_message).to eq("Created")
+          expect(json_body).to eq({"sent"=>true})
+        end
+
+      end
+      
+      describe "fails" do
+
+        it "parameter missing" do
+          post :ask, {format: :json}
+          
+          json_body = JSON(response.body)
+          expect(response.status).to eq(400)
+          expect(response.status_message).to eq("Bad Request")
+          expect(json_body['exception']).to eq({"class"=>"ActionController::ParameterMissing", "message"=>"param is missing or the value is empty: forgot_password"})
+        end
+
+        it "blank data" do
+          params = {format: :json, forgot_password: {login: ""}}
+          post :ask, params
+          
+          json_body = JSON(response.body)
+          expect(response.status).to eq(422)
+          expect(response.status_message).to eq("Unprocessable Entity")
+          expect(json_body).to eq({"login"=>["was not found"]})
+        end
+
+        it "username was not found" do
+          params = {format: :json, forgot_password: {login: "aaaa", password: ""}}
+          post :ask, params
+          
+          json_body = JSON(response.body)
+          expect(response.status).to eq(422)
+          expect(response.status_message).to eq("Unprocessable Entity")
+          expect(json_body).to eq({"login"=>["was not found"]})
+        end
+
+        it "email was not found" do
+          params = {format: :json, forgot_password: {login: "aaaa@gmail.com"}}
+          post :ask, params
+          
+          json_body = JSON(response.body)
+          expect(response.status).to eq(422)
+          expect(response.status_message).to eq("Unprocessable Entity")
+          expect(json_body).to eq({"login"=>["was not found"]})
+        end
+
+      end
+    end
+
   end
 end
 end

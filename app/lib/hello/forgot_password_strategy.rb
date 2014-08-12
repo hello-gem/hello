@@ -16,11 +16,20 @@ Hello.config :forgot_password do
       mailer.deliver
     end
 
-    redirect_to hello.classic_after_forgot_path
+    
+    respond_to do |format|
+      format.html { redirect_to hello.classic_after_forgot_path }
+      format.json { render json: {sent: true}, status: :created }
+    end
   end
 
   failure_strategy do
-    render :forgot
+    # SUGGESTION: register failed attempt
+
+    respond_to do |format|
+      format.html { render :forgot }
+      format.json { render json: @forgot_password.errors, status: :unprocessable_entity }
+    end
   end
 
 
