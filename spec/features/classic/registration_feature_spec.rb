@@ -62,6 +62,16 @@ describe "registration" do
         expect_flash_notice "You have signed out!"
     then_I_should_be_logged_out
 
+
+    #
+    # Previous URL
+    #
+    visit hello.user_path
+    when_sign_in_with_standard_data
+        expect_flash_notice_signed_in
+        expect(current_path).to eq hello.user_path
+        then_I_should_be_logged_in
+
   end
 
   it "forgot password" do

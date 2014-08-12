@@ -11,8 +11,8 @@ Hello::Engine.routes.draw do
 
   # editing profile
     # user
-    get   'user' => "user#edit"
-    patch 'user' => "user#update"
+    get   'user' => "user_profile#edit"
+    patch 'user' => "user_profile#update"
 
   # sudo mode
     get   'sudo_mode'        => 'sudo_mode#form'

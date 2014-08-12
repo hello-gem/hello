@@ -2,6 +2,8 @@ require "hello/engine"
 
 require "hello/config"
 
+require "hello/errors"
+
 require "hello/rails/controller"
 require "hello/rails/helper"
 

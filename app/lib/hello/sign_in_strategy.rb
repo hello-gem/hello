@@ -10,8 +10,8 @@ Hello.config :sign_in do
     hello_session = create_hello_session(keep_me)
 
     respond_to do |format|
-      format.html { redirect_to hello.classic_after_sign_in_path }
-      format.json { render json: hello_session.to_json_api, status: :created }
+      format.html { redirect_to session[:url] || hello.classic_after_sign_in_path }
+      format.json { render json: hello_session.as_json_api, status: :created }
     end
   end
 

@@ -16,7 +16,7 @@ module Classic
           json_body = JSON(response.body)
           expect(response.status).to eq(201)
           expect(response.status_message).to eq("Created")
-          expect(json_body.keys).to match_array %w[token expires_at sudo_expires_at]
+          expect(json_body.keys).to match_array %w[token expires_at username email email_confirmed_at user]
         end
 
       end
@@ -57,7 +57,7 @@ module Classic
           json_body = JSON(response.body)
           expect(response.status).to eq(201)
           expect(response.status_message).to eq("Created")
-          expect(json_body.keys).to match_array %w[token expires_at sudo_expires_at]
+          expect(json_body.keys).to match_array %w[token expires_at username email email_confirmed_at user]
         end
 
       end

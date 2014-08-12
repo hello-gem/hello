@@ -1,7 +1,3 @@
-# fname = __FILE__.split('/').last
-# original = File.expand_path("../../../../../../app/lib/hello/#{fname}", __FILE__)
-# require original
-
 Hello.config :sign_up do
 
   # permitted_fields :email, :password
@@ -21,7 +17,7 @@ Hello.config :sign_up do
 
     respond_to do |format|
       format.html { redirect_to hello.classic_after_sign_up_path }
-      format.json { render json: hello_session.to_json_api, status: :created }
+      format.json { render json: hello_session.as_json_api, status: :created }
     end
   end
 

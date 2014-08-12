@@ -18,7 +18,67 @@ class Hello::ApplicationController < ApplicationController
     user_homepage  = hello.user_path
     admin_homepage = hello.admin_path
 
-    autho_data = {
+    autho_c = autho_data[controller_name.to_sym]
+    must_be_a = autho_c.is_a?(Hash) ? autho_c[action_name.to_sym] : autho_c
+
+    case must_be_a
+    when guest     then redirect_to user_homepage  if hello_session.present?
+    when user      then raise Hello::NotAuthenticated if hello_session.blank?
+    when admin     then redirect_to admin_homepage if hello_session.present? && !hello_user.admin?
+    when either # nothing to do, yay
+    else
+      raise "No Authorization Rules for '#{controller_name}##{action_name}'"
+    end
+  end
+
+  rescue_from ActionController::ParameterMissing do |exception|
+    data = {
+      maintenance: false,
+      action:      "#{controller_name}##{action_name}",
+      exception: {
+        class:       exception.class.name,
+        message:     exception.message,
+        # backtrace:   exception.backtrace
+      }
+    }
+
+    respond_to do |format|
+      format.html { raise exception }
+      format.json { render json: data, status: :bad_request } # 400
+    end
+  end
+
+  rescue_from Hello::NotAuthenticated do |exception|
+    data = {
+      exception: {
+        class:       exception.class.name,
+        message:     exception.message,
+        # backtrace:   exception.backtrace
+      }
+    }
+
+    # headers["WWW-Authenticate"] = exception.message
+
+    respond_to do |format|
+      format.html do
+        flash[:alert] = exception.alert_message
+        session[:url] = request.fullpath
+        redirect_to hello.classic_sign_in_path
+      end
+      format.json { render json: data, status: :bad_request } # 400
+    end
+  end
+
+
+  private
+
+  def autho_data
+    either = 0
+    guest  = 1
+    user   = 2
+    admin  = 10
+
+    {
       welcome: guest,
       sign_out: either,
       registration: {
@@ -45,7 +105,7 @@ class Hello::ApplicationController < ApplicationController
         after_confirm_email:   either,
         confirm_email_expired: either,
       },
-      user:        user,
+      user_profile: user,
       credentials: user,
       sessions:    user,
       sudo_mode:   user,
@@ -56,36 +116,6 @@ class Hello::ApplicationController < ApplicationController
         destroy: user
       },
     }
-
-    autho_c = autho_data[controller_name.to_sym]
-    must_be_a = autho_c.is_a?(Hash) ? autho_c[action_name.to_sym] : autho_c
-
-    case must_be_a
-    when guest     then redirect_to user_homepage  if hello_session.present?
-    when user      then redirect_to guest_homepage if hello_session.blank?
-    when admin     then redirect_to admin_homepage if hello_session.present? && !hello_user.admin?
-    when either # nothing to do, yay
-    else
-      raise "No Authorization Rules for '#{controller_name}##{action_name}'"
-    end
   end
-
-  rescue_from ActionController::ParameterMissing do |exception|
-    data = {
-      maintenance: false,
-      action:      "#{controller_name}##{action_name}",
-      exception: {
-        class:       exception.class.name,
-        message:     exception.message,
-        # backtrace:   exception.backtrace
-      }
-    }
-
-    respond_to do |format|
-      format.html { raise exception }
-      format.json { render json: data, status: :bad_request } # 400
-    end
-  end
-
 
 end

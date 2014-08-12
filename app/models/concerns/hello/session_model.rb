@@ -26,8 +26,12 @@ module Hello
     #
     # JSON
     #
-    def to_json_api
-      attributes.slice('expires_at', 'sudo_expires_at', 'token')
+    def as_json_api
+      base_attrs = {}
+      base_attrs.merge!(attributes.slice(*%w[expires_at token]))
+      base_attrs.merge!(credential.attributes.slice(*%w[username email email_confirmed_at]))
+      base_attrs.merge!({user: user.to_hash_profile})
+      base_attrs
     end
 
 

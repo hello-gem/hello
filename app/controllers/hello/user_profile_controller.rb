@@ -5,7 +5,7 @@ require_dependency "hello/application_controller"
 #
 
 module Hello
-  class UserController < ApplicationController
+  class UserProfileController < ApplicationController
 
     before_actions do
       actions { @user = hello_user }
@@ -13,11 +13,15 @@ module Hello
 
     # GET /hello/user
     def edit
+      respond_to do |format|
+        format.html {  }
+        format.json { render json: @user.to_hash_profile, status: :ok }
+      end
     end
 
     # PATCH /hello/user
     def update
-      c = Hello.config(:user)
+      c = Hello.config(:user_profile)
       
       if @user.update(user_params)
         flash[:notice] = I18n.t("hello.messages.common.user.edit.notice")

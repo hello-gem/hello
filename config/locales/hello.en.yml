@@ -2,6 +2,10 @@
 
 en:
   hello:
+    exceptions:
+      not_authenticated:
+        message: "An active access token must be used to query information about the current user."
+        alert: "You must sign in to continue."
     registration_mailer:
       welcome:
         subject: "Welcome to our website"

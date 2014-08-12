@@ -1,4 +1,4 @@
-Hello.config :user do
+Hello.config :user_profile do
   
   # variables avaliable:
   #
@@ -8,7 +8,7 @@ Hello.config :user do
   success_strategy do
     respond_to do |format|
       format.html { redirect_to hello.user_path }
-      # format.json { render json: @user, status: :ok }
+      format.json { render json: @user.to_hash_profile, status: :ok }
     end
   end
 
@@ -16,7 +16,7 @@ Hello.config :user do
   failure_strategy do
     respond_to do |format|
       format.html { render :edit }
-      #format.json { render json: @user.errors, status: :unprocessable_entity }
+      format.json { render json: @user.errors, status: :unprocessable_entity }
     end
   end
 

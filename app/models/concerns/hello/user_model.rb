@@ -16,6 +16,10 @@ module Hello
       role == self.class.admin
     end
 
+    def to_hash_profile
+      attributes
+    end
+
     included do
       has_many :credentials
       has_many :sessions

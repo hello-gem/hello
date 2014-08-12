@@ -88,22 +88,22 @@ module Hello
 
       private
 
+          def access_token
+            params['access_token'] || request.headers['access_token'] || session['access_token'] || cookies['access_token']
+          end
+
           def destroy_hello_session
             hello_session && hello_session.destroy
           end
 
           def set_hello_session_token(v)
             # clear_hello_session
-            session[:hello_session_token]=v
+            session['access_token'] = v
             @hellovars = nil
           end
 
-          def hello_session_token
-            session[:hello_session_token]
-          end
-
           def store_impersonator
-            session[:hello_impersonator] = hello_session_token
+            session[:hello_impersonator] = access_token
           end
 
           def hello_impersonator_token
@@ -111,9 +111,9 @@ module Hello
           end
 
           def get_hello_session
-            return nil unless hello_session_token
+            return nil unless access_token
             
-            s = Session.where(token: hello_session_token).first
+            s = Session.where(token: access_token).first
             return s if s && s.expires_at.future?
             
             s && s.destroy
