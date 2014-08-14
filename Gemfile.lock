@@ -6,6 +6,7 @@ PATH
       before_actions
       colorize
       rails (>= 3.0.0)
+      user_agent_parser
       validates_email_format_of
 
 GEM
@@ -133,6 +134,7 @@ GEM
       polyglot (>= 0.3.1)
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
+    user_agent_parser (2.1.5)
     validates_email_format_of (1.5.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)

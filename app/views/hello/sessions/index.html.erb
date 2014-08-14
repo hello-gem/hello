@@ -13,7 +13,7 @@
       <tr class="<%= 'success' if is_this_session %>">
         <td>Device #<%= i+1 %></td>
         <td><%= a_session.credential.email %></td>
-        <td><%= a_session.device_name %></td>
+        <td><%= a_session.full_device_name %></td>
         <td>
           <% if is_this_session %>
             [this device]

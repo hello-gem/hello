@@ -7,7 +7,7 @@ def given_I_have_a_classic_session
                                           email:    'foo@bar.com',
                                           username: 'foobar',
                                           password: 'foobar'
-  Session.create!(credential: credential, ua: 'testing', expires_at: 24.hours.from_now)
+  Session.create!(credential: credential, user_agent_string: 'testing', expires_at: 24.hours.from_now)
 end
 
 def given_I_have_a_password_credential

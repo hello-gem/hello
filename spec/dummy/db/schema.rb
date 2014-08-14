@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 20140502043304) do
   create_table "sessions", force: true do |t|
     t.integer  "user_id"
     t.integer  "credential_id"
-    t.string   "ua"
+    t.string   "user_agent_string"
     t.string   "token"
-    t.datetime "expires_at",      default: '2000-01-01 00:00:00'
-    t.datetime "sudo_expires_at", default: '2000-01-01 00:00:00'
+    t.datetime "expires_at",        default: '2000-01-01 00:00:00'
+    t.datetime "sudo_expires_at",   default: '2000-01-01 00:00:00'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
