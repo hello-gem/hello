@@ -31,12 +31,12 @@ module Hello
       belongs_to :user, counter_cache: true
       belongs_to :credential, counter_cache: true
 
-      validates_presence_of :credential, :user, :user_agent_string, :token
-      validates_uniqueness_of :token
+      validates_presence_of :credential, :user, :user_agent_string, :access_token
+      validates_uniqueness_of :access_token
 
       before_validation on: :create do
         self.user = credential && credential.user
-        self.token = SecureRandom.hex(16) # probability = 1 / (32 ** 32)
+        self.access_token = SecureRandom.hex(16) # probability = 1 / (32 ** 32)
       end
     end
 
@@ -47,7 +47,7 @@ module Hello
     #
     def as_json_api
       base_attrs = {}
-      base_attrs.merge!(attributes.slice(*%w[expires_at token]))
+      base_attrs.merge!(attributes.slice(*%w[expires_at access_token user_id]))
       base_attrs.merge!(credential.attributes.slice(*%w[username email email_confirmed_at]))
       base_attrs.merge!({user: user.to_hash_profile})
       base_attrs

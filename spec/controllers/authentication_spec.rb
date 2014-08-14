@@ -41,7 +41,7 @@ describe "Authentication" do
       before { @s = given_I_have_a_classic_session }
 
       it "PARAMS" do
-        get :edit, {format: :json, access_token: @s.token}
+        get :edit, {format: :json, access_token: @s.access_token}
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
@@ -49,7 +49,7 @@ describe "Authentication" do
       end
 
       it "SESSION" do
-        get :edit, {format: :json}, {access_token: @s.token}
+        get :edit, {format: :json}, {access_token: @s.access_token}
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
@@ -57,7 +57,7 @@ describe "Authentication" do
       end
 
       it "COOKIE" do
-        @request.cookies['access_token'] = @s.token
+        @request.cookies['access_token'] = @s.access_token
         get :edit, {format: :json}
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
@@ -66,7 +66,7 @@ describe "Authentication" do
       end
 
       it "HEADER" do
-        @request.headers['access_token'] = @s.token
+        @request.headers['access_token'] = @s.access_token
         get :edit, {format: :json}
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
@@ -85,7 +85,7 @@ describe "Authentication" do
         @s = given_I_have_a_classic_session
         @s.update! expires_at: 1.second.ago
 
-        get :edit, {format: :json, access_token: @s.token}
+        get :edit, {format: :json, access_token: @s.access_token}
         json_body = JSON(response.body)
         expect(response.status).to eq(400)
         expect(response.status_message).to eq("Bad Request")

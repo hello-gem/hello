@@ -28,7 +28,7 @@ module Hello
       def create_hello_session(keep_me=false)
         expires_at = keep_me ? 30.days.from_now : 30.minutes.from_now
         s = Session.create!(credential: @credential, user_agent_string: user_agent, expires_at: expires_at)
-        set_hello_session_token(s.token)
+        set_hello_session_token(s.access_token)
         return s
       end
 
@@ -113,7 +113,7 @@ module Hello
           def get_hello_session
             return nil unless access_token
             
-            s = Session.where(token: access_token).first
+            s = Session.find_by_access_token(access_token)
             return s if s && s.expires_at.future?
             
             s && s.destroy
