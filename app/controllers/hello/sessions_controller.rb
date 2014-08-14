@@ -10,15 +10,15 @@ module Hello
     
     before_actions do
       actions(:index)   { @sessions = hello_user.sessions }
-      actions(:show)    { @session  = hello_user.sessions.find(params[:id]) }
+      actions(:destroy) { @session  = hello_user.sessions.find(params[:id]) }
     end
 
     # GET /hello/sessions
     def index
     end
 
-    # GET /hello/sessions/1
-    def show
+    # DELETE /hello/sessions/1
+    def destroy
       if @session.destroy
         flash[:notice] = t("hello.messages.common.sessions.destroy.notice")
       else

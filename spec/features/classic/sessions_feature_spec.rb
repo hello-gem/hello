@@ -12,7 +12,7 @@ describe "sessions" do
     expect(current_path).to eq hello.sessions_path
 
     then_I_should_not_see("Devices (1)")
-    click_link "Disconnect this device"
+    click_button "Unlink"
         expect_flash_notice("Device has been unlinked from your account")
         then_I_should_see("Devices (1)")
   end

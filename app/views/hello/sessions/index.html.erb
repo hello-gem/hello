@@ -18,7 +18,7 @@
           <% if is_this_session %>
             [this device]
           <% else %>
-            <%= link_to 'Disconnect this device', a_session, data: { confirm: 'Are you sure?' } %>
+            <%= button_to 'Unlink', a_session, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
           <% end %>
         </td>
       </tr>

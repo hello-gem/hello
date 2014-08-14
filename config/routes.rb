@@ -3,7 +3,7 @@ Hello::Engine.routes.draw do
 
 
 
-  resources :sessions, only: [:index, :show]
+  resources :sessions, only: [:index, :destroy]
 
   root "welcome#index"
 
