@@ -31,7 +31,7 @@ module Hello
       belongs_to :user, counter_cache: true
       belongs_to :credential, counter_cache: true
 
-      validates_presence_of :credential, :user, :user_agent_string, :access_token
+      validates_presence_of :credential, :user, :expires_at, :user_agent_string, :access_token
       validates_uniqueness_of :access_token
 
       before_validation on: :create do

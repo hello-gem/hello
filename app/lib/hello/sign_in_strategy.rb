@@ -6,8 +6,8 @@ Hello.config :sign_in do
   # @credential
   
   success_strategy do
-    keep_me = !!params[:keep_me]
-    hello_session = create_hello_session(keep_me)
+    expires_at = !!params[:keep_me] ? 30.days.from_now : 30.minutes.from_now
+    hello_session = create_hello_session(expires_at)
 
     respond_to do |format|
       format.html { redirect_to session[:url] || hello.classic_after_sign_in_path }

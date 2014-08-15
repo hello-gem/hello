@@ -25,8 +25,8 @@ module Hello
         hello_user
       end
 
-      def create_hello_session(keep_me=false)
-        expires_at = keep_me ? 30.days.from_now : 30.minutes.from_now
+      def create_hello_session(expires_at=nil)
+        expires_at ||= hello_default_session_expiration
         s = Session.create!(credential: @credential, user_agent_string: user_agent, expires_at: expires_at)
         set_hello_session_token(s.access_token)
         return s
@@ -53,7 +53,7 @@ module Hello
       def hello_impersonate(credential)
         store_impersonator
         @credential = credential
-        create_hello_session(true)
+        create_hello_session
       end
 
       def hello_back_to_myself
@@ -127,11 +127,15 @@ module Hello
             request.user_agent || "blank_user_agent"
           end
 
+          def hello_default_session_expiration
+            30.minutes.from_now
+          end
+
           # filters
 
           def hello_keep_alive
             is_near_expire = hello_session.expires_at < 20.minutes.from_now
-            hello_session.update_attribute :expires_at, 30.minutes.from_now if is_near_expire
+            hello_session.update_attribute :expires_at, hello_default_session_expiration if is_near_expire
             expires_in = view_context.time_ago_in_words(hello_session.expires_at)
             logger.info "  #{'Hello Session'.bold.light_blue} expires in #{expires_in}"
           end
