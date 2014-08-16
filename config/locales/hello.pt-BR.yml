@@ -16,7 +16,6 @@ pt-BR:
       forgot_password:
         subject: "Reset Password Instructions"
     messages:
-    messages:
       locale:
         notice: "Your current language has been applied successfully. 'Portuguese (Brazil)'"
       admin:

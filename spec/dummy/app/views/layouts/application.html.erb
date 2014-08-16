@@ -67,6 +67,7 @@
       <% end %>
     </div>
 
+  <%= render "/hello/shared/email_confirmation_alert" %>
 
   <% if notice %>
     <div class="alert alert-success"><%= notice %></div>
@@ -76,7 +77,6 @@
     <div class="alert alert-warning"><%= alert %></div>
   <% end %>
 
-  <%= render "/hello/shared/email_confirmation_alert" %>
 
 <!-- hello end -->
 
