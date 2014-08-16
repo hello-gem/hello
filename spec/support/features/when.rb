@@ -17,7 +17,13 @@ def when_I_ask_to_reset_my_password(custom_login=nil)
   end
 end
 
-def when_sign_up_with_standard_data
+def when_sign_up_with_standard_data(options={})
+  if options[:expect_welcome_mailer]
+    Hello::RegistrationMailer.should_receive(:welcome).and_return(double("mailer", deliver: true))
+  else
+    Hello::RegistrationMailer.should_not_receive(:welcome)
+  end
+
   visit hello.root_path
   within("form#new_sign_up") do
     fill_in 'sign_up_name',     with: 'James Pinto'

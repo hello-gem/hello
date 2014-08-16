@@ -11,9 +11,7 @@ describe "registration" do
     expect(User.count).to     eq(0)
     expect(Credential.count).to eq(0)
 
-    Hello::RegistrationMailer.should_receive(:welcome).and_return(double("mailer", deliver: true))
-
-    when_sign_up_with_standard_data
+    when_sign_up_with_standard_data(expect_welcome_mailer: true)
         expect_flash_notice "You have signed up successfully"
         expect(User.count).to     eq(1)
         expect(Credential.count).to eq(1)
@@ -26,7 +24,7 @@ describe "registration" do
     #
     # ERROR
     #
-    when_sign_up_with_standard_data
+    when_sign_up_with_standard_data(expect_welcome_mailer: false)
         expect_error_message "2 errors were found while trying to sign up"
         expect(User.count).to     eq(1)
         expect(Credential.count).to eq(1)
@@ -36,7 +34,7 @@ describe "registration" do
   end
 
   it "sign in" do
-    when_sign_up_with_standard_data
+    when_sign_up_with_standard_data(expect_welcome_mailer: true)
     when_I_sign_out
     then_I_should_be_logged_out
     
@@ -154,7 +152,7 @@ describe "registration" do
   describe "keep me" do
 
     it "don't keep me signed in" do
-    when_sign_up_with_standard_data
+    when_sign_up_with_standard_data(expect_welcome_mailer: true)
     when_I_sign_out
     then_I_should_be_logged_out
     when_sign_in_with_standard_data
@@ -186,7 +184,7 @@ describe "registration" do
     end
 
     it "keep me signed in" do
-    when_sign_up_with_standard_data
+    when_sign_up_with_standard_data(expect_welcome_mailer: true)
     when_I_sign_out
     then_I_should_be_logged_out
     when_sign_in_with_standard_data(keep_me: true)

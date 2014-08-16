@@ -4,7 +4,7 @@ describe "classic" do
 
 
   it "sudo mode" do
-    when_sign_up_with_standard_data
+    when_sign_up_with_standard_data(expect_welcome_mailer: true)
 
     click_link "Settings"
     click_link "Devices"
