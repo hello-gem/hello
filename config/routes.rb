@@ -3,6 +3,9 @@ Hello::Engine.routes.draw do
 
 
 
+  get  'locale' => 'locale#index'
+  post 'locale' => 'locale#update'
+
   resources :sessions, only: [:index, :destroy]
 
   root "welcome#index"

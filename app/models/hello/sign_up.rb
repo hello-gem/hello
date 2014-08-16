@@ -2,15 +2,16 @@ module Hello
   class SignUp
     include ActiveModel::Model
 
-    
-    attr_reader :credential
-
-    def initialize(sign_up_params=nil)
+    def initialize(controller=nil)
       self.class.send :attr_accessor, *permitted_fields
-      if sign_up_params
-        write_attributes_to_self(sign_up_params)
-        initialize_credential
+      if controller
+        @controller = controller
+        write_attributes_to_self
       end
+    end
+
+    def credential
+      @credential ||= Credential.classic.new(email: email, username: username, password: password)
     end
 
     def save
@@ -34,23 +35,20 @@ module Hello
 
         # initialize helpers
 
-        def write_attributes_to_self(attrs)
+        def write_attributes_to_self
+          attrs = @controller.params.require(:sign_up)
           attrs = attrs.slice(*permitted_fields)
           attrs.each { |k, v| instance_variable_set(:"@#{k}", v) }
+          # attrs['locale'] ||= @controller.hello_recommended_locale
         end
 
             def permitted_fields
               Hello.config(:sign_up).fields
             end
 
-        def initialize_credential
-          hash = {email: email, username: username, password: password}
-          @credential = Credential.classic.new(hash)
-        end
-
         # save helpers
 
-        # {name: "...", city: "..."}
+        # returns {name: "...", city: "..."}
         def user_attributes
           r = {}
           user_fields.each { |k| r[k] = instance_variable_get(:"@#{k}") }

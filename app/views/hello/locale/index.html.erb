@@ -1,0 +1,7 @@
+<h1>Choose your language</h1>
+
+<ul>
+<% available_locales_with_names.each do |locale, name| %>
+  <li style="margin: 10px"><%= button_to name, hello.locale_path(locale: locale) %></li>
+<% end %>
+</ul>

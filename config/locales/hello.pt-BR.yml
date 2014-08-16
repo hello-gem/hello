@@ -1,9 +1,9 @@
 # https://github.com/hello-gem/hello
 
-en:
+pt-BR:
   hello:
     others:
-      locale: "English"
+      locale: "Português (Brasil)"
     exceptions:
       not_authenticated:
         message: "An active access token must be used to query information about the current user."
@@ -16,8 +16,9 @@ en:
       forgot_password:
         subject: "Reset Password Instructions"
     messages:
+    messages:
       locale:
-        notice: "Your current language has been applied successfully. 'English'"
+        notice: "Your current language has been applied successfully. 'Portuguese (Brazil)'"
       admin:
         impersonation:
           create:

@@ -1,5 +1,9 @@
 Hello.config :sign_up do
 
+  # OVERRIDEN IN DUMMY APP
+  # OVERRIDEN IN DUMMY APP
+  # OVERRIDEN IN DUMMY APP
+
   # permitted_fields :email, :password
   permitted_fields :name, :email, :username, :password, :city
 

@@ -23,6 +23,7 @@
     <div class="header">
       <ul class="nav nav-pills pull-right">
 
+        <li><%= link_to human_current_locale, hello.locale_path %></li>
         <% if current_user %>
           <li><%= link_to "Settings", hello.user_path %></li>
           <li><%= link_to "Sign Out", hello.sign_out_path %></li>

@@ -9,7 +9,6 @@ module Classic
   class RegistrationController < ApplicationController
 
     before_actions do
-      actions(:reset, :save) { fetch_registration_reset_ivar }
       actions(:reset_token)  { clear_hello_session }
     end
 
@@ -21,9 +20,9 @@ module Classic
 
         # POST /hello/classic/sign_up
         def create
-          @sign_up = SignUp.new(sign_up_params)
+          @sign_up = SignUp.new(self)
           @credential = @sign_up.credential
-          @password = sign_up_params[:password]
+          @password = params[:sign_up][:password]
 
           c = Hello.config(:sign_up)
 
@@ -115,10 +114,12 @@ module Classic
 
         # GET /hello/classic/reset
         def reset
+          fetch_registration_reset_ivar
         end
 
             # POST /hello/classic/reset
             def save
+              fetch_registration_reset_ivar
               c = Hello.config(:reset_password)
 
               if @reset_password.update_password(reset_password_param)
@@ -173,10 +174,6 @@ module Classic
           return redirect_to classic_forgot_path unless session[:hello_reset_token]
           @reset_password = ResetPassword.new(session[:hello_reset_token])
           @credential = @reset_password.credential
-        end
-
-        def sign_up_params
-          params.require(:sign_up)
         end
 
         def forgot_login_param

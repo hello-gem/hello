@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140502043304) do
     t.integer  "credentials_count", default: 0
     t.integer  "sessions_count",    default: 0
     t.string   "city"
+    t.string   "locale"
   end
 
 end

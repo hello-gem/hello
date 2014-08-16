@@ -1,4 +1,3 @@
-
 Hello.config :sign_up do
 
   # permitted_fields :email, :password

@@ -69,6 +69,17 @@ class Hello::ApplicationController < ApplicationController
     end
   end
 
+  rescue_from Hello::JsonNotSupported do |exception|
+    data = {
+      exception: {
+        class:       exception.class.name,
+        message:     exception.message
+      }
+    }
+
+    render json: data, status: :bad_request
+  end
+
 
   private
 
@@ -81,6 +92,7 @@ class Hello::ApplicationController < ApplicationController
     {
       welcome: guest,
       sign_out: either,
+      locale:   either,
       registration: {
         #
         sign_up:          guest,
@@ -109,12 +121,13 @@ class Hello::ApplicationController < ApplicationController
       credentials: user,
       sessions:    user,
       sudo_mode:   user,
-      
+      #
       admin: admin,
       impersonation: {
         create:  admin,
         destroy: user
       },
+      #
     }
   end
 
