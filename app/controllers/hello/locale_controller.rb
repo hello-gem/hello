@@ -16,6 +16,8 @@ module Hello
       excluded_unsupported_locales = ([params['locale']] & Hello.available_locales)
       session['locale'] = excluded_unsupported_locales.first || 'en'
       set_locale
+      
+      hello_user && hello_user.update!(locale: session['locale'])
 
       respond_to do |format|
         format.html { redirect_to :back, notice: t("hello.messages.locale.notice") }

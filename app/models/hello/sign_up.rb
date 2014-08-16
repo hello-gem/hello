@@ -39,7 +39,6 @@ module Hello
           attrs = @controller.params.require(:sign_up)
           attrs = attrs.slice(*permitted_fields)
           attrs.each { |k, v| instance_variable_set(:"@#{k}", v) }
-          # attrs['locale'] ||= @controller.hello_recommended_locale
         end
 
             def permitted_fields
@@ -52,6 +51,8 @@ module Hello
         def user_attributes
           r = {}
           user_fields.each { |k| r[k] = instance_variable_get(:"@#{k}") }
+          r['locale'] ||= @controller.session['locale']
+          r['role'] = 'user'
           r
         end
 

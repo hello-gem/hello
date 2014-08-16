@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "colorize"
   s.add_runtime_dependency "user_agent_parser"
   s.add_runtime_dependency "http_accept_language"
+  s.add_runtime_dependency "rails-i18n"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'rspec-rails'

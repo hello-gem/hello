@@ -111,12 +111,12 @@ module Hello
 
           it "uniqueness" do
             email = 'email@hello.com'
-            a_user = User.create!(name: 'James Pinto', city: 'Brasilia')
+            a_user = FactoryGirl.create(:user, name: 'James Pinto', city: 'Brasilia')
 
-            credential = Credential.classic.new(email: email, password: '1234', user: a_user)
+            credential = FactoryGirl.build(:classic_credential, email: email, password: '1234', user: a_user)
             credential.save.should be_true
 
-            credential = Credential.classic.new(email: email, password: '1111')
+            credential = FactoryGirl.build(:classic_credential, email: email, password: '1111')
             credential.valid?
             # credential.errors[:email].should == ["has already been taken"]
             credential.errors[:email].should == ["already exists"]

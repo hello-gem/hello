@@ -20,7 +20,7 @@ module Hello
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
-        expect(json_body.keys).to include *%w[id name role language time_zone created_at updated_at]
+        expect(json_body.keys).to match_array ["city", "created_at", "credentials_count", "id", "locale", "name", "role", "sessions_count", "time_zone", "updated_at"]
       end
 
     end
@@ -34,7 +34,7 @@ module Hello
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
-        expect(json_body.keys).to include *%w[id name role language time_zone created_at updated_at]
+        expect(json_body.keys).to match_array ["city", "created_at", "credentials_count", "id", "locale", "name", "role", "sessions_count", "time_zone", "updated_at"]
       end
 
       describe "fails" do

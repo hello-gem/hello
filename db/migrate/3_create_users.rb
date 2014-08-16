@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table(:users) { |t| t.timestamps } if must_create_user_table
     
     add_users_column_safe :name, :string
-    add_users_column_safe :role, :string, default: 'user'
+    add_users_column_safe :role, :string
     add_users_column_safe :locale, :string
     add_users_column_safe :time_zone, :string
     add_users_column_safe :credentials_count, :integer, default: 0

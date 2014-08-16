@@ -24,7 +24,7 @@ module Hello
       has_many :credentials
       has_many :sessions
 
-      validates_presence_of :name
+      validates_presence_of :name, :locale
     end
 
 

@@ -9,14 +9,8 @@ module Hello
     describe "validations" do
       it "presence of name" do
         @user.valid?
-        expect(@user.errors[:name]).to include "can't be blank"
-      end
-    end
- 
-
-    describe "default value" do
-      it "role" do
-        expect(@user.role).to eq "user"
+        # citi is only here because we need to test code customization, and this is how we are currently testing it
+        expect(@user.errors.messages).to eq({:name=>["can't be blank"], :locale=>["can't be blank"], :city=>["can't be blank"]})
       end
     end
 

@@ -21,9 +21,15 @@ module Hello
           Hello.all_locale_names.select { |k,v| available_locales.include? k }
         end
 
+        def hello_locale_select_options
+          # [['English', 'en']]
+          available_locales_with_names.map { |k,v| [v, k] }
+        end
+
+
         included do
           before_action :set_locale
-          helper_method :available_locales, :available_locales_with_names
+          helper_method :available_locales, :available_locales_with_names, :hello_locale_select_options
         end
 
         private
@@ -31,8 +37,14 @@ module Hello
             # locale
 
             def set_locale
-              I18n.locale = session['locale'] ||= hello_recommended_locale.to_s
+              v = if hello_user
+                    hello_user.locale
+                  else
+                    hello_recommended_locale.to_s
+                  end
+              I18n.locale = session['locale'] ||= v
             end
+
 
       end
     end

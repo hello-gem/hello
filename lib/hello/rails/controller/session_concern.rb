@@ -28,6 +28,9 @@ module Hello
         expires_at ||= hello_default_session_expiration
         s = Session.create!(credential: @credential, user_agent_string: user_agent, expires_at: expires_at)
         set_hello_session_token(s.access_token)
+        #session['locale'] = s.user.locale
+        session['locale'] = nil
+        set_locale
         return s
       end
 

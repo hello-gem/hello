@@ -2,7 +2,7 @@
 
 
 def given_I_have_a_classic_session
-  user = User.create!(name: 'James Pinto', city: 'Brasilia')
+  user = FactoryGirl.create(:user, name: 'James Pinto', city: 'Brasilia')
   credential = Credential.classic.create! user:     user,
                                           email:    'foo@bar.com',
                                           username: 'foobar',
@@ -11,14 +11,14 @@ def given_I_have_a_classic_session
 end
 
 def given_I_have_a_password_credential
-  Credential.classic.create!  user:     User.create!(name: 'James Pinto', city: 'Brasilia'),
+  Credential.classic.create!  user:   FactoryGirl.create(:user, name: 'James Pinto', city: 'Brasilia'),
                             email:    'foo@bar.com',
                             username: 'foobar',
                             password: 'foobar'
 end
 
 def given_I_have_an_admin_password_credential
-  Credential.classic.create!  user:     User.create!(name: 'Admin', city: 'Brasilia', role: 'admin'),
+  Credential.classic.create!  user:   FactoryGirl.create(:admin_user),
                             email:    'admin@bar.com',
                             username: 'admin',
                             password: 'admin'

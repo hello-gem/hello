@@ -15,6 +15,7 @@ require 'validates_email_format_of'
 
 require 'user_agent_parser'
 require 'http_accept_language'
+require 'rails-i18n'
 
 module Hello
 

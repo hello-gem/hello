@@ -9,6 +9,13 @@ FactoryGirl.define do
   factory :user do
     name { Faker::Name.name }
     city { Faker::Address.city  } # for dummy's customized sign up
+    locale 'en'
+    role 'user'
+
+    factory :admin_user do
+      name 'Admin'
+      role 'admin'
+    end
   end
 
   factory :credential do

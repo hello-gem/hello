@@ -50,13 +50,12 @@ ActiveRecord::Schema.define(version: 20140502043304) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.string   "role",              default: "user"
-    t.string   "language"
+    t.string   "role"
+    t.string   "locale"
     t.string   "time_zone"
     t.integer  "credentials_count", default: 0
     t.integer  "sessions_count",    default: 0
     t.string   "city"
-    t.string   "locale"
   end
 
 end
