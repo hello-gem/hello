@@ -45,7 +45,7 @@ describe "Authentication" do
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
-        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "language", "time_zone", "credentials_count", "sessions_count", "city"])
+        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "locale", "time_zone", "credentials_count", "sessions_count", "city"])
       end
 
       it "SESSION" do
@@ -53,7 +53,7 @@ describe "Authentication" do
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
-        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "language", "time_zone", "credentials_count", "sessions_count", "city"])
+        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "locale", "time_zone", "credentials_count", "sessions_count", "city"])
       end
 
       it "COOKIE" do
@@ -62,7 +62,7 @@ describe "Authentication" do
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
-        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "language", "time_zone", "credentials_count", "sessions_count", "city"])
+        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "locale", "time_zone", "credentials_count", "sessions_count", "city"])
       end
 
       it "HEADER" do
@@ -71,7 +71,7 @@ describe "Authentication" do
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
-        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "language", "time_zone", "credentials_count", "sessions_count", "city"])
+        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "locale", "time_zone", "credentials_count", "sessions_count", "city"])
       end
 
     end
