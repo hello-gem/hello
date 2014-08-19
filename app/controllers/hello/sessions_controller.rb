@@ -6,9 +6,9 @@ require_dependency "hello/application_controller"
 
 module Hello
   class SessionsController < ApplicationController
-    restrict_access_to_sudo_mode
     
     before_actions do
+      actions           { restrict_access_to_sudo_mode }
       actions(:index)   { @sessions = hello_user.sessions }
       actions(:destroy) { @session  = hello_user.sessions.find(params[:id]) }
     end
