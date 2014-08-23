@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
 
-  s.add_runtime_dependency 'rails', '>= 3.0.0'
+  s.add_runtime_dependency 'rails', ['>= 3.0', '< 5.0']
   s.add_runtime_dependency 'bcrypt'
   s.add_runtime_dependency "validates_email_format_of"
   s.add_runtime_dependency "before_actions"
