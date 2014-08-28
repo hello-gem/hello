@@ -25,12 +25,12 @@ module Hello
 
       def write(&block)
         # puts "write"
-        @scope.instance_eval(&block)
+        get_scope.instance_eval(&block)
       end
 
       def read
         # puts "read"
-        get_scope
+        get_reloaded_scope
       end
 
 
@@ -55,6 +55,10 @@ module Hello
 
           def get_scope
             @scope ||= Scope.new
+          end
+
+          def get_reloaded_scope
+            @scope ||= get_scope
             reload
             @scope
           end
