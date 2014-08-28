@@ -22,7 +22,7 @@ module Hello
 
     included do
       has_many :credentials
-      has_many :sessions
+      has_many :active_sessions
 
       validates_presence_of :name, :locale
     end

@@ -13,7 +13,7 @@ describe "Sign Up" do
   end
 
   it "Error" do
-    given_I_have_a_classic_session
+    given_I_have_a_classic_active_session
     
     when_sign_up_with_standard_data(expect_welcome_mailer: false)
 

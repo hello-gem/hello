@@ -22,9 +22,9 @@ class Hello::ApplicationController < ApplicationController
     must_be_a = autho_c.is_a?(Hash) ? autho_c[action_name.to_sym] : autho_c
 
     case must_be_a
-    when guest     then redirect_to user_homepage  if hello_session.present?
-    when user      then raise Hello::NotAuthenticated if hello_session.blank?
-    when admin     then redirect_to admin_homepage if hello_session.present? && !hello_user.admin?
+    when guest     then redirect_to user_homepage  if hello_active_session.present?
+    when user      then raise Hello::NotAuthenticated if hello_active_session.blank?
+    when admin     then redirect_to admin_homepage if hello_active_session.present? && !hello_user.admin?
     when either # nothing to do, yay
     else
       raise "No Authorization Rules for '#{controller_name}##{action_name}'"
@@ -119,7 +119,7 @@ class Hello::ApplicationController < ApplicationController
       },
       user_profile: user,
       credentials: user,
-      sessions:    user,
+      active_sessions:    user,
       sudo_mode:   user,
       #
       admin: admin,

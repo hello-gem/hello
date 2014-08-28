@@ -6,9 +6,8 @@
   <tbody>
 
 
-    <% @sessions.each_with_index do |a_session, i| %>
-      <% is_this_session = a_session == hello_session  %>
-
+    <% @active_sessions.each_with_index do |a_session, i| %>
+      <% is_this_session = a_session == hello_active_session  %>
 
       <tr class="<%= 'success' if is_this_session %>">
         <td>Device #<%= i+1 %></td>

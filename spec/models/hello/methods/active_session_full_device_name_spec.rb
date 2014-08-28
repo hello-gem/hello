@@ -10,15 +10,15 @@ require 'spec_helper'
 # http://www.webapps-online.com/online-tools/user-agent-strings
 
 module Hello
-  describe Session do
+  describe ActiveSession do
 
     before(:each) do
-      @session = Session.new
+      @active_session = ActiveSession.new
     end
 
     def expect_device_name(original, expected)
-      @session.user_agent_string = original
-      expect(@session.full_device_name).to eq(expected)
+      @active_session.user_agent_string = original
+      expect(@active_session.full_device_name).to eq(expected)
     end
 
     describe "#full_device_name" do

@@ -6,7 +6,7 @@ Hello.config :reset_password do
   # @credential
   
   success_strategy do
-    hello_session = create_hello_session
+    hello_active_session = create_hello_active_session
 
     redirect_to hello.classic_after_reset_path
   end

@@ -6,7 +6,7 @@ module Hello
     routes { Hello::Engine.routes }
 
     before do
-      s = given_I_have_a_classic_session
+      s = given_I_have_a_classic_active_session
       @request.headers['access_token'] = s.access_token
     end
 
@@ -20,7 +20,7 @@ module Hello
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
-        expect(json_body.keys).to match_array ["city", "created_at", "credentials_count", "id", "locale", "name", "role", "sessions_count", "time_zone", "updated_at"]
+        expect(json_body.keys).to match_array ["city", "created_at", "credentials_count", "id", "locale", "name", "role", "active_sessions_count", "time_zone", "updated_at"]
       end
 
     end
@@ -34,7 +34,7 @@ module Hello
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
-        expect(json_body.keys).to match_array ["city", "created_at", "credentials_count", "id", "locale", "name", "role", "sessions_count", "time_zone", "updated_at"]
+        expect(json_body.keys).to match_array ["city", "created_at", "credentials_count", "id", "locale", "name", "role", "active_sessions_count", "time_zone", "updated_at"]
       end
 
       describe "fails" do

@@ -13,7 +13,7 @@ describe "Localization" do
 
     describe "Browser locale or default" do
 
-      # before { @s = given_I_have_a_classic_session }
+      # before { @s = given_I_have_a_classic_active_session }
 
       hash = {
         nil                       => 'en',

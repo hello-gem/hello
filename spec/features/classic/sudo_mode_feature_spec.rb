@@ -7,10 +7,10 @@ describe "classic" do
     when_sign_up_with_standard_data(expect_welcome_mailer: true)
 
     click_link "Settings"
-    click_link "Devices"
+    click_link "Active Sessions"
         expect(page).to have_content "Confirm Password to Continue"
-        expect(current_path).to eq hello.sessions_path
-        expect(Session.last.sudo_expires_at).to be < Time.now
+        expect(current_path).to eq hello.active_sessions_path
+        expect(ActiveSession.last.sudo_expires_at).to be < Time.now
 
     #
     # BLANK
@@ -19,7 +19,7 @@ describe "classic" do
         expect_flash_alert "Incorrect Password"
         expect(page).to have_content "Confirm Password to Continue"
         expect(current_path).to eq hello.sudo_mode_path
-        expect(Session.last.sudo_expires_at).to be < Time.now
+        expect(ActiveSession.last.sudo_expires_at).to be < Time.now
 
     #
     # ERROR
@@ -28,7 +28,7 @@ describe "classic" do
         expect_flash_alert "Incorrect Password"
         expect(page).to have_content "Confirm Password to Continue"
         expect(current_path).to eq hello.sudo_mode_path
-        expect(Session.last.sudo_expires_at).to be < Time.now
+        expect(ActiveSession.last.sudo_expires_at).to be < Time.now
 
     #
     # SUCCESS
@@ -37,8 +37,8 @@ describe "classic" do
         expect_flash_notice "Now we know it's really you. We won't be asking your password again for 60 minutes"
         expect(page).to have_content "Sudo Mode expires in"
         expect(page).not_to have_content "Confirm Password to Continue"
-        expect(current_path).to eq hello.sessions_path
-        expect(Session.last.sudo_expires_at).to be > 29.minutes.from_now
+        expect(current_path).to eq hello.active_sessions_path
+        expect(ActiveSession.last.sudo_expires_at).to be > 29.minutes.from_now
 
     #
     # EXPIRE

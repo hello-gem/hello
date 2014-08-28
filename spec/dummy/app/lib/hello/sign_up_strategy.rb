@@ -17,11 +17,11 @@ Hello.config :sign_up do
     Hello::RegistrationMailer.welcome(@credential).deliver
     # Hello::RegistrationMailer.welcome(@credential, password: @password).deliver
 
-    hello_session = create_hello_session
+    hello_active_session = create_hello_active_session
 
     respond_to do |format|
       format.html { redirect_to hello.classic_after_sign_up_path }
-      format.json { render json: hello_session.as_json_api, status: :created }
+      format.json { render json: hello_active_session.as_json_api, status: :created }
     end
   end
 

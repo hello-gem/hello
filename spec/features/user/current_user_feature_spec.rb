@@ -11,9 +11,9 @@ describe "password" do
     then_I_should_be_logged_in
 
     #
-    # Session gets destroyed on server-side
+    # ActiveSession gets destroyed on server-side
     #
-    Session.destroy_all
+    ActiveSession.destroy_all
     visit hello.root_path
     then_I_should_be_logged_out
   end

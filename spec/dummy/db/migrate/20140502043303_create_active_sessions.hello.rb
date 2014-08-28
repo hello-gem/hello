@@ -1,7 +1,7 @@
 # This migration comes from hello (originally 2)
-class CreateSessions < ActiveRecord::Migration
+class CreateActiveSessions < ActiveRecord::Migration
   def change
-    create_table :sessions do |t|
+    create_table :active_sessions do |t|
       t.references :user, index: true
       t.references :credential, index: true
       t.string :user_agent_string

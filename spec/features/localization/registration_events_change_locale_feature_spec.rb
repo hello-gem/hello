@@ -20,7 +20,7 @@ describe "Localization" do
     end
 
     it "Sign In Resets Locale" do
-      given_I_have_a_classic_session
+      given_I_have_a_classic_active_session
       User.last.update! locale: 'pt-BR'
       
       #

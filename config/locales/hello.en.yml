@@ -31,7 +31,7 @@ en:
             alert: "Incorrect Password"
           expire:
             notice: "We will now ask your password for sensitive access"
-        sessions:
+        active_sessions:
           destroy:
             notice: "Device has been unlinked from your account"
             alert: "There was an error while unlinking this device"

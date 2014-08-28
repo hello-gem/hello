@@ -32,13 +32,13 @@
         <p class="lead">Hello, <%= current_user.name %>!</p>
         <p>
           <small>
-            Your session expires in <%= time_ago_in_words hello_session.expires_at %>
+            Your session expires in <%= time_ago_in_words hello_active_session.expires_at %>
           </small>
 
           <% if sudo_mode? %>
             <small>
               |
-              Sudo Mode expires in <%= time_ago_in_words hello_session.sudo_expires_at %>
+              Sudo Mode expires in <%= time_ago_in_words hello_active_session.sudo_expires_at %>
               (<%= link_to "expire", hello.sudo_mode_expire_path %>)
             </small>
           <% end %>
