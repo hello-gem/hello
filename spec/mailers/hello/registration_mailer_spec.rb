@@ -5,7 +5,7 @@ module Hello
     let(:credential) { create(:classic_credential) }
 
     describe "welcome" do
-      let(:mail) { RegistrationMailer.welcome(credential) }
+      let(:mail) { RegistrationMailer.welcome(credential, "THE_PASSWORD") }
 
       it "renders the headers" do
         expect(mail.subject).to eq("Welcome to our website")

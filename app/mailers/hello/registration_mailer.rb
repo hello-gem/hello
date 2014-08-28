@@ -2,25 +2,26 @@ module Hello
   class RegistrationMailer < ActionMailer::Base
     default from: "hello@example.com"
 
-    def welcome(credential)
+    def welcome(credential, password)
       @credential = credential
-      @user     = credential.user
+      @user       = credential.user
+      @password   = password
 
       mail to: credential.email
     end
 
     def confirm_email(credential, url)
       @credential = credential
-      @user     = credential.user
-      @url      = url
+      @user       = credential.user
+      @url        = url
 
       mail to: credential.email
     end
 
     def forgot_password(credential, url)
       @credential = credential
-      @user     = credential.user
-      @url      = url
+      @user       = credential.user
+      @url        = url
 
       mail to: credential.email
     end
