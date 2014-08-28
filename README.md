@@ -62,7 +62,7 @@ Want to see it in action?
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'hello', github: 'hello-gem/hello', branch: 'v0.1.0'
+gem 'hello', github: 'hello-gem/hello' # latest from github while this gem is in rapid development
 ```
 
 And then execute:
