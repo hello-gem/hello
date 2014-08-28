@@ -36,12 +36,12 @@ module Classic
                 get("/classic/after_sign_in").should route_to("hello/classic/registration#after_sign_in")
               end
 
-      it "routes to #forgot" do
-        get("/classic/forgot").should route_to("hello/classic/registration#forgot")
+      it "routes to #forgot_password" do
+        get("/classic/forgot_password").should route_to("hello/classic/registration#forgot")
       end
 
           it "routes to #ask" do
-            post("/classic/forgot").should route_to("hello/classic/registration#ask")
+            post("/classic/forgot_password").should route_to("hello/classic/registration#ask")
           end
 
               it "routes to #after_forgot" do
@@ -55,12 +55,12 @@ module Classic
         get("/classic/reset/token/123").should route_to("hello/classic/registration#reset_token", token: '123')
       end
 
-          it "routes to #reset" do
-            get("/classic/reset").should route_to("hello/classic/registration#reset")
+          it "routes to #reset_password" do
+            get("/classic/reset_password").should route_to("hello/classic/registration#reset")
           end
 
               it "routes to #save" do
-                post("/classic/reset").should route_to("hello/classic/registration#save")
+                post("/classic/reset_password").should route_to("hello/classic/registration#save")
               end
 
                   it "routes to #after_reset" do

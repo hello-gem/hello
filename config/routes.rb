@@ -50,14 +50,14 @@ Hello::Engine.routes.draw do
     get  "after_sign_in"   => "registration#after_sign_in"
 
     # forgot
-    get  "forgot"         => "registration#forgot"
-    post "forgot"         => "registration#ask"
-    get  "after_forgot"   => "registration#after_forgot"
+    get  "forgot_password" => "registration#forgot"
+    post "forgot_password" => "registration#ask"
+    get  "after_forgot"    => "registration#after_forgot"
 
     # reset
     get  "reset/token/:token" => "registration#reset_token", as: 'reset_token'
-    get  "reset"              => "registration#reset"
-    post "reset"              => "registration#save"
+    get  "reset_password"     => "registration#reset"
+    post "reset_password"     => "registration#save"
     get  "after_reset"        => "registration#after_reset"
 
     # confirm email

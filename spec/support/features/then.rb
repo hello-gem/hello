@@ -17,9 +17,9 @@
     expect(Session.count).to eq(1)
   end
 
-  def then_I_should_be_logged_out
+  def then_I_should_be_logged_out(expected_sessions_count=0)
     then_I_should_see "Hello, Guest!"
-    expect(Session.count).to eq(0)
+    # expect(Session.count).to eq(expected_sessions_count)
   end
 
   def then_I_should_see(text)

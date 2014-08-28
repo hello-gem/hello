@@ -7,7 +7,7 @@ describe "admin" do
   # I can click "impersonate" on a user's profile
   # So I can impersonate that user
   it "impersonation" do
-    given_I_have_a_password_credential
+    given_I_have_a_classic_credential
     given_I_have_an_admin_password_credential
     when_sign_in_with_admin_data
     then_I_should_be_logged_in_as_an_admin

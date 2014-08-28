@@ -39,7 +39,7 @@ module Classic
           json_body = JSON(response.body)
           expect(response.status).to eq(422)
           expect(response.status_message).to eq("Unprocessable Entity")
-          expect(json_body).to eq({"email"=>["can't be blank", "does not appear to be valid"], "password"=>["can't be blank", "minimum of 4 characters"]})
+          expect(json_body).to eq({"email"=>["can't be blank", "does not appear to be a valid e-mail address"], "password"=>["can't be blank", "minimum of 4 characters"]})
         end
 
       end
@@ -50,7 +50,7 @@ module Classic
       describe "works" do
 
         it "Created" do
-          given_I_have_a_password_credential
+          given_I_have_a_classic_credential
           params = {format: :json, sign_in: {login: "foo@bar.com", password: "foobar"}}
           post :authenticate, params
           
@@ -104,7 +104,7 @@ module Classic
         end
 
         it "password is incorrect" do
-          given_I_have_a_password_credential
+          given_I_have_a_classic_credential
           params = {format: :json, sign_in: {login: "foo@bar.com", password: ""}}
           post :authenticate, params
           
@@ -123,7 +123,7 @@ module Classic
       describe "works" do
 
         it "OK" do
-          given_I_have_a_password_credential
+          given_I_have_a_classic_credential
           params = {format: :json, forgot_password: {login: "foo@bar.com"}}
           post :ask, params
           

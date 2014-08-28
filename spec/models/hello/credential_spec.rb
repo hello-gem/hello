@@ -102,7 +102,7 @@ module Hello
           it "format" do
             @credential.email = 'aaa'
             @credential.valid?
-            @credential.errors[:email].should == ["does not appear to be valid"]
+            @credential.errors[:email].should == ["does not appear to be a valid e-mail address"]
 
             @credential.email = 'email@hello.com'
             @credential.valid?

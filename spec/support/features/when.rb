@@ -18,9 +18,9 @@ def when_I_ask_to_reset_my_password(custom_login=nil)
 end
 
 def when_sign_up_with_standard_data(options={})
-  if options[:expect_welcome_mailer]
+  if options[:expect_welcome_mailer] === true
     Hello::RegistrationMailer.should_receive(:welcome).and_return(double("mailer", deliver: true))
-  else
+  elsif options[:expect_welcome_mailer] === false
     Hello::RegistrationMailer.should_not_receive(:welcome)
   end
 

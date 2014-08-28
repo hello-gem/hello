@@ -106,9 +106,9 @@ module Classic
       @reset_password = ResetPassword.new(params[:token])
       if @reset_password.credential
         session[:hello_reset_token] = params[:token]
-        redirect_to classic_reset_path
+        redirect_to classic_reset_password_path
       else
-        redirect_to classic_forgot_path, alert: "This link has expired, please ask for a new link"
+        redirect_to classic_forgot_password_path, alert: "This link has expired, please ask for a new link"
       end
     end
 

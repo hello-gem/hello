@@ -60,12 +60,8 @@ describe "Localization" do
 
     end
 
-    describe "Auto fills user locale on sign up" do
-      
-    end
-
-    describe "Auto changes session locale on sign in" do
-      
+    it "hits every locale against English looking for missing keys" do
+      pending
     end
   end
 
