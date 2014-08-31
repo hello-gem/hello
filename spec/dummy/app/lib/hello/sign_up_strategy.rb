@@ -8,7 +8,7 @@ Hello.config :sign_up do
   permitted_fields :name, :email, :username, :password, :city
 
   # variables avaliable:
-  # @sign_in
+  # @sign_up
   # @credential
   # @password
   

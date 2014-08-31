@@ -5,7 +5,7 @@ Hello.config :sign_up do
 
   # variables avaliable:
   #
-  # @sign_in
+  # @sign_up
   # @credential
   # @password
   
