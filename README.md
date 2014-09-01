@@ -116,8 +116,6 @@ end
 We let you customize everything
 
 ```ruby
-require 'bcrypt'
-
 class Credential < ActiveRecord::Base
   include Hello::CredentialModel
 

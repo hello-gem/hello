@@ -13,6 +13,4 @@ gemspec
 # To use debugger
 # gem 'debugger'
 
-gem 'bcrypt'
-
 gem "codeclimate-test-reporter", group: :test, require: nil

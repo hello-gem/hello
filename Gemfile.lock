@@ -150,7 +150,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt
   capybara
   codeclimate-test-reporter
   email_spec
