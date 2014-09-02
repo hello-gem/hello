@@ -44,6 +44,9 @@ en:
             error:
               one: "1 error was found while updating your profile"
               other: "%{count} errors were found while updating your profile"
+        deactivation:
+          deactivate:
+            notice: "You have deactivated your account successfully"
       classic:
         credential:
           edit:

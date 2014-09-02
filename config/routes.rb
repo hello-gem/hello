@@ -3,6 +3,9 @@ Hello::Engine.routes.draw do
 
 
 
+  # namespace :hello do
+  # end
+
   get  'locale' => 'locale#index'
   post 'locale' => 'locale#update'
 
@@ -67,6 +70,10 @@ Hello::Engine.routes.draw do
     get  "after_confirm_email"        => "registration#after_confirm_email"
 
   end
+
+  get  'deactivation'       => 'deactivation#proposal'
+  post 'deactivation'       => 'deactivation#deactivate'
+  get  'after_deactivation' => 'deactivation#after_deactivate'
 
 
 

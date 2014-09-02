@@ -12,5 +12,6 @@
   <% end %>
 
   <%= active_link_to "Active Sessions (#{current_user.active_sessions_count})", hello.active_sessions_path, class: "list-group-item" %>
+  <%= active_link_to "Cancel Account", hello.deactivation_path, class: "list-group-item" %>
 </div>
 </div>

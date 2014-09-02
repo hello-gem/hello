@@ -35,7 +35,7 @@ module Hello
 
       def clear_hello_active_session
         destroy_hello_active_session
-        session.clear
+        set_hello_active_session_token(nil)
         @hello_user = @hello_credential = @hello_active_session = nil
       end
 
@@ -98,7 +98,6 @@ module Hello
           end
 
           def set_hello_active_session_token(v)
-            # clear_hello_active_session
             session['access_token'] = v
             @hellovars = nil
           end
@@ -118,7 +117,7 @@ module Hello
             return s if s && s.expires_at.future?
             
             s && s.destroy
-            session.clear
+            set_hello_active_session_token(nil)
             nil
           end
 

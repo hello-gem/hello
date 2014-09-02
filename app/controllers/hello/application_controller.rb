@@ -121,6 +121,11 @@ class Hello::ApplicationController < ApplicationController
       credentials: user,
       active_sessions:    user,
       sudo_mode:   user,
+      deactivation: {
+        proposal:         user,
+        deactivate:       user,
+        after_deactivate: guest,
+      },
       #
       admin: admin,
       impersonation: {
