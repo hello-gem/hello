@@ -57,14 +57,6 @@
       <% else %>
         <p class="lead">Hello, Guest!</p>
       <% end %>
-      <% if current_user && current_user.admin? %>
-      <p>
-        Admin Features:
-        <% if @user && @user != current_user %>
-          <%= button_to "Impersonate #{@user.name}", hello.admin_impersonate_path(credential_id: @user.credentials.first.id) %>
-        <% end %>
-      </p>
-      <% end %>
     </div>
 
   <%= render "/hello/shared/email_confirmation_alert" %>

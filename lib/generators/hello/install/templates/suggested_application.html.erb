@@ -22,7 +22,6 @@
   <div class="container">
     <div class="header">
       <ul class="nav nav-pills pull-right">
-
         <li><%= link_to human_current_locale, hello.locale_path %></li>
         <% if current_user %>
           <li><%= link_to "Settings", hello.user_path %></li>
@@ -35,8 +34,9 @@
           <li><%= link_to "Sign In", hello.classic_sign_in_path %></li>
           <li><%= link_to "Forgot Password", hello.classic_forgot_password_path %></li>
         <% end %>
-
       </ul>
+
+      
       <h3 class="text-muted"><a href="/">Project name</a></h3>
       <p class="lead">
         <% if current_user %>
@@ -45,14 +45,6 @@
         Hello, Guest!
         <% end %>
       </p>
-      <% if current_user && current_user.admin? %>
-      <p>
-        Admin Features:
-        <% if @user && @user != current_user %>
-          <%= button_to "Impersonate #{@user.name}", hello.admin_impersonate_path(credential_id: @user.credentials.first.id) %>
-        <% end %>
-      </p>
-      <% end %>
     </div>
 
   <%= render "/hello/shared/email_confirmation_alert" %>

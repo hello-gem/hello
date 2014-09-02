@@ -54,6 +54,12 @@ class Hello::InstallGenerator < Rails::Generators::Base
       puts "-" * 100
   end
 
+  def generate_profile
+    route "get 'profile/:username' => 'profile#profile', as: 'profile'"
+    copy_file "profile/profile_controller.rb", "app/controllers/profile_controller.rb"
+    copy_file "profile/profile.html.erb",      "app/views/profile/profile.html.erb"
+  end
+
 
   # hook_for :test_framework
 
