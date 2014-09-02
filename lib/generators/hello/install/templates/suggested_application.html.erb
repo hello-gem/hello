@@ -36,26 +36,17 @@
         <% end %>
       </ul>
 
-      
+
+
+
       <h3 class="text-muted"><a href="/">Project name</a></h3>
-      <p class="lead">
-        <% if current_user %>
-        Hello, <%= current_user.name %>!
-        <% else %>
-        Hello, Guest!
-        <% end %>
-      </p>
+      <p class="lead">Hello, <%= current_user && current_user.name || "Guest" %>!</p>
+
+
+      <%= render "/hello/shared/session_expiration" %>
     </div>
 
-  <%= render "/hello/shared/email_confirmation_alert" %>
-
-  <% if notice %>
-    <div class="alert alert-success"><%= notice %></div>
-  <% end %>
-
-  <% if alert %>
-    <div class="alert alert-warning"><%= alert %></div>
-  <% end %>
+  <%= render "/hello/shared/flash" %>
   
 <!-- hello end -->
 
