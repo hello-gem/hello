@@ -9,7 +9,7 @@ module Classic
   class RegistrationController < ApplicationController
 
     before_actions do
-      actions(:reset_token)  { clear_hello_active_session }
+      actions(:reset_token)  { destroy_and_clear_hello_active_session }
     end
 
 

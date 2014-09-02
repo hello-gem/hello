@@ -33,10 +33,9 @@ module Hello
         return s
       end
 
-      def clear_hello_active_session
+      def destroy_and_clear_hello_active_session
         destroy_hello_active_session
-        set_hello_active_session_token(nil)
-        @hello_user = @hello_credential = @hello_active_session = nil
+        clear_hello_active_session
       end
 
       def hello_user
@@ -99,15 +98,28 @@ module Hello
 
           def set_hello_active_session_token(v)
             session['access_token'] = v
-            @hellovars = nil
+            clear_session_ivars
+          end
+
+          def clear_hello_active_session
+            set_hello_active_session_token(nil)
+            set_hello_impersonator_token(nil)
+          end
+
+          def clear_session_ivars
+            @hello_user = @hello_credential = @hello_active_session = nil
           end
 
           def store_impersonator
-            session[:hello_impersonator] = access_token
+            set_hello_impersonator_token(access_token)
           end
 
           def hello_impersonator_token
-            session[:hello_impersonator]
+            session['hello_impersonator']
+          end
+
+          def set_hello_impersonator_token(v)
+            session['hello_impersonator'] = v
           end
 
           def get_hello_active_session
@@ -118,6 +130,7 @@ module Hello
             
             s && s.destroy
             set_hello_active_session_token(nil)
+            set_hello_impersonator_token(nil)
             nil
           end
 
