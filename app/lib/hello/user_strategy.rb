@@ -1,4 +1,4 @@
-Hello.config :user_profile do
+Hello.config :user do
   
   # variables avaliable:
   #

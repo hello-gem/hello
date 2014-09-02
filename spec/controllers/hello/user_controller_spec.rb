@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Hello
-  describe UserProfileController do
+  describe UserController do
 
     routes { Hello::Engine.routes }
 

@@ -5,7 +5,7 @@ require_dependency "hello/application_controller"
 #
 
 module Hello
-  class UserProfileController < ApplicationController
+  class UserController < ApplicationController
 
     before_actions do
       actions { @user = hello_user }
@@ -21,7 +21,7 @@ module Hello
 
     # PATCH /hello/user
     def update
-      c = Hello.config(:user_profile)
+      c = Hello.config(:user)
       
       if @user.update(user_params)
         flash[:notice] = I18n.t("hello.messages.common.user.edit.notice")

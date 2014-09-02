@@ -15,15 +15,20 @@ Hello::Engine.routes.draw do
 
   match  "sign_out" => "sign_out#sign_out", via: [:get, :post, :head, :put, :delete]
 
-  # editing profile
+  # account
     # user
-    get   'user' => "user_profile#edit"
-    patch 'user' => "user_profile#update"
+    get   'user' => "user#edit"
+    patch 'user' => "user#update"
 
   # sudo mode
     get   'sudo_mode'        => 'sudo_mode#form'
     patch 'sudo_mode'        => 'sudo_mode#authenticate'
     get   'sudo_mode/expire' => 'sudo_mode#expire'
+
+  # deactivation
+    get  'deactivation'       => 'deactivation#proposal'
+    post 'deactivation'       => 'deactivation#deactivate'
+    get  'after_deactivation' => 'deactivation#after_deactivate'
 
   
   namespace "admin" do
@@ -71,9 +76,6 @@ Hello::Engine.routes.draw do
 
   end
 
-  get  'deactivation'       => 'deactivation#proposal'
-  post 'deactivation'       => 'deactivation#deactivate'
-  get  'after_deactivation' => 'deactivation#after_deactivate'
 
 
 

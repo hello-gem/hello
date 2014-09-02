@@ -10,7 +10,7 @@ describe "Authentication" do
 
   describe "Not Authenticated" do
 
-    describe UserProfileController do
+    describe UserController do
       routes { Hello::Engine.routes }
 
       it "HTML" do
@@ -35,7 +35,7 @@ describe "Authentication" do
 
   describe "Authenticated" do
 
-    describe UserProfileController do
+    describe UserController do
       routes { Hello::Engine.routes }
 
       before { @s = given_I_have_a_classic_active_session }
@@ -78,7 +78,7 @@ describe "Authentication" do
   end
 
   describe "Others" do
-    describe UserProfileController do
+    describe UserController do
       routes { Hello::Engine.routes }
 
       it "Access Token Expired" do

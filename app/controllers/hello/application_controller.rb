@@ -117,7 +117,7 @@ class Hello::ApplicationController < ApplicationController
         after_confirm_email:   either,
         confirm_email_expired: either,
       },
-      user_profile: user,
+      user: user,
       credentials: user,
       active_sessions:    user,
       sudo_mode:   user,
