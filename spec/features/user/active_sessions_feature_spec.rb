@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "sessions" do
+describe "active sessions" do
 
   it "disconnect" do
     given_I_am_logged_in
