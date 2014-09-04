@@ -89,7 +89,7 @@ module Hello
       private
 
           def access_token
-            params['access_token'] || request.headers['access_token'] || session['access_token'] || cookies['access_token']
+            params['access_token'] || request.headers['HTTP_ACCESS_TOKEN'] || session['access_token'] || cookies['access_token']
           end
 
           def destroy_hello_active_session

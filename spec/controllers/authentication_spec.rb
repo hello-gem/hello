@@ -66,7 +66,7 @@ describe "Authentication" do
       end
 
       it "HEADER" do
-        @request.headers['access_token'] = @s.access_token
+        @request.headers['HTTP_ACCESS_TOKEN'] = @s.access_token
         get :edit, {format: :json}
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
