@@ -9,7 +9,7 @@ describe "Localization" do
       #
       visit hello.locale_path
       click_button 'Portuguese (Brazil)'
-      expect_flash_notice "Your current language has been applied successfully. 'Portuguese (Brazil)'"
+      expect_flash_notice "Your current language has been applied successfully. 'Português (Brasil)'"
 
       #
       # SUCCESS

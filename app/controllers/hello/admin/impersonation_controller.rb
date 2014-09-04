@@ -7,14 +7,18 @@ module Hello
     def create
       credential = Credential.find(params[:credential_id])
       hello_impersonate(credential)
-      flash[:notice] = t("hello.messages.admin.impersonation.create.notice", name: credential.user.name)
+
+      entity = ImpersonateEntity.new(credential)
+      flash[:notice] = entity.success_message
       redirect_to :back
     end
 
     # GET /hello/admin/impersonate
     def destroy
       hello_back_to_myself
-      flash[:notice] = t("hello.messages.admin.impersonation.destroy.notice")
+
+      entity = ImpersonateBackEntity.new
+      flash[:notice] = entity.success_message
       redirect_to :back
     end
 

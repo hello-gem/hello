@@ -19,8 +19,10 @@ module Hello
       
       hello_user && hello_user.update!(locale: session['locale'])
 
+      entity = UpdateLocaleEntity.new
+
       respond_to do |format|
-        format.html { redirect_to :back, notice: t("hello.messages.locale.notice") }
+        format.html { redirect_to :back, notice: entity.success_message }
         format.json { raise JsonNotSupported }
       end
     end

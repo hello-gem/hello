@@ -1,14 +1,13 @@
 module Hello
-  class ForgotPassword
-    include ActiveModel::Model
+  class ForgotPasswordEntity < AbstractEntity
 
     attr_accessor :login
     attr_reader :credential
 
-    def initialize(login=nil)
-      if login
-        @login = login
-        find_credential
+    def initialize(attrs=nil)
+      if attrs
+        @login      = attrs[:login]
+        @credential = find_credential
       end
     end
 
@@ -17,15 +16,6 @@ module Hello
       return true
     end
 
-    def errors
-      @errors ||= ActiveModel::Errors.new(self)
-    end
-
-    def error_message
-      I18n.t("hello.messages.classic.registration.forgot_password.error", count: errors.count)
-    end
-
-
 
 
     private
@@ -33,7 +23,7 @@ module Hello
         # initialize helpers
 
         def find_credential
-          @credential = Credential.classic.where(key => login).first
+          Credential.classic.where(key => login).first
         end
 
         # reset helpers

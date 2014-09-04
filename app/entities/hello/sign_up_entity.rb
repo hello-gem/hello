@@ -1,6 +1,5 @@
 module Hello
-  class SignUp
-    include ActiveModel::Model
+  class SignUpEntity < AbstractEntity
 
     def initialize(controller, attrs=nil)
       @controller = controller
@@ -20,15 +19,6 @@ module Hello
       credential.save
     end
 
-    def errors
-      @errors ||= ActiveModel::Errors.new(self)
-    end
-
-    def error_message
-      I18n.t("hello.messages.classic.registration.sign_up.error", count: errors.count)
-    end
-
-
 
 
     private
@@ -36,9 +26,6 @@ module Hello
         # initialize helpers
 
             def permitted_fields
-              # Hello.config(:sign_up).fields
-              # BaseSignUpStrategy.sign_up_fields
-              # DummySignUpStrategy.new(@controller, self).sign_up_fields
               SignUpControl.new(@controller, self).sign_up_fields
             end
 

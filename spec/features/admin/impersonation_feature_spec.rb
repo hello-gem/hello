@@ -31,5 +31,9 @@ describe "admin" do
     then_I_should_be_logged_in_as_an_admin
   end
 
+  it "failure" do
+    pending
+  end
+
 
 end

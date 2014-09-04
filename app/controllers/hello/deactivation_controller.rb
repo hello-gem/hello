@@ -13,7 +13,8 @@ module Hello
       array = [hello_user] + hello_user.credentials + hello_user.active_sessions
       User.transaction { array.map(&:destroy!) }
 
-      flash[:notice] = t('hello.messages.common.deactivation.deactivate.notice')
+      entity = DeactivateEntity.new
+      flash[:notice] = entity.success_message
       redirect_to hello.after_deactivation_path
     end
 

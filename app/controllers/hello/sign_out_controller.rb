@@ -10,7 +10,9 @@ module Hello
     # GET /hello/sign_out
     def sign_out
       destroy_and_clear_hello_active_session
-      flash.now[:notice] = t("hello.messages.common.sign_out.sign_out.notice")
+
+      entity = SignOutEntity.new
+      flash.now[:notice] = entity.success_message
       control = SignOutControl.new(self, nil)
       control.success
     end

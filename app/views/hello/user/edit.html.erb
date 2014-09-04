@@ -5,7 +5,7 @@
 <div class="col-sm-3-offset col-md-2-offset col-sm-9 col-md-10">
 
 <%= form_for @user, html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= render '/hello/shared/errors', active_model: @user %>
+  <%= render '/hello/shared/errors', active_model: @user_entity %>
 
   <div class="form-group">
     <%= f.label :email, class: "col-sm-4 control-label" %>

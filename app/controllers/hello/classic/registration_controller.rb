@@ -10,19 +10,19 @@ module Classic
 
     # GET /hello/classic/sign_up
     def sign_up
-      @sign_up = SignUp.new(self)
+      @sign_up = SignUpEntity.new(self)
     end
 
         # POST /hello/classic/sign_up
         def create
-          @sign_up = SignUp.new(self, params.require(:sign_up))
+          @sign_up = SignUpEntity.new(self, params.require(:sign_up))
 
           control = SignUpControl.new(self, @sign_up)
 
           if @sign_up.save
             @credential = @sign_up.credential
             @password   = @sign_up.password
-            flash[:notice] = t("hello.messages.classic.registration.sign_up.notice")
+            flash[:notice] = @sign_up.success_message
             control.success
           else
             control.failure
@@ -41,18 +41,18 @@ module Classic
 
     # GET /hello/classic/sign_in
     def sign_in
-      @sign_in = SignIn.new
+      @sign_in = SignInEntity.new
     end
 
         # POST /hello/classic/sign_in
         def authenticate
-          @sign_in = SignIn.new(params.require(:sign_in))
+          @sign_in = SignInEntity.new(params.require(:sign_in))
           @credential = @sign_in.credential
 
           control = SignInControl.new(self, @sign_in)
 
           if @sign_in.authenticate
-            flash[:notice] = t("hello.messages.classic.registration.sign_in.notice")
+            flash[:notice] = @sign_in.success_message
             control.success
           else
             control.failure
@@ -70,18 +70,18 @@ module Classic
 
     # GET /hello/classic/forgot
     def forgot
-      @forgot_password = ForgotPassword.new
+      @forgot_password = ForgotPasswordEntity.new
     end
 
         # POST /hello/classic/forgot
         def ask
-          @forgot_password = ForgotPassword.new(forgot_login_param)
+          @forgot_password = ForgotPasswordEntity.new(params.require(:forgot_password))
           @credential = @forgot_password.credential
 
           control = ForgotPasswordControl.new(self, @forgot_password)
 
           if @forgot_password.reset
-            flash[:notice] = t("hello.messages.classic.registration.forgot_password.notice")
+            flash[:notice] = @forgot_password.success_message
             control.success
           else
             control.failure
@@ -99,13 +99,14 @@ module Classic
     # GET /hello/classic/reset/token/:token
     def reset_token
       destroy_and_clear_hello_active_session
-      @reset_password = ResetPassword.new(params[:token])
+      @reset_password = ResetPasswordEntity.new(params[:token])
 
       if @reset_password.credential
         session[:hello_reset_token] = params[:token]
         redirect_to classic_reset_password_path
       else
-        redirect_to classic_forgot_password_path, alert: "This link has expired, please ask for a new link"
+        flash[:alert] = @reset_password.alert_message
+        redirect_to classic_forgot_password_path
       end
     end
 
@@ -119,9 +120,10 @@ module Classic
               fetch_registration_reset_ivar
               control = ResetPasswordControl.new(self, @reset_password)
 
-              if @reset_password.update_password(reset_password_param)
+              new_password = params.require(:reset_password)[:password]
+              if @reset_password.update_password(new_password)
                 @credential.invalidate_password_token
-                flash[:notice] = t("hello.messages.classic.registration.reset_password.notice")
+                flash[:notice] = @reset_password.success_message
                 control.success
               else
                 control.failure
@@ -136,19 +138,19 @@ module Classic
 
     # GET /hello/classic/confirm_email/send
     def confirm_email_send
-      token = hello_credential.reset_email_token!
-      url = classic_confirm_email_token_url(token)
-      Hello::RegistrationMailer.confirm_email(hello_credential, url).deliver!
-      flash[:notice] = t("hello.messages.classic.registration.send_confirmation.notice", email: hello_credential.email)
+      entity = SendConfirmationEmailEntity.new(self, hello_credential)
+      entity.deliver
+      flash[:notice] = entity.success_message
       redirect_to :back
     end
 
         # GET /hello/classic/confirm_email/token/:token
         def confirm_email_token
-          @confirm_email = ConfirmEmail.new(params[:token])
+          @confirm_email = ConfirmEmailEntity.new(params.require(:token))
+
           if @confirm_email.found_credential?
             @confirm_email.confirm_email!
-            flash[:notice] = @confirm_email.message
+            flash[:notice] = @confirm_email.success_message
             redirect_to classic_after_confirm_email_path
           else
             flash[:alert] = @confirm_email.alert_message
@@ -169,18 +171,9 @@ module Classic
 
         def fetch_registration_reset_ivar
           return redirect_to classic_forgot_path unless session[:hello_reset_token]
-          @reset_password = ResetPassword.new(session[:hello_reset_token])
+          @reset_password = ResetPasswordEntity.new(session[:hello_reset_token])
           @credential = @reset_password.credential
         end
-
-        def forgot_login_param
-          params.require(:forgot_password)[:login]
-        end
-
-        def reset_password_param
-          params.require(:reset_password)[:password]
-        end
-
 
 
 

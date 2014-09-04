@@ -1,10 +1,8 @@
 require 'spec_helper'
 
-describe "Classic" do
-describe "Registration" do
 describe "Sign Out" do
 
-  it "Notice" do
+  it "Success" do
     given_I_am_logged_in
 
     click_link("Sign Out")
@@ -14,6 +12,4 @@ describe "Sign Out" do
     expect(current_path).to eq hello.sign_out_path
   end
 
-end
-end
 end

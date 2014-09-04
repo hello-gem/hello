@@ -7,8 +7,9 @@ require_dependency "hello/application_controller"
 module Hello
   class UserController < ApplicationController
 
-    before_actions do
-      actions { @user = hello_user }
+    before_action do
+      @user        = hello_user
+      @user_entity = UpdateMyUserEntity.new(hello_user)
     end
 
     # GET /hello/user
@@ -23,20 +24,13 @@ module Hello
     def update
       control = UserControl.new(self, @user)
       
-      if @user.update(user_params)
-        flash[:notice] = I18n.t("hello.messages.common.user.edit.notice")
+      if @user_entity.update(params.require(:user))
+        flash[:notice] = @user_entity.success_message
         control.success
       else
         control.failure
       end
     end
-
-    private
-
-        def user_params
-          column_names = User.hello_profile_column_names
-          params.require(:user).permit(*column_names)
-        end
 
   end
 end

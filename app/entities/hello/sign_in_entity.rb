@@ -1,7 +1,5 @@
 module Hello
-  
-  class SignIn
-    include ActiveModel::Model
+  class SignInEntity < AbstractEntity
 
     attr_accessor :login, :password
     attr_reader :credential
@@ -18,15 +16,6 @@ module Hello
       add_errors_for_password_incorrect and return false if not credential.password_is?(password)
       return true
     end
-
-    def errors
-      @errors ||= ActiveModel::Errors.new(self)
-    end
-
-    def error_message
-      I18n.t("hello.messages.classic.registration.sign_in.error", count: errors.count)
-    end
-
 
 
 

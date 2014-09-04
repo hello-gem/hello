@@ -12,7 +12,7 @@ describe "Localization" do
       #
       visit hello.locale_path
       click_button 'Portuguese (Brazil)'
-      expect_flash_notice "Your current language has been applied successfully. 'Portuguese (Brazil)'"
+      expect_flash_notice "Your current language has been applied successfully. 'Português (Brasil)'"
 
       #
       # To English
@@ -31,7 +31,7 @@ describe "Localization" do
       #
       expect {
         click_button 'Portuguese (Brazil)'
-        expect_flash_notice "Your current language has been applied successfully. 'Portuguese (Brazil)'"
+        expect_flash_notice "Your current language has been applied successfully. 'Português (Brasil)'"
       }.to change { User.last.locale }.from('en').to('pt-BR')
 
       #

@@ -60,11 +60,12 @@ module Classic
         # PATCH/PUT /hello/classic/credentials/1
         def update
           the_action = credential_params.keys.first
+          entity = UpdateClassicCredentialEntity.new(the_action)
           if @credential.update(credential_params)
-            flash[:notice] = I18n.t("hello.messages.classic.credential.edit.notice", field: the_action)
+            flash[:notice] = entity.success_message
             redirect_to hello.user_path
           else
-            flash[:alert] = I18n.t("hello.messages.classic.credential.edit.alert", field: the_action)
+            flash[:alert] = entity.alert_message
             render the_action
           end
         end

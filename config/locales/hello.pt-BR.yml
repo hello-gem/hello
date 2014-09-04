@@ -2,12 +2,15 @@
 
 pt-BR:
   hello:
+
     others:
       locale: "Português (Brasil)"
+
     exceptions:
       not_authenticated:
         message: "An active access token must be used to query information about the current user."
         alert: "You must sign in to continue."
+
     registration_mailer:
       welcome:
         subject: "Welcome to our website"
@@ -15,66 +18,60 @@ pt-BR:
         subject: "Confirm This Email"
       forgot_password:
         subject: "Reset Password Instructions"
-    messages:
-      locale:
-        notice: "Your current language has been applied successfully. 'Portuguese (Brazil)'"
-      admin:
-        impersonation:
-          create:
-            notice: "You are now %{name}"
-          destroy:
-            notice: "You are yourself again"
-      common:
-        sudo_mode:
-          authenticate:
-            notice: "Now we know it's really you. We won't be asking your password again for 60 minutes"
-            alert: "Incorrect Password"
-          expire:
-            notice: "We will now ask your password for sensitive access"
-        active_sessions:
-          destroy:
-            notice: "Device has been unlinked from your account"
-            alert: "There was an error while unlinking this device"
-        sign_out:
-          sign_out:
-            notice: "You have signed out!"
-        user:
-          edit:
-            notice: "You have updated your profile successfully"
-            error:
-              one: "1 error was found while updating your profile"
-              other: "%{count} errors were found while updating your profile"
-      classic:
-        credential:
-          edit:
-            notice: "Your %{field} was successfully updated"
-            alert: "1 error was found while updating your %{field}"
-        registration:
-          sign_up:
-            notice: "You have signed up successfully"
-            error:
-              one: "1 error was found while trying to sign up"
-              other: "%{count} errors were found while trying to sign up"
-          sign_in:
-            notice: "You have signed in successfully"
-            error:
-              one: "1 error was found while trying to sign in"
-              other: "%{count} errors were found while trying to sign in"
-          forgot_password:
-            notice: "We have just sent you an email with instructions to reset your password"
-            error:
-              one: "1 error was found while locating your credentials"
-              other: "%{count} errors were found while locating your credentials"
-          reset_password:
-            notice: "You have reset your password successfully"
-            error:
-              one: "1 error was found while reseting your password"
-              other: "%{count} errors were found while reseting your password"
-          send_confirmation:
-            notice: "We have sent a confirmation email to %{email}"
-            info1: "%{email} has not been confirmed yet."
-            info2: "Send email confirmation now."
-          confirm_email:
-            notice: "%{email} has been confirmed successfully."
-            alert: "This link has expired, please ask for a new link"
-            info: "We have sent a confirmation email to foo@bar.com. Next, simply open this email and click the confirm button to finish."
+
+    entities:
+      sign_out:
+        success: "You have signed out!"
+      sign_up:
+        success: "You have signed up successfully"
+        error:
+          one: "1 error was found while trying to sign up"
+          other: "%{count} errors were found while trying to sign up"
+      sign_in:
+        success: "You have signed in successfully"
+        error:
+          one: "1 error was found while trying to sign in"
+          other: "%{count} errors were found while trying to sign in"
+      forgot_password:
+        success: "We have just sent you an email with instructions to reset your password"
+        error:
+          one: "1 error was found while locating your credentials"
+          other: "%{count} errors were found while locating your credentials"
+      reset_password:
+        success: "You have reset your password successfully"
+        alert: "This link has expired, please ask for a new link"
+        error:
+          one: "1 error was found while reseting your password"
+          other: "%{count} errors were found while reseting your password"
+      send_confirmation_email:
+        success: "We have sent a confirmation email to %{email}"
+        info_1: "%{email} has not been confirmed yet."
+        info_2: "Send email confirmation now."
+      confirm_email:
+        success: "%{email} has been confirmed successfully."
+        alert: "This link has expired, please ask for a new link"
+        info: "We have sent a confirmation email to %{email}. Next, simply open this email and click the confirm button to finish."
+      destroy_active_session:
+        success: "Device has been unlinked from your account"
+        alert: "There was an error while unlinking this device"
+      sudo_mode_authentication:
+        success: "Now we know it's really you. We won't be asking your password again for 60 minutes"
+        alert: "Incorrect Password"
+      sudo_mode_expiration:
+        success: "We will now ask your password for sensitive access"
+      update_my_user:
+        success: "You have updated your profile successfully"
+        error:
+          one: "1 error was found while updating your profile"
+          other: "%{count} errors were found while updating your profile"
+      deactivate:
+        success: "You have deactivated your account successfully"
+      impersonate:
+        success: "You are now %{name}"
+      impersonate_back:
+        success: "You are yourself again"
+      update_classic_credential:
+        success: "Your %{field} was successfully updated"
+        alert: "1 error was found while updating your %{field}"
+      update_locale:
+        success: "Your current language has been applied successfully. '%{locale_name}'"

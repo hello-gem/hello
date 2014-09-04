@@ -19,10 +19,11 @@ module Hello
 
     # DELETE /hello/active_sessions/1
     def destroy
+      entity = DestroyActiveSessionEntity.new
       if @active_session.destroy
-        flash[:notice] = t("hello.messages.common.active_sessions.destroy.notice")
+        flash[:notice] = entity.success_message
       else
-        flash[:alert] = t("hello.messages.common.active_sessions.destroy.alert") # TODO: write test for this message
+        flash[:alert]  = entity.alert_message
       end
       redirect_to active_sessions_url
     end

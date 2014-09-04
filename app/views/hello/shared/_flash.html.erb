@@ -5,17 +5,15 @@
 <%# send email confirmation %>
 <% if hello_credential && hello_credential.show_alert_for_email_confirmation_suggestion? %>
   <div class="alert alert-info">
-    <% scope = "hello.messages.classic.registration.send_confirmation" %>
-    <%= t("info1", scope: scope, email: hello_credential.email) %>
-    <%= link_to t("info2", scope: scope), hello.classic_confirm_email_send_path %>
+    <%= hello_send_confirmation_email_entity.info_1_message %>
+    <%= link_to hello_send_confirmation_email_entity.info_2_message, hello.classic_confirm_email_send_path %>
   </div>
 <% end %>
 
 <%# click email confirmation on your email %>
 <% if hello_credential && hello_credential.show_alert_for_email_confirmation_pending? %>
   <div class="alert alert-info">
-    <% scope = "hello.messages.classic.registration.confirm_email" %>
-    <%= t("info", scope: scope, email: hello_credential.email) %>
+    <%= hello_confirm_email_entity.info_message %>
   </div>
 <% end %>
 

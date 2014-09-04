@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Deactivate" do
 
-  it "Notice" do
+  it "Success" do
     given_I_am_logged_in
 
     visit hello.deactivation_path
