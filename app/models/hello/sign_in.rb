@@ -4,11 +4,11 @@ module Hello
     include ActiveModel::Model
 
     attr_accessor :login, :password
-    attr_reader :credential, :controller
+    attr_reader :credential
 
-    def initialize(controller=nil)
-      if controller
-        write_attributes_to_self(controller)
+    def initialize(attrs=nil)
+      if attrs
+        write_attributes_to_self(attrs)
         initialize_credential
       end
     end
@@ -34,14 +34,12 @@ module Hello
 
         # initialize helpers
 
-        def write_attributes_to_self(controller)
-          attrs = controller.params.require(:sign_in).permit(:login, :password)
-          attrs.each { |k, v| instance_variable_set(:"@#{k}", v) }
-          instance_variable_set(:@controller, controller)
-        end
-
         def initialize_credential
           @credential = Credential.classic.where(key => login).first_or_initialize
+        end
+
+        def write_attributes_to_self(attrs)
+          attrs.permit(:login, :password).each { |k, v| instance_variable_set(:"@#{k}", v) }
         end
 
         # authenticate helpers

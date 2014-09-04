@@ -1,13 +1,15 @@
 class Hello::InstallGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
 
-  def copy_the_configurators
+  def copy_the_controls
     the_root = File.expand_path("../../../../../", __FILE__)
-    directory "#{the_root}/app/lib/hello", "app/lib/hello"
+    destination = "app/authentication"
+    directory "#{the_root}/#{destination}", destination
   end
 
   def locale_fix
     gsub_file 'config/locales/en.yml', 'hello: "Hello world"', 'hello_world: "Hello world"'
+  rescue Errno::ENOENT
   end
 
   def append_to_the_routes

@@ -21,13 +21,13 @@ module Hello
 
     # PATCH /hello/user
     def update
-      c = Hello.config(:user)
+      control = UserControl.new(self, @user)
       
       if @user.update(user_params)
         flash[:notice] = I18n.t("hello.messages.common.user.edit.notice")
-        instance_eval(&c.success_block)
+        control.success
       else
-        instance_eval(&c.failure_block)
+        control.failure
       end
     end
 

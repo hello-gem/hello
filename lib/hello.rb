@@ -1,9 +1,6 @@
 require "hello/engine"
 
-require "hello/config"
-
 require "hello/errors"
-
 require "hello/locale_names"
 
 require "hello/rails/controller"
@@ -19,10 +16,6 @@ require 'rails-i18n'
 require 'bcrypt'
 
 module Hello
-
-  def self.config(name, &block)
-    Config.instance.config_for(name, &block)
-  end
 
   def self.available_locales
     # yes, it would be better if this was not hardcoded

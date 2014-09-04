@@ -9,7 +9,7 @@ module Hello
 
     # GET /hello
     def index
-      @sign_up = SignUp.new
+      @sign_up = SignUp.new(self)
       @sign_in = SignIn.new
     end
 

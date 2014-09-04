@@ -11,8 +11,8 @@ module Hello
     def sign_out
       destroy_and_clear_hello_active_session
       flash.now[:notice] = t("hello.messages.common.sign_out.sign_out.notice")
-      c = Hello.config(:sign_out)
-      instance_eval(&c.success_block)
+      control = SignOutControl.new(self, nil)
+      control.success
     end
     
   end

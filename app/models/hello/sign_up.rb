@@ -2,11 +2,11 @@ module Hello
   class SignUp
     include ActiveModel::Model
 
-    def initialize(controller=nil)
+    def initialize(controller, attrs=nil)
+      @controller = controller
       self.class.send :attr_accessor, *permitted_fields
-      if controller
-        @controller = controller
-        write_attributes_to_self
+      if attrs
+        attrs.slice(*permitted_fields).each { |k, v| instance_variable_set(:"@#{k}", v) }
       end
     end
 
@@ -35,14 +35,11 @@ module Hello
 
         # initialize helpers
 
-        def write_attributes_to_self
-          attrs = @controller.params.require(:sign_up)
-          attrs = attrs.slice(*permitted_fields)
-          attrs.each { |k, v| instance_variable_set(:"@#{k}", v) }
-        end
-
             def permitted_fields
-              Hello.config(:sign_up).fields
+              # Hello.config(:sign_up).fields
+              # BaseSignUpStrategy.sign_up_fields
+              # DummySignUpStrategy.new(@controller, self).sign_up_fields
+              SignUpControl.new(@controller, self).sign_up_fields
             end
 
         # save helpers

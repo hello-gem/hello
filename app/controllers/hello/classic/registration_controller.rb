@@ -15,22 +15,22 @@ module Classic
 
     # GET /hello/classic/sign_up
     def sign_up
-      @sign_up = SignUp.new
+      @sign_up = SignUp.new(self)
     end
 
         # POST /hello/classic/sign_up
         def create
-          @sign_up = SignUp.new(self)
-          @credential = @sign_up.credential
-          @password = params[:sign_up][:password]
+          @sign_up = SignUp.new(self, params.require(:sign_up))
 
-          c = Hello.config(:sign_up)
+          control = SignUpControl.new(self, @sign_up)
 
           if @sign_up.save
+            @credential = @sign_up.credential
+            @password   = @sign_up.password
             flash[:notice] = t("hello.messages.classic.registration.sign_up.notice")
-            instance_eval(&c.success_block)
+            control.success
           else
-            instance_eval(&c.failure_block)
+            control.failure
           end
         end
 
@@ -51,16 +51,16 @@ module Classic
 
         # POST /hello/classic/sign_in
         def authenticate
-          @sign_in = SignIn.new(self)
+          @sign_in = SignIn.new(params.require(:sign_in))
           @credential = @sign_in.credential
 
-          c = Hello.config(:sign_in)
+          control = SignInControl.new(self, @sign_in)
 
           if @sign_in.authenticate
             flash[:notice] = t("hello.messages.classic.registration.sign_in.notice")
-            instance_eval(&c.success_block)
+            control.success
           else
-            instance_eval(&c.failure_block)
+            control.failure
           end
         end
 
@@ -83,13 +83,13 @@ module Classic
           @forgot_password = ForgotPassword.new(forgot_login_param)
           @credential = @forgot_password.credential
 
-          c = Hello.config(:forgot_password)
+          control = ForgotPasswordControl.new(self, @forgot_password)
 
           if @forgot_password.reset
             flash[:notice] = t("hello.messages.classic.registration.forgot_password.notice")
-            instance_eval(&c.success_block)
+            control.success
           else
-            instance_eval(&c.failure_block)
+            control.failure
           end
         end
 
@@ -120,14 +120,14 @@ module Classic
             # POST /hello/classic/reset
             def save
               fetch_registration_reset_ivar
-              c = Hello.config(:reset_password)
+              control = ResetPasswordControl.new(self, @reset_password)
 
               if @reset_password.update_password(reset_password_param)
                 @credential.invalidate_password_token
                 flash[:notice] = t("hello.messages.classic.registration.reset_password.notice")
-                instance_eval(&c.success_block)
+                control.success
               else
-                instance_eval(&c.failure_block)
+                control.failure
               end
             end
 
