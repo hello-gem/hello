@@ -8,11 +8,6 @@ module Hello
 module Classic
   class RegistrationController < ApplicationController
 
-    before_actions do
-      actions(:reset_token)  { destroy_and_clear_hello_active_session }
-    end
-
-
     # GET /hello/classic/sign_up
     def sign_up
       @sign_up = SignUp.new(self)
@@ -103,7 +98,9 @@ module Classic
 
     # GET /hello/classic/reset/token/:token
     def reset_token
+      destroy_and_clear_hello_active_session
       @reset_password = ResetPassword.new(params[:token])
+
       if @reset_password.credential
         session[:hello_reset_token] = params[:token]
         redirect_to classic_reset_password_path
