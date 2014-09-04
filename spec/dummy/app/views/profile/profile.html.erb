@@ -4,6 +4,6 @@
 <p>locale: <%= @user.locale %></p>
 <p>time_zone: <%= @user.time_zone %></p>
 
-<% if current_user && current_user.admin? %>
-  <%= button_to "Impersonate #{@user.name}", hello.admin_impersonate_path(credential_id: @credential.id) %>
+<% if current_user && current_user.admin? && !impersonated? %>
+  <p><%= button_to "Impersonate #{@user.name}", hello.admin_impersonate_path(credential_id: @credential.id) %></p>
 <% end %>
