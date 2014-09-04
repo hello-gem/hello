@@ -7,7 +7,7 @@ module Hello
 
     before do
       s = given_I_have_a_classic_active_session
-      @request.headers['access_token'] = s.access_token
+      @request.headers['HTTP_ACCESS_TOKEN'] = s.access_token
     end
 
     # GET /hello/user
