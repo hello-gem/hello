@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
   before_actions do
-    actions(:index) { @users = User.all }
-    actions(:show)  { @user = User.find(params.require(:id)) }
+    only(:index) { @users = User.all }
+    only(:show)  { @user  = User.find(params.require(:id)) }
   end
 
   # GET /users

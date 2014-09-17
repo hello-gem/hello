@@ -9,12 +9,12 @@ module Classic
   class CredentialsController < ApplicationController
     
     before_actions do
-      actions { restrict_access_to_sudo_mode }
-      # actions(:index)   { @credentials = hello_user.credentials }
-      # actions(:new)     { @credential   = hello_user.credentials.build }
-      # actions(:create)  { @credential   = hello_user.credentials.build(credential_params) }
-      # actions(:show, :edit, :update, :destroy)  {
-      actions(:update, :email, :username, :password)  {
+      all { restrict_access_to_sudo_mode }
+      # only(:index)   { @credentials = hello_user.credentials }
+      # only(:new)     { @credential   = hello_user.credentials.build }
+      # only(:create)  { @credential   = hello_user.credentials.build(credential_params) }
+      # only(:show, :edit, :update, :destroy)  {
+      only(:update, :email, :username, :password)  {
         @credential = hello_user.credentials.classic.find(params[:id])
       }
     end

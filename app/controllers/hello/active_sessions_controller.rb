@@ -8,9 +8,9 @@ module Hello
   class ActiveSessionsController < ApplicationController
     
     before_actions do
-      actions           { restrict_access_to_sudo_mode }
-      actions(:index)   { @active_sessions = hello_user.active_sessions }
-      actions(:destroy) { @active_session  = hello_user.active_sessions.find(params[:id]) }
+      all            { restrict_access_to_sudo_mode }
+      only(:index)   { @active_sessions = hello_user.active_sessions }
+      only(:destroy) { @active_session  = hello_user.active_sessions.find(params[:id]) }
     end
 
     # GET /hello/active_sessions
