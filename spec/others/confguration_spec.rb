@@ -12,7 +12,7 @@ module Hello
     describe "#mailer_sender=" do
       it "cannot set invalid value" do
         config = Configuration.new
-        expect { config.mailer_sender = 7 }.to raise_error(StandardError, "does not appear to be a valid e-mail address")
+        expect { config.mailer_sender = 7 }.to raise_error(ArgumentError, "does not appear to be a valid e-mail address")
       end
 
       it "can set valid value" do
