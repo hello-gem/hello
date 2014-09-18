@@ -1,6 +1,6 @@
 module Hello
   class RegistrationMailer < ActionMailer::Base
-    default from: "hello@example.com"
+    default from: Hello.configuration.mailer_sender
 
     def welcome(credential, password)
       @credential = credential

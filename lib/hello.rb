@@ -1,5 +1,7 @@
 require "hello/engine"
 
+require "hello/configuration"
+
 require "hello/errors"
 require "hello/locale_names"
 

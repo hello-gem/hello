@@ -1,6 +1,10 @@
 class Hello::InstallGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
 
+  def copy_the_initializer
+    copy_file "initializer.rb", "config/initializers/hello.rb"
+  end
+
   def copy_the_controls
     the_root = File.expand_path("../../../../../", __FILE__)
     destination = "app/authentication"
