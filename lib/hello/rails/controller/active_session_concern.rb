@@ -24,9 +24,11 @@ module Hello
         hello_user
       end
 
-      def create_hello_active_session(expires_at=nil)
+      def create_hello_active_session(expires_at=nil, sudo_expires_at=nil)
         expires_at ||= hello_default_session_expiration
-        s = ActiveSession.create!(credential: @credential, user_agent_string: user_agent, expires_at: expires_at)
+        attrs = {credential: @credential, user_agent_string: user_agent, expires_at: expires_at}
+        attrs[:sudo_expires_at] = sudo_expires_at if sudo_expires_at
+        s = ActiveSession.create!(attrs)
         set_hello_active_session_token(s.access_token)
         session['locale'] = nil
         set_locale
@@ -53,7 +55,7 @@ module Hello
       def hello_impersonate(credential)
         store_impersonator
         @credential = credential
-        create_hello_active_session
+        create_hello_active_session(60.minutes.from_now, 60.minutes.from_now)
       end
 
       def hello_back_to_myself
