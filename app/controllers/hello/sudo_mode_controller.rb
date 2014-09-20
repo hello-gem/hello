@@ -13,10 +13,9 @@ module Hello
 
     # PATCH /hello/sudo_mode
     def authenticate
-      entity = SudoModeAuthenticationEntity.new
+      entity = SudoModeAuthenticationEntity.new(hello_active_session)
 
-      if hello_credential.password_is?(credential_password_param)
-        hello_active_session.update_attribute :sudo_expires_at, 60.minutes.from_now
+      if entity.authenticate!(params.require(:credential))
         path_to_go = session[:hello_url] || root_path
         flash[:notice] = entity.success_message
         redirect_to path_to_go
@@ -28,17 +27,11 @@ module Hello
 
     # GET /hello/sudo_mode/expire
     def expire
-      hello_active_session.update_attribute :sudo_expires_at, 1.second.ago
-      entity = SudoModeExpirationEntity.new
+      entity = SudoModeExpirationEntity.new(hello_active_session)
+      entity.expire!
       flash[:notice] = entity.success_message
       redirect_to root_path
     end
-
-    private
-
-        def credential_password_param
-          params.require(:credential)[:password]
-        end
 
   end
 end
