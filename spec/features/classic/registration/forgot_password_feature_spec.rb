@@ -4,7 +4,7 @@ describe "Classic" do
 describe "Registration" do
 describe "Forgot Password" do
 
-  it "Notice" do
+  it "Success - Email Sent" do
     given_I_have_a_classic_credential
 
     when_I_ask_to_reset_my_password
@@ -15,7 +15,7 @@ describe "Forgot Password" do
     then_I_should_be_logged_out
   end
 
-  it "Error" do
+  it "Error - Not Found" do
     when_I_ask_to_reset_my_password('wrong')
 
     expect_error_message "1 error was found while locating your credentials"

@@ -4,7 +4,7 @@ describe "Classic" do
 describe "Registration" do
 describe "Sign Up" do
 
-  it "Notice" do
+  it "Success" do
     when_sign_up_with_standard_data(expect_welcome_mailer: true)
 
     expect_flash_notice "You have signed up successfully"
@@ -12,7 +12,7 @@ describe "Sign Up" do
     then_I_should_be_logged_in
   end
 
-  it "Error" do
+  it "Error - Blank fields show validation errors" do
     given_I_have_a_classic_active_session
     
     when_sign_up_with_standard_data(expect_welcome_mailer: false)

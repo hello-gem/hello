@@ -8,7 +8,7 @@ describe "Sign In" do
     ActiveSession.last
   end
 
-  describe "Notice" do
+  describe "Success" do
     before do
       given_I_have_a_classic_credential
     end
@@ -45,7 +45,7 @@ describe "Sign In" do
 
 
 
-  it "Error" do
+  it "Error - Blank fields show validation errors" do
     when_sign_in_with_standard_data
 
     expect_error_message "1 error was found while trying to sign in"

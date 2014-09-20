@@ -4,7 +4,7 @@ describe "Classic" do
 describe "Registration" do
 describe "Reset Password" do
 
-  it "Notice" do
+  it "Success" do
     reset_token = given_I_have_a_classic_credential_and_forgot_my_password
     visit hello.classic_reset_token_path(reset_token)
   
@@ -20,7 +20,7 @@ describe "Reset Password" do
     when_I_sign_out
 
     #
-    # TOKEN MUST GO BAD
+    # TOKEN MUST BE INVALIDATED
     #
     visit hello.classic_reset_token_path(reset_token)
 
@@ -59,7 +59,7 @@ describe "Reset Password" do
     end
   end
 
-  it "Alert - BAD TOKEN" do
+  it "Alert - Bad Token" do
     visit hello.classic_reset_token_path('wrong')
 
     expect(current_path).to eq hello.classic_forgot_password_path
