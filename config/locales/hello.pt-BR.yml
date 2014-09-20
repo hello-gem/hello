@@ -2,7 +2,6 @@
 
 pt-BR:
   hello:
-
     others:
       locale: "Português (Brasil)"
 
@@ -66,6 +65,7 @@ pt-BR:
           other: "%{count} errors were found while updating your profile"
       deactivate:
         success: "You have deactivated your account successfully"
+        alert: "Terminating your account would cause other users to experience errors while using our website. Please contact any of our staff members and ask to have your account removed manually."
       impersonate:
         success: "You are now %{name}"
       impersonate_back:

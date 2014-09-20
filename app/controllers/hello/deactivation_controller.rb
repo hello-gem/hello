@@ -3,24 +3,37 @@ require_dependency "hello/application_controller"
 module Hello
   class DeactivationController < ApplicationController
     
+    before_actions do
+      only(:proposal, :deactivate) { @deactivation = DeactivateEntity.new }
+    end
+
     # GET /hello/deactivation
     def proposal
     end
 
-    # POST /hello/deactivation
-    def deactivate
-      # TODO: expose it's implementation to end-developer and find a way to test an error case
-      array = [hello_user] + hello_user.credentials + hello_user.active_sessions
-      User.transaction { array.map(&:destroy!) }
+        # POST /hello/deactivation
+        def deactivate
+          control = DeactivationControl.new(self, @deactivation)
 
-      entity = DeactivateEntity.new
-      flash[:notice] = entity.success_message
-      redirect_to hello.after_deactivation_path
-    end
+          has_deactivated = false
+          User.transaction { has_deactivated = control.deactivate }
 
-    # GET /hello/deactivation/after_deactivate
-    def after_deactivate
-    end
+          if has_deactivated
+            flash[:notice] = @deactivation.success_message
+            control.success
+          else
+            flash.now[:alert] = @deactivation.alert_message
+            render :proposal
+            # respond_to do |format|
+            #   format.html {  }
+            #   format.json { render json: {message: @deactivation.alert_message }, status: :unprocessable_entity }
+            # end
+          end
+        end
+
+            # GET /hello/deactivation/after_deactivate
+            def after_deactivate
+            end
 
   end
 end

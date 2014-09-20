@@ -21,8 +21,8 @@ module Hello
     end
 
     included do
-      has_many :credentials
-      has_many :active_sessions
+      has_many :credentials,     dependent: :destroy
+      has_many :active_sessions, dependent: :destroy
 
       validates_presence_of :name, :locale
     end
