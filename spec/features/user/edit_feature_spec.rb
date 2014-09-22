@@ -3,13 +3,13 @@ require 'spec_helper'
 describe "user" do
 describe "edit" do
 
-  it "success and error" do
+  before do
     given_I_am_logged_in
     click_link "Settings"
-        expect(current_path).to eq hello.user_path
+    expect(current_path).to eq hello.user_path
+  end
 
-    puts "test time_zone and language"
-
+  it "success and error" do
     #
     # SUCCESS
     #
@@ -34,6 +34,15 @@ describe "edit" do
         expect_error_message "1 error was found while updating your profile"
   end
 
+  it "Success - Time Zone" do
+    expect(find("span.current_time").text).to include('UTC')
+
+    select('Brasilia', :from => 'Time zone')
+    click_button 'Update'
+    expect_flash_notice "You have updated your profile successfully"
+
+    expect(find("span.current_time").text).not_to include('UTC')
+  end
 
 
 end

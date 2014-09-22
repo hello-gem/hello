@@ -36,6 +36,7 @@ module Hello
           r = {}
           user_fields.each { |k| r[k] = instance_variable_get(:"@#{k}") }
           r['locale'] ||= @controller.session['locale']
+          r['time_zone'] ||= Time.zone.name
           r['role'] = 'user'
           r
         end

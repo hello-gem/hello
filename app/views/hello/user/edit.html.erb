@@ -42,14 +42,6 @@
       <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
     </div>
   </div>
-  <!--
-  <div class="form-group">
-    <%= f.label :time_zone, class: "col-sm-4 control-label" %>
-    <div class="col-sm-4">
-      <%= f.time_zone_select :time_zone, nil, {}, class: "form-control" %>
-    </div>
-  </div>
-  -->
 
   <div class="form-group">
     <%= f.label :locale, class: "col-sm-4 control-label" %>
@@ -58,8 +50,24 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <%= f.label :time_zone, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.time_zone_select :time_zone, nil, {}, class: "form-control" %>
+    </div>
+  </div>
 
-  
+  <div class="form-group">
+    <%= f.label :current_time, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <span class="form-control current_time" style="border: 0px; box-shadow: none">
+        <%= Time.now.in_time_zone %>
+      </span>
+    </div>
+  </div>
+
+
+
 
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-4">

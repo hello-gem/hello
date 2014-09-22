@@ -10,6 +10,7 @@ FactoryGirl.define do
     name { Faker::Name.name }
     city { Faker::Address.city  } # for dummy's customized sign up
     locale 'en'
+    time_zone Time.zone.name
     role 'user'
 
     factory :admin_user do

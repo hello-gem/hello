@@ -24,7 +24,9 @@ module Hello
       has_many :credentials,     dependent: :destroy
       has_many :active_sessions, dependent: :destroy
 
-      validates_presence_of :name, :locale
+      validates_presence_of :name, :locale, :time_zone
+      validates_inclusion_of :locale,    in: Hello.available_locales
+      validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map.values.map(&:name)
     end
 
 
