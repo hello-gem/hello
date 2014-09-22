@@ -21,6 +21,7 @@ FactoryGirl.define do
 
   factory :credential do
     user
+    username { Faker::Internet.user_name(user.name, %w(-_)) }
 
     factory :classic_credential do
       strategy Credential._classic

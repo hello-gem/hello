@@ -10,7 +10,7 @@ module Classic
       describe "works" do
 
         it "Created" do
-          params = {format: :json, sign_up: {email: "foo@bar.com", password: "foobar", name: "Foo Bar", city: "Brasilia"}}
+          params = {format: :json, sign_up: {email: "foo@bar.com", password: "foobar", name: "Foo Bar", city: "Brasilia", username: "foobar"}}
           post :create, params
           
           json_body = JSON(response.body)
@@ -39,7 +39,11 @@ module Classic
           json_body = JSON(response.body)
           expect(response.status).to eq(422)
           expect(response.status_message).to eq("Unprocessable Entity")
-          expect(json_body).to eq({"email"=>["can't be blank", "does not appear to be a valid e-mail address"], "password"=>["can't be blank", "minimum of 4 characters"]})
+          expect(json_body).to eq({
+            "email"=>["can't be blank", "does not appear to be a valid e-mail address"],
+            "username" => ["is invalid", "minimum of 4 characters", "can't be blank"],
+            "password"=>["can't be blank", "minimum of 4 characters"]
+            })
         end
 
       end

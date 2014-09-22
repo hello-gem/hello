@@ -12,9 +12,8 @@ module Hello
       validates_inclusion_of :strategy, in: strategies
 
 
-      before_validation :make_up_new_username_if_none_before_validation_on_create, on: :create, unless: :username?
+      before_validation :ensure_username_if_blank_allowed_on_create, on: :create
 
-      validates_presence_of :username
 
       # username
       validates_format_of :username, with: /\A[a-z0-9_-]+\z/i
@@ -80,7 +79,9 @@ module Hello
 
 
 
-    def make_up_new_username_if_none_before_validation_on_create
+    def ensure_username_if_blank_allowed_on_create
+      return true if username.present?              # skip if username has been set
+      return true if username_presence_is_required? # skip if username presence is required
       string = make_up_new_username
       string = make_up_new_username until not username_used_by_another?(string)
       self.username = string
@@ -93,6 +94,15 @@ module Hello
         def username_used_by_another?(a_username)
           self.class.where(username: a_username).where.not(id: id).exists?
         end
+
+        def username_presence_is_required?
+          _validators[:username].map(&:class).include? ActiveRecord::Validations::PresenceValidator
+        end
+
+
+
+
+
 
     # def username_suggestions
     #   email1 = email.to_s.split('@').first

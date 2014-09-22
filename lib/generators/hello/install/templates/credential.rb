@@ -1,18 +1,14 @@
-# programmers can override this file in their own projects :)
 class Credential < ActiveRecord::Base
-  include Hello::CredentialModel
+  include Hello::CredentialModel # keep this line for gem hello
 
-    # we recommend programmers to override this method in their apps
-    def encrypt_password(plain_text_password)
-      BCrypt::Password.create(plain_text_password)
-    end
+  # don't want usernames?
+  # just comment out the line below
+  # we strongly recommend the field exists in case your CEO ever ever ever changes their mind
+  validates_presence_of :username
 
-    # we recommend programmers to override this method in their apps
-    def password_is?(plain_text_password)
-      bc_password = BCrypt::Password.new(password_digest)
-      bc_password == plain_text_password 
-    rescue BCrypt::Errors::InvalidHash
-      false
-    end
+  # specify what happens to associated records when the user decided to terminate their account
+  # has_many :things_to_destroy,  dependent: :destroy
+  # has_many :things_to_nulify,   dependent: :nullify
+  # has_many :things_to_restrict, dependent: :restrict_with_error
 
 end

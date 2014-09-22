@@ -3,31 +3,35 @@ require 'spec_helper'
 module Hello
   describe Credential do
 
+    it "validations" do
+      model = Credential.new
+      model.valid?
+      expect(model.errors.messages).to eq({
+        :user=>["can't be blank"],
+        :strategy=>["can't be blank", "is not included in the list"],
+        :username=>["is invalid", "minimum of 4 characters", "can't be blank"]
+      })
+    end
 
     describe "username" do
       describe "validations" do
-        it "presence" do
-          credential = Credential.new
-          credential.valid?
-          expect(credential.username).not_to eq(nil)
-        end
-
+        
         it "uniqueness" do
-          FactoryGirl.create(:classic_credential, username: 'james')
-          credential = FactoryGirl.build(:classic_credential, username: 'james')
+          create(:classic_credential, username: 'james')
+          credential = build(:classic_credential, username: 'james')
           credential.valid?
           expect(credential.errors[:username]).to eq ["already exists"]
         end
 
         it "#username_used_by_another?" do
-          i1 = FactoryGirl.create(:classic_credential)
-          i2 = FactoryGirl.build(:classic_credential, username: '')
+          i1 = create(:classic_credential)
+          i2 = build(:classic_credential, username: '')
           is_used_by_another = i2.username_used_by_another?(i1.username)
           expect(is_used_by_another).to eq(true)
         end
 
         it "format" do
-          credential = FactoryGirl.build(:classic_credential)
+          credential = build(:classic_credential)
 
           invalid_usernames = ["*****", "James!", "James@", "@James", "James?", "james#", "james$", "james%", "james&", "james*", "james("]
           invalid_usernames.each do |username|
@@ -49,13 +53,31 @@ module Hello
 
       end
 
-      it "#make_up_new_username" do
-        credential = FactoryGirl.build(:classic_credential, username: '')
-        a_username = credential.make_up_new_username
-        expect(a_username.length).to eq(32)
-        expect(credential.username).to eq('')
-      end
+      describe "#make_up_new_username" do
 
+        let(:model) { build(:classic_credential, username: '') }
+
+        it "works when called" do
+          a_username = model.make_up_new_username
+          expect(a_username.length).to eq(32)
+          expect(model.username).to eq('')
+        end
+
+        it "gets ignored due to PresenceValidator" do
+          expect(model).not_to receive(:make_up_new_username)
+          model.valid?
+          expect(model.username).to eq('')
+        end
+
+        it "gets invoked when PresenceValidator is removed" do
+          model._validators[:username].delete_if { |v| v.is_a? ActiveRecord::Validations::PresenceValidator }
+
+          expect(model).to receive(:make_up_new_username).and_return("RAILS-ROCKS")
+          model.valid?
+          expect(model.username).to eq("RAILS-ROCKS")
+        end
+      end
+      
     end
 
 
@@ -96,30 +118,32 @@ module Hello
 
           it "presence" do
             @credential.valid?
-            @credential.errors[:email].should include "can't be blank"
+            expect(@credential.errors[:email]).to include "can't be blank"
           end
 
           it "format" do
             @credential.email = 'aaa'
             @credential.valid?
-            @credential.errors[:email].should == ["does not appear to be a valid e-mail address"]
+            expect(@credential.errors[:email]).to eq ["does not appear to be a valid e-mail address"]
 
             @credential.email = 'email@hello.com'
             @credential.valid?
-            @credential.errors[:email].should be_empty
+            expect(@credential.errors[:email]).to be_empty
           end
 
           it "uniqueness" do
             email = 'email@hello.com'
-            a_user = FactoryGirl.create(:user, name: 'James Pinto', city: 'Brasilia')
 
-            credential = FactoryGirl.build(:classic_credential, email: email, password: '1234', user: a_user)
-            credential.save.should be_true
+            model1 = build(:classic_credential, email: email)
+            model1.save
 
-            credential = FactoryGirl.build(:classic_credential, email: email, password: '1111')
-            credential.valid?
-            # credential.errors[:email].should == ["has already been taken"]
-            credential.errors[:email].should == ["already exists"]
+            expect(model1.errors.messages).to eq({})
+            expect(model1.persisted?).to eq(true)
+
+            model2 = build(:classic_credential, email: email)
+            model2.valid?
+            # expect(model2.errors[:email]).to eq ["has already been taken"]
+            expect(model2.errors[:email]).to eq ["already exists"]
           end
 
         end
