@@ -16,11 +16,10 @@ describe "Deactivate" do
     expect_flash_notice "You have deactivated your account successfully"
   end
 
-  it "Error" do
+  it "Alert" do
     User.last.addresses.create! text: "foo"
     Credential.last.some_credential_data.create! text: "foo"
     
-
     visit hello.deactivation_path
     click_button "Deactivate my Account"
 
