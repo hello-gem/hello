@@ -1,23 +1,20 @@
 module Hello
   class SignUpEntity < AbstractEntity
 
-    def initialize(controller, attrs=nil)
+    attr_accessor :credential
+
+    def initialize(controller)
       @controller = controller
-      self.class.send :attr_accessor, *permitted_fields
-      if attrs
-        attrs.slice(*permitted_fields).each { |k, v| instance_variable_set(:"@#{k}", v) }
-      end
+      generate_accessors
+      write_defaults
     end
 
-    def credential
-      @credential ||= Credential.classic.new(email: email, username: username, password: password)
-    end
-
-    def save
-      credential.build_user(user_attributes)
-      merge_errors_to_self and return false if are_models_invalid?
+    def save(attrs)
+      write_attrs(attrs)
+      build_credential
       credential.save
     end
+
 
 
 
@@ -25,39 +22,69 @@ module Hello
 
         # initialize helpers
 
-            def permitted_fields
-              SignUpControl.new(@controller, self).sign_up_fields
+        def generate_accessors
+          self.class.send :attr_accessor, *all_fields
+        end
+
+            def all_fields
+              credential_fields + user_fields
             end
 
+                def credential_fields
+                  %w(email username password)
+                end
+
+                def user_fields
+                  control.user_fields.map(&:to_s)
+                end
+
+        def write_defaults
+          # defaults.each { |k, v| instance_variable_set(:"@#{k}", v) }
+          defaults.each { |k, v| send("#{k}=", v) }
+        end
+
+            def defaults
+              control.defaults.stringify_keys
+            end
+
+                def control
+                  @control ||= SignUpControl.new(@controller, self)
+                end
+
         # save helpers
+
+        def write_attrs(attrs)
+          # attrs.slice(*all_fields).each { |k, v| instance_variable_set(:"@#{k}", v) if v }
+          attrs.slice(*all_fields).each { |k, v| send("#{k}=", v) if v }
+        end
+
+            def build_credential
+              self.credential = Credential.classic.new(email: email, username: username, password: password)
+              credential.build_user(user_attributes)
+              merge_errors_to_self and return false if are_models_invalid?
+            end
+
+                def are_models_invalid?
+                  # credential.invalid? || credential.user.invalid?
+                  a=credential.invalid?
+                  b=credential.user.invalid?
+                  a || b
+                end
+
+                def merge_errors_to_self
+                  hash = credential.errors.to_hash.merge(credential.user.errors)
+                  hash.each { |k,v| v.each { |v1| errors.add(k, v1) } }
+                end
+
 
         # returns {name: "...", city: "..."}
         def user_attributes
           r = {}
-          user_fields.each { |k| r[k] = instance_variable_get(:"@#{k}") }
-          r['locale'] ||= @controller.session['locale']
-          r['time_zone'] ||= Time.zone.name
+          user_fields.each { |k| r[k.to_s] = instance_variable_get(:"@#{k}") }
           r['role'] = 'user'
           r
         end
 
-            # [:name, :city]
-            def user_fields
-              non_user_fields = [:username, :email, :password, :password_confirmation]
-              permitted_fields - non_user_fields
-            end
-
-        def are_models_invalid?
-          credential.invalid? || credential.user.invalid?
-          # a=credential.invalid?
-          # b=credential.user.invalid?
-          # a || b
-        end
-
-        def merge_errors_to_self
-          hash = credential.errors.to_hash.merge(credential.user.errors)
-          hash.each { |k,v| v.each { |v1| errors.add(k, v1) } }
-        end
 
 
 

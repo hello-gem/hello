@@ -39,6 +39,20 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :locale, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.select :locale, hello_locale_select_options, {}, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :time_zone, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.time_zone_select :time_zone, nil, {}, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <div class="col-sm-offset-4 col-sm-4">
       <%= f.submit "Sign Up", class: "btn btn-default" %>
     </div>

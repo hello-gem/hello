@@ -30,7 +30,9 @@ def given_I_have_a_classic_credential_and_forgot_my_password
 end
 
 def given_I_am_logged_in_with_a_classic_credential
-  when_sign_up_with_standard_data(expect_welcome_mailer: true)
+  # when_sign_up_with_standard_data(expect_welcome_mailer: true)
+  given_I_have_a_classic_credential
+  when_sign_in_with_standard_data
   then_I_should_be_logged_in
 end
 

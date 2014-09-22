@@ -15,11 +15,11 @@ module Classic
 
         # POST /hello/classic/sign_up
         def create
-          @sign_up = SignUpEntity.new(self, params.require(:sign_up))
+          @sign_up = SignUpEntity.new(self)
 
           control = SignUpControl.new(self, @sign_up)
 
-          if @sign_up.save
+          if @sign_up.save(params.require(:sign_up))
             @credential = @sign_up.credential
             @password   = @sign_up.password
             flash[:notice] = @sign_up.success_message

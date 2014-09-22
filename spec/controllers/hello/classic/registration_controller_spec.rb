@@ -5,50 +5,6 @@ module Classic
   describe RegistrationController do
     routes { Hello::Engine.routes }
 
-    # POST /hello/classic/sign_up
-    describe "POST sign_up" do
-      describe "works" do
-
-        it "Created" do
-          params = {format: :json, sign_up: {email: "foo@bar.com", password: "foobar", name: "Foo Bar", city: "Brasilia", username: "foobar"}}
-          post :create, params
-          
-          json_body = JSON(response.body)
-          expect(response.status).to eq(201)
-          expect(response.status_message).to eq("Created")
-          expect(json_body.keys).to match_array %w[access_token expires_at username email email_confirmed_at user user_id]
-        end
-
-      end
-      
-      describe "fails" do
-
-        it "parameter missing" do
-          post :create, {format: :json}
-          
-          json_body = JSON(response.body)
-          expect(response.status).to eq(400)
-          expect(response.status_message).to eq("Bad Request")
-          expect(json_body['exception']).to eq({"class"=>"ActionController::ParameterMissing", "message"=>"param is missing or the value is empty: sign_up"})
-        end
-
-        it "blank data" do
-          params = {format: :json, sign_up: {email: ""}}
-          post :create, params
-          
-          json_body = JSON(response.body)
-          expect(response.status).to eq(422)
-          expect(response.status_message).to eq("Unprocessable Entity")
-          expect(json_body).to eq({
-            "email"=>["can't be blank", "does not appear to be a valid e-mail address"],
-            "username" => ["is invalid", "minimum of 4 characters", "can't be blank"],
-            "password"=>["can't be blank", "minimum of 4 characters"]
-            })
-        end
-
-      end
-    end
-
     # POST /hello/classic/sign_in
     describe "POST sign_in" do
       describe "works" do

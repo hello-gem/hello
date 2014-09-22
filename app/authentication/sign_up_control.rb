@@ -2,9 +2,21 @@ class SignUpControl < Hello::AbstractControl
     
   alias :sign_up :entity
 
-  def sign_up_fields
-    # [:email, :password]
-    [:name, :email, :username, :password]
+  def user_fields
+    # %w(name)
+    # %w(name time_zone locale)
+    %w(name time_zone locale city)
+  end
+
+  def defaults
+    # {
+    #   locale:    ('en'       if Hello.available_locales.include?('en')         ),
+    #   time_zone: ('Brasilia' if Hello.available_time_zones.include?('Brasilia')),
+    # }
+    {
+      locale:    I18n.locale.to_s,
+      time_zone: Time.zone.name
+    }
   end
   
   def success

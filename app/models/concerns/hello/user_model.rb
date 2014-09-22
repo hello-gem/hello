@@ -26,7 +26,7 @@ module Hello
 
       validates_presence_of :name, :locale, :time_zone
       validates_inclusion_of :locale,    in: Hello.available_locales
-      validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map.values.map(&:name)
+      validates_inclusion_of :time_zone, in: Hello.available_time_zones
     end
 
 

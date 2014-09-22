@@ -24,4 +24,8 @@ require "hello/configuration"
 
 module Hello
 
+  def self.available_time_zones
+    ActiveSupport::TimeZone.zones_map.values.map(&:name)
+  end
+
 end
