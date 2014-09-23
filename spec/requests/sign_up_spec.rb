@@ -27,6 +27,7 @@ RSpec.describe "Sign Up", :type => :request do
         expect(response.status).to eq(422)
         expect(response.status_message).to eq("Unprocessable Entity")
         expect(json_response).to eq({
+          "username"=>["is invalid", "minimum of 4 characters", "can't be blank"],
           "email"=>["can't be blank", "does not appear to be a valid e-mail address"],
           "password"=>["can't be blank", "minimum of 4 characters"],
           "name"=>["can't be blank"],

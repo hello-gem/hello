@@ -4,8 +4,7 @@ class SignUpControl < Hello::AbstractControl
 
   def user_fields
     # %w(name)
-    # %w(name time_zone locale)
-    %w(name time_zone locale city)
+    %w(name time_zone locale)
   end
 
   def defaults
