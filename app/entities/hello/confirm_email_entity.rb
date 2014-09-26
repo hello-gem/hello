@@ -1,6 +1,8 @@
 module Hello
   class ConfirmEmailEntity < AbstractEntity
 
+    include ActionView::Helpers::DateHelper
+
     attr_reader :credential
 
     def initialize(value=nil)
@@ -24,7 +26,7 @@ module Hello
     end
 
     def info_message
-      t("info", email: credential.email)
+      t("info", email: credential.email, time_ago_in_words: time_ago_in_words(credential.email_token_digested_at, include_seconds: false))
     end
 
 

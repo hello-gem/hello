@@ -16,7 +16,7 @@ describe "Reset Password" do
     #Hello::RegistrationMailer.should_receive(:confirm_email).and_return(double("mailer", deliver!: true))
     click_link "Send email confirmation now"
     expect_flash_notice "We have sent a confirmation email to foo@bar.com"
-    expect_flash_info "We have sent a confirmation email to foo@bar.com. Next, simply open this email and click the confirm button to finish."
+    expect_flash_info "A confirmation email has been sent to foo@bar.com less than a minute ago."
 
     #
     # EXTRACT URL

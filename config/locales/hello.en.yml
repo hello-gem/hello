@@ -49,7 +49,7 @@ en:
       confirm_email:
         success: "%{email} has been confirmed successfully."
         alert: "This link has expired, please ask for a new link"
-        info: "We have sent a confirmation email to %{email}. Next, simply open this email and click the confirm button to finish."
+        info: "A confirmation email has been sent to %{email} %{time_ago_in_words} ago."
       destroy_active_session:
         success: "Device has been unlinked from your account"
         alert: "There was an error while unlinking this device"
