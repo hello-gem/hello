@@ -7,71 +7,71 @@ pt-BR:
 
     exceptions:
       not_authenticated:
-        message: "An active access token must be used to query information about the current user."
-        alert: "You must sign in to continue."
+        message: "O acesso atual só pode ser usado para manutenção do usuário logado."
+        alert: "Você deve fazer login para continuar."
 
     registration_mailer:
       welcome:
-        subject: "Welcome to our website"
+        subject: "Bem vindo ao nosso site"
       confirm_email:
-        subject: "Confirm This Email"
+        subject: "Confirmação de email"
       forgot_password:
-        subject: "Reset Password Instructions"
+        subject: "Instruções para gerar nova senha"
 
     entities:
       sign_out:
-        success: "You have signed out!"
+        success: "Você saiu do sistema!"
       sign_up:
-        success: "You have signed up successfully"
+        success: "Você se cadastrou com sucesso"
         error:
-          one: "1 error was found while trying to sign up"
-          other: "%{count} errors were found while trying to sign up"
+          one: "1 erro foi encontrado em seu cadastro"
+          other: "%{count} erros foram encontrados em seu cadastro"
       sign_in:
-        success: "You have signed in successfully"
+        success: "Você acessou o sistema com sucesso"
         error:
-          one: "1 error was found while trying to sign in"
-          other: "%{count} errors were found while trying to sign in"
+          one: "1 erro foi encontrado em seu login"
+          other: "%{count} erros foram  encontrados em seu login"
       forgot_password:
-        success: "We have just sent you an email with instructions to reset your password"
+        success: "Enviamos para seu email instruções para gerar uma nova senha"
         error:
-          one: "1 error was found while locating your credentials"
-          other: "%{count} errors were found while locating your credentials"
+          one: "1 erro foi encontrado"
+          other: "%{count} erros foram encontrados"
       reset_password:
-        success: "You have reset your password successfully"
-        alert: "This link has expired, please ask for a new link"
+        success: "Você gerou uma nova senha com sucesso"
+        alert: "O link expirou, por favor solicite um novo email de recuperação de senha"
         error:
-          one: "1 error was found while reseting your password"
-          other: "%{count} errors were found while reseting your password"
+          one: "1 erro foi encontrado na sua recuperação de senha"
+          other: "%{count} erros foram encontrados na sua recuperação de senha"
       send_confirmation_email:
-        success: "We have sent a confirmation email to %{email}"
-        info_1: "%{email} has not been confirmed yet."
-        info_2: "Send email confirmation now."
+        success: "Enviamos um email de confirmação para %{email}"
+        info_1: "%{email} ainda não foi confirmado."
+        info_2: "Enviar email de confirmação agora."
       confirm_email:
-        success: "%{email} has been confirmed successfully."
-        alert: "This link has expired, please ask for a new link"
-        info: "A confirmation email has been sent to %{email} %{time_ago_in_words} ago."
+        success: "%{email} foi confirmado com sucesso."
+        alert: "O link expirou, por favor solicite um novo email de confirmação"
+        info: "Um email de confirmação foi enviado para %{email} %{time_ago_in_words} ago."
       destroy_active_session:
-        success: "Device has been unlinked from your account"
-        alert: "There was an error while unlinking this device"
+        success: "Dispositivo foi desconectado com sucesso da sua conta"
+        alert: "Houve um erro ao desconectar esse dispositivo"
       sudo_mode_authentication:
-        success: "Now we know it's really you. We won't be asking your password again for 60 minutes"
-        alert: "Incorrect Password"
+        success: "Agora temos certeza que é você. Não perguntaremos sua senha novamente nos próximos 60 minutos"
+        alert: "Senha incorreta"
       sudo_mode_expiration:
-        success: "We will now ask your password for sensitive access"
+        success: "Estamos perguntando sua senha para sua segurança"
       update_my_user:
-        success: "You have updated your profile successfully"
+        success: "Você atualizou seu perfil com sucesso"
         error:
-          one: "1 error was found while updating your profile"
-          other: "%{count} errors were found while updating your profile"
+          one: "1 erro foi encontrado na atualização do perfil"
+          other: "%{count} erros foram encontrados na atualização do perfil"
       deactivate:
-        success: "You have deactivated your account successfully"
-        alert: "Terminating your account would cause other users to experience errors while using our website. Please contact any of our staff members and ask to have your account removed manually."
+        success: "Sua conta foi desativada com sucesso"
+        alert: "Cancelar sua conta pode causar erros de navegação para outros usuários. Por favor, entre em contato conosco para removermos manualmente sua conta."
       impersonate:
-        success: "You are now %{name}"
+        success: "Você está logado como %{name}"
       impersonate_back:
-        success: "You are yourself again"
+        success: "Você está logado com seu usuário"
       update_classic_credential:
-        success: "Your %{field} was successfully updated"
-        alert: "1 error was found while updating your %{field}"
+        success: "Seu %{field} foi atualizado com sucesso"
+        alert: "1 erro foi encontrado ao atualizar seu %{field}"
       update_locale:
-        success: "Your current language has been applied successfully. '%{locale_name}'"
+        success: "Seu idioma foi atualizado com sucesso. '%{locale_name}'"
