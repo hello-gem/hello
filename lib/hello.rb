@@ -22,6 +22,8 @@ require "hello/configuration"
     require "hello/rails/controller"
     require "hello/rails/helper"
 
+
+
 module Hello
 
   def self.available_time_zones
@@ -29,3 +31,6 @@ module Hello
   end
 
 end
+
+Dir[File.join(File.expand_path('../../', __FILE__), "app/models/concerns/**/*.rb")].each { |f| require f }
+Dir[File.join(File.expand_path('../../', __FILE__), "app/models/*.rb")].each { |f| require f }
