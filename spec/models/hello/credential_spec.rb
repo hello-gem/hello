@@ -9,7 +9,7 @@ module Hello
       expect(model.errors.messages).to eq({
         :user=>["can't be blank"],
         :strategy=>["can't be blank", "is not included in the list"],
-        :username=>["is invalid", "minimum of 4 characters", "can't be blank"]
+        # :username=>["is invalid", "minimum of 4 characters", "can't be blank"]
       })
     end
 
@@ -57,25 +57,26 @@ module Hello
 
         let(:model) { build(:classic_credential, username: '') }
 
+        it "gets ignored due to PresenceValidator" do
+          model._validators[:username] << ActiveRecord::Validations::PresenceValidator.new({attributes: [:username]})
+          expect(model).not_to receive(:make_up_new_username)
+          model.valid?
+          expect(model.username).to eq('')
+          model._validators[:username].delete_if { |v| v.is_a? ActiveRecord::Validations::PresenceValidator }
+        end
+
         it "works when called" do
           a_username = model.make_up_new_username
           expect(a_username.length).to eq(32)
           expect(model.username).to eq('')
         end
 
-        it "gets ignored due to PresenceValidator" do
-          expect(model).not_to receive(:make_up_new_username)
-          model.valid?
-          expect(model.username).to eq('')
-        end
-
-        it "gets invoked when PresenceValidator is removed" do
-          model._validators[:username].delete_if { |v| v.is_a? ActiveRecord::Validations::PresenceValidator }
-
+        it "gets invoked when no PresenceValidator" do
           expect(model).to receive(:make_up_new_username).and_return("RAILS-ROCKS")
           model.valid?
           expect(model.username).to eq("RAILS-ROCKS")
         end
+
       end
       
     end
