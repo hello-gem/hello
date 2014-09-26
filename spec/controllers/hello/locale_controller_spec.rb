@@ -31,7 +31,7 @@ module Hello
             @request.headers['HTTP_REFERER'] = '/'
             post :update, {locale: 'pt-BR'}
             expect(response_status).to eq([302, "Found"])
-            expect(session.to_hash).to eq({"locale"=>"pt-BR", "flash"=>{"discard"=>[], "flashes"=>{"notice"=>"Your current language has been applied successfully. 'Português (Brasil)'"}}})
+            expect(session.to_hash).to eq({"locale"=>"pt-BR", "flash"=>{"discard"=>[], "flashes"=>{"notice"=>"Seu idioma foi atualizado com sucesso. 'Português (Brasil)'"}}})
           end
 
           it "JSON" do
