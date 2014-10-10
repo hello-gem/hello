@@ -5,7 +5,7 @@ class ResetPasswordControl < Hello::AbstractControl
   def success
     active_session = c.create_hello_active_session
 
-    c.redirect_to c.hello.classic_after_reset_path
+    c.redirect_to c.hello.after_reset_path
   end
 
   def failure

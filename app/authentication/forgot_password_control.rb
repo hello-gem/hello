@@ -10,12 +10,12 @@ class ForgotPasswordControl < Hello::AbstractControl
     
     if should_reset_password_token
       token  = credential.reset_password_token
-      url    = c.hello.classic_reset_token_url(token)
+      url    = c.hello.reset_token_url(token)
       Hello::RegistrationMailer.forgot_password(credential, url).deliver
     end
 
     c.respond_to do |format|
-      format.html { c.redirect_to c.hello.classic_after_forgot_path }
+      format.html { c.redirect_to c.hello.after_forgot_path }
       format.json { c.render json: {sent: true}, status: :created }
     end
   end

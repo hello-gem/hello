@@ -32,7 +32,7 @@ describe "Reset Password" do
   def visit_and_success(url)
     visit url
 
-    expect(current_path).to eq hello.classic_after_confirm_email_path
+    expect(current_path).to eq hello.after_confirm_email_path
     expect_flash_notice "foo@bar.com has been confirmed successfully."
     expect_flash_info_blank
   end
@@ -40,7 +40,7 @@ describe "Reset Password" do
   def visit_and_fail(url)
     visit url
 
-    expect(current_path).to eq hello.classic_confirm_email_expired_path
+    expect(current_path).to eq hello.confirm_email_expired_path
     expect_flash_alert "This link has expired, please ask for a new link"
   end
 
@@ -57,7 +57,7 @@ describe "Reset Password" do
   end
 
   it "Alert - Link Expired" do
-    visit_and_fail hello.classic_confirm_email_token_path('wrong')
+    visit_and_fail hello.confirm_email_token_path('wrong')
   end
 
 end

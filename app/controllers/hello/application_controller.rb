@@ -63,7 +63,7 @@ class Hello::ApplicationController < ApplicationController
       format.html do
         flash[:alert] = exception.alert_message
         session[:url] = request.fullpath
-        redirect_to hello.classic_sign_in_path
+        redirect_to hello.sign_in_path
       end
       format.json { render json: data, status: :bad_request } # 400
     end

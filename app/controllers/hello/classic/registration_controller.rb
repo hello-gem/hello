@@ -103,10 +103,10 @@ module Classic
 
       if @reset_password.credential
         session[:hello_reset_token] = params[:token]
-        redirect_to classic_reset_password_path
+        redirect_to reset_password_path
       else
         flash[:alert] = @reset_password.alert_message
-        redirect_to classic_forgot_password_path
+        redirect_to forgot_password_path
       end
     end
 
@@ -151,10 +151,10 @@ module Classic
           if @confirm_email.found_credential?
             @confirm_email.confirm_email!
             flash[:notice] = @confirm_email.success_message
-            redirect_to classic_after_confirm_email_path
+            redirect_to after_confirm_email_path
           else
             flash[:alert] = @confirm_email.alert_message
-            redirect_to classic_confirm_email_expired_path
+            redirect_to confirm_email_expired_path
           end
         end
 
@@ -170,7 +170,7 @@ module Classic
     private
 
         def fetch_registration_reset_ivar
-          return redirect_to classic_forgot_path unless session[:hello_reset_token]
+          return redirect_to forgot_path unless session[:hello_reset_token]
           @reset_password = ResetPasswordEntity.new(session[:hello_reset_token])
           @credential = @reset_password.credential
         end

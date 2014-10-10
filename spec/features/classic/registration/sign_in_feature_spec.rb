@@ -16,7 +16,7 @@ describe "Sign In" do
     it "Default" do
       when_sign_in_with_standard_data
 
-      expect(current_path).to eq hello.classic_after_sign_in_path
+      expect(current_path).to eq hello.after_sign_in_path
       expect(get_last_active_session.expires_at).to be > 29.minutes.from_now
     end
 

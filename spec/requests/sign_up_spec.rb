@@ -2,15 +2,11 @@ require "spec_helper"
 
 RSpec.describe "Sign Up", :type => :request do
 
-  def json_response
-    JSON(response.body)
-  end
-
   describe "POST /sign_up.json" do
 
     describe "Error" do
       it "missing" do
-        post "/hello/classic/sign_up.json"
+        post "/hello/sign_up.json"
         
         expect(response.status).to eq(400)
         expect(response.status_message).to eq("Bad Request")
@@ -22,7 +18,7 @@ RSpec.describe "Sign Up", :type => :request do
 
       it "blank" do
         sign_up_params = {email: ''}
-        post "/hello/classic/sign_up.json", sign_up: sign_up_params
+        post "/hello/sign_up.json", sign_up: sign_up_params
 
         expect(response.status).to eq(422)
         expect(response.status_message).to eq("Unprocessable Entity")
@@ -38,7 +34,7 @@ RSpec.describe "Sign Up", :type => :request do
 
     it "Success" do
       sign_up_params = {email: "foo@bar.com", password: "foobar", name: "Foo Bar", city: "Brasilia", username: "foobar"}
-      post "/hello/classic/sign_up.json", sign_up: sign_up_params
+      post "/hello/sign_up.json", sign_up: sign_up_params
 
       expect(response.status).to eq(201)
       expect(response.status_message).to eq("Created")

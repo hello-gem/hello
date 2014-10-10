@@ -24,7 +24,7 @@ class SignUpControl < Hello::AbstractControl
     active_session = c.create_hello_active_session
 
     c.respond_to do |format|
-      format.html { c.redirect_to c.hello.classic_after_sign_up_path }
+      format.html { c.redirect_to c.hello.after_sign_up_path }
       format.json { c.render json: active_session.as_json_api, status: :created }
     end
   end
