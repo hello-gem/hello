@@ -1,6 +1,5 @@
 module Hello
-  module CredentialModel
-    module Password
+  module CredentialModelPassword
       extend ActiveSupport::Concern
 
 
@@ -80,6 +79,5 @@ module Hello
 
 
 
-    end
   end
 end

@@ -24,7 +24,7 @@ module Hello
                           too_short: 'minimum of %{count} characters'
 
       # concerns
-      include Password
+      include CredentialModelPassword
       # include Twitter
     end
 

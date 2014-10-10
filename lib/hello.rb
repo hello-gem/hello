@@ -18,7 +18,7 @@ require "hello/configuration"
   require 'hello/user_agent'
 
 
-
+    require "hello/rails/model"
     require "hello/rails/controller"
     require "hello/rails/helper"
 
@@ -31,6 +31,3 @@ module Hello
   end
 
 end
-
-Dir[File.join(File.expand_path('../../', __FILE__), "app/models/concerns/**/*.rb")].each { |f| require f }
-Dir[File.join(File.expand_path('../../', __FILE__), "app/models/*.rb")].each { |f| require f }
