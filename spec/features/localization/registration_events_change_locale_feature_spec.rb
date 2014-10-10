@@ -16,7 +16,7 @@ describe "Localization" do
       #
       # SUCCESS
       #
-      when_sign_up_with_standard_data(expect_welcome_mailer: true)
+      when_sign_up_as_a_novice(expect_welcome_mailer: true)
           expect(User.last.locale).to eq('pt-BR')
           expect_flash_notice "Você se cadastrou com sucesso"
     end

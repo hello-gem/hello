@@ -17,10 +17,6 @@ module Classic
             post("/sign_up").should route_to("hello/classic/registration#create")
           end
 
-              it "routes to #after_sign_up" do
-                get("/after_sign_up").should route_to("hello/classic/registration#after_sign_up")
-              end
-
 
 
 

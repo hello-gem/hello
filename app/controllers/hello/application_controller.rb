@@ -9,12 +9,17 @@ class Hello::ApplicationController < ApplicationController
   # this code is expected to be rewritten after more core features are developed
   # accepting PR :)
   before_action do
+
+    # puts "controller: #{controller_name}##{action_name} as a #{current_user && current_user.role}".on_blue
     either = 0
     guest  = 1
-    user   = 2
+    novice = 2
+    user   = 3
     admin  = 10
 
     guest_homepage = hello.root_path
+    # novice_homepage= hello.novice_path
+    novice_homepage= '/novice'
     user_homepage  = hello.user_path
     admin_homepage = hello.admin_path
 
@@ -23,6 +28,7 @@ class Hello::ApplicationController < ApplicationController
 
     case must_be_a
     when guest     then redirect_to user_homepage  if hello_active_session.present?
+    when novice    then raise Hello::NotAuthenticated if hello_active_session.present? && !hello_user.novice?
     when user      then raise Hello::NotAuthenticated if hello_active_session.blank?
     when admin     then redirect_to admin_homepage if hello_active_session.present? && !hello_user.admin?
     when either # nothing to do, yay
@@ -86,7 +92,8 @@ class Hello::ApplicationController < ApplicationController
   def autho_data
     either = 0
     guest  = 1
-    user   = 2
+    novice = 2
+    user   = 3
     admin  = 10
 
     {
@@ -97,7 +104,6 @@ class Hello::ApplicationController < ApplicationController
         #
         sign_up:          guest,
         create:           guest,
-        after_sign_up:    either,
         #
         sign_in:          guest,
         authenticate:     guest,
@@ -132,6 +138,7 @@ class Hello::ApplicationController < ApplicationController
         create:  admin,
         destroy: user
       },
+      novice: novice,
       #
     }
   end

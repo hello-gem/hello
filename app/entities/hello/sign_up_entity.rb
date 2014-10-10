@@ -81,7 +81,7 @@ module Hello
         def user_attributes
           r = {}
           user_fields.each { |k| r[k.to_s] = instance_variable_get(:"@#{k}") }
-          r['role'] = 'user'
+          r['role'] = 'novice'
           r
         end
 

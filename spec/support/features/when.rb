@@ -18,6 +18,15 @@ def when_I_ask_to_reset_my_password(custom_login=nil)
 end
 
 def when_sign_up_with_standard_data(options={})
+  when_sign_up_as_a_novice(options)
+
+  click_button "Continue"
+  # expect(current_path).to eq root_path
+  expect(current_path).to eq '/hello/user' # because there is no root path in this app
+end
+
+
+def when_sign_up_as_a_novice(options={})
   if options[:expect_welcome_mailer] === true
     Hello::RegistrationMailer.should_receive(:welcome).and_return(double("mailer", deliver: true))
   elsif options[:expect_welcome_mailer] === false
@@ -33,6 +42,11 @@ def when_sign_up_with_standard_data(options={})
     fill_in 'sign_up_city',     with: 'OMG! I can customize Hello!'
     click_button 'Sign Up'
   end
+
+  if options[:expect_success] === true
+    expect(current_path).to eq('/novice')
+  end
+  
 end
 
 def when_sign_in_with_standard_data(options={})

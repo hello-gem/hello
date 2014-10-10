@@ -29,10 +29,6 @@ module Classic
           end
         end
 
-            # GET /hello/classic/after_sign_up
-            def after_sign_up
-            end
-
 
 
 

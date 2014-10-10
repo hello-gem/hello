@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  
+  get  'novice' => 'novice#index'
+  post 'novice' => 'novice#continue'
+    
   get 'profile/:username' => 'profile#profile', as: 'profile'
   resources :users, only: [:index, :show]
 

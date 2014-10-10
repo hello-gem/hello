@@ -12,6 +12,10 @@ module Hello
       credentials.classic.first
     end
 
+    def novice?
+      role == self.class.novice
+    end
+
     def admin?
       role == self.class.admin
     end
@@ -35,11 +39,15 @@ module Hello
 
     module ClassMethods
       def roles
-        [guest, user, admin]
+        [guest, novice, user, admin]
       end
 
       def guest
         'guest'
+      end
+
+      def novice
+        'novice'
       end
 
       def user

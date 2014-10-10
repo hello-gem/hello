@@ -52,7 +52,7 @@ Hello::Engine.routes.draw do
     # sign up
     get  "sign_up"         => "classic/registration#sign_up"
     post "sign_up"         => "classic/registration#create"
-    get  "after_sign_up"   => "classic/registration#after_sign_up"
+    # get  "after_sign_up"   => "classic/registration#after_sign_up"
 
     # sign in
     get  "sign_in"         => "classic/registration#sign_in"
