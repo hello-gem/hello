@@ -7,6 +7,8 @@
 module Hello
   class SignOutController < ApplicationController
 
+    # access to all roles
+
     # GET /hello/sign_out
     def sign_out
       destroy_and_clear_hello_active_session

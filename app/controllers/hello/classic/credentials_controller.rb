@@ -8,6 +8,8 @@ module Hello
 module Classic
   class CredentialsController < ApplicationController
     
+    restrict_to_users
+    
     before_actions do
       all { restrict_access_to_sudo_mode }
       # only(:index)   { @credentials = hello_user.credentials }

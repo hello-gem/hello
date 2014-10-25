@@ -7,6 +7,8 @@ require_dependency "hello/application_controller"
 module Hello
   class UserController < ApplicationController
 
+    restrict_to_users
+
     before_action do
       @user        = hello_user
       @user_entity = UpdateMyUserEntity.new(hello_user)

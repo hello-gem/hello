@@ -3,6 +3,9 @@ require_dependency "hello/application_controller"
 module Hello
   class DeactivationController < ApplicationController
     
+    restrict_unless_authenticated except: [:after_deactivate]
+    restrict_if_authenticated     only:   [:after_deactivate]
+
     before_actions do
       only(:proposal, :deactivate) { @deactivation = DeactivateEntity.new }
     end

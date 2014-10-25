@@ -13,8 +13,6 @@ describe "Localization" do
 
     describe "Browser locale or default" do
 
-      # before { @s = given_I_have_a_classic_active_session }
-
       hash = {
         nil                       => 'en',
         'en-US,en;q=0.8,pt;q=0.6' => 'en',
@@ -60,9 +58,6 @@ describe "Localization" do
 
     end
 
-    it "hits every locale against English looking for missing keys" do
-      pending
-    end
   end
 
 

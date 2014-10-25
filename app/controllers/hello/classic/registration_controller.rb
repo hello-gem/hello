@@ -8,6 +8,25 @@ module Hello
 module Classic
   class RegistrationController < ApplicationController
 
+    restrict_if_authenticated only: [
+      :sign_up, :create,
+      :sign_in, :authenticate,
+      :forgot, :ask, :after_forgot,
+      :reset_token, :reset, :save,
+    ]
+
+    restrict_unless_authenticated only: [
+      :after_sign_in,
+      :confirm_email_send,
+    ]
+
+# either:    
+# after_reset
+# confirm_email_token
+# after_confirm_email
+# confirm_email_expired
+
+
     # GET /hello/classic/sign_up
     def sign_up
       @sign_up = SignUpEntity.new(self)

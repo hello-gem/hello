@@ -3,6 +3,8 @@ require_dependency "hello/application_controller"
 module Hello
   class LocaleController < ApplicationController
 
+    # access to all roles
+
     # GET /hello/locale
     def index
       respond_to do |format|

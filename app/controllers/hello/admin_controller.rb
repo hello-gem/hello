@@ -7,8 +7,11 @@ require_dependency "hello/application_controller"
 module Hello
   class AdminController < ApplicationController
 
+    restrict_unless_role_is :admin
+
     # GET /hello/admin
     def index
+      render text: "access granted :)", layout: 'application'
     end
 
   end

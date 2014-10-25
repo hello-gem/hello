@@ -12,6 +12,7 @@ Hello::Engine.routes.draw do
   resources :active_sessions, only: [:index, :destroy]
 
   root "welcome#index"
+  get  "homepage" => "welcome#homepage"
 
   match  "sign_out" => "sign_out#sign_out", via: [:get, :post, :head, :put, :delete]
 

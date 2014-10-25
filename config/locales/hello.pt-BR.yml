@@ -6,9 +6,27 @@ pt-BR:
       locale: "Português (Brasil)"
 
     exceptions:
+      authenticated:
+        message: "Access token não necessário nesta requisição."
+        alert:   "Você já está logado."
       not_authenticated:
         message: "O acesso atual só pode ser usado para manutenção do usuário logado."
-        alert: "Você deve fazer login para continuar."
+        alert:   "Você deve fazer login para continuar."
+      not_authorized:
+        must_be:
+          novice:
+            message: "Você já completou seu cadastro."
+            alert:   "Você já completou seu cadastro."
+          admin:
+            message: "Esta seção do site é de acesso restrito a seus administradores."
+            alert:   "Esta seção do site é de acesso restrito a seus administradores."
+        cannot_be:
+          novice:
+            message: "Por favor conclua seu cadastro."
+            alert:   "Por favor conclua seu cadastro."
+          admin:
+            message: "Administradores não tem acesso a esta parte do site."
+            alert:   "Administradores não tem acesso a esta parte do site."
 
     registration_mailer:
       welcome:

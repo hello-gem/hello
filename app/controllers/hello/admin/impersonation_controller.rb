@@ -1,7 +1,14 @@
 require_dependency "hello/application_controller"
 
+#
+# IT IS RECOMMENDED THAT YOU DO NOT OVERRIDE THIS FILE IN YOUR APP
+#
+
 module Hello
   class Admin::ImpersonationController < ApplicationController
+
+    restrict_unless_authenticated
+    restrict_unless_role_is :admin, only: [:create]
 
     # POST /hello/admin/impersonate credential_id: 1
     def create
@@ -19,7 +26,7 @@ module Hello
 
       entity = ImpersonateBackEntity.new
       flash[:notice] = entity.success_message
-      redirect_to :back
+      redirect_to hello.homepage_path
     end
 
   end

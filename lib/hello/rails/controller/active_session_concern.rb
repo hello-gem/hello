@@ -59,6 +59,7 @@ module Hello
       end
 
       def hello_back_to_myself
+        return unless hello_impersonator_token
         destroy_hello_active_session
         set_hello_active_session_token(hello_impersonator_token)
       end

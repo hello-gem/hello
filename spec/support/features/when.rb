@@ -18,7 +18,7 @@ def when_I_ask_to_reset_my_password(custom_login=nil)
 end
 
 def when_sign_up_with_standard_data(options={})
-  when_sign_up_as_a_novice(options)
+  when_sign_up_as_a_novice(expect_success: true)
 
   click_button "Continue"
   # expect(current_path).to eq root_path
@@ -27,11 +27,11 @@ end
 
 
 def when_sign_up_as_a_novice(options={})
-  if options[:expect_welcome_mailer] === true
-    Hello::RegistrationMailer.should_receive(:welcome).and_return(double("mailer", deliver: true))
-  elsif options[:expect_welcome_mailer] === false
-    Hello::RegistrationMailer.should_not_receive(:welcome)
-  end
+  # if options[:expect_welcome_mailer] === true
+  #   Hello::RegistrationMailer.should_receive(:welcome).and_return(double("mailer", deliver: true))
+  # elsif options[:expect_welcome_mailer] === false
+  #   Hello::RegistrationMailer.should_not_receive(:welcome)
+  # end
 
   visit hello.root_path
   within("form#new_sign_up") do
@@ -80,7 +80,30 @@ def when_I_confirm_my_credential_password(custom_password=nil)
   end
 end
 
+def sign_up_as_a_novice
+  when_sign_up_as_a_novice(expect_success: true)
+  expect(User.last.role).to eq('novice')
+end
+
+def sign_up_as_a_user
+  when_sign_up_with_standard_data
+  expect(User.last.role).to eq('user')
+end
+
+def sign_up_as_an_admin
+  when_sign_up_with_standard_data
+  user = User.last
+  user.update! role: 'admin'
+end
 
 
-
+def sign_up_as_a(role)
+  case role.to_sym
+  when :guest  # nothing to do
+  when :novice then sign_up_as_a_novice
+  when :user   then sign_up_as_a_user
+  when :admin  then sign_up_as_an_admin
+  else raise("Role #{role} is unknown")
+  end
+end
 
