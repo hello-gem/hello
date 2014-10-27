@@ -70,7 +70,10 @@ module Hello
                 #redirect_to _denied_pages_for[exception.role]
                 redirect_to hello.homepage_path
               end
-              format.json { render json: data, status: :bad_request } # 400
+              format.json do
+                status = exception.is_a?(Hello::RoleError) ? :forbidden : :unauthorized # 403 : 401
+                render json: data, status: status
+              end
             end
           end
 

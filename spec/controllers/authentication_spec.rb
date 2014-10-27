@@ -24,8 +24,8 @@ describe "Authentication" do
       it "JSON" do
         get :edit, {format: :json}
         json_body = JSON(response.body)
-        expect(response.status).to eq(400)
-        expect(response.status_message).to eq("Bad Request")
+        expect(response.status).to eq(401)
+        expect(response.status_message).to eq("Unauthorized")
         expect(json_body['exception']).to eq({"class"=>"Hello::NotAuthenticated", "message"=>"An active access token must be used to query information about the current user."})
       end
 
@@ -87,8 +87,8 @@ describe "Authentication" do
 
         get :edit, {format: :json, access_token: @s.access_token}
         json_body = JSON(response.body)
-        expect(response.status).to eq(400)
-        expect(response.status_message).to eq("Bad Request")
+        expect(response.status).to eq(401)
+        expect(response.status_message).to eq("Unauthorized")
         expect(json_body['exception']).to eq({"class"=>"Hello::NotAuthenticated", "message"=>"An active access token must be used to query information about the current user."})
       end
 
