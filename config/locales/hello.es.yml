@@ -1,0 +1,77 @@
+# https://github.com/hello-gem/hello
+
+es:
+  hello:
+    others:
+      locale: "Español"
+
+    exceptions:
+      not_authenticated:
+        message: "Un token de acceso debe ser utilizado para consultar información acerca del usuario."
+        alert: "Debes loguearte para continuar."
+
+    registration_mailer:
+      welcome:
+        subject: "Bienvenido a nuestro sitio web"
+      confirm_email:
+        subject: "Confirmación de correo"
+      forgot_password:
+        subject: "Instrucciones de recuperación de contraseña"
+
+    entities:
+      sign_out:
+        success: "Sesión finalizada!"
+      sign_up:
+        success: "Tu cuenta ha sido creada correctamente"
+        error:
+          one: "1 error ocurrió tratando de crear tu cuenta"
+          other: "%{count} errores ocurrieron tratando de crear tu cuenta"
+      sign_in:
+        success: "Sesión iniciada correctamente"
+        error:
+          one: "1 error ocurrió tratando de inciar sesión"
+          other: "%{count} errores ocurrieron tratando de iniciar sesión"
+      forgot_password:
+        success: "Hemos enviado un correo con instrucciones de como resetar tu contraseña"
+        error:
+          one: "1 error ocurrió tratando de encontrar tus credenciales"
+          other: "%{count} errores ocurrieron tratando de encontrar tus credenciales"
+      reset_password:
+        success: "Has reseteado tu contraseña satisfactoriamente"
+        alert: "Este enlace ha expirado, por favor pide un nuevo enlace"
+        error:
+          one: "1 error ocurrió mientras reseteabamos tu contraseña"
+          other: "%{count} errores ocurrieron mientras reseteabamos tu contraseña"
+      send_confirmation_email:
+        success: "Hemos enviado un correo de confirmación a %{email}"
+        info_1: "%{email} aún no ha sido confirmado"
+        info_2: "Envía el correo de confirmación ahora"
+      confirm_email:
+        success: "%{email} ha sido confirmado satisfactoriamente."
+        alert: "Este enlace ha expirado, por favor pide un nuevo enlace"
+        info: "Un correo de confirmación ha sido enviado a %{email} hace %{time_ago_in_words}."
+      destroy_active_session:
+        success: "Dispositivo ha sido desconectado satisfactoriamente de tu cuenta"
+        alert: "Hubo un error al desconectar este dispositivo"
+      sudo_mode_authentication:
+        success: "Ahora sabemos que realmente eres tu. No preguntaremos tu contraseña nuevamente por 60 minutos"
+        alert: "Contraseña Incorrecta"
+      sudo_mode_expiration:
+        success: "Pediremos tu contraseña por seguridad"
+      update_my_user:
+        success: "Has actualizado tu perfil satisfactoriamente"
+        error:
+          one: "1 error ocurrió mientras actualizabamos tu perfil"
+          other: "%{count} errores ocurrieron mientras actualizabamos tu perfil"
+      deactivate:
+        success: "Has desactivado tu cuenta satisfactoriamente"
+        alert: "Cancelando tu cuenta haría que otros usuario experimenten errores tratando de usar nuestro sitio. Por favor pongase en contacto con nosotros para cancelarla manualmente"
+      impersonate:
+        success: "Ahora eres %{name}"
+      impersonate_back:
+        success: "Eres tu nuevamente"
+      update_classic_credential:
+        success: "Tu %{field} ha sido actualizado satisfactoriamente"
+        alert: "1 error ocurrió mientras actualizabamos %{field}"
+      update_locale:
+        success: "Tu idioma ha sido configurado satisfactoriamente. '%{locale_name}'"
