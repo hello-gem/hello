@@ -28,7 +28,7 @@ describe "Localization" do
         'en-GB'                   => 'en',
         'en-IND'                  => 'en',
         'nep'                     => 'en',
-        'es'                      => 'en',
+        'es'                      => 'es',
         'fa'                      => 'en',
         'fr'                      => 'en',
         'it'                      => 'en',
