@@ -26,7 +26,12 @@ module Hello
 
       def create_hello_active_session(expires_at=nil, sudo_expires_at=nil)
         expires_at ||= hello_default_session_expiration
-        attrs = {credential: @credential, user_agent_string: user_agent, expires_at: expires_at}
+        attrs = {
+          credential:         @credential,
+          user_agent_string:  user_agent,
+          expires_at:         expires_at,
+          ip:                 request.remote_ip
+        }
         attrs[:sudo_expires_at] = sudo_expires_at if sudo_expires_at
         s = ActiveSession.create!(attrs)
         set_hello_active_session_token(s.access_token)

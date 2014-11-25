@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20140920192959) do
     t.integer  "credential_id"
     t.string   "user_agent_string"
     t.string   "access_token"
+    t.string   "ip"
     t.datetime "expires_at",        default: '2000-01-01 00:00:00'
     t.datetime "sudo_expires_at",   default: '2000-01-01 00:00:00'
     t.datetime "created_at"

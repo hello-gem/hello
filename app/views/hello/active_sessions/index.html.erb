@@ -5,6 +5,15 @@
 <div class="col-sm-3-offset col-md-2-offset col-sm-9 col-md-10">
 
 <table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Email</th>
+      <th>Device</th>
+      <th>IP Address</th>
+      <th></th>
+    </tr>
+  </thead>
   <tbody>
 
 
@@ -15,6 +24,7 @@
         <td>Device #<%= i+1 %></td>
         <td><%= a_session.credential.email %></td>
         <td><%= a_session.full_device_name %></td>
+        <td><%= a_session.ip %></td>
         <td>
           <% if is_this_session %>
             [this device]
