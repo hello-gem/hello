@@ -16,6 +16,16 @@ module Hello
       return true
     end
 
+    def email?
+      login.to_s.include? '@'
+    end
+
+
+    def success_message(extra={})
+      super(login: @login)
+    end
+
+
 
 
     private
@@ -35,14 +45,8 @@ module Hello
         # helpers
 
         def key
-          @key ||= login_is_email ? :email : :username
+          @key ||= email? ? :email : :username
         end
-
-            def login_is_email
-              login.to_s.include? '@'
-            end
-
-
 
   end
 end

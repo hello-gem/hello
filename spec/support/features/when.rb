@@ -13,7 +13,7 @@ def when_I_ask_to_reset_my_password(custom_login=nil)
   click_link "Forgot"
   within("form") do
     fill_in 'forgot_password_login', with: (custom_login || 'foobar')
-    click_button 'Reset'
+    click_button 'Continue'
   end
 end
 

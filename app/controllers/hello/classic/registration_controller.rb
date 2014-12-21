@@ -96,15 +96,19 @@ module Classic
           control = ForgotPasswordControl.new(self, @forgot_password)
 
           if @forgot_password.reset
-            flash[:notice] = @forgot_password.success_message
+            # flash[:notice] = @forgot_password.success_message
             control.success
           else
             control.failure
           end
+          
+          session[:forgot_login] = @forgot_password.login
         end
 
             # GET /hello/classic/after_forgot
             def after_forgot
+              @forgot_password = ForgotPasswordEntity.new
+              @forgot_password.login = session[:forgot_login]
             end
 
 

@@ -1,3 +1,25 @@
-<h1>Welcome from Forgot</h1>
+<h1>Email sent to "<%= @forgot_password.login %>"</h1>
+<%# if @forgot_password.email? %>
+
+<div class="alert alert-success" role="alert">
+  <%= @forgot_password.success_message.html_safe %>
+</div>
 
 
+<blockquote style="border-color: #a94442">
+  <p class="text-danger"><strong>Q: Didn't receive the password reset email?</strong></p>
+  <p>
+    A: Check your spam folder for an email from
+    <strong><%= Hello.configuration.mailer_sender %></strong>
+  </p>
+</blockquote>
+
+<blockquote style="border-color: #a94442">
+  <p class="text-danger"><strong>Q: You still don't see the email?</strong></p>
+  <p>A: Try a different way to get into your account.</p>
+  <footer>
+    <strong>Suggestion:</strong>
+    <%= link_to "Click Here", hello.forgot_password_path %>
+    and try again with a different email.
+  </footer>
+</blockquote>

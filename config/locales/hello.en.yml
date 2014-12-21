@@ -50,7 +50,7 @@ en:
           one: "1 error was found while trying to sign in"
           other: "%{count} errors were found while trying to sign in"
       forgot_password:
-        success: "We have just sent you an email with instructions to reset your password"
+        success: "To get back into your account, follow the instructions we've sent to your <strong>\"%{login}\"</strong> email address."
         error:
           one: "1 error was found while locating your credentials"
           other: "%{count} errors were found while locating your credentials"

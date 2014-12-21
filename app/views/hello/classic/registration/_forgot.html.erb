@@ -1,16 +1,14 @@
 <%= form_for @forgot_password, as: :forgot_password, url: forgot_password_path, html: {class: "form-horizontal", role: "form"} do |f| %>
+
   <%= render '/hello/shared/errors', active_model: @forgot_password %>
 
   <div class="form-group">
-    <%= f.label :login, "Email or Username", class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
-      <%= f.text_field :login, class: "form-control", placeholder: "Email or Username" %>
+      <%= f.text_field :login, class: "form-control ", placeholder: "Email or Username" %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.submit "Continue", class: "btn btn-primary" %>
     </div>
   </div>
   
-  <div class="form-group">
-    <div class="col-sm-offset-4 col-sm-4">
-      <%= f.submit "Reset", class: "btn btn-default" %>
-    </div>
-  </div>
 <% end %>

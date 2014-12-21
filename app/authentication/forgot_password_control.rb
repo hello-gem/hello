@@ -26,6 +26,9 @@ class ForgotPasswordControl < Hello::AbstractControl
     c.respond_to do |format|
       format.html { c.render :forgot }
       format.json { c.render json: forgot_password.errors, status: :unprocessable_entity }
+      # # To falsy show that the email was sent, please use the code below instead
+      # format.html { c.redirect_to c.hello.after_forgot_path }
+      # format.json { c.render json: {sent: true}, status: :created }
     end
   end
 

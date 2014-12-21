@@ -50,7 +50,9 @@ es:
           one: "1 error ocurrió tratando de inciar sesión"
           other: "%{count} errores ocurrieron tratando de iniciar sesión"
       forgot_password:
-        success: "Hemos enviado un correo con instrucciones de como resetar tu contraseña"
+        # TODO: adapt locale to Spanish
+        # success: "Hemos enviado un correo con instrucciones de como resetar tu contraseña"
+        success: "To get back into your account, follow the instructions we've sent to your <strong>\"%{login}\"</strong> email address."
         error:
           one: "1 error ocurrió tratando de encontrar tus credenciales"
           other: "%{count} errores ocurrieron tratando de encontrar tus credenciales"

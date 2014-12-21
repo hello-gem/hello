@@ -50,7 +50,9 @@ pt-BR:
           one: "1 erro foi encontrado em seu login"
           other: "%{count} erros foram  encontrados em seu login"
       forgot_password:
-        success: "Enviamos para seu email instruções para gerar uma nova senha"
+        # TODO: adapt locale to Portuguese
+        # success: "Enviamos para seu email instruções para gerar uma nova senha"
+        success: "To get back into your account, follow the instructions we've sent to your <strong>\"%{login}\"</strong> email address."
         error:
           one: "1 erro foi encontrado"
           other: "%{count} erros foram encontrados"
