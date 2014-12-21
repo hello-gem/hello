@@ -27,6 +27,10 @@
     expect(page.body).to include text
   end
 
+  def expect_not_to_see(text)
+    expect(page.body).not_to include text
+  end
+
 
   def expect_flash_notice_signed_in
     expect_flash_notice "You have signed in successfully"

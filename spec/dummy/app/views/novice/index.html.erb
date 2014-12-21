@@ -1,3 +1,21 @@
-<h2>Hello Novice</h2>
+<h2>Complete Registration</h2>
 
-<%= button_to "Continue to website", novice_path %>
+<% if @show_agree_error %>
+  <div class="alert alert-danger">
+    You cannot join the website unless you agree with our terms and policies
+  </div>
+<% end %>
+
+<%= form_tag novice_path do %>
+  <label>
+    <%= check_box_tag :agree, 1, true %>
+    I agree to the
+    <%= link_to "Terms of Service", "/terms" %>
+    and
+    <%= link_to "Policy of Privacy", "/privacy" %>
+  </label>
+
+  <div>
+    <%= submit_tag "Continue to website" %>
+  </div>
+<% end %>
