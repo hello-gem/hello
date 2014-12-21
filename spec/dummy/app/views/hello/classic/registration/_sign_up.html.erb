@@ -1,6 +1,10 @@
 <%= form_for @sign_up, as: :sign_up, url: sign_up_path, html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= render '/hello/shared/errors', active_model: @sign_up %>
 
+  <!-- Errors -->
+  <% if @sign_up.errors.any? %>
+    <%= render '/hello/shared/errors', active_model: @sign_up %>
+  <% end %>
+  
   <div class="form-group">
     <%= f.label :name, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
@@ -54,7 +58,7 @@
 
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-4">
-      <%= f.submit "Sign Up", class: "btn btn-default" %>
+      <%= f.submit "Sign Up", class: "btn btn-primary" %>
     </div>
   </div>
 <% end %>

@@ -1,5 +1,9 @@
 <%= form_for @sign_in, as: :sign_in, url: sign_in_path, html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= render '/hello/shared/errors', active_model: @sign_in %>
+
+  <!-- Errors -->
+  <% if @sign_in.errors.any? %>
+    <%= render '/hello/shared/errors', active_model: @sign_in %>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :login, "Email or Username", class: "col-sm-4 control-label" %>
