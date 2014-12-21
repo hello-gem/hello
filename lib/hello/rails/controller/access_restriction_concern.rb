@@ -66,7 +66,7 @@ module Hello
             respond_to do |format|
               format.html do
                 flash[:alert] = exception.alert_message
-                session[:url] = request.fullpath
+                session[:url] = request.fullpath if current_user.nil?
                 #redirect_to _denied_pages_for[exception.role]
                 redirect_to hello.homepage_path
               end

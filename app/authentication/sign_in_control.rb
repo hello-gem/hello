@@ -7,7 +7,7 @@ class SignInControl < Hello::AbstractControl
     active_session = c.create_hello_active_session(expires_at)
 
     c.respond_to do |format|
-      format.html { c.redirect_to c.session[:url] || c.hello.after_sign_in_path }
+      format.html { c.redirect_to c.session.delete(:url) || c.hello.after_sign_in_path }
       format.json { c.render json: active_session.as_json_api, status: :created }
     end
   end
