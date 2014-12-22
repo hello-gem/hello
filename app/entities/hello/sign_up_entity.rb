@@ -16,6 +16,17 @@ module Hello
     end
 
 
+    # errors.added? DOES NOT WORK when the validation was given a custom message :)
+    def email_taken?
+      return false unless credential
+      credential.errors.added? :email, :taken
+    end
+
+    # errors.added? DOES NOT WORK when the validation was given a custom message :)
+    def username_taken?
+      return false unless credential
+      credential.errors.added? :username, :taken
+    end
 
 
     private

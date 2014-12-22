@@ -17,7 +17,7 @@ module Hello
 
       # username
       validates_format_of :username, with: /\A[a-z0-9_-]+\z/i
-      validates_uniqueness_of :username, message: 'already exists'
+      validates_uniqueness_of :username
       validates_length_of :username,
                           in: 4..32,
                           too_long:  'maximum of %{count} characters',

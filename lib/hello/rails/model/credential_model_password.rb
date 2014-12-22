@@ -19,9 +19,7 @@ module Hello
 
         # email
         validates_email_format_of :email, if: :is_classic?
-        validates_uniqueness_of :email,
-                                message: 'already exists',
-                                if: :is_classic?
+        validates_uniqueness_of   :email, if: :is_classic?
 
         # password
         validates_length_of :password,

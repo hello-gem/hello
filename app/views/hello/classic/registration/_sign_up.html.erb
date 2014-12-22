@@ -14,13 +14,37 @@
   <div class="form-group">
     <%= f.label :email, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
-      <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+      <p>
+        <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+      </p>
+
+      <% if @sign_up.email_taken? %>
+        <blockquote style="border-color: #a94442">
+          <p class="text-danger">This email address has already been registered.</p>
+          <p><%= link_to "Log in", hello.sign_in_path %> instead.</p>
+          <footer>
+            <%= link_to "I forgot my password", hello.forgot_password_path %>.
+          </footer>
+        </blockquote>
+      <% end %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :username, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
-      <%= f.text_field :username, class: "form-control", placeholder: "Username" %>
+      <p>
+        <%= f.text_field :username, class: "form-control", placeholder: "Username" %>
+      </p>
+
+      <% if @sign_up.username_taken? %>
+        <blockquote style="border-color: #a94442">
+          <p class="text-danger">This username has already been registered.</p>
+          <p><%= link_to "Log in", hello.sign_in_path %> instead.</p>
+          <footer>
+            <%= link_to "I forgot my password", hello.forgot_password_path %>.
+          </footer>
+        </blockquote>
+      <% end %>
     </div>
   </div>
   <div class="form-group">
