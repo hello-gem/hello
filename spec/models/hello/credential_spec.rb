@@ -19,6 +19,13 @@ module Hello
         it "nil" do
           expect { Credential.new.username=nil }.not_to raise_error
         end
+
+        it "spaced" do
+          credential = Credential.new
+          credential.username=" jame s "
+          expect(credential.username).to eq("james")
+        end
+
       end
 
       describe "validations" do
@@ -174,6 +181,12 @@ module Hello
           describe "setter" do
             it "nil" do
               expect { Credential.new.email=nil }.not_to raise_error
+            end
+
+            it "spaced" do
+              credential = Credential.new
+              credential.email=" jame s @hello.com   "
+              expect(credential.email).to eq("james@hello.com")
             end
           end
 
