@@ -14,13 +14,32 @@ module Hello
     end
 
     describe "username" do
+
+      describe "setter" do
+        it "nil" do
+          expect { Credential.new.username=nil }.not_to raise_error
+        end
+      end
+
       describe "validations" do
         
-        it "uniqueness" do
-          create(:classic_credential, username: 'james')
-          credential = build(:classic_credential, username: 'james')
-          credential.valid?
-          expect(credential.errors[:username]).to eq ["already exists"]
+        describe "uniqueness" do
+          def test_uniqueness(a, b)
+            create(:classic_credential, username: a)
+            credential = build(:classic_credential, username: b)
+            credential.valid?          
+            # expect(credential.errors.messages).to eq(1)
+            expect(credential.errors.added?(:username, :taken)).to eq(true)
+          end
+
+          it "normal case" do
+            test_uniqueness("james", "james")
+          end
+
+          it "downcase" do
+            test_uniqueness("JaMeS", "james")
+          end
+
         end
 
         it "#username_used_by_another?" do
@@ -72,9 +91,9 @@ module Hello
         end
 
         it "gets invoked when no PresenceValidator" do
-          expect(model).to receive(:make_up_new_username).and_return("RAILS-ROCKS")
+          expect(model).to receive(:make_up_new_username).and_return("rails-rocks")
           model.valid?
-          expect(model.username).to eq("RAILS-ROCKS")
+          expect(model.username).to eq("rails-rocks")
         end
 
       end
@@ -115,36 +134,47 @@ module Hello
           @credential = Credential.classic.new
         end
 
-        describe "email validations" do
+        describe "email" do
+          describe "validations" do
 
-          it "presence" do
-            @credential.valid?
-            expect(@credential.errors[:email]).to include "can't be blank"
+            it "presence" do
+              @credential.valid?
+              expect(@credential.errors[:email]).to include "can't be blank"
+            end
+
+            it "format" do
+              @credential.email = 'aaa'
+              @credential.valid?
+              expect(@credential.errors[:email]).to eq ["does not appear to be a valid e-mail address"]
+
+              @credential.email = 'email@hello.com'
+              @credential.valid?
+              expect(@credential.errors[:email]).to be_empty
+            end
+
+            describe "uniqueness" do
+              def test_uniqueness(a, b)
+                create(:classic_credential, email: a)
+                credential = build(:classic_credential, email: b)
+                credential.valid?          
+                # expect(credential.errors.messages).to eq(1)
+                expect(credential.errors.added?(:email, :taken)).to eq(true)
+              end
+              
+              it "normal case" do
+                test_uniqueness("james@hello.com", "james@hello.com")
+              end
+
+              it "downcase" do
+                test_uniqueness("JaMeS@HELLO.com", "james@hello.com")
+              end
+            end
           end
 
-          it "format" do
-            @credential.email = 'aaa'
-            @credential.valid?
-            expect(@credential.errors[:email]).to eq ["does not appear to be a valid e-mail address"]
-
-            @credential.email = 'email@hello.com'
-            @credential.valid?
-            expect(@credential.errors[:email]).to be_empty
-          end
-
-          it "uniqueness" do
-            email = 'email@hello.com'
-
-            model1 = build(:classic_credential, email: email)
-            model1.save
-
-            expect(model1.errors.messages).to eq({})
-            expect(model1.persisted?).to eq(true)
-
-            model2 = build(:classic_credential, email: email)
-            model2.valid?
-            # expect(model2.errors[:email]).to eq ["has already been taken"]
-            expect(model2.errors[:email]).to eq ["already exists"]
+          describe "setter" do
+            it "nil" do
+              expect { Credential.new.email=nil }.not_to raise_error
+            end
           end
 
         end

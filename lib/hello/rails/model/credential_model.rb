@@ -58,6 +58,18 @@ module Hello
 
 
     #
+    # downcase setters
+    #
+
+    def username=(v)
+      write_attribute(:username, v.to_s.downcase)
+    end
+
+    def email=(v)
+      write_attribute(:email, v.to_s.downcase)
+    end
+
+    #
     # email confirmation
     #
 

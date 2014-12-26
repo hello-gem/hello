@@ -69,6 +69,8 @@ module Hello
           attrs.slice(*all_fields).each { |k, v| send("#{k}=", v) if v }
         end
 
+            # NOTE: 
+            # All validations are delegated to the models
             def build_credential
               self.credential = Credential.classic.new(email: email, username: username, password: password)
               credential.build_user(user_attributes)
