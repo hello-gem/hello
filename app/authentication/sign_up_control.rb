@@ -21,11 +21,11 @@ class SignUpControl < Hello::AbstractControl
   def success
     Hello::RegistrationMailer.welcome(sign_up.credential, sign_up.password).deliver
 
-    active_session = c.create_hello_active_session
+    access_token = c.create_hello_access_token
 
     c.respond_to do |format|
       format.html { c.redirect_to '/novice' }
-      format.json { c.render json: active_session.as_json_api, status: :created }
+      format.json { c.render json: access_token.as_json_api, status: :created }
     end
   end
 

@@ -1,13 +1,13 @@
 
 
 
-def given_I_have_a_classic_active_session
+def given_I_have_a_classic_access_token
   user = create(:user, name: 'James Pinto', city: 'Brasilia')
   credential = Credential.classic.create! user:     user,
                                           email:    'foo@bar.com',
                                           username: 'foobar',
                                           password: 'foobar'
-  ActiveSession.create!(credential: credential, user_agent_string: 'testing', expires_at: 24.hours.from_now)
+  AccessToken.create!(credential: credential, user_agent_string: 'testing', expires_at: 24.hours.from_now)
 end
 
 def given_I_have_a_classic_credential

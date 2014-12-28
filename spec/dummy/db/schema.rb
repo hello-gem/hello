@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140920192959) do
 
-  create_table "active_sessions", force: true do |t|
+  create_table "access_tokens", force: true do |t|
     t.integer  "user_id"
     t.integer  "credential_id"
     t.string   "user_agent_string"
@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 20140920192959) do
     t.datetime "updated_at"
   end
 
-  add_index "active_sessions", ["access_token"], name: "index_active_sessions_on_access_token"
-  add_index "active_sessions", ["credential_id"], name: "index_active_sessions_on_credential_id"
-  add_index "active_sessions", ["user_id"], name: "index_active_sessions_on_user_id"
+  add_index "access_tokens", ["access_token"], name: "index_access_tokens_on_access_token"
+  add_index "access_tokens", ["credential_id"], name: "index_access_tokens_on_credential_id"
+  add_index "access_tokens", ["user_id"], name: "index_access_tokens_on_user_id"
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20140920192959) do
     t.string   "email"
     t.string   "username"
     t.string   "password_digest"
-    t.integer  "active_sessions_count",      default: 0
+    t.integer  "access_tokens_count",        default: 0
     t.string   "password_token_digest"
     t.datetime "password_token_digested_at", default: '2000-01-01 00:00:00'
     t.string   "email_token_digest"
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 20140920192959) do
     t.string   "role"
     t.string   "locale"
     t.string   "time_zone"
-    t.integer  "credentials_count",     default: 0
-    t.integer  "active_sessions_count", default: 0
+    t.integer  "credentials_count",   default: 0
+    t.integer  "access_tokens_count", default: 0
     t.string   "city"
   end
 

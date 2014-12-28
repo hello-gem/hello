@@ -15,7 +15,7 @@ module Hello
 
     # PATCH /hello/sudo_mode
     def authenticate
-      entity = SudoModeAuthenticationEntity.new(hello_active_session)
+      entity = SudoModeAuthenticationEntity.new(hello_access_token)
 
       if entity.authenticate!(params.require(:credential))
         path_to_go = session[:hello_url] || root_path
@@ -29,7 +29,7 @@ module Hello
 
     # GET /hello/sudo_mode/expire
     def expire
-      entity = SudoModeExpirationEntity.new(hello_active_session)
+      entity = SudoModeExpirationEntity.new(hello_access_token)
       entity.expire!
       flash[:notice] = entity.success_message
       redirect_to hello.homepage_path

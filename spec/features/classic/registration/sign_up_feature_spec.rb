@@ -15,7 +15,7 @@ describe "Sign Up" do
   end
 
   it "Error - Blank fields show validation errors" do
-    given_I_have_a_classic_active_session
+    given_I_have_a_classic_access_token
     
     when_sign_up_as_a_novice(expect_welcome_mailer: false, expect_success: false)
 

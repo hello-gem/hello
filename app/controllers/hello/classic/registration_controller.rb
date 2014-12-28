@@ -117,7 +117,7 @@ module Classic
 
     # GET /hello/classic/reset/token/:token
     def reset_token
-      destroy_and_clear_hello_active_session
+      destroy_and_clear_hello_access_token
       @reset_password = ResetPasswordEntity.new(params[:token])
 
       if @reset_password.credential

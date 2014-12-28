@@ -11,7 +11,7 @@
     <%#= active_link_to 'Add Email', hello.new_credential_path, class: "list-group-item" %>
   <% end %>
 
-  <%= active_link_to "Active Sessions (#{current_user.active_sessions_count})", hello.active_sessions_path, class: "list-group-item" %>
+  <%= active_link_to "Access Tokens (#{current_user.access_tokens_count})", hello.access_tokens_path, class: "list-group-item" %>
   <%= active_link_to "Cancel Account", hello.deactivation_path, class: "list-group-item" %>
 </div>
 </div>

@@ -5,29 +5,29 @@ require_dependency "hello/application_controller"
 #
 
 module Hello
-  class ActiveSessionsController < ApplicationController
+  class AccessTokensController < ApplicationController
     
     restrict_to_users
     
     before_actions do
       all            { restrict_access_to_sudo_mode }
-      only(:index)   { @active_sessions = hello_user.active_sessions }
-      only(:destroy) { @active_session  = hello_user.active_sessions.find(params[:id]) }
+      only(:index)   { @access_tokens = hello_user.access_tokens }
+      only(:destroy) { @access_token  = hello_user.access_tokens.find(params[:id]) }
     end
 
-    # GET /hello/active_sessions
+    # GET /hello/access_tokens
     def index
     end
 
-    # DELETE /hello/active_sessions/1
+    # DELETE /hello/access_tokens/1
     def destroy
-      entity = DestroyActiveSessionEntity.new
-      if @active_session.destroy
+      entity = DestroyAccessTokenEntity.new
+      if @access_token.destroy
         flash[:notice] = entity.success_message
       else
         flash[:alert]  = entity.alert_message
       end
-      redirect_to active_sessions_url
+      redirect_to access_tokens_url
     end
 
   end

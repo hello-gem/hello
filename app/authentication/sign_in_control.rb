@@ -4,11 +4,11 @@ class SignInControl < Hello::AbstractControl
 
   def success
     expires_at     = !!c.params[:keep_me] ? 30.days.from_now : 30.minutes.from_now
-    active_session = c.create_hello_active_session(expires_at)
+    access_token = c.create_hello_access_token(expires_at)
 
     c.respond_to do |format|
       format.html { c.redirect_to c.session.delete(:url) || c.hello.after_sign_in_path }
-      format.json { c.render json: active_session.as_json_api, status: :created }
+      format.json { c.render json: access_token.as_json_api, status: :created }
     end
   end
 

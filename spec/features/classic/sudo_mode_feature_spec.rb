@@ -7,10 +7,10 @@ describe "Sudo Mode" do
     when_sign_up_with_standard_data(expect_welcome_mailer: true)
 
     click_link "Settings"
-    click_link "Active Sessions"
+    click_link "Access Tokens"
         expect(page).to have_content "Confirm Password to Continue"
-        expect(current_path).to eq hello.active_sessions_path
-        expect(ActiveSession.last.sudo_expires_at).to be < Time.now
+        expect(current_path).to eq hello.access_tokens_path
+        expect(AccessToken.last.sudo_expires_at).to be < Time.now
   end
 
   describe "Authenticate" do
@@ -29,7 +29,7 @@ describe "Sudo Mode" do
         expect_flash_alert "Incorrect Password"
         expect(page).to have_content "Confirm Password to Continue"
         expect(current_path).to eq hello.sudo_mode_path
-        expect(ActiveSession.last.sudo_expires_at).to be < Time.now
+        expect(AccessToken.last.sudo_expires_at).to be < Time.now
       end
     end
 
@@ -39,8 +39,8 @@ describe "Sudo Mode" do
       expect_flash_notice "Now we know it's really you. We won't be asking your password again for 60 minutes"
       expect(page).to have_content "Sudo Mode expires in"
       expect(page).not_to have_content "Confirm Password to Continue"
-      expect(current_path).to eq hello.active_sessions_path
-      expect(ActiveSession.last.sudo_expires_at).to be > 29.minutes.from_now
+      expect(current_path).to eq hello.access_tokens_path
+      expect(AccessToken.last.sudo_expires_at).to be > 29.minutes.from_now
     end
   end
 

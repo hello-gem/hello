@@ -3,7 +3,7 @@ class ResetPasswordControl < Hello::AbstractControl
   alias :reset_password :entity
 
   def success
-    active_session = c.create_hello_active_session
+    access_token = c.create_hello_access_token
 
     c.redirect_to c.hello.after_reset_path
   end

@@ -1,5 +1,5 @@
-class ActiveSession < ActiveRecord::Base
-  include Hello::ActiveSessionModel # keep this line for gem hello
+class AccessToken < ActiveRecord::Base
+  include Hello::AccessTokenModel # keep this line for gem hello
 
   # specify what happens to associated records when the user decided to terminate their account
   # has_many :things_to_destroy,  dependent: :destroy

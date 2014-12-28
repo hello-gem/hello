@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration
     add_users_column_safe :locale, :string
     add_users_column_safe :time_zone, :string
     add_users_column_safe :credentials_count,     :integer, default: 0
-    add_users_column_safe :active_sessions_count, :integer, default: 0
+    add_users_column_safe :access_tokens_count, :integer, default: 0
     add_users_column_safe :city, :string
   end
 

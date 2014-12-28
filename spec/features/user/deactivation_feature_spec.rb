@@ -9,7 +9,7 @@ describe "Deactivate" do
 
     expect(User.count).to          eq(0)
     expect(Credential.count).to    eq(0)
-    expect(ActiveSession.count).to eq(0)
+    expect(AccessToken.count).to eq(0)
 
     then_I_should_be_logged_out
     expect(current_path).to eq hello.after_deactivation_path
@@ -25,7 +25,7 @@ describe "Deactivate" do
 
     expect(User.count).to          eq(1)
     expect(Credential.count).to    eq(1)
-    expect(ActiveSession.count).to eq(1)
+    expect(AccessToken.count).to eq(1)
 
     then_I_should_be_logged_in
     expect(current_path).to eq hello.deactivation_path

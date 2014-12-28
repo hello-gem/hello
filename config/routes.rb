@@ -9,7 +9,7 @@ Hello::Engine.routes.draw do
   get  'locale' => 'locale#index'
   post 'locale' => 'locale#update'
 
-  resources :active_sessions, only: [:index, :destroy]
+  resources :access_tokens, only: [:index, :destroy]
 
   root "welcome#index"
   get  "homepage" => "welcome#homepage"

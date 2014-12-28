@@ -70,7 +70,7 @@ pt-BR:
         success: "%{email} foi confirmado com sucesso."
         alert: "O link expirou, por favor solicite um novo email de confirmação"
         info: "Um email de confirmação foi enviado para %{email} %{time_ago_in_words} ago."
-      destroy_active_session:
+      destroy_access_token:
         success: "Dispositivo foi desconectado com sucesso da sua conta"
         alert: "Houve um erro ao desconectar esse dispositivo"
       sudo_mode_authentication:

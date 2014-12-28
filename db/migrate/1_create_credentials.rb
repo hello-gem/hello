@@ -6,7 +6,7 @@ class CreateCredentials < ActiveRecord::Migration
       t.string :email
       t.string :username
       t.string :password_digest
-      t.integer :active_sessions_count, default: 0
+      t.integer :access_tokens_count, default: 0
 
       t.string   :password_token_digest
       t.datetime :password_token_digested_at, default:  DateTime.new(2000, 1,1)

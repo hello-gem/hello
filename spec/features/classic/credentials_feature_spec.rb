@@ -6,9 +6,9 @@ describe "credentials" do
   before do
     given_I_am_logged_in
     click_link "Settings"
-    click_link "Active Sessions"
+    click_link "Access Tokens"
     when_I_confirm_my_credential_password
-    expect(current_path).to eq hello.active_sessions_path
+    expect(current_path).to eq hello.access_tokens_path
   end
 
   describe "Email" do

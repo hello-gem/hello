@@ -17,8 +17,8 @@
   <tbody>
 
 
-    <% @active_sessions.each_with_index do |a_session, i| %>
-      <% is_this_session = a_session == hello_active_session  %>
+    <% @access_tokens.each_with_index do |a_session, i| %>
+      <% is_this_session = a_session == hello_access_token  %>
 
       <tr class="<%= 'success' if is_this_session %>">
         <td>Device #<%= i+1 %></td>

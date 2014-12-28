@@ -26,7 +26,7 @@ describe "Admin" do
     it "Comes with Sudo Mode" do
       impersonate
 
-      visit "/hello/active_sessions"
+      visit "/hello/access_tokens"
       expect(page).not_to have_button "Confirm Password"
     end
 

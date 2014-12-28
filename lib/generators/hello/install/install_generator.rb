@@ -42,7 +42,7 @@ class Hello::InstallGenerator < Rails::Generators::Base
 
   def create_models
     copy_file "credential.rb",     "app/models/credential.rb"
-    copy_file "active_session.rb", "app/models/active_session.rb"
+    copy_file "access_token.rb", "app/models/access_token.rb"
     copy_file "user.rb",           "app/models/user.rb"
   end
 

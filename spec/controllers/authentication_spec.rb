@@ -38,14 +38,14 @@ describe "Authentication" do
     describe UserController do
       routes { Hello::Engine.routes }
 
-      before { @s = given_I_have_a_classic_active_session }
+      before { @s = given_I_have_a_classic_access_token }
 
       it "PARAMS" do
         get :edit, {format: :json, access_token: @s.access_token}
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
-        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "locale", "time_zone", "credentials_count", "active_sessions_count", "city"])
+        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "locale", "time_zone", "credentials_count", "access_tokens_count", "city"])
       end
 
       it "SESSION" do
@@ -53,7 +53,7 @@ describe "Authentication" do
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
-        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "locale", "time_zone", "credentials_count", "active_sessions_count", "city"])
+        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "locale", "time_zone", "credentials_count", "access_tokens_count", "city"])
       end
 
       it "COOKIE" do
@@ -62,7 +62,7 @@ describe "Authentication" do
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
-        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "locale", "time_zone", "credentials_count", "active_sessions_count", "city"])
+        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "locale", "time_zone", "credentials_count", "access_tokens_count", "city"])
       end
 
       it "HEADER" do
@@ -71,7 +71,7 @@ describe "Authentication" do
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
-        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "locale", "time_zone", "credentials_count", "active_sessions_count", "city"])
+        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "locale", "time_zone", "credentials_count", "access_tokens_count", "city"])
       end
 
     end
@@ -82,7 +82,7 @@ describe "Authentication" do
       routes { Hello::Engine.routes }
 
       it "Access Token Expired" do
-        @s = given_I_have_a_classic_active_session
+        @s = given_I_have_a_classic_access_token
         @s.update! expires_at: 1.second.ago
 
         get :edit, {format: :json, access_token: @s.access_token}

@@ -81,7 +81,7 @@ describe "Feature Set: Access Restriction" do
 
 
 
-    what "On the Active Sessions page" do
+    what "On the Access Tokens page" do
 
       who "As a Guest" do
         scenario "Access Denied" do
@@ -97,19 +97,19 @@ describe "Feature Set: Access Restriction" do
 
       who "As a User" do
         scenario "Access Granted" do
-          visit2 :user, "/hello/active_sessions"
+          visit2 :user, "/hello/access_tokens"
         end
       end
 
       who "As an Admin" do
         scenario "Access Granted" do
-          visit2 :admin, "/hello/active_sessions"
+          visit2 :admin, "/hello/access_tokens"
         end
       end
 
       def visit2(role, expected_path, expected_flash_alert=nil)
         sign_up_as_a(role)
-        visit "/hello/active_sessions"
+        visit "/hello/access_tokens"
         expect(current_path).to eq(expected_path)
         expect_flash_auth(expected_flash_alert)
       end

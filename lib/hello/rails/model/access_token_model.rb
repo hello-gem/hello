@@ -1,5 +1,5 @@
 module Hello
-  module ActiveSessionModel
+  module AccessTokenModel
     extend ActiveSupport::Concern
 
     def full_device_name

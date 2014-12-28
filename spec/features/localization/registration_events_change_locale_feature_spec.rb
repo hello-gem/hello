@@ -22,7 +22,7 @@ describe "Localization" do
     end
 
     it "Sign In Resets Locale" do
-      given_I_have_a_classic_active_session
+      given_I_have_a_classic_access_token
       User.last.update! locale: 'pt-BR'
       
       #

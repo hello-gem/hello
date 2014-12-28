@@ -4,8 +4,8 @@ describe "Classic" do
 describe "Registration" do
 describe "Sign In" do
 
-  def get_last_active_session
-    ActiveSession.last
+  def get_last_access_token
+    AccessToken.last
   end
 
   describe "Success" do
@@ -17,7 +17,7 @@ describe "Sign In" do
       when_sign_in_with_standard_data
 
       expect(current_path).to eq hello.after_sign_in_path
-      expect(get_last_active_session.expires_at).to be > 29.minutes.from_now
+      expect(get_last_access_token.expires_at).to be > 29.minutes.from_now
     end
 
     it "Previous URL" do
@@ -33,7 +33,7 @@ describe "Sign In" do
 
       when_sign_in_with_standard_data(keep_me: true)
 
-      expect(get_last_active_session.expires_at).to be > 29.days.from_now
+      expect(get_last_access_token.expires_at).to be > 29.days.from_now
     end
 
     after do
@@ -63,29 +63,29 @@ describe "Sign In" do
     #
     # First expectation
     #
-    expect(get_last_active_session.expires_at).to be > 29.minutes.from_now
-    expect(get_last_active_session.expires_at).to be < 31.minutes.from_now
+    expect(get_last_access_token.expires_at).to be > 29.minutes.from_now
+    expect(get_last_access_token.expires_at).to be < 31.minutes.from_now
 
     #
     # 25 minutes to expire, doesn't renew expiracy
     #
-    get_last_active_session.update_attribute :expires_at, 25.minutes.from_now
+    get_last_access_token.update_attribute :expires_at, 25.minutes.from_now
     visit root_path
       then_I_should_be_logged_in
-      expect(get_last_active_session.expires_at).to be < 26.minutes.from_now
+      expect(get_last_access_token.expires_at).to be < 26.minutes.from_now
 
     #
     # 19 minutes to expire, renews expiracy to 30 minutes
     #
-    get_last_active_session.update_attribute :expires_at, 19.minutes.from_now
+    get_last_access_token.update_attribute :expires_at, 19.minutes.from_now
     visit root_path
       then_I_should_be_logged_in
-      expect(get_last_active_session.expires_at).to be > 29.minutes.from_now
+      expect(get_last_access_token.expires_at).to be > 29.minutes.from_now
 
     #
     # 1 second after expire, expires your session
     #
-    get_last_active_session.update_attribute :expires_at, 1.seconds.ago
+    get_last_access_token.update_attribute :expires_at, 1.seconds.ago
     visit root_path
       then_I_should_be_logged_out
   end

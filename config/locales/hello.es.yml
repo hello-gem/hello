@@ -70,7 +70,7 @@ es:
         success: "%{email} ha sido confirmado satisfactoriamente."
         alert: "Este enlace ha expirado, por favor pide un nuevo enlace"
         info: "Un correo de confirmación ha sido enviado a %{email} hace %{time_ago_in_words}."
-      destroy_active_session:
+      destroy_access_token:
         success: "Dispositivo ha sido desconectado satisfactoriamente de tu cuenta"
         alert: "Hubo un error al desconectar este dispositivo"
       sudo_mode_authentication:
