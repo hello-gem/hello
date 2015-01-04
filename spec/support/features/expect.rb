@@ -24,11 +24,11 @@
   end
 
   def expect_to_see(text)
-    expect(page.body).to include text
+    expect(page.text).to include text
   end
 
   def expect_not_to_see(text)
-    expect(page.body).not_to include text
+    expect(page.text).not_to include text
   end
 
 

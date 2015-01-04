@@ -9,13 +9,33 @@
     <%= f.label :login, "Email or Username", class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
       <%= f.text_field :login, class: "form-control", placeholder: "Email or Username" %>
+
+      <% if @sign_in.not_found? %>
+        <blockquote style="border-color: #a94442">
+          <p class="text-danger">This login was not found in our database.</p>
+          <p>Do you want to <%= link_to "Sign Up", hello.sign_up_path %> instead?</p>
+        </blockquote>
+      <% end %>
+
     </div>
+
   </div>
+  
   
   <div class="form-group">
     <%= f.label :password, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
       <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+    
+      <% if @sign_in.incorrect_password? %>
+        <blockquote style="border-color: #a94442">
+          <p class="text-danger">Your password does not match that in our database.</p>
+          <footer>
+            Did you <%= link_to "forget your password", hello.forgot_password_path %>?
+          </footer>
+        </blockquote>
+      <% end %>
+
     </div>
   </div>
   
@@ -29,13 +49,13 @@
       </div>
     </div>
   </div>
-  
+  <!-- 
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-4">
       <%= link_to "I forgot my password", hello.forgot_password_path %>
     </div>
   </div>
-
+ -->
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-4">
       <%= f.submit "Sign In", class: "btn btn-primary" %>

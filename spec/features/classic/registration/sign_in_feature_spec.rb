@@ -44,15 +44,43 @@ describe "Sign In" do
 
 
 
+  describe "Error" do
+    it "Blank fields show validation errors" do
+      visit hello.root_path
+      click_button 'Sign In'
 
-  it "Error - Blank fields show validation errors" do
-    when_sign_in_with_standard_data
+      expect_to_see "This login was not found in our database."
+      expect_to_see "Do you want to Sign Up instead?"
+      
+      expect_not_to_see "Your password does not match that in our database."
+    end
 
-    expect_error_message "1 error was found while trying to sign in"
-    then_I_should_be_logged_out
+    it "Not Found" do
+      when_sign_in_with_standard_data
+      
+      expect_to_see "This login was not found in our database."
+      expect_to_see "Do you want to Sign Up instead?"
+
+      expect_not_to_see "Your password does not match that in our database."
+    end
+
+    it "Incorrect Password" do
+      given_I_have_a_classic_credential
+      when_sign_in_with_standard_data(password: 'wrong')
+      
+      expect_to_see "Your password does not match that in our database."
+      expect_to_see "Did you forget your password?"
+    end
+
+    after do
+      expect_error_message "1 error was found while trying to sign in"
+      expect(current_path).to eq hello.sign_in_path
+      then_I_should_be_logged_out
+    end
   end
 
 
+    
 
 
   it "Session Expiration" do

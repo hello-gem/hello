@@ -12,11 +12,19 @@ module Hello
     end
 
     def authenticate
-      add_errors_for_login_not_found    and return false if credential.new_record?
-      add_errors_for_password_incorrect and return false if not credential.password_is?(password)
+      add_errors_for_login_not_found    and return false if not_found?
+      add_errors_for_password_incorrect and return false if incorrect_password?
       return true
     end
 
+    def not_found?
+      initialized? && credential.new_record?
+    end
+
+    def incorrect_password?
+      was_login_found = initialized? && !not_found?
+      was_login_found && !credential.password_is?(password)
+    end
 
 
     private
@@ -39,6 +47,10 @@ module Hello
 
         def add_errors_for_password_incorrect
           errors.add(:password, "is incorrect")
+        end
+
+        def initialized?
+          !!credential
         end
 
         # helpers
