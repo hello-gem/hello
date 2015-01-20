@@ -3,16 +3,9 @@ class ForgotPasswordControl < Hello::AbstractControl
   alias :forgot_password :entity
 
   def success
-    credential = forgot_password.credential
+    @credential = forgot_password.credential
 
-    digested_at = credential.password_token_digested_at
-    should_reset_password_token = (digested_at.blank? || digested_at < 7.days.ago)
-    
-    if should_reset_password_token
-      token  = credential.reset_password_token
-      url    = c.hello.reset_token_url(token)
-      Hello::RegistrationMailer.forgot_password(credential, url).deliver
-    end
+    reset_token_and_deliver_email if should_reset_password_token?
 
     c.respond_to do |format|
       format.html { c.redirect_to c.hello.after_forgot_path }
@@ -32,5 +25,26 @@ class ForgotPasswordControl < Hello::AbstractControl
     end
   end
 
+
+
+
+
+  private
+
+  def reset_token_and_deliver_email
+    token  = @credential.reset_password_token
+    url    = c.hello.reset_token_url(token)
+    Hello::RegistrationMailer.forgot_password(@credential, url).deliver
+  end
+
+  def should_reset_password_token?
+    true
+    # SUGGESTION: Don't let users request a new password more than once a week
+    # past_or_never?(@credential.password_token_digested_at, 7.days.ago)
+  end
+
+      # def past_or_never?(time1, time2)
+      #   time1.blank? || (time1 < time2)
+      # end
 
 end
