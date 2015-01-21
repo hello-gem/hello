@@ -2,25 +2,88 @@
 
 We want enjoyable Rails authentication
 
-__This gem is in rapid development, can be used in production by Rails experts__
-
-* Share Experiences: https://gitter.im/hello-gem/hello
-
+__This gem is in rapid development, currently in Beta__
 
 
 
 
 ## Status
 
-[![Build Status](https://travis-ci.org/hello-gem/hello.svg?branch=master)](https://travis-ci.org/hello-gem/hello)
+[![Build Status](https://travis-ci.org/hello-gem/hello.svg?branch=master)](https://travis-ci.org/hello-gem/hello) [![Code Climate](https://codeclimate.com/github/hello-gem/hello.png)](https://codeclimate.com/github/hello-gem/hello) [![Code Climate](https://codeclimate.com/github/hello-gem/hello/coverage.png)](https://codeclimate.com/github/hello-gem/hello) [![Dependency Status](https://gemnasium.com/hello-gem/hello.svg)](https://gemnasium.com/hello-gem/hello) [![Inline docs](http://inch-ci.org/github/hello-gem/hello.png?branch=master)](http://inch-ci.org/github/hello-gem/hello)
 
-[![Code Climate](https://codeclimate.com/github/hello-gem/hello.png)](https://codeclimate.com/github/hello-gem/hello)
 
-[![Code Climate](https://codeclimate.com/github/hello-gem/hello/coverage.png)](https://codeclimate.com/github/hello-gem/hello)
 
-[![Dependency Status](https://gemnasium.com/hello-gem/hello.svg)](https://gemnasium.com/hello-gem/hello)
 
-[![Inline docs](http://inch-ci.org/github/hello-gem/hello.png?branch=master)](http://inch-ci.org/github/hello-gem/hello)
+
+
+## Install
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'hello', github: 'hello-gem/hello' # latest from github while this gem is in rapid development
+```
+
+And then execute:
+
+```bash
+bundle
+rails g hello:install
+rake db:migrate
+rails g hello:views # optional
+```
+
+## Customizing - behavior and views
+
+These files are generated when you install this gem.
+They are simple to customize, just open them
+
+    + app/
+    | + authentication/
+    | | - sign_up_control.rb
+    | | - sign_in_control.rb
+    | |   ...
+    | + view/
+    |   + hello/
+    |       ...
+
+
+
+
+
+
+
+## Customizing
+
+```ruby
+class Credential < ActiveRecord::Base
+  include Hello::CredentialModel
+
+  validates_presence_of :username
+
+end
+
+class SignUpControl < Hello::AbstractControl
+
+  def success
+    deliver_welcome_email!
+
+    c.respond_to do |format|
+      format.html { c.redirect_to root_path }
+      format.json { c.render json: access_token, status: :created }
+    end
+  end
+
+  def failure
+    c.respond_to do |format|
+      format.html { c.render :sign_up }
+      format.json { c.render json: sign_up.errors, status: :unprocessable_entity }
+    end
+  end
+
+end
+```
+
 
 
 
@@ -51,81 +114,6 @@ Want to see it in action?
 
 * Visit https://bit.ly/hellogem
 * Sources at https://github.com/hello-gem/hello_demo
-
-
-
-
-
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'hello', github: 'hello-gem/hello' # latest from github while this gem is in rapid development
-```
-
-And then execute:
-
-```bash
-bundle
-rails g hello:install
-rake db:migrate
-rails g hello:views # optional
-```
-
-## Customizing - behavior and views
-
-These files are generated when you install this gem.
-They are simple to customize, just open them
-
-    + app/
-    | + lib/
-    | | + hello/
-    | |   - sign_up.rb
-    | |   - sign_in.rb
-    | |   - sign_out.rb
-    | |   - forgot.rb
-    | |   - reset.rb
-    | + view/
-    |   + hello/
-    |       ...
-
-
-
-
-
-
-
-## Usage
-
-TODO: review usage instructions
-
-You only need to include our module in your User class
-
-```ruby
-class User < ActiveRecord::Base
-  include Hello::UserModel
-
-  # uncomment the line below if you want username
-  # validates_presence_of :username
-
-end
-```
-
-We let you customize everything
-
-```ruby
-class Credential < ActiveRecord::Base
-  include Hello::CredentialModel
-
-  def encrypt_password(plain_text_password)
-    BCrypt::Password.create(plain_text_password)
-  end
-
-end
-```
-
 
 
 
