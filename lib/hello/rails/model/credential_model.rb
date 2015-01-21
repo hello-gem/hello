@@ -94,9 +94,11 @@ module Hello
     def ensure_username_if_blank_allowed_on_create
       return true if username.present?              # skip if username has been set
       return true if username_presence_is_required? # skip if username presence is required
-      string = make_up_new_username
-      string = make_up_new_username until not username_used_by_another?(string)
-      self.username = string
+      
+      loop do
+        self.username = make_up_new_username
+        break unless username_used_by_another?(username)
+      end
     end
 
         def make_up_new_username
