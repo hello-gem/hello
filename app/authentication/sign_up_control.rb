@@ -19,7 +19,7 @@ class SignUpControl < Hello::AbstractControl
   end
   
   def success
-    Hello::RegistrationMailer.welcome(sign_up.credential, sign_up.password).deliver
+    deliver_welcome_email!
 
     access_token = c.create_hello_access_token
 
@@ -37,6 +37,15 @@ class SignUpControl < Hello::AbstractControl
       format.html { c.render :sign_up }
       format.json { c.render json: sign_up.errors, status: :unprocessable_entity }
     end
+  end
+
+
+
+
+  private
+
+  def deliver_welcome_email!
+    Hello::RegistrationMailer.welcome(sign_up.credential, sign_up.password).deliver!
   end
 
 end

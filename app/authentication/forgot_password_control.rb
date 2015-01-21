@@ -5,7 +5,7 @@ class ForgotPasswordControl < Hello::AbstractControl
   def success
     @credential = forgot_password.credential
 
-    reset_token_and_deliver_email if should_reset_password_token?
+    reset_token_and_deliver_email! if should_reset_password_token?
 
     c.respond_to do |format|
       format.html { c.redirect_to c.hello.after_forgot_path }
@@ -31,10 +31,10 @@ class ForgotPasswordControl < Hello::AbstractControl
 
   private
 
-  def reset_token_and_deliver_email
+  def reset_token_and_deliver_email!
     token  = @credential.reset_password_token
     url    = c.hello.reset_token_url(token)
-    Hello::RegistrationMailer.forgot_password(@credential, url).deliver
+    Hello::RegistrationMailer.forgot_password(@credential, url).deliver!
   end
 
   def should_reset_password_token?
