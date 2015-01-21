@@ -9,13 +9,11 @@ module Classic
   class RegistrationController < ApplicationController
 
     restrict_if_authenticated only: [
-      :sign_in, :authenticate,
       :forgot, :ask, :after_forgot,
       :reset_token, :reset, :save,
     ]
 
     restrict_unless_authenticated only: [
-      :after_sign_in,
       :confirm_email_send,
     ]
 
@@ -27,31 +25,6 @@ module Classic
 
 
 
-
-
-    # GET /hello/sign_in
-    def sign_in
-      @sign_in = SignInEntity.new
-    end
-
-        # POST /hello/sign_in
-        def authenticate
-          @sign_in = SignInEntity.new(params.require(:sign_in))
-          @credential = @sign_in.credential
-
-          control = SignInControl.new(self, @sign_in)
-
-          if @sign_in.authenticate
-            flash[:notice] = @sign_in.success_message
-            control.success
-          else
-            control.failure
-          end
-        end
-
-            # GET /hello/after_sign_in
-            def after_sign_in
-            end
 
 
 

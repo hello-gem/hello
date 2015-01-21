@@ -57,15 +57,16 @@ Hello::Engine.routes.draw do
     get  "sign_up"         => "classic_registration/sign_up#index"
     post "sign_up"         => "classic_registration/sign_up#create"
 
+    # sign in
+    get  "sign_in"         => "classic_registration/sign_in#index"
+    post "sign_in"         => "classic_registration/sign_in#authenticate"
+    get  "authenticated"   => "classic_registration/sign_in#authenticated"
+
+
 
 
   # classic/registration
   
-    # sign in
-    get  "sign_in"         => "classic/registration#sign_in"
-    post "sign_in"         => "classic/registration#authenticate"
-    get  "after_sign_in"   => "classic/registration#after_sign_in"
-
     # forgot
     get  "forgot_password" => "classic/registration#forgot"
     post "forgot_password" => "classic/registration#ask"

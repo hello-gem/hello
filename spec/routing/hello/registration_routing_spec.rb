@@ -10,27 +10,31 @@ module Classic
 
 
       it "routes to #sign_up" do
-        get("/sign_up").should route_to("hello/classic/registration#sign_up")
+        get("/sign_up").should route_to("hello/classic_registration/sign_up#index")
       end
 
           it "routes to #create" do
-            post("/sign_up").should route_to("hello/classic/registration#create")
+            post("/sign_up").should route_to("hello/classic_registration/sign_up#create")
           end
 
 
 
 
       it "routes to #sign_in" do
-        get("/sign_in").should route_to("hello/classic/registration#sign_in")
+        get("/sign_in").should route_to("hello/classic_registration/sign_in#index")
       end
 
           it "routes to #authenticate" do
-            post("/sign_in").should route_to("hello/classic/registration#authenticate")
+            post("/sign_in").should route_to("hello/classic_registration/sign_in#authenticate")
           end
 
-              it "routes to #after_sign_in" do
-                get("/after_sign_in").should route_to("hello/classic/registration#after_sign_in")
+              it "routes to #authenticated" do
+                get("/authenticated").should route_to("hello/classic_registration/sign_in#authenticated")
               end
+
+
+
+
 
       it "routes to #forgot_password" do
         get("/forgot_password").should route_to("hello/classic/registration#forgot")

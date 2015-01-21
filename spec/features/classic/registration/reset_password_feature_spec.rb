@@ -33,7 +33,7 @@ describe "Reset Password" do
     when_sign_in_with_standard_data(password: 'the-new-password')
 
     expect_flash_notice_signed_in
-    expect(current_path).to eq hello.after_sign_in_path
+    expect(current_path).to eq hello.authenticated_path
     then_I_should_be_logged_in
   end
 

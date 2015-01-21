@@ -7,7 +7,7 @@ class SignInControl < Hello::AbstractControl
     access_token = c.create_hello_access_token(expires_at)
 
     c.respond_to do |format|
-      format.html { c.redirect_to c.session.delete(:url) || c.hello.after_sign_in_path }
+      format.html { c.redirect_to c.session.delete(:url) || c.hello.authenticated_path }
       format.json { c.render json: access_token.as_json_api, status: :created }
     end
   end
@@ -16,7 +16,7 @@ class SignInControl < Hello::AbstractControl
     # SUGGESTION: register failed attempt if password was incorrect
 
     c.respond_to do |format|
-      format.html { c.render :sign_in }
+      format.html { c.render action: 'index' }
       format.json { c.render json: sign_in.errors, status: :unprocessable_entity }
     end
   end
