@@ -9,7 +9,7 @@ module Classic
 
 
 
-      it "routes to #sign_up" do
+      it "routes to #index" do
         get("/sign_up").should route_to("hello/classic_registration/sign_up#index")
       end
 
@@ -20,7 +20,7 @@ module Classic
 
 
 
-      it "routes to #sign_in" do
+      it "routes to #index" do
         get("/sign_in").should route_to("hello/classic_registration/sign_in#index")
       end
 
@@ -36,15 +36,15 @@ module Classic
 
 
 
-      it "routes to #forgot_password" do
+      it "routes to #index" do
         get("/password/forgot").should route_to("hello/classic_registration/forgot_password#index")
       end
 
-          it "routes to #ask" do
+          it "routes to #remember" do
             post("/password/forgot").should route_to("hello/classic_registration/forgot_password#remember")
           end
 
-              it "routes to #after_forgot" do
+              it "routes to #remembered" do
                 get("/password/remembered").should route_to("hello/classic_registration/forgot_password#remembered")
               end
 
@@ -52,19 +52,19 @@ module Classic
 
 
       it "routes to #reset_token" do
-        get("/reset/token/123").should route_to("hello/classic/registration#reset_token", token: '123')
+        get("/password/reset/123").should route_to("hello/classic_registration/reset_password#reset_token", token: '123')
       end
 
-          it "routes to #reset_password" do
-            get("/reset_password").should route_to("hello/classic/registration#reset")
+          it "routes to #index" do
+            get("/password/reset").should route_to("hello/classic_registration/reset_password#index")
           end
 
               it "routes to #save" do
-                post("/reset_password").should route_to("hello/classic/registration#save")
+                post("/password/reset").should route_to("hello/classic_registration/reset_password#save")
               end
 
-                  it "routes to #after_reset" do
-                    get("/after_reset").should route_to("hello/classic/registration#after_reset")
+                  it "routes to #done" do
+                    get("/password/reset/done").should route_to("hello/classic_registration/reset_password#done")
                   end
 
       

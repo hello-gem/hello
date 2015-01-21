@@ -5,6 +5,22 @@ Hello::Engine.routes.draw do
 
 
 
+  namespace :classic_registration do
+  get 'reset_password/token'
+  end
+
+  namespace :classic_registration do
+  get 'reset_password/index'
+  end
+
+  namespace :classic_registration do
+  get 'reset_password/save'
+  end
+
+  namespace :classic_registration do
+  get 'reset_password/done'
+  end
+
   # namespace :hello do
   # end
 
@@ -67,17 +83,17 @@ Hello::Engine.routes.draw do
     post "password/forgot"          => "classic_registration/forgot_password#remember"
     get  "password/remembered"      => "classic_registration/forgot_password#remembered"
 
+    # reset
+    get  "password/reset/done"      => "classic_registration/reset_password#done"
+    get  "password/reset/:token"    => "classic_registration/reset_password#reset_token", as: 'reset_token'
+    get  "password/reset"           => "classic_registration/reset_password#index"
+    post "password/reset"           => "classic_registration/reset_password#save"
+
 
 
 
   # classic/registration
   
-    # reset
-    get  "reset/token/:token" => "classic/registration#reset_token", as: 'reset_token'
-    get  "reset_password"     => "classic/registration#reset"
-    post "reset_password"     => "classic/registration#save"
-    get  "after_reset"        => "classic/registration#after_reset"
-
     # confirm email
     get  "confirm_email/send"         => "classic/registration#confirm_email_send"
     get  "confirm_email/token/:token" => "classic/registration#confirm_email_token", as: 'confirm_email_token'

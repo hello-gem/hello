@@ -14,7 +14,7 @@ describe "Reset Password" do
     when_I_update_a_reset_password_form_with('the-new-password')
     
     expect_flash_notice "You have reset your password successfully"
-    expect(current_path).to eq hello.after_reset_path
+    expect(current_path).to eq hello.password_reset_done_path
     then_I_should_be_logged_in
     
     when_I_sign_out
@@ -42,7 +42,7 @@ describe "Reset Password" do
     before do
       reset_token = given_I_have_a_classic_credential_and_forgot_my_password
       visit hello.reset_token_path(reset_token)
-      expect(current_path).to eq hello.reset_password_path
+      expect(current_path).to eq hello.password_reset_path
     end
 
     it "Empty Password" do

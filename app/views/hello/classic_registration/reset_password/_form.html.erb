@@ -1,4 +1,4 @@
-<%= form_for @reset_password, as: :reset_password, url: reset_password_path, html: {class: "form-horizontal", role: "form"} do |f| %>
+<%= form_for @reset_password, as: :reset_password, url: password_reset_path, html: {class: "form-horizontal", role: "form"} do |f| %>
   
   <!-- Errors -->
   <% if @reset_password.errors.any? %>
