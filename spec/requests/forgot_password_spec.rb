@@ -1,29 +1,29 @@
 require "spec_helper"
 
-RSpec.describe "Sign In", :type => :request do
+RSpec.describe "Forgot Password", :type => :request do
 
-  describe "POST /sign_in.json" do
+  describe "POST /password/forgot.json" do
 
     describe "Error" do
       it "missing" do
-        post "/hello/sign_in.json"
+        post "/hello/password/forgot.json"
         
         expect(response.status).to eq(400)
         expect(response.status_message).to eq("Bad Request")
         expect(json_response['exception']).to eq({
           "class"=>"ActionController::ParameterMissing",
-          "message"=>"param is missing or the value is empty: sign_in"
+          "message"=>"param is missing or the value is empty: forgot_password"
         })        
       end
 
       it "blank" do
-        sign_in_params = {login: ''}
-        post "/hello/sign_in.json", sign_in: sign_in_params
+        forgot_password_params = {login: ''}
+        post "/hello/password/forgot.json", forgot_password: forgot_password_params
 
         expect(response.status).to eq(422)
         expect(response.status_message).to eq("Unprocessable Entity")
         expect(json_response).to eq({
-          "username"=>["was not found"],
+          "login"=>["was not found"],
         })
       end
     end
@@ -31,12 +31,12 @@ RSpec.describe "Sign In", :type => :request do
     it "Success" do
       given_I_have_a_classic_credential
 
-      sign_in_params = {login: "foobar", password: "foobar"}
-      post "/hello/sign_in.json", sign_in: sign_in_params
+      forgot_password_params = {login: "foobar", password: "foobar"}
+      post "/hello/password/forgot.json", forgot_password: forgot_password_params
 
       expect(response.status).to eq(201)
       expect(response.status_message).to eq("Created")
-      expect(json_response.keys).to match_array %w[access_token expires_at username email email_confirmed_at user user_id]
+      expect(json_response.keys).to match_array %w[sent]
     end
 
   end

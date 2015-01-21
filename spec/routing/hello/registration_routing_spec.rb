@@ -37,15 +37,15 @@ module Classic
 
 
       it "routes to #forgot_password" do
-        get("/forgot_password").should route_to("hello/classic/registration#forgot")
+        get("/password/forgot").should route_to("hello/classic_registration/forgot_password#index")
       end
 
           it "routes to #ask" do
-            post("/forgot_password").should route_to("hello/classic/registration#ask")
+            post("/password/forgot").should route_to("hello/classic_registration/forgot_password#remember")
           end
 
               it "routes to #after_forgot" do
-                get("/after_forgot").should route_to("hello/classic/registration#after_forgot")
+                get("/password/remembered").should route_to("hello/classic_registration/forgot_password#remembered")
               end
 
 

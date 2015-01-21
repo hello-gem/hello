@@ -9,7 +9,6 @@ module Classic
   class RegistrationController < ApplicationController
 
     restrict_if_authenticated only: [
-      :forgot, :ask, :after_forgot,
       :reset_token, :reset, :save,
     ]
 
@@ -31,38 +30,6 @@ module Classic
 
 
 
-    # GET /hello/forgot
-    def forgot
-      @forgot_password = ForgotPasswordEntity.new
-    end
-
-        # POST /hello/forgot
-        def ask
-          @forgot_password = ForgotPasswordEntity.new(params.require(:forgot_password))
-          @credential = @forgot_password.credential
-
-          control = ForgotPasswordControl.new(self, @forgot_password)
-
-          if @forgot_password.reset
-            # flash[:notice] = @forgot_password.success_message
-            control.success
-          else
-            control.failure
-          end
-          
-          session[:forgot_login] = @forgot_password.login
-        end
-
-            # GET /hello/after_forgot
-            def after_forgot
-              @forgot_password = ForgotPasswordEntity.new
-              @forgot_password.login = session[:forgot_login]
-            end
-
-
-
-
-
     # GET /hello/reset/token/:token
     def reset_token
       destroy_and_clear_hello_access_token
@@ -73,7 +40,7 @@ module Classic
         redirect_to reset_password_path
       else
         flash[:alert] = @reset_password.alert_message
-        redirect_to forgot_password_path
+        redirect_to password_forgot_path
       end
     end
 

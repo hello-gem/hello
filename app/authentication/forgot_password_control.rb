@@ -8,7 +8,7 @@ class ForgotPasswordControl < Hello::AbstractControl
     reset_token_and_deliver_email! if should_reset_password_token?
 
     c.respond_to do |format|
-      format.html { c.redirect_to c.hello.after_forgot_path }
+      format.html { c.redirect_to c.hello.password_remembered_path }
       format.json { c.render json: {sent: true}, status: :created }
     end
   end
@@ -17,10 +17,10 @@ class ForgotPasswordControl < Hello::AbstractControl
     # SUGGESTION: register failed attempt
 
     c.respond_to do |format|
-      format.html { c.render :forgot }
+      format.html { c.render action: 'index' }
       format.json { c.render json: forgot_password.errors, status: :unprocessable_entity }
       # # To falsy show that the email was sent, please use the code below instead
-      # format.html { c.redirect_to c.hello.after_forgot_path }
+      # format.html { c.redirect_to c.hello.password_remembered_path }
       # format.json { c.render json: {sent: true}, status: :created }
     end
   end

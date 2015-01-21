@@ -25,7 +25,7 @@ describe "Reset Password" do
     visit hello.reset_token_path(reset_token)
 
     expect_flash_alert "This link has expired, please ask for a new link"
-    expect(current_path).to eq hello.forgot_password_path
+    expect(current_path).to eq hello.password_forgot_path
 
     #
     # NEW PASSWORD MUST BE GOOD NOW
@@ -62,7 +62,7 @@ describe "Reset Password" do
   it "Alert - Bad Token" do
     visit hello.reset_token_path('wrong')
 
-    expect(current_path).to eq hello.forgot_password_path
+    expect(current_path).to eq hello.password_forgot_path
     expect_flash_alert "This link has expired, please ask for a new link"
   end
 

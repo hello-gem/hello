@@ -11,7 +11,7 @@ describe "Forgot Password" do
 
     expect_to_see "To get back into your account, follow the instructions we've sent to your \"foobar\" email address."
     # expect(open_last_email.to_s).to have_content "/hello/classic/reset/token/"
-    expect(current_path).to eq hello.after_forgot_path
+    expect(current_path).to eq hello.password_remembered_path
     then_I_should_be_logged_out
   end
 
@@ -19,7 +19,7 @@ describe "Forgot Password" do
     when_I_ask_to_reset_my_password('wrong')
 
     expect_error_message "1 error was found while locating your credentials"
-    expect(current_path).to eq hello.forgot_password_path
+    expect(current_path).to eq hello.password_forgot_path
     then_I_should_be_logged_out
   end
 

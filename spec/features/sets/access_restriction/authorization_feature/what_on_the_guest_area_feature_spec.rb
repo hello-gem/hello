@@ -47,7 +47,7 @@ describe "Feature Set: Access Restriction" do
 
       who "As a Guest" do
         scenario "Access Granted" do
-          visit2 :guest, '/hello/forgot_password'
+          visit2 :guest, '/hello/password/forgot'
         end
       end
 
@@ -71,7 +71,7 @@ describe "Feature Set: Access Restriction" do
 
       def visit2(role, expected_path, expected_flash_alert=nil)
         sign_up_as_a(role)
-        visit '/hello/forgot_password'
+        visit '/hello/password/forgot'
         expect(current_path).to eq(expected_path)
         expect_flash_auth(expected_flash_alert)
       end

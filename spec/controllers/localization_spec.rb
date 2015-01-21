@@ -8,7 +8,7 @@ describe "Localization" do
   # I can see the website
   # So I don't face missing translation issues
 
-  describe Classic::RegistrationController do
+  describe ClassicRegistration::ForgotPasswordController do
     routes { Hello::Engine.routes }
 
     describe "Browser locale or default" do
@@ -49,7 +49,7 @@ describe "Localization" do
       hash.each do |value, expected|
         it "#{value || 'nil'} \t -> #{expected}" do
           @request.headers['HTTP_ACCEPT_LANGUAGE'] = value if value
-          post :ask, forgot_password: {login: 'foo'} # this is a good example because it triggers validations
+          post :remember, forgot_password: {login: 'foo'} # this is a good example because it triggers validations
           expect(response.status).to eq(200)
           expect(response.status_message).to eq("OK")
           expect(session['locale'].to_s).to eq(expected)

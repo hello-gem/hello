@@ -62,16 +62,16 @@ Hello::Engine.routes.draw do
     post "sign_in"         => "classic_registration/sign_in#authenticate"
     get  "authenticated"   => "classic_registration/sign_in#authenticated"
 
+    # forgot
+    get  "password/forgot"          => "classic_registration/forgot_password#index"
+    post "password/forgot"          => "classic_registration/forgot_password#remember"
+    get  "password/remembered"      => "classic_registration/forgot_password#remembered"
+
 
 
 
   # classic/registration
   
-    # forgot
-    get  "forgot_password" => "classic/registration#forgot"
-    post "forgot_password" => "classic/registration#ask"
-    get  "after_forgot"    => "classic/registration#after_forgot"
-
     # reset
     get  "reset/token/:token" => "classic/registration#reset_token", as: 'reset_token'
     get  "reset_password"     => "classic/registration#reset"

@@ -8,7 +8,7 @@ module Hello
 module ClassicRegistration
   class SignUpController < ApplicationController
 
-    # restrict_if_authenticated
+    restrict_if_authenticated
 
     # GET /hello/sign_up
     def index

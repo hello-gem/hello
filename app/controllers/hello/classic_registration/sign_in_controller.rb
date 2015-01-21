@@ -4,8 +4,8 @@ module Hello
 module ClassicRegistration
   class SignInController < ApplicationController
 
-    # restrict_if_authenticated     except: [:authenticated]
-    # restrict_unless_authenticated only:   [:authenticated]
+    restrict_if_authenticated     except: [:authenticated]
+    restrict_unless_authenticated only:   [:authenticated]
 
     # GET /hello/sign_in
     def index
