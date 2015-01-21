@@ -7,6 +7,7 @@ module Hello
         if value.blank?
           @password_digest = @password = nil
         end
+        value = value.to_s.remove(' ')
         @password = value
         self.password_digest = encrypt_password(value)
       end

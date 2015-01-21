@@ -212,6 +212,17 @@ module Hello
             @credential.valid?
             expect(@credential.errors[:password]).to eq ["maximum of 200 characters"]
           end
+
+          it "spaced" do
+            @credential.password = "   123   4   "
+            expect(@credential.password_is?('1234')).to eq(true)
+          end
+
+          it "cased" do
+            @credential.password = "Abcd"
+            expect(@credential.password_is?('Abcd')).to eq(true)
+            expect(@credential.password_is?('abcd')).to eq(false)
+          end
           
         end
       end
