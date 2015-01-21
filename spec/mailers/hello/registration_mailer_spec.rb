@@ -2,7 +2,8 @@ require "spec_helper"
 
 module Hello
   describe RegistrationMailer do
-    let(:credential) { create(:classic_credential) }
+    let(:credential) { create(:classic_credential, user: create(:user, name: "John O'Cornel")) }
+    let(:name) { "John O&#39;Cornel" }
 
     describe "welcome" do
       let(:mail) { RegistrationMailer.welcome(credential, "THE_PASSWORD") }
@@ -14,8 +15,8 @@ module Hello
       end
 
       it "renders the body" do
-        expect(mail.body.encoded).to match("Hello #{credential.user.name},")
-        expect(mail.body.encoded).to match("Welcome")
+        expect(mail.body.to_s).to match("Hello #{name},")
+        expect(mail.body.to_s).to match("Welcome")
       end
     end
 
@@ -29,8 +30,8 @@ module Hello
       end
 
       it "renders the body" do
-        expect(mail.body.encoded).to match("Hello #{credential.user.name},")
-        expect(mail.body.encoded).to match(">THE_URL</a>")
+        expect(mail.body.to_s).to match("Hello #{name},")
+        expect(mail.body.to_s).to match(">THE_URL</a>")
       end
     end
 
@@ -44,8 +45,8 @@ module Hello
       end
 
       it "renders the body" do
-        expect(mail.body.encoded).to match("Hello #{credential.user.name},")
-        expect(mail.body.encoded).to match(">THE_URL</a>")
+        expect(mail.body.to_s).to match("Hello #{name},")
+        expect(mail.body.to_s).to match(">THE_URL</a>")
       end
     end
 
