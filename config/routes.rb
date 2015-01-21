@@ -3,6 +3,8 @@ Hello::Engine.routes.draw do
 
 
 
+
+
   # namespace :hello do
   # end
 
@@ -49,12 +51,16 @@ Hello::Engine.routes.draw do
 
   end
 
-  # classic/registration
-    # sign up
-    get  "sign_up"         => "classic/registration#sign_up"
-    post "sign_up"         => "classic/registration#create"
-    # get  "after_sign_up"   => "classic/registration#after_sign_up"
 
+  # classic registration
+    # sign up
+    get  "sign_up"         => "classic_registration/sign_up#index"
+    post "sign_up"         => "classic_registration/sign_up#create"
+
+
+
+  # classic/registration
+  
     # sign in
     get  "sign_in"         => "classic/registration#sign_in"
     post "sign_in"         => "classic/registration#authenticate"

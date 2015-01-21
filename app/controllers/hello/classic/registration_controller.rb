@@ -9,7 +9,6 @@ module Classic
   class RegistrationController < ApplicationController
 
     restrict_if_authenticated only: [
-      :sign_up, :create,
       :sign_in, :authenticate,
       :forgot, :ask, :after_forgot,
       :reset_token, :reset, :save,
@@ -27,39 +26,15 @@ module Classic
 # confirm_email_expired
 
 
-    # GET /hello/classic/sign_up
-    def sign_up
-      @sign_up = SignUpEntity.new(self)
-    end
-
-        # POST /hello/classic/sign_up
-        def create
-          @sign_up = SignUpEntity.new(self)
-
-          control = SignUpControl.new(self, @sign_up)
-
-          if @sign_up.save(params.require(:sign_up))
-            @credential = @sign_up.credential
-            @password   = @sign_up.password
-            flash[:notice] = @sign_up.success_message
-            control.success
-          else
-            control.failure
-          end
-        end
 
 
 
-
-
-
-
-    # GET /hello/classic/sign_in
+    # GET /hello/sign_in
     def sign_in
       @sign_in = SignInEntity.new
     end
 
-        # POST /hello/classic/sign_in
+        # POST /hello/sign_in
         def authenticate
           @sign_in = SignInEntity.new(params.require(:sign_in))
           @credential = @sign_in.credential
@@ -74,7 +49,7 @@ module Classic
           end
         end
 
-            # GET /hello/classic/after_sign_in
+            # GET /hello/after_sign_in
             def after_sign_in
             end
 
@@ -83,12 +58,12 @@ module Classic
 
 
 
-    # GET /hello/classic/forgot
+    # GET /hello/forgot
     def forgot
       @forgot_password = ForgotPasswordEntity.new
     end
 
-        # POST /hello/classic/forgot
+        # POST /hello/forgot
         def ask
           @forgot_password = ForgotPasswordEntity.new(params.require(:forgot_password))
           @credential = @forgot_password.credential
@@ -105,7 +80,7 @@ module Classic
           session[:forgot_login] = @forgot_password.login
         end
 
-            # GET /hello/classic/after_forgot
+            # GET /hello/after_forgot
             def after_forgot
               @forgot_password = ForgotPasswordEntity.new
               @forgot_password.login = session[:forgot_login]
@@ -115,7 +90,7 @@ module Classic
 
 
 
-    # GET /hello/classic/reset/token/:token
+    # GET /hello/reset/token/:token
     def reset_token
       destroy_and_clear_hello_access_token
       @reset_password = ResetPasswordEntity.new(params[:token])
@@ -129,12 +104,12 @@ module Classic
       end
     end
 
-        # GET /hello/classic/reset
+        # GET /hello/reset
         def reset
           fetch_registration_reset_ivar
         end
 
-            # POST /hello/classic/reset
+            # POST /hello/reset
             def save
               fetch_registration_reset_ivar
               control = ResetPasswordControl.new(self, @reset_password)
@@ -149,13 +124,13 @@ module Classic
               end
             end
 
-                # GET /hello/classic/after_reset
+                # GET /hello/after_reset
                 def after_reset
                 end
 
 
 
-    # GET /hello/classic/confirm_email/send
+    # GET /hello/confirm_email/send
     def confirm_email_send
       entity = SendConfirmationEmailEntity.new(self, hello_credential)
       entity.deliver
@@ -163,7 +138,7 @@ module Classic
       redirect_to :back
     end
 
-        # GET /hello/classic/confirm_email/token/:token
+        # GET /hello/confirm_email/token/:token
         def confirm_email_token
           @confirm_email = ConfirmEmailEntity.new(params.require(:token))
 
@@ -177,11 +152,11 @@ module Classic
           end
         end
 
-            # GET /hello/classic/confirm_email/expired
+            # GET /hello/confirm_email/expired
             def confirm_email_expired
             end
 
-            # GET /hello/classic/after_confirm_email
+            # GET /hello/after_confirm_email
             def after_confirm_email
             end
 

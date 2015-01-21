@@ -31,7 +31,7 @@ class SignUpControl < Hello::AbstractControl
     # SUGGESTION: suggest 'forgot password' if email has been taken
 
     c.respond_to do |format|
-      format.html { c.render :sign_up }
+      format.html { c.render action: 'index' }
       format.json { c.render json: sign_up.errors, status: :unprocessable_entity }
     end
   end
