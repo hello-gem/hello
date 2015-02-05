@@ -62,12 +62,9 @@ en:
           other: "%{count} errors were found while reseting your password"
       send_confirmation_email:
         success: "We have sent a confirmation email to %{email}"
-        info_1: "%{email} has not been confirmed yet."
-        info_2: "Send email confirmation now."
       confirm_email:
         success: "%{email} has been confirmed successfully."
         alert: "This link has expired, please ask for a new link"
-        info: "A confirmation email has been sent to %{email} %{time_ago_in_words} ago."
       destroy_access_token:
         success: "Device has been unlinked from your account"
         alert: "There was an error while unlinking this device"

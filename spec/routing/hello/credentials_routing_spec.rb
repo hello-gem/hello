@@ -46,6 +46,34 @@ module Classic
       #   expect(:delete => "/classic/credentials/1").to route_to("hello/classic/credentials#destroy", :id => "1")
       # end
 
+
+      #
+      # CONFIRM EMAIL
+      #
+
+
+      it "routes to #confirm" do
+        get("/credentials/1/confirm").should route_to("hello/confirm_credential#confirm", id: '1')
+      end
+
+          it "routes to #deliver" do
+            post("/credentials/1/confirm").should route_to("hello/confirm_credential#deliver", id: '1')
+          end
+
+      it "routes to #confirm_token" do
+        get("/credentials/1/confirm/token/123").should route_to("hello/confirm_credential#confirm_token", id: '1', token: '123')
+      end
+
+          it "routes to #expired" do
+            get("/credentials/1/confirm/expired").should route_to("hello/confirm_credential#expired", id: '1')
+          end
+
+          it "routes to #done" do
+            get("/credentials/1/confirm/done").should route_to("hello/confirm_credential#done", id: '1')
+          end
+
+
+
     end
   end
 end

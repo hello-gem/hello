@@ -8,6 +8,7 @@
     <%= active_link_to "Email",    email_classic_credential_path(c),    class: "list-group-item" %>
     <%= active_link_to "Username", username_classic_credential_path(c), class: "list-group-item" %>
     <%= active_link_to "Password", password_classic_credential_path(c), class: "list-group-item" %>
+    <%= active_link_to "Confirm Email", confirm_credential_path(c),     class: "list-group-item" unless c.email_confirmed? %>
     <%#= active_link_to 'Add Email', hello.new_credential_path, class: "list-group-item" %>
   <% end %>
 

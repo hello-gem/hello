@@ -73,20 +73,26 @@ module Hello
     # email confirmation
     #
 
-    def show_alert_for_email_confirmation_suggestion?
-      is_classic? && !email_confirmed? && email_token_expired?
-    end
-
-    def show_alert_for_email_confirmation_pending?
-      is_classic? && !email_confirmed? && !email_token_expired?
+    def confirmation_status
+      case
+      # when !is_classic?
+      #   :not_classic
+      when email_confirmed?
+        :confirmed
+      when email_token_old?
+        :must_deliver
+      else
+        :check_inbox
+      end
     end
 
         def email_confirmed?
           !!email_confirmed_at
         end
 
-        def email_token_expired?
-          email_token_digested_at < 7.days.ago
+        def email_token_old?
+          x = email_token_digested_at
+          x.nil? || x < 7.days.ago
         end
 
 

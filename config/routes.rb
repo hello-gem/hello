@@ -67,6 +67,16 @@ Hello::Engine.routes.draw do
 
   end
 
+  resources :credentials, only: [] do
+    member do
+      get  "confirm"              => "confirm_credential#confirm"
+      post "confirm"              => "confirm_credential#deliver"
+      get  "confirm/token/:token" => "confirm_credential#confirm_token", as: 'confirm_token'
+      get  "confirm/done"         => "confirm_credential#done"
+      get  "confirm/expired"      => "confirm_credential#expired"
+    end
+  end
+
 
   # classic registration
     # sign up
@@ -88,20 +98,6 @@ Hello::Engine.routes.draw do
     get  "password/reset/:token"    => "classic_registration/reset_password#reset_token", as: 'reset_token'
     get  "password/reset"           => "classic_registration/reset_password#index"
     post "password/reset"           => "classic_registration/reset_password#save"
-
-
-
-
-  # classic/registration
-  
-    # confirm email
-    get  "confirm_email/send"         => "classic/registration#confirm_email_send"
-    get  "confirm_email/token/:token" => "classic/registration#confirm_email_token", as: 'confirm_email_token'
-    get  "confirm_email/expired"      => "classic/registration#confirm_email_expired"
-    get  "after_confirm_email"        => "classic/registration#after_confirm_email"
-
-
-
 
 
 

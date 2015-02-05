@@ -64,12 +64,9 @@ es:
           other: "%{count} errores ocurrieron mientras reseteabamos tu contraseña"
       send_confirmation_email:
         success: "Hemos enviado un correo de confirmación a %{email}"
-        info_1: "%{email} aún no ha sido confirmado"
-        info_2: "Envía el correo de confirmación ahora"
       confirm_email:
         success: "%{email} ha sido confirmado satisfactoriamente."
         alert: "Este enlace ha expirado, por favor pide un nuevo enlace"
-        info: "Un correo de confirmación ha sido enviado a %{email} hace %{time_ago_in_words}."
       destroy_access_token:
         success: "Dispositivo ha sido desconectado satisfactoriamente de tu cuenta"
         alert: "Hubo un error al desconectar este dispositivo"

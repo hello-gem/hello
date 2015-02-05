@@ -1,0 +1,43 @@
+<div class="row">
+
+<%= render '/hello/shared/settings' %>
+
+<div class="col-sm-3-offset col-md-2-offset col-sm-9 col-md-10">
+
+
+
+  <% case @credential.confirmation_status %>
+  <% when :confirmed %>
+    <div class="alert alert-success">
+      <%= @credential.email %>
+      has been confirmed
+      <%= time_ago_in_words @credential.email_confirmed_at, include_seconds: false %>
+      ago.
+    </div>
+  <% when :must_deliver %>
+    <div class="alert alert-warning">
+      <%= @credential.email %>
+      has not been confirmed yet.
+    </div>
+  <% when :check_inbox %>
+    <div class="alert alert-info">
+      A confirmation email has been sent to
+      <%= @credential.email %>
+      <%= time_ago_in_words @credential.email_token_digested_at, include_seconds: false %>
+      ago.
+    </div>
+  <% end %>
+
+  <% unless @credential.email_confirmed? %>
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-6">
+      <%= button_to "Request Confirmation Email", confirm_credential_path(@credential), class: "btn btn-default" %>
+    </div>
+  </div>
+  <% end %>
+
+
+
+</div>
+
+</div>

@@ -10,20 +10,12 @@ module Hello
 
     def deliver
       token = credential.reset_email_token!
-      url   = controller.confirm_email_token_url(token)
-      Hello::RegistrationMailer.confirm_email(credential, url).deliver!
+      url   = controller.confirm_token_credential_url(credential, token)
+      Hello::RegistrationMailer.confirm_email(credential, url).deliver
     end
 
     def success_message(extra={})
       super(email: credential.email)
-    end
-
-    def info_1_message
-      t("info_1", email: credential.email)
-    end
-
-    def info_2_message
-      t("info_2")
     end
 
   end

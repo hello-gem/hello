@@ -3,7 +3,6 @@ require "spec_helper"
 module Hello
 module Classic
 
-  describe RegistrationController do
     describe "routing" do
       routes { Hello::Engine.routes }
 
@@ -69,27 +68,9 @@ module Classic
 
       
 
-      it "routes to #confirm_email_send" do
-        get("/confirm_email/send").should route_to("hello/classic/registration#confirm_email_send")
-      end
-
-      it "routes to #confirm_email_token" do
-        get("/confirm_email/token/123").should route_to("hello/classic/registration#confirm_email_token", token: '123')
-      end
-
-          it "routes to #confirm_email_expired" do
-            get("/confirm_email/expired").should route_to("hello/classic/registration#confirm_email_expired")
-          end
-
-          it "routes to #after_confirm_email" do
-            get("/after_confirm_email").should route_to("hello/classic/registration#after_confirm_email")
-          end
-
-
 
 
           
     end
-  end
 end
 end

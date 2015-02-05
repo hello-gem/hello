@@ -64,12 +64,9 @@ pt-BR:
           other: "%{count} erros foram encontrados na sua recuperação de senha"
       send_confirmation_email:
         success: "Enviamos um email de confirmação para %{email}"
-        info_1: "%{email} ainda não foi confirmado."
-        info_2: "Enviar email de confirmação agora."
       confirm_email:
         success: "%{email} foi confirmado com sucesso."
         alert: "O link expirou, por favor solicite um novo email de confirmação"
-        info: "Um email de confirmação foi enviado para %{email} %{time_ago_in_words} ago."
       destroy_access_token:
         success: "Dispositivo foi desconectado com sucesso da sua conta"
         alert: "Houve um erro ao desconectar esse dispositivo"

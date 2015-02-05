@@ -5,12 +5,16 @@ module Hello
 
     attr_reader :credential
 
-    def initialize(value=nil)
-      @credential = if value.is_a? Credential
-                      value
-                    else
-                      find_credential(value)
-                    end
+    def initialize(credential)
+      @credential = credential
+    end
+
+    def validate_token(unencrypted_token)
+      return if not found_credential?
+      token_digest = Credential.encrypt_token(unencrypted_token)
+      
+      return if @credential.email_token_digest == token_digest
+      @credential = nil
     end
 
     def confirm_email!
@@ -24,22 +28,6 @@ module Hello
     def success_message
       super(email: credential.email)
     end
-
-    def info_message
-      t("info", email: credential.email, time_ago_in_words: time_ago_in_words(credential.email_token_digested_at, include_seconds: false))
-    end
-
-
-
-
-    private
-
-        # initialize helpers
-
-        def find_credential(unencrypted_token)
-          token_digest = Credential.encrypt_token(unencrypted_token)
-          Credential.classic.where(email_token_digest: token_digest).first
-        end
 
   end
 end

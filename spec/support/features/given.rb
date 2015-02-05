@@ -11,17 +11,18 @@ def given_I_have_a_classic_access_token
 end
 
 def given_I_have_a_classic_credential
-  Credential.classic.create!  user:   create(:user, name: 'James Pinto', city: 'Brasilia'),
-                            email:    'foo@bar.com',
-                            username: 'foobar',
-                            password: 'foobar'
+  user = create(:user, name: 'James Pinto', city: 'Brasilia')
+  Credential.classic.create!  user:     user,
+                              email:    'foo@bar.com',
+                              username: 'foobar',
+                              password: 'foobar'
 end
 
 def given_I_have_an_admin_password_credential
-  Credential.classic.create!  user:   create(:admin_user),
-                            email:    'admin@bar.com',
-                            username: 'admin',
-                            password: 'admin'
+  Credential.classic.create!  user:     create(:admin_user),
+                              email:    'admin@bar.com',
+                              username: 'admin',
+                              password: 'admin'
 end
 
 def given_I_have_a_classic_credential_and_forgot_my_password

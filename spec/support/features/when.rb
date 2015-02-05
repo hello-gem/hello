@@ -50,27 +50,32 @@ def when_sign_up_as_a_novice(options={})
 end
 
 def when_sign_in_with_standard_data(options={})
+  data = ['foobar', (options[:password] || 'foobar')]
   visit hello.root_path
   within("form#new_sign_in") do
-    fill_in 'sign_in_login',    with: 'foobar'
-    fill_in 'sign_in_password', with: (options[:password] || 'foobar')
+    fill_in 'sign_in_login',    with: data[0]
+    fill_in 'sign_in_password', with: data[1]
     check 'keep_me' if options[:keep_me]
     click_button 'Sign In'
   end
+  __fetch_current_active_session
 end
 
 def when_sign_in_with_admin_data
+  data = ['admin', 'admin']
   visit hello.root_path
   within("form#new_sign_in") do
-    fill_in 'sign_in_login',    with: 'admin'
-    fill_in 'sign_in_password', with: 'admin'
+    fill_in 'sign_in_login',    with: data[0]
+    fill_in 'sign_in_password', with: data[1]
     click_button 'Sign In'
   end
+  __fetch_current_active_session
 end
 
 
 def when_I_sign_out
   click_link 'Sign Out'
+  __fetch_current_active_session
 end
 
 def when_I_confirm_my_credential_password(custom_password=nil)
@@ -82,18 +87,19 @@ end
 
 def sign_up_as_a_novice
   when_sign_up_as_a_novice(expect_success: true)
-  expect(User.last.role).to eq('novice')
+  __fetch_current_active_session
+  expect(current_user.role).to eq('novice')
 end
 
 def sign_up_as_a_user
   when_sign_up_with_standard_data
-  expect(User.last.role).to eq('user')
+  __fetch_current_active_session
+  expect(current_user.role).to eq('user')
 end
 
 def sign_up_as_an_admin
-  when_sign_up_with_standard_data
-  user = User.last
-  user.update! role: 'admin'
+  sign_up_as_a_user
+  current_user.update! role: 'admin'
 end
 
 
