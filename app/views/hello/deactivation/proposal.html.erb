@@ -2,10 +2,13 @@
 
 <%= render '/hello/shared/settings' %>
 
+<div class="col-sm-3-offset col-md-2-offset col-sm-9 col-md-10">
+
 <h1>Account Deactivation</h1>
 <p>Are you sure you want to deactivate your account?</p>
 
 <p><%= button_to "Deactivate my Account", hello.deactivation_path %></p>
 <p><%= link_to "No, I want to stay", root_path %></p>
 
+</div>
 </div>
