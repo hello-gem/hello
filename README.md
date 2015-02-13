@@ -27,25 +27,52 @@ gem 'hello', github: 'hello-gem/hello' # latest from github while this gem is in
 And then execute:
 
 ```bash
-bundle
-rails g hello:install
-rake db:migrate
-rails g hello:views # optional
+bundle install
+bundle exec rails generate hello:install
+bundle exec rake db:migrate
+bundle exec rails generate hello:views # optional
 ```
 
 ## Customizing - behavior and views
 
 These files are generated when you install this gem.
-They are simple to customize, just open them
 
-    + app/
-    | + authentication/
-    | | - sign_up_control.rb
-    | | - sign_in_control.rb
-    | |   ...
-    | + view/
-    |   + hello/
-    |       ...
+They are simple to customize, just open them.
+
+    ├── app
+    │   ├── authentication
+    │   │   ├── deactivation_control.rb
+    │   │   ├── forgot_password_control.rb
+    │   │   ├── reset_password_control.rb
+    │   │   ├── sign_in_control.rb
+    │   │   ├── sign_out_control.rb
+    │   │   ├── sign_up_control.rb
+    │   │   └── user_control.rb
+    │   ├── controllers
+    │   │   ├── novice_controller.rb
+    │   │   └── profile_controller.rb
+    │   ├── models
+    │   │   ├── credential.rb
+    │   │   ├── active_session.rb
+    │   │   └── user.rb
+    │   └── views
+    │       ├── hello
+    │       │   └── [...optional...]
+    │       ├── layouts
+    │       │   └── application.html.erb
+    │       ├── novice
+    │       │   └── index.html.erb
+    │       └── profile
+    │           └── profile.html.erb
+    ├── config
+    │   └── initializers
+    │       └── hello.rb
+    └── db
+        └── migrate
+            ├── 1_create_credentials.hello.rb
+            ├── 2_create_access_tokens.hello.rb
+            └── 3_create_users.hello.rb
+
 
 
 
