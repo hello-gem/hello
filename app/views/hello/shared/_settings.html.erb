@@ -1,3 +1,9 @@
+<% if current_user.nil? %>
+
+<h2 class="page-header">Settings (not signed in)</h2>
+
+<% else %>
+
 <h2 class="page-header">Settings</h2>
 
 <div class="col-sm-3 col-md-2">
@@ -16,3 +22,5 @@
   <%= active_link_to "Cancel Account", hello.deactivation_path, class: "list-group-item" %>
 </div>
 </div>
+
+<% end %>

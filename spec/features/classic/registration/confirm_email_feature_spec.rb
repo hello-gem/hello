@@ -57,7 +57,7 @@ describe "Confirm Email" do
     expect_flash_notice "foo@bar.com has been confirmed successfully"
     
     visit_the_main_page
-    expect_to_see "has been confirmed less than a minute ago."
+    expect_to_see "was confirmed less than a minute ago."
   end
 
   def visit_and_fail(url)
@@ -108,7 +108,7 @@ describe "Confirm Email" do
     click_button "Request Confirmation Email"
     
     expect_flash_notice "We have sent a confirmation email to foo@bar.com"
-    expect_to_see "A confirmation email has been sent to foo@bar.com less than a minute ago."
+    expect_to_see "A confirmation email was sent to foo@bar.com less than a minute ago."
   end
 
   def _extracted_url_from_email
