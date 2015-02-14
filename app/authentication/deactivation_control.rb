@@ -12,7 +12,7 @@ class DeactivationControl < Hello::AbstractControl
 
   def success
     c.respond_to do |format|
-      format.html { c.redirect_to c.hello.after_deactivation_path }
+      format.html { c.redirect_to c.hello.deactivation_done_path }
       format.json { c.render json: {deactivated: true}, status: :ok }
     end
   end

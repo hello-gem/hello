@@ -14,8 +14,8 @@ module Hello
             post("/deactivation").should route_to("hello/deactivation#deactivate")
           end
 
-              it "routes to #after_deactivate" do
-                get("/after_deactivation").should route_to("hello/deactivation#after_deactivate")
+              it "routes to #done" do
+                get("/deactivation/done").should route_to("hello/deactivation#done")
               end
    
     end

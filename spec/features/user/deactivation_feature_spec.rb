@@ -12,7 +12,7 @@ describe "Deactivate" do
     expect(AccessToken.count).to eq(0)
 
     then_I_should_be_logged_out
-    expect(current_path).to eq hello.after_deactivation_path
+    expect(current_path).to eq hello.deactivation_done_path
     expect_flash_notice "You have deactivated your account successfully"
   end
 

@@ -47,7 +47,7 @@ Hello::Engine.routes.draw do
   # deactivation
     get  'deactivation'       => 'deactivation#proposal'
     post 'deactivation'       => 'deactivation#deactivate'
-    get  'after_deactivation' => 'deactivation#after_deactivate'
+    get  'deactivation/done'  => 'deactivation#done'
 
   
   namespace "admin" do
