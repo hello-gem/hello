@@ -1,12 +1,9 @@
 module Hello
   class UpdateMyUserEntity < AbstractEntity
 
-    def initialize(user, attrs=nil)
+    def initialize(user)
       @user = user
       self.class.send :attr_accessor, *permitted_fields
-      if attrs
-        attrs.slice(*permitted_fields).each { |k, v| instance_variable_set(:"@#{k}", v) }
-      end
     end
 
     def update(attrs)
