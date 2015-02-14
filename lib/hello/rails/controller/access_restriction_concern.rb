@@ -21,6 +21,7 @@ module Hello
           #
           # authorization
           #
+          # TODO: tests currently never go through this method
           def restrict_if_role_is(*args)
             options, args = _restrict_split(args)
             before_action(options) { restrict_if_role_is(*args) }
