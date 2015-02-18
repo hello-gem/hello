@@ -30,6 +30,7 @@ And then execute:
 bundle install
 bundle exec rails generate hello:install
 bundle exec rake db:migrate
+bundle exec rails generate hello:controls # optional
 bundle exec rails generate hello:views # optional
 ```
 

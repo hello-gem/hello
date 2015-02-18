@@ -5,12 +5,6 @@ class Hello::InstallGenerator < Rails::Generators::Base
     copy_file "initializer.rb", "config/initializers/hello.rb"
   end
 
-  def copy_the_controls
-    the_root = File.expand_path("../../../../../", __FILE__)
-    destination = "app/authentication"
-    directory "#{the_root}/#{destination}", destination
-  end
-
   def locale_fix
     gsub_file 'config/locales/en.yml', 'hello: "Hello world"', 'hello_world: "Hello world"'
   rescue Errno::ENOENT
