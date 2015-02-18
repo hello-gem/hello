@@ -10,45 +10,45 @@
 <div class="list-group">
   <%= nav_link_to "Profile",
                   hello.user_path,
-                  class: "list-group-item",
-                  selected_class: "active"
+                  {class: "list-group-item"},
+                  {selected_class: "active"}
                   %>
 
   <% current_user.classic_credential.tap do |c| %>
     <%= nav_link_to "Email",
                     email_classic_credential_path(c),
-                    class: "list-group-item",
-                    selected_class: "active"
+                    {class: "list-group-item"},
+                    {selected_class: "active"}
                     %>
     <%= nav_link_to "Username",
                     username_classic_credential_path(c),
-                    class: "list-group-item",
-                    selected_class: "active"
+                    {class: "list-group-item"},
+                    {selected_class: "active"}
                     %>
     <%= nav_link_to "Password",
                     password_classic_credential_path(c),
-                    class: "list-group-item",
-                    selected_class: "active"
+                    {class: "list-group-item"},
+                    {selected_class: "active"}
                     %>
     <% unless c.email_confirmed? %>
       <%= nav_link_to "Confirm Email",
                       confirm_credential_path(c),
-                      class: "list-group-item",
-                      selected_class: "active"
+                      {class: "list-group-item"},
+                      {selected_class: "active"}
                       %>
     <% end %>
-    <%#= nav_link_to 'Add Email', hello.new_credential_path, class: "list-group-item", selected_class: "active" %>
+    <%#= nav_link_to 'Add Email', hello.new_credential_path, {class: "list-group-item"}, {selected_class: "active"} %>
   <% end %>
 
   <%= nav_link_to "Access Tokens (#{current_user.access_tokens_count})",
                   hello.access_tokens_path,
-                  class: "list-group-item",
-                  selected_class: "active"
+                  {class: "list-group-item"},
+                  {selected_class: "active"}
                   %>
   <%= nav_link_to "Cancel Account",
                   hello.deactivation_path,
-                  class: "list-group-item",
-                  selected_class: "active"
+                  {class: "list-group-item"},
+                  {selected_class: "active"}
                   %>
 </div>
 </div>
