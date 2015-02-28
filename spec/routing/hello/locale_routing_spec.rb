@@ -6,11 +6,11 @@ module Hello
       routes { Hello::Engine.routes }
 
       it "routes to #index" do
-        get("/locale").should route_to("hello/locale#index")
+        expect(get("/locale")).to route_to("hello/locale#index")
       end
 
       it "routes to #update" do
-        post("/locale").should route_to("hello/locale#update")
+        expect(post("/locale")).to route_to("hello/locale#update")
       end
       
     end

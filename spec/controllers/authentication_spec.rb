@@ -55,7 +55,8 @@ describe "Authentication" do
       end
 
       it "SESSION" do
-        get :edit, {format: :json}, {access_token: @s.access_token}
+        @request.session['access_token'] = @s.access_token
+        get :edit, {format: :json}#, {access_token: @s.access_token}
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")

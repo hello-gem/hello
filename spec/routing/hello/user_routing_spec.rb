@@ -6,11 +6,11 @@ module Hello
       routes { Hello::Engine.routes }
 
       it "routes to #edit" do
-        get("/user").should route_to("hello/user#edit")
+        expect(get("/user")).to route_to("hello/user#edit")
       end
 
           it "routes to #update" do
-            patch("/user").should route_to("hello/user#update")
+            expect(patch("/user")).to route_to("hello/user#update")
           end
 
       

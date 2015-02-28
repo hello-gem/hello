@@ -6,7 +6,7 @@ module Hello
       routes { Hello::Engine.routes }
 
       it "routes to #index" do
-        get("/").should route_to("hello/welcome#index")
+        expect(get("/")).to route_to("hello/welcome#index")
       end
 
     end

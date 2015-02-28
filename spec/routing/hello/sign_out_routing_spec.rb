@@ -6,11 +6,11 @@ module Hello
       routes { Hello::Engine.routes }
 
       it "routes to #sign_out" do
-        get("/sign_out").should    route_to("hello/sign_out#sign_out")
-        head("/sign_out").should   route_to("hello/sign_out#sign_out")
-        post("/sign_out").should   route_to("hello/sign_out#sign_out")
-        put("/sign_out").should    route_to("hello/sign_out#sign_out")
-        delete("/sign_out").should route_to("hello/sign_out#sign_out")
+        expect(get("/sign_out")).to    route_to("hello/sign_out#sign_out")
+        expect(head("/sign_out")).to   route_to("hello/sign_out#sign_out")
+        expect(post("/sign_out")).to   route_to("hello/sign_out#sign_out")
+        expect(put("/sign_out")).to    route_to("hello/sign_out#sign_out")
+        expect(delete("/sign_out")).to route_to("hello/sign_out#sign_out")
       end
       
     end
