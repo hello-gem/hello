@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
 
-  s.add_runtime_dependency 'rails', ['>= 3.0', '< 5.0']
   s.add_runtime_dependency 'bcrypt'
   s.add_runtime_dependency "validates_email_format_of"
   s.add_runtime_dependency "before_actions"
@@ -34,6 +33,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'email_spec'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'faker'
+  s.add_development_dependency 'codeclimate-test-reporter'
 
 
   # save_and_open_page

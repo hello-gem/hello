@@ -31,7 +31,8 @@
   # WWW
 
   def feature_www(s, options={}, &b)
-    feature("Feature:", s, www(options), &b)
+    s = ["Feature:", s, www(options)]
+    feature(s, &b)
   end
 
   def www(options={})

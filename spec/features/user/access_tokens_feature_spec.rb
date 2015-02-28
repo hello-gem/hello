@@ -19,7 +19,7 @@ describe "access tokens" do
     end
 
     it "Alert" do
-      pending # DestroyAccessTokenEntity#alert_message
+      skip "DestroyAccessTokenEntity#alert_message"
     end
   end
 

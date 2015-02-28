@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rails/rails.git
-  revision: db69474b553c0619d1e86346a889d14fd825f19f
+  revision: 6b2ae694f13f494a4b11a97619cc0ce257fb2b50
   branch: 4-2-stable
   specs:
     actionmailer (4.2.0)
@@ -56,7 +56,7 @@ GIT
       thor (>= 0.18.1, < 2.0)
 
 PATH
-  remote: .
+  remote: ../
   specs:
     hello (0.1.0)
       bcrypt
@@ -83,7 +83,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    codeclimate-test-reporter (0.4.7)
+    codeclimate-test-reporter (0.4.0)
       simplecov (>= 0.7.1, < 1.0.0)
     colorize (0.7.5)
     diff-lcs (1.2.5)
@@ -151,11 +151,11 @@ GEM
       rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
-    simplecov (0.9.2)
+    simplecov (0.9.0)
       docile (~> 1.1.0)
-      multi_json (~> 1.0)
-      simplecov-html (~> 0.9.0)
-    simplecov-html (0.9.0)
+      multi_json
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)

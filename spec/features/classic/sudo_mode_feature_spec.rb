@@ -57,7 +57,7 @@ describe "Sudo Mode" do
     end
 
     it "Failure" do
-      pending "provide scenario on how a Sudo Expiration can go wrong"
+      skip "provide scenario on how a Sudo Expiration can go wrong"
     end
   end
 

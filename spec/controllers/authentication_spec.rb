@@ -3,6 +3,7 @@ require 'spec_helper'
 module Hello
 
 describe "Authentication" do
+  routes { Hello::Engine.routes }
 
   # As anyone
   # I can visit various URLs
@@ -11,7 +12,6 @@ describe "Authentication" do
   describe "Not Authenticated" do
 
     describe UserController do
-      routes { Hello::Engine.routes }
 
       it "HTML" do
         get :edit
@@ -36,7 +36,6 @@ describe "Authentication" do
   describe "Authenticated" do
 
     describe UserController do
-      routes { Hello::Engine.routes }
 
       before { @s = given_I_have_a_classic_access_token }
 
@@ -79,7 +78,6 @@ describe "Authentication" do
 
   describe "Others" do
     describe UserController do
-      routes { Hello::Engine.routes }
 
       it "Access Token Expired" do
         @s = given_I_have_a_classic_access_token
@@ -93,11 +91,11 @@ describe "Authentication" do
       end
 
       it "Sudo Mode Required" do
-        pending "important, but not urgent"
+        skip "important, but not urgent"
       end
 
       it "Sudo Mode Expired" do
-        pending "important, but not urgent"
+        skip "important, but not urgent"
       end
 
     end

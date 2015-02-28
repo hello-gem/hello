@@ -2,14 +2,14 @@ require 'spec_helper'
 
 module Hello
 
-describe "Localization" do
+describe "Authentication" do
+  routes { Hello::Engine.routes }
 
   # As a Guest
   # I can see the website
   # So I don't face missing translation issues
 
   describe ClassicRegistration::ForgotPasswordController do
-    routes { Hello::Engine.routes }
 
     describe "Browser locale or default" do
 

@@ -36,8 +36,9 @@ Hello::Engine.routes.draw do
 
   # account
     # user
-    get   'user' => "user#edit"
-    patch 'user' => "user#update"
+    get   'user(/:id)' => "user#edit",  as: 'user'
+    patch 'user(/:id)' => "user#update"
+    # (:/id) so it won't understand format: '1' in some Rails versions, causing an UnknownFormat error
 
   # sudo mode
     get   'sudo_mode'        => 'sudo_mode#form'

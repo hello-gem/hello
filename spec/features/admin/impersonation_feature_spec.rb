@@ -39,7 +39,7 @@ describe "Admin" do
     end
 
     it "failure" do
-      pending "provide scenario on how an impersonation can go wrong"
+      skip "provide scenario on how an impersonation can go wrong"
     end
 
   end
