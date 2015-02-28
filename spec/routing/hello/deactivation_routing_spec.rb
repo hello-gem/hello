@@ -7,15 +7,15 @@ module Hello
       routes { Hello::Engine.routes }
 
       it "routes to #proposal" do
-        get("/deactivation").should route_to("hello/deactivation#proposal")
+        expect(get("/deactivation")).to route_to("hello/deactivation#proposal")
       end
 
           it "routes to #deactivate" do
-            post("/deactivation").should route_to("hello/deactivation#deactivate")
+            expect(post("/deactivation")).to route_to("hello/deactivation#deactivate")
           end
 
               it "routes to #done" do
-                get("/deactivation/done").should route_to("hello/deactivation#done")
+                expect(get("/deactivation/done")).to route_to("hello/deactivation#done")
               end
    
     end

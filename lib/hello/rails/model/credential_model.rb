@@ -62,11 +62,13 @@ module Hello
     #
 
     def username=(v)
-      write_attribute(:username, v.to_s.downcase.remove(' '))
+      v = v.to_s.downcase.gsub(' ', '')
+      write_attribute(:username, v)
     end
 
     def email=(v)
-      write_attribute(:email, v.to_s.downcase.remove(' '))
+      v = v.to_s.downcase.gsub(' ', '')
+      write_attribute(:email, v)
     end
 
     #

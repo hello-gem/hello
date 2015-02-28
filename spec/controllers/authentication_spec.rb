@@ -17,7 +17,14 @@ describe "Authentication" do
         get :edit
         expect(response.status).to eq(302)
         expect(response.status_message).to eq("Found")
-        expect(session.to_hash).to eq({"locale" => "en", "url"=>"/hello/user", "flash"=>{"discard"=>[], "flashes"=>{"alert"=>"You must sign in to continue."}}})
+        
+        expect(session.keys).to match_array ["flash", "locale", "url"]
+        expect(session['locale']).to eq "en"
+        expect(session['url']).to    eq "/hello/user"
+        expect(flash[:alert]).to     eq "You must sign in to continue."
+
+        # expect(session.to_hash).to eq({"locale" => "en", "url"=>"/hello/user", "flash"=>{"discard"=>[], "flashes"=>{:alert=>"You must sign in to continue."}}})
+
         expect(response).to redirect_to('/hello/homepage')
       end
 
