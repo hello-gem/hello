@@ -40,7 +40,7 @@ module Hello
         describe "Mobile" do
           it "Android 4 (GT-I9300) - Chrome Mobile 30" do
             expect_device_name  "Mozilla/5.0 (Linux; Android 4.1.2; GT-I9300 Build/JZO54K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.92 Mobile Safari/537.36",
-                                "Android 4 (GT-I9300) - Chrome Mobile 30"
+                                "Android 4 (Samsung GT-I9300) - Chrome Mobile 30"
           end
         end
         describe "OS" do
@@ -92,7 +92,7 @@ module Hello
       describe "Android" do
         it "Android 4 (LG-L160L) - Android 4" do  
           expect_device_name  "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
-                              "Android 4 (LG-L160L) - Android 4"
+                              "Android 4 (LG L160L) - Android 4"
         end
         it "Android 2 (T-Mobile myTouch 3G Slide) - Android 2" do  
           expect_device_name  "Mozilla/5.0 (Linux; U; Android 2.3.4; en-us; T-Mobile myTouch 3G Slide Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
@@ -104,7 +104,7 @@ module Hello
         end
         it "Android 4 (SAMSUNG GT-I9300/I9300XXEMRD) - Android 4" do  
           expect_device_name  "Mozilla/5.0 (Linux; U; Android 4.1.2; nl-nl; SAMSUNG GT-I9300/I9300XXEMRD Build/JZO54K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
-                              "Android 4 (SAMSUNG GT-I9300/I9300XXEMRD) - Android 4"
+                              "Android 4 (Samsung GT-I9300) - Android 4"
         end
         it "Symbian OS 9 (Nokia 5800d-1) - Nokia Browser 7" do  
           expect_device_name  "Mozilla/5.0 (SymbianOS/9.4; Series60/5.0 Nokia5800d-1/60.0.003; Profile/MIDP-2.1 Configuration/CLDC-1.1 ) AppleWebKit/533.4 (KHTML, like Gecko) NokiaBrowser/7.3.1.33 Mobile Safari/533.4",
