@@ -3,11 +3,14 @@ rvm:
   - 1.9.3
   - 2.0.0
   - 2.1.0
-  - 2.2.0
 gemfile:
   - gemfiles/rails-4-0-stable.gemfile
   - gemfiles/rails-4-1-stable.gemfile
   - gemfiles/rails-4-2-stable.gemfile
+matrix:
+  include:
+    - rvm: 2.2.0
+      gemfile: gemfiles/rails-master.gemfile
 cache:
   - bundler
   - apt
