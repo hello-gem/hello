@@ -87,7 +87,7 @@ pt-BR:
         success: "Você está logado como %{name}"
       impersonate_back:
         success: "Você está logado com seu usuário"
-      update_classic_credential:
+      update_field:
         success: "Seu %{field} foi atualizado com sucesso"
         alert: "1 erro foi encontrado ao atualizar seu %{field}"
       update_locale:

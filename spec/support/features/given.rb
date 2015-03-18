@@ -2,35 +2,34 @@
 
 
 def given_I_have_a_classic_access_token
-  user = create(:user, name: 'James Pinto', city: 'Brasilia')
+  puts "TODO: Credentials are no longer necessary for Sign In Feature".red
+  user = create(:user, name: 'James Pinto', username: 'foobar', password: 'foobar', city: 'Brasilia')
   credential = Credential.classic.create! user:     user,
-                                          email:    'foo@bar.com',
-                                          username: 'foobar',
-                                          password: 'foobar'
-  AccessToken.create!(credential: credential, user_agent_string: 'testing', expires_at: 24.hours.from_now)
+                                          email:    'foo@bar.com'
+  AccessToken.create!(user: user, user_agent_string: 'testing', expires_at: 24.hours.from_now)
 end
 
 def given_I_have_a_classic_credential
-  user = create(:user, name: 'James Pinto', city: 'Brasilia')
+  puts "TODO: Credentials are no longer necessary for Sign In Feature".red
+  user = create(:user, name: 'James Pinto', username: 'foobar', password: 'foobar', city: 'Brasilia')
   Credential.classic.create!  user:     user,
-                              email:    'foo@bar.com',
-                              username: 'foobar',
-                              password: 'foobar'
+                              email:    'foo@bar.com'
 end
 
 def given_I_have_an_admin_password_credential
+  puts "TODO: Credentials are no longer necessary for Sign In Feature".red
   Credential.classic.create!  user:     create(:admin_user),
-                              email:    'admin@bar.com',
-                              username: 'admin',
-                              password: 'admin'
+                              email:    'admin@bar.com'
 end
 
 def given_I_have_a_classic_credential_and_forgot_my_password
+  puts "TODO: Credentials are no longer necessary for Sign In Feature".red
   credential = given_I_have_a_classic_credential
-  return unencrypted_token = credential.reset_password_token
+  return unencrypted_token = credential.user.reset_password_token
 end
 
 def given_I_am_logged_in_with_a_classic_credential
+  puts "TODO: Credentials are no longer necessary for Sign In Feature".red
   # when_sign_up_with_standard_data(expect_welcome_mailer: true)
   given_I_have_a_classic_credential
   when_sign_in_with_standard_data

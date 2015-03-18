@@ -1,18 +1,20 @@
 require_dependency "hello/application_controller"
 
 module Hello
-  class ConfirmCredentialController < ApplicationController
+  class ConfirmEmailsController < ApplicationController
 
     before_actions do
       only(:confirm_token)   { @credential = Credential.take(params[:id]).first }
       except(:confirm_token) { before_actions_confirm_and_deliver }
     end
 
-    # GET /hello/credentials/1/confirm
+
+
+    # GET /hello/emails/1/confirm
     def confirm
     end
 
-        # POST /hello/credentials/1/confirm
+        # POST /hello/emails/1/confirm
         def deliver
           entity = SendConfirmationEmailEntity.new(self, @credential)
           entity.deliver
@@ -20,28 +22,28 @@ module Hello
           redirect_to :back
         end
 
-    # GET /hello/credentials/1/confirm/token/:token
+    # GET /hello/emails/1/confirm/:token
     def confirm_token
       entity = ConfirmEmailEntity.new(@credential)
-      entity.validate_token(params.require(:token))
+      entity.validate_token(token_param)
 
       if entity.found_credential?
         entity.confirm_email!
-        _ensure_signed_in
+        _ensure_signed_in(entity.credential.user)
         flash[:notice] = entity.success_message
-        redirect_to confirm_done_credential_path(@credential)
+        redirect_to confirmed_email_path(@credential)
       else
         flash[:alert] = entity.alert_message
-        redirect_to confirm_expired_credential_path(@credential || 0)
+        redirect_to expired_token_email_path(@credential || 0)
       end
     end
 
-    # GET /hello/credentials/1/confirm/expired
-    def expired
+    # GET /hello/emails/1/expired_token
+    def expired_token
     end
 
-    # GET /hello/credentials/1/confirm/done
-    def done
+    # GET /hello/emails/1/confirmed
+    def confirmed
     end
 
 
@@ -54,11 +56,15 @@ module Hello
 
           @credential = hello_user.credentials.classic.find(params[:id])
         rescue ActiveRecord::RecordNotFound
-          redirect_to confirm_credential_path(hello_credential)
+          redirect_to confirm_email_path(current_user.credentials.classic.first)
         end
 
-        def _ensure_signed_in
-          create_hello_access_token if current_user.nil?
+        def _ensure_signed_in(user)
+          create_hello_access_token(user) if current_user.nil?
+        end
+
+        def token_param
+          params.require(:token)
         end
 
   end

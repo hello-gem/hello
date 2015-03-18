@@ -2,17 +2,17 @@ module Hello
   class ForgotPasswordEntity < AbstractEntity
 
     attr_accessor :login
-    attr_reader :credential
+    attr_reader :user
 
     def initialize(attrs=nil)
       if attrs
         @login      = attrs[:login]
-        @credential = find_credential
+        @user = find_user
       end
     end
 
     def reset
-      add_errors_for_login_not_found and return false if credential.nil?
+      add_errors_for_login_not_found and return false if user.nil?
       return true
     end
 
@@ -32,20 +32,20 @@ module Hello
 
         # initialize helpers
 
-        def find_credential
-          Credential.classic.where(key => login).first
+        def find_user
+          # Credential.classic.where(key => login).first
+          if email?
+            credential = Credential.where(email: login).first
+            credential.user
+          else
+            User.where(username: login).first
+          end
         end
 
         # reset helpers
 
         def add_errors_for_login_not_found
           errors.add(:login, "was not found")
-        end
-
-        # helpers
-
-        def key
-          @key ||= email? ? :email : :username
         end
 
   end

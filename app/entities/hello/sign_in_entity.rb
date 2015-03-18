@@ -2,12 +2,12 @@ module Hello
   class SignInEntity < AbstractEntity
 
     attr_accessor :login, :password
-    attr_reader :credential
+    attr_reader :user
 
     def initialize(attrs=nil)
       if attrs
         write_attributes_to_self(attrs)
-        initialize_credential
+        initialize_user
       end
     end
 
@@ -18,12 +18,12 @@ module Hello
     end
 
     def not_found?
-      initialized? && credential.new_record?
+      initialized? && user.new_record?
     end
 
     def incorrect_password?
       was_login_found = initialized? && !not_found?
-      was_login_found && !credential.password_is?(password)
+      was_login_found && !user.password_is?(password)
     end
 
 
@@ -31,8 +31,15 @@ module Hello
 
         # initialize helpers
 
-        def initialize_credential
-          @credential = Credential.classic.where(key => login).first_or_initialize
+        def initialize_user
+          @user = if login_is_email
+            credential = Credential.classic.where(email: login).first_or_initialize
+            credential.build_user if credential.new_record
+            credential.user
+          else
+            User.where(username: login).first_or_initialize
+          end
+          
         end
 
         def write_attributes_to_self(attrs)
@@ -42,7 +49,7 @@ module Hello
         # authenticate helpers
 
         def add_errors_for_login_not_found
-          errors.add(key, "was not found")
+          errors.add(:login, "was not found")
         end
 
         def add_errors_for_password_incorrect
@@ -50,14 +57,14 @@ module Hello
         end
 
         def initialized?
-          !!credential
+          !!user
         end
 
         # helpers
 
-        def key
-          @key ||= login_is_email ? :email : :username
-        end
+        # def key
+        #   @key ||= login_is_email ? :email : :username
+        # end
 
             def login_is_email
               login.to_s.include? '@'

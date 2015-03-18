@@ -11,7 +11,7 @@ module Hello
 
     def validate_token(unencrypted_token)
       return if not found_credential?
-      token_digest = Credential.encrypt_token(unencrypted_token)
+      token_digest = Hello.encrypt_token(unencrypted_token)
       
       return if @credential.email_token_digest == token_digest
       @credential = nil

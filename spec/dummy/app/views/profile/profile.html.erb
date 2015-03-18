@@ -1,9 +1,10 @@
 <h1><%= @user.name %></h1>
 
+<p>username: <%= @user.username %></p>
 <p>role: <%= @user.role %></p>
 <p>locale: <%= @user.locale %></p>
 <p>time_zone: <%= @user.time_zone %></p>
 
 <% if current_user && current_user.admin? && !impersonated? && current_user != @user %>
-  <p><%= button_to "Impersonate #{@user.name}", hello.admin_impersonate_path(credential_id: @credential.id) %></p>
+  <p><%= button_to "Impersonate #{@user.name}", hello.admin_impersonate_path(user_id: @user.id) %></p>
 <% end %>

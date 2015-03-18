@@ -58,26 +58,15 @@ Hello::Engine.routes.draw do
       post 'impersonate' => 'impersonation#create'
   end
 
-  namespace "classic" do
-    
-    resources :credentials, only: [:update] do
-      member do
-        get :email, :username, :password
-      end
-    end
-
-  end
-
-  resources :credentials, only: [] do
+  resources :emails, only: [:show, :update] do
     member do
-      get  "confirm"              => "confirm_credential#confirm"
-      post "confirm"              => "confirm_credential#deliver"
-      get  "confirm/token/:token" => "confirm_credential#confirm_token", as: 'confirm_token'
-      get  "confirm/done"         => "confirm_credential#done"
-      get  "confirm/expired"      => "confirm_credential#expired"
+      get  "confirm"        => "confirm_emails#confirm"
+      post "confirm"        => "confirm_emails#deliver"
+      get  "confirm/:token" => "confirm_emails#confirm_token", as: 'confirm_token'
+      get  "confirmed"      => "confirm_emails#confirmed"
+      get  "expired_token"  => "confirm_emails#expired_token"
     end
   end
-
 
   # classic registration
     # sign up

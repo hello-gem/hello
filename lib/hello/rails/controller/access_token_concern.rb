@@ -16,7 +16,7 @@ module Hello
       #
 
       included do
-        helper_method :current_user, :hello_credential, :hello_access_token, :sudo_mode?, :impersonated?
+        helper_method :current_user, :hello_access_token, :sudo_mode?, :impersonated?
         before_action :hello_keep_alive, if: :hello_access_token
       end
 
@@ -24,10 +24,10 @@ module Hello
         hello_user
       end
 
-      def create_hello_access_token(expires_at=nil, sudo_expires_at=nil)
+      def create_hello_access_token(user, expires_at=nil, sudo_expires_at=nil)
         expires_at ||= hello_default_session_expiration
         attrs = {
-          credential:         @credential,
+          user:               user,
           user_agent_string:  user_agent,
           expires_at:         expires_at,
           ip:                 request.remote_ip
@@ -49,18 +49,13 @@ module Hello
         @hello_user ||= hello_access_token && hello_access_token.user
       end
 
-      def hello_credential
-        @hello_credential ||= hello_access_token && hello_access_token.credential
-      end
-
       def hello_access_token
         @hello_access_token ||= get_hello_access_token
       end
 
-      def hello_impersonate(credential)
+      def hello_impersonate(user)
         store_impersonator
-        @credential = credential
-        create_hello_access_token(60.minutes.from_now, 60.minutes.from_now)
+        create_hello_access_token(user, 60.minutes.from_now, 60.minutes.from_now)
       end
 
       def hello_back_to_myself
@@ -115,7 +110,7 @@ module Hello
           end
 
           def clear_session_ivars
-            @hello_user = @hello_credential = @hello_access_token = nil
+            @hello_user = @hello_access_token = nil
           end
 
           def store_impersonator

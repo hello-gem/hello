@@ -31,7 +31,7 @@
   <% unless @credential.email_confirmed? %>
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-6">
-      <%= button_to "Request Confirmation Email", confirm_credential_path(@credential), class: "btn btn-default" %>
+      <%= button_to "Request Confirmation Email", confirm_email_path(@credential), class: "btn btn-default" %>
     </div>
   </div>
   <% end %>

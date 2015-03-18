@@ -13,9 +13,8 @@
 
 ActiveRecord::Schema.define(version: 20140920192959) do
 
-  create_table "access_tokens", force: true do |t|
+  create_table "access_tokens", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "credential_id"
     t.string   "user_agent_string"
     t.string   "access_token"
     t.string   "ip"
@@ -26,10 +25,9 @@ ActiveRecord::Schema.define(version: 20140920192959) do
   end
 
   add_index "access_tokens", ["access_token"], name: "index_access_tokens_on_access_token"
-  add_index "access_tokens", ["credential_id"], name: "index_access_tokens_on_credential_id"
   add_index "access_tokens", ["user_id"], name: "index_access_tokens_on_user_id"
 
-  create_table "addresses", force: true do |t|
+  create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "text"
     t.datetime "created_at"
@@ -38,17 +36,12 @@ ActiveRecord::Schema.define(version: 20140920192959) do
 
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
 
-  create_table "credentials", force: true do |t|
+  create_table "credentials", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "strategy"
     t.string   "email"
-    t.string   "username"
-    t.string   "password_digest"
-    t.integer  "access_tokens_count",        default: 0
-    t.string   "password_token_digest"
-    t.datetime "password_token_digested_at", default: '2000-01-01 00:00:00'
     t.string   "email_token_digest"
-    t.datetime "email_token_digested_at",    default: '2000-01-01 00:00:00'
+    t.datetime "email_token_digested_at", default: '2000-01-01 00:00:00'
     t.datetime "email_confirmed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -56,7 +49,7 @@ ActiveRecord::Schema.define(version: 20140920192959) do
 
   add_index "credentials", ["user_id"], name: "index_credentials_on_user_id"
 
-  create_table "some_credential_data", force: true do |t|
+  create_table "some_credential_data", force: :cascade do |t|
     t.integer  "credential_id"
     t.string   "text"
     t.datetime "created_at"
@@ -65,16 +58,20 @@ ActiveRecord::Schema.define(version: 20140920192959) do
 
   add_index "some_credential_data", ["credential_id"], name: "index_some_credential_data_on_credential_id"
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.string   "role"
-    t.string   "locale"
-    t.string   "time_zone"
-    t.integer  "credentials_count",   default: 0
-    t.integer  "access_tokens_count", default: 0
-    t.string   "city"
+    t.string   "name",                       limit: 255
+    t.string   "role",                       limit: 255
+    t.string   "locale",                     limit: 255
+    t.string   "time_zone",                  limit: 255
+    t.integer  "credentials_count",                      default: 0
+    t.integer  "access_tokens_count",                    default: 0
+    t.string   "city",                       limit: 255
+    t.string   "username"
+    t.string   "password_digest"
+    t.string   "password_token_digest"
+    t.datetime "password_token_digested_at",             default: '2000-01-01 00:00:00'
   end
 
 end

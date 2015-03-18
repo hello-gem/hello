@@ -10,7 +10,7 @@ module Hello
       destroy_and_clear_hello_access_token
       @reset_password = ResetPasswordEntity.new(params[:token])
 
-      if @reset_password.credential
+      if @reset_password.user
         session[:hello_reset_token] = params[:token]
         redirect_to password_reset_path
       else
@@ -31,7 +31,7 @@ module Hello
 
       new_password = params.require(:reset_password)[:password]
       if @reset_password.update_password(new_password)
-        @credential.invalidate_password_token
+        @user.invalidate_password_token
         flash[:notice] = @reset_password.success_message
         control.success
       else
@@ -52,7 +52,7 @@ module Hello
         def fetch_registration_reset_ivar
           return redirect_to forgot_path unless session[:hello_reset_token]
           @reset_password = ResetPasswordEntity.new(session[:hello_reset_token])
-          @credential = @reset_password.credential
+          @user = @reset_password.user
         end
 
 

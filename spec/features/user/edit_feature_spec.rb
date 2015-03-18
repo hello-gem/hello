@@ -13,8 +13,12 @@ describe "edit" do
     it "Default (with custom field)" do
       new_name = 'James Pinto'
       new_city = 'Brasilia'
+      new_username = 'new_username'
+      new_password = 'new_password'
       fill_in 'user_name', with: new_name
       fill_in 'user_city', with: new_city
+      fill_in 'user_username', with: new_username
+      # fill_in 'user_password', with: new_password
 
       click_button 'Update'
       
@@ -24,6 +28,8 @@ describe "edit" do
       user = User.last
       expect(user.name).to eq(new_name)
       expect(user.city).to eq(new_city)
+      expect(user.username).to eq(new_username)
+      # expect(user.password_is?(new_password)).to eq(true)
     end
 
     it "Success - Time Zone" do

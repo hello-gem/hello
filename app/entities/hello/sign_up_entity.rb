@@ -25,7 +25,11 @@ module Hello
     # errors.added? DOES NOT WORK when the validation was given a custom message :)
     def username_taken?
       return false unless credential
-      credential.errors.added? :username, :taken
+      user.errors.added? :username, :taken
+    end
+
+    def user
+      credential.user
     end
 
 
@@ -42,7 +46,7 @@ module Hello
             end
 
                 def credential_fields
-                  %w(email username password)
+                  %w(email)
                 end
 
                 def user_fields
@@ -72,20 +76,20 @@ module Hello
             # NOTE: 
             # All validations are delegated to the models
             def build_credential
-              self.credential = Credential.classic.new(email: email, username: username, password: password)
+              self.credential = Credential.classic.new(email: email)
               credential.build_user(user_attributes)
               merge_errors_to_self and return false if are_models_invalid?
             end
 
                 def are_models_invalid?
-                  # credential.invalid? || credential.user.invalid?
+                  # credential.invalid? || user.invalid?
                   a=credential.invalid?
-                  b=credential.user.invalid?
+                  b=user.invalid?
                   a || b
                 end
 
                 def merge_errors_to_self
-                  hash = credential.errors.to_hash.merge(credential.user.errors)
+                  hash = credential.errors.to_hash.merge(user.errors)
                   hash.each { |k,v| v.each { |v1| errors.add(k, v1) } }
                 end
 

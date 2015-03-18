@@ -25,13 +25,18 @@ module Hello
     # PATCH /hello/user
     def update
       control = UserControl.new(self, @user)
-      
-      if @user_entity.update(params.require(:user))
+      if @user_entity.update(user_params)
         flash[:notice] = @user_entity.success_message
         control.success
       else
         control.failure
       end
+    end
+
+    private
+
+    def user_params
+      params.require(:user)
     end
 
   end

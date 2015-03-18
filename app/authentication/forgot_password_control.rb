@@ -3,7 +3,7 @@ class ForgotPasswordControl < Hello::AbstractControl
   alias :forgot_password :entity
 
   def success
-    @credential = forgot_password.credential
+    @user = forgot_password.user
 
     reset_token_and_deliver_email! if should_reset_password_token?
 
@@ -32,9 +32,11 @@ class ForgotPasswordControl < Hello::AbstractControl
   private
 
   def reset_token_and_deliver_email!
-    token  = @credential.reset_password_token
+    token  = @user.reset_password_token
     url    = c.hello.reset_token_url(token)
-    Hello::RegistrationMailer.forgot_password(@credential, url).deliver!
+    @user.credentials.each do |credential|
+      Hello::RegistrationMailer.forgot_password(credential, url).deliver!
+    end
   end
 
   def should_reset_password_token?

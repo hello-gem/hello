@@ -6,6 +6,9 @@ describe "Confirm Email" do
 
   # TODO: MOVE THIS FILE, THIS SHOULD NOW BE CONSIDERED A CREDENTIAL FEATURE
 
+  let(:good_token_url)    { get_good_token_url }
+  let(:invalid_token_url) { get_invalid_token_url }
+  let(:expired_token_url) { get_expired_token_url }
 
   describe "Success" do
 
@@ -37,7 +40,7 @@ describe "Confirm Email" do
       given_I_have_a_classic_credential
       when_sign_in_with_standard_data
 
-      expect(current_path).to eq hello.confirm_credential_path(current_credential)
+      expect(current_path).to eq hello.confirm_email_path(last_credential)
     end
 
   end
@@ -53,7 +56,7 @@ describe "Confirm Email" do
     visit url
     __fetch_current_active_session
 
-    expect(current_path).to eq hello.confirm_done_credential_path(current_credential)
+    expect(current_path).to eq hello.confirmed_email_path(last_credential)
     expect_flash_notice "foo@bar.com has been confirmed successfully"
     
     visit_the_main_page
@@ -63,36 +66,38 @@ describe "Confirm Email" do
   def visit_and_fail(url)
     visit url
 
-    expect(current_path).to eq hello.confirm_expired_credential_path(safe_current_credential)
+    expect(current_path).to eq hello.expired_token_email_path(safe_last_credential)
     expect_flash_alert "This link has expired, please ask for a new link"
   end
 
 
-  def good_token_url
-    return @good_token_url if @good_token_url
+  def get_good_token_url
+    # return @good_token_url if @good_token_url
     given_I_am_logged_in
     _deliver_email
     when_I_sign_out
 
-    @good_token_url = _extracted_url_from_email
+    # @good_token_url = _extracted_url_from_email
+    _extracted_url_from_email
   end
 
-  def invalid_token_url
-    hello.confirm_token_credential_path(1, 'wrong')
+  def get_invalid_token_url
+    hello.confirm_token_email_path(1, 'wrong')
   end
 
-  def expired_token_url
-    return @expired_token_url if @expired_token_url
+  def get_expired_token_url
+    # return @expired_token_url if @expired_token_url
 
     given_I_am_logged_in
 
-    current_credential.update! email_token_digested_at: 1.year.ago
+    last_credential.update! email_token_digested_at: 1.year.ago
 
-    @expired_token_url = hello.confirm_token_credential_path(current_credential, 'wrong')
+    # @expired_token_url = hello.token_confirm_email_path(last_credential, 'wrong')
+    hello.confirm_token_email_path(last_credential, 'wrong')
   end
 
-  def safe_current_credential
-    current_credential
+  def safe_last_credential
+    last_credential
   rescue
     0
   end
@@ -121,7 +126,7 @@ describe "Confirm Email" do
   end
 
   def visit_the_main_page
-    visit hello.confirm_credential_path(current_credential)
+    visit hello.confirm_email_path(last_credential)
   end
 
 

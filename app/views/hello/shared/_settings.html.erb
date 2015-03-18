@@ -14,25 +14,16 @@
                   {selected_class: "active"}
                   %>
 
+  <% puts "TODO: Change this to a email management page".on_red.blink %>
   <% current_user.classic_credential.tap do |c| %>
     <%= nav_link_to "Email",
-                    email_classic_credential_path(c),
-                    {class: "list-group-item"},
-                    {selected_class: "active"}
-                    %>
-    <%= nav_link_to "Username",
-                    username_classic_credential_path(c),
-                    {class: "list-group-item"},
-                    {selected_class: "active"}
-                    %>
-    <%= nav_link_to "Password",
-                    password_classic_credential_path(c),
+                    email_path(c),
                     {class: "list-group-item"},
                     {selected_class: "active"}
                     %>
     <% unless c.email_confirmed? %>
       <%= nav_link_to "Confirm Email",
-                      confirm_credential_path(c),
+                      confirm_email_path(c),
                       {class: "list-group-item"},
                       {selected_class: "active"}
                       %>

@@ -7,33 +7,20 @@
 <%= form_for @user, html: {class: "form-horizontal", role: "form"} do |f| %>
   <%= render '/hello/shared/errors', active_model: @user_entity %>
 
+  <% current_user.credentials.classic.each do |credential| %>
   <div class="form-group">
     <%= f.label :email, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
       <span class="form-control" style="border: 0px; box-shadow: none">
-        <%= hello_credential.email %>
-        <%= link_to "edit", hello.email_classic_credential_path(hello_credential) %>
+        <%= credential.email %>
+        <%= link_to "edit", hello.email_path(credential) %>
       </span>
     </div>
   </div>
-  <div class="form-group">
-    <%= f.label :username, class: "col-sm-4 control-label" %>
-    <div class="col-sm-4">
-      <span class="form-control" style="border: 0px; box-shadow: none">
-        <%= hello_credential.username %>
-        <%= link_to "edit", hello.username_classic_credential_path(hello_credential) %>
-      </span>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :password, class: "col-sm-4 control-label" %>
-    <div class="col-sm-4">
-      <span class="form-control" style="border: 0px; box-shadow: none">
-        ********
-        <%= link_to "edit", hello.password_classic_credential_path(hello_credential) %>
-      </span>
-    </div>
-  </div>
+
+  <% end %>
+
+
 
 
   <div class="form-group">
@@ -67,6 +54,22 @@
   </div>
 
 
+  <div class="form-group">
+    <%= f.label :username, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :username, class: "form-control", placeholder: "Username" %>
+    </div>
+  </div>
+
+  <% puts "TODO: bring back password editing".red.blink %>
+  <% if false %>
+  <div class="form-group">
+    <%= f.label :password, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+    </div>
+  </div>
+  <% end %>
 
 
   <!-- city is a custom field -->

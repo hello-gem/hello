@@ -6,9 +6,9 @@ module Hello
       @access_token = access_token
     end
 
-    def authenticate!(attrs)
-      if access_token.credential.password_is?(attrs[:password])
-        access_token.update! sudo_expires_at: 60.minutes.from_now
+    def authenticate!(password, sudo_expires_at)
+      if access_token.user.password_is?(password)
+        access_token.update! sudo_expires_at: sudo_expires_at
       end
     end
 

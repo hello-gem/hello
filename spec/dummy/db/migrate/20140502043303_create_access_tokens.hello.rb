@@ -3,7 +3,6 @@ class CreateAccessTokens < ActiveRecord::Migration
   def change
     create_table :access_tokens do |t|
       t.references :user, index: true
-      t.references :credential, index: true
       t.string :user_agent_string
       t.string :access_token
       t.string :ip

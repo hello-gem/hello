@@ -7,11 +7,11 @@ def current_access_token
   @current_access_token
 end
 
-def current_credential
-  current_access_token.credential
+def last_credential
+  Credential.last
 end
 
 def current_user
-  current_credential.user
+  current_access_token.user
 end
 

@@ -85,7 +85,7 @@ en:
         success: "You are now %{name}"
       impersonate_back:
         success: "You are yourself again"
-      update_classic_credential:
+      update_field:
         success: "Your %{field} was successfully updated"
         alert: "1 error was found while updating your %{field}"
       update_locale:

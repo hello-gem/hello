@@ -4,7 +4,7 @@ class SignUpControl < Hello::AbstractControl
 
   def user_fields
     # %w(name)
-    %w(name time_zone locale)
+    %w(name username password time_zone locale)
   end
 
   def defaults
@@ -21,7 +21,7 @@ class SignUpControl < Hello::AbstractControl
   def success
     deliver_welcome_email!
 
-    access_token = c.create_hello_access_token
+    access_token = c.create_hello_access_token(sign_up.user)
 
     c.respond_to do |format|
       format.html { c.redirect_to '/novice' }

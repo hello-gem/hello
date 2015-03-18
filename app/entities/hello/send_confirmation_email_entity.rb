@@ -10,7 +10,7 @@ module Hello
 
     def deliver
       token = credential.reset_email_token!
-      url   = controller.confirm_token_credential_url(credential, token)
+      url   = controller.confirm_token_email_url(credential, token)
       Hello::RegistrationMailer.confirm_email(credential, url).deliver
     end
 

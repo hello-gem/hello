@@ -12,19 +12,13 @@ module Hello
       validates_inclusion_of :strategy, in: strategies
 
 
-      before_validation :ensure_username_if_blank_allowed_on_create, on: :create
-
-
-      # username
-      validates_format_of :username, with: /\A[a-z0-9_-]+\z/i
-      validates_uniqueness_of :username
-      validates_length_of :username,
-                          in: 4..32,
-                          too_long:  'maximum of %{count} characters',
-                          too_short: 'minimum of %{count} characters'
+      # email
+      validates_presence_of     :email, if: :is_classic?
+      validates_email_format_of :email, if: :is_classic?
+      validates_uniqueness_of   :email, if: :is_classic?
 
       # concerns
-      include CredentialModelPassword
+      # include CredentialModelEmail
       # include Twitter
     end
 
@@ -43,28 +37,16 @@ module Hello
       end
     end
 
-    # we recommend programmers to override this method in their apps
-    def encrypt_password(plain_text_password)
-      BCrypt::Password.create(plain_text_password)
+
+    def is_classic?
+      strategy.to_s.inquiry.classic?
     end
 
-    # we recommend programmers to override this method in their apps
-    def password_is?(plain_text_password)
-      bc_password = BCrypt::Password.new(password_digest)
-      bc_password == plain_text_password 
-    rescue BCrypt::Errors::InvalidHash
-      false
-    end
 
 
     #
     # downcase setters
     #
-
-    def username=(v)
-      v = v.to_s.downcase.gsub(' ', '')
-      write_attribute(:username, v)
-    end
 
     def email=(v)
       v = v.to_s.downcase.gsub(' ', '')
@@ -99,39 +81,29 @@ module Hello
 
 
 
-    def ensure_username_if_blank_allowed_on_create
-      return true if username.present?              # skip if username has been set
-      return true if username_presence_is_required? # skip if username presence is required
-      
-      loop do
-        self.username = make_up_new_username
-        break unless username_used_by_another?(username)
-      end
+    def reset_password_token
+      uuid = SecureRandom.hex(8) # probability = 1 / (16 ** 16)
+      digest = self.class.encrypt_token(uuid)
+      update(password_token_digest: digest, password_token_digested_at: 1.second.ago)
+      return uuid
     end
 
-        def make_up_new_username
-          SecureRandom.hex(16) # probability = 1 / (32 ** 32)
-        end
+    def invalidate_password_token
+      update(password_token_digest: nil, password_token_digested_at: nil)
+    end
 
-        def username_used_by_another?(a_username)
-          self.class.where(username: a_username).where.not(id: id).exists?
-        end
+    def reset_email_token!
+      uuid = SecureRandom.hex(8) # probability = 1 / (16 ** 16)
+      digest = Hello.encrypt_token(uuid)
+      update!(email_token_digest: digest, email_token_digested_at: 1.second.ago)
+      return uuid
+    end
 
-        def username_presence_is_required?
-          _validators[:username].map(&:class).include? ActiveRecord::Validations::PresenceValidator
-        end
+    def confirm_email!
+      update! email_token_digest: nil, email_token_digested_at: nil, email_confirmed_at: 1.second.ago
+    end
 
 
-
-
-
-
-    # def username_suggestions
-    #   email1 = email.to_s.split('@').first
-    #   name1  = name.to_s.split(' ')
-    #   ideas = [name1, email1].flatten
-    #   [ideas.sample, rand(999)].join.parameterize
-    # end
 
 
   end

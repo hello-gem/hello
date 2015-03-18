@@ -8,7 +8,6 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>Email</th>
       <th>Device</th>
       <th>IP Address</th>
       <th></th>
@@ -22,7 +21,6 @@
 
       <tr class="<%= 'success' if is_this_session %>">
         <td>Device #<%= i+1 %></td>
-        <td><%= a_session.credential.email %></td>
         <td><%= a_session.full_device_name %></td>
         <td><%= a_session.ip %></td>
         <td>

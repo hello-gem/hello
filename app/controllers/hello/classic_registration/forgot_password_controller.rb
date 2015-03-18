@@ -14,7 +14,7 @@ module ClassicRegistration
     # POST /hello/remember
     def remember
       @forgot_password = ForgotPasswordEntity.new(params.require(:forgot_password))
-      @credential = @forgot_password.credential
+      @user = @forgot_password.user
 
       control = ForgotPasswordControl.new(self, @forgot_password)
 
