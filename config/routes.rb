@@ -36,6 +36,8 @@ Hello::Engine.routes.draw do
 
   # account
     # user
+    get   'user/password(/:id)' => "user#edit_password",  as: 'user_password'
+    patch 'user/password(/:id)' => "user#update_password"
     get   'user(/:id)' => "user#edit",  as: 'user'
     patch 'user(/:id)' => "user#update"
     # (:/id) so it won't understand format: '1' in some Rails versions, causing an UnknownFormat error

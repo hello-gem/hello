@@ -29,7 +29,7 @@ module Hello
         end
 
         def permitted_fields
-          User.hello_profile_column_names+['password']
+          User.hello_profile_column_names
         end
 
   end

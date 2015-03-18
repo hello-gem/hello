@@ -13,6 +13,11 @@
                   {class: "list-group-item"},
                   {selected_class: "active"}
                   %>
+  <%= nav_link_to "Password",
+                  hello.user_password_path,
+                  {class: "list-group-item"},
+                  {selected_class: "active"}
+                  %>
 
   <% puts "TODO: Change this to a email management page".on_red.blink %>
   <% current_user.classic_credential.tap do |c| %>
