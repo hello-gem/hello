@@ -7,60 +7,49 @@ require_dependency "hello/application_controller"
 module Hello
   class EmailsController < ApplicationController
     
+    helper_method :credentials
+
     restrict_to_users
     
     before_actions do
       all { restrict_access_to_sudo_mode }
-      # only(:index)   { @credentials = hello_user.credentials }
-      # only(:new)     { @credential   = hello_user.credentials.build }
-      # only(:create)  { @credential   = hello_user.credentials.build(credential_params) }
-      # only(:show, :edit, :update, :destroy)  {
-      only(:show, :update)  {
-        @credential = hello_user.credentials.classic.find(params[:id])
-      }
+      only(:index)  { @credential = Credential.new }
+      only(:create) { @credential = hello_user.credentials.classic.build(credential_params) }
+      only(:destroy, :deliver)  { @credential = hello_user.credentials.classic.find(params[:id]) }
     end
 
-    # # GET /hello/emails
-    # def index
-    # end
-
-    # # GET /hello/emails/new
-    # def new
-    # end
-
-    # # POST /hello/emails
-    # def create
-    #   if @credential.save
-    #     redirect_to @credential, notice: 'Your credential was successfully created.'
-    #   else
-    #     render :new
-    #   end
-    # end
-
-
-    # GET /hello/emails/1
-    def show
+    # GET /hello/emails
+    def index
     end
 
-        # PATCH/PUT /hello/emails/1
-        def update
-          if @credential.update(credential_params)
-            puts "TODO: reset email secondary fields".on_red
-            flash[:notice] = entity.success_message
-            redirect_to hello.user_path
-          else
-            flash[:alert] = entity.alert_message
-            render action: 'show'
-          end
-        end
+    # POST /hello/emails
+    def create
+      if @credential.save
+        redirect_to hello.emails_path, notice: "Your email was successfully added."
+      else
+        render action: :index
+      end
+    end
 
-    # # DELETE /hello/emails/1
-    # def destroy
-    #   if @credential.destroy
-    #     redirect_to credentials_url, notice: 'Your credential was successfully destroyed.'
-    #   else
-    #     render :edit
-    # end
+    # DELETE /hello/emails/1
+    def destroy
+      if @credential.destroy
+        redirect_to hello.emails_path, notice: "Your email was successfully removed."
+      else
+        render action: :index
+      end
+    end
+
+    # POST /hello/emails/1/deliver
+    def deliver
+      entity = SendConfirmationEmailEntity.new(self, @credential)
+      entity.deliver
+      flash[:notice] = entity.success_message
+      redirect_to hello.emails_path
+    end
+
+
+
 
     private
 
@@ -69,9 +58,10 @@ module Hello
         params.require(:credential).permit(:email)
       end
 
-      def entity
-        @entity ||= UpdateFieldEntity.new('email')
+      def credentials
+        hello_user.credentials.classic
       end
+
   end
 
 end

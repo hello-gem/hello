@@ -11,14 +11,10 @@ module Hello
       validates_presence_of :strategy
       validates_inclusion_of :strategy, in: strategies
 
-
-      # email
-      validates_presence_of     :email, if: :is_classic?
-      validates_email_format_of :email, if: :is_classic?
-      validates_uniqueness_of   :email, if: :is_classic?
+      before_destroy :cannot_destroy_last_credential
 
       # concerns
-      # include CredentialModelEmail
+      include CredentialModelEmail
       # include Twitter
     end
 
@@ -42,69 +38,29 @@ module Hello
       strategy.to_s.inquiry.classic?
     end
 
-
-
-    #
-    # downcase setters
-    #
-
-    def email=(v)
-      v = v.to_s.downcase.gsub(' ', '')
-      write_attribute(:email, v)
+    def first_error_message
+      errors.messages.values.flatten.first if errors.any?
     end
 
-    #
-    # email confirmation
-    #
+    private
 
-    def confirmation_status
-      case
-      # when !is_classic?
-      #   :not_classic
-      when email_confirmed?
-        :confirmed
-      when email_token_old?
-        :must_deliver
-      else
-        :check_inbox
+    def cannot_destroy_last_credential
+      if not hello_is_user_being_destroyed?
+        if is_last_credential?
+          errors[:base] << "must have at least one credential"
+          false
+        end
       end
     end
 
-        def email_confirmed?
-          !!email_confirmed_at
-        end
-
-        def email_token_old?
-          x = email_token_digested_at
-          x.nil? || x < 7.days.ago
-        end
-
-
-
-    def reset_password_token
-      uuid = SecureRandom.hex(8) # probability = 1 / (16 ** 16)
-      digest = self.class.encrypt_token(uuid)
-      update(password_token_digest: digest, password_token_digested_at: 1.second.ago)
-      return uuid
+    def is_last_credential?
+      user.credentials_count == 1
     end
 
-    def invalidate_password_token
-      update(password_token_digest: nil, password_token_digested_at: nil)
+    def hello_is_user_being_destroyed?
+      return false if user.nil?
+      user.hello_is_this_being_destroyed?
     end
-
-    def reset_email_token!
-      uuid = SecureRandom.hex(8) # probability = 1 / (16 ** 16)
-      digest = Hello.encrypt_token(uuid)
-      update!(email_token_digest: digest, email_token_digested_at: 1.second.ago)
-      return uuid
-    end
-
-    def confirm_email!
-      update! email_token_digest: nil, email_token_digested_at: nil, email_confirmed_at: 1.second.ago
-    end
-
-
-
 
   end
 end

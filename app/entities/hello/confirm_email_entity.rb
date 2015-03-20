@@ -10,10 +10,12 @@ module Hello
     end
 
     def validate_token(unencrypted_token)
-      return if not found_credential?
+      # puts "validate_token('#{unencrypted_token}')".blue
+      return false if not found_credential?
       token_digest = Hello.encrypt_token(unencrypted_token)
       
-      return if @credential.email_token_digest == token_digest
+      # puts "return true if '#{credential.email_token_digest}' == '#{token_digest}'".blue
+      return true if credential.email_token_digest == token_digest
       @credential = nil
     end
 

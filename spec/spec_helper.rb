@@ -17,6 +17,7 @@ require 'factory_girl_rails'
 require 'faker'
 # require "rails/test_help"
 
+require 'rspec/example_steps'
 require 'rspec/rails'
 require 'capybara/rails'
 require "email_spec"

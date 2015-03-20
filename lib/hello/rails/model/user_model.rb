@@ -8,10 +8,6 @@ module Hello
       attributes.slice(*self.class.hello_profile_column_names)
     end
 
-    def classic_credential
-      credentials.classic.first
-    end
-
     def novice?
       role == self.class.novice
     end
@@ -36,7 +32,14 @@ module Hello
       include UserModelPassword
     end
 
+    def destroy
+      @hello_is_this_being_destroyed = true
+      super
+    end
 
+    def hello_is_this_being_destroyed?
+      !!@hello_is_this_being_destroyed
+    end
 
 
 

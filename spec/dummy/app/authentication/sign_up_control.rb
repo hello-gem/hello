@@ -16,7 +16,6 @@ class SignUpControl < Hello::AbstractControl
   end
   
   def success
-    puts "THIS MAILER WONT WORK WITH CREDENTIAL".red.blink
     Hello::RegistrationMailer.welcome(sign_up.credential, sign_up.password).deliver
 
     access_token = c.create_hello_access_token(sign_up.user)
