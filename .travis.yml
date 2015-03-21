@@ -7,10 +7,10 @@ gemfile:
   - gemfiles/rails-4-0-stable.gemfile
   - gemfiles/rails-4-1-stable.gemfile
   - gemfiles/rails-4-2-stable.gemfile
-matrix:
-  include:
-    - rvm: 2.2.1
-      gemfile: gemfiles/rails-master.gemfile
+# matrix:
+#   include:
+#     - rvm: 2.2.1
+#       gemfile: gemfiles/rails-master.gemfile
 cache:
   - bundler
   - apt
