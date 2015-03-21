@@ -8,10 +8,6 @@ module Hello
       attributes.slice(*self.class.hello_profile_column_names)
     end
 
-    def classic_credential
-      credentials.classic.first
-    end
-
     def novice?
       role == self.class.novice
     end
@@ -21,7 +17,7 @@ module Hello
     end
 
     def to_hash_profile
-      attributes
+      attributes.reject { |key| %w[password_digest password_token_digest password_token_digested_at].include? key }
     end
 
     included do
@@ -31,9 +27,25 @@ module Hello
       validates_presence_of :name, :locale, :time_zone
       validates_inclusion_of :locale,    in: Hello.available_locales
       validates_inclusion_of :time_zone, in: Hello.available_time_zones
+
+      include UserModelUsername
+      include UserModelPassword
     end
 
+    def destroy
+      # In Rails 4.0
+      # 'this instance' and the 'user in the credential instance'
+      # are 2 separate instances, making it impossible for them to share state
+      # therefore, an instance variable used as a flag will not work for Rails 4.0
+      # It will however, work for Rails 4.1 and 4.2
+      # @hello_is_this_being_destroyed = true 
+      Thread.current["Hello.destroying_user"] = true
+      super
+    end
 
+    # def hello_is_this_being_destroyed?
+    #   !!@hello_is_this_being_destroyed
+    # end
 
 
 
@@ -62,7 +74,9 @@ module Hello
       def hello_profile_column_names
         ignore_columns = ['id', 'created_at', 'updated_at', 'role']
         the_columns = column_names - ignore_columns
-        the_columns.reject { |column| column.ends_with? '_count' }
+        the_columns.reject! { |column| column.ends_with? '_count' }
+        the_columns.reject! { |column| column.starts_with? 'password_' }
+        the_columns
       end
     end
 

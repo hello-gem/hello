@@ -13,16 +13,17 @@ describe "Sudo Mode" do
         expect(AccessToken.last.sudo_expires_at).to be < Time.now
   end
 
+
   describe "Authenticate" do
     
     before { visit_restricted_area }
 
     describe "Error" do
       it "Blank" do
-        when_I_confirm_my_credential_password('')
+        when_I_confirm_my_user_password('')
       end
       it "Wrong" do
-        when_I_confirm_my_credential_password('wrong')
+        when_I_confirm_my_user_password('wrong')
       end
 
       after do
@@ -34,7 +35,7 @@ describe "Sudo Mode" do
     end
 
     it "Success" do
-      when_I_confirm_my_credential_password
+      when_I_confirm_my_user_password
 
       expect_flash_notice "Now we know it's really you. We won't be asking your password again for 60 minutes"
       expect(page).to have_content "Sudo Mode expires in"
@@ -47,7 +48,7 @@ describe "Sudo Mode" do
   describe "Expire" do
     it "Success" do
       visit_restricted_area
-      when_I_confirm_my_credential_password
+      when_I_confirm_my_user_password
 
       click_link "expire"
 

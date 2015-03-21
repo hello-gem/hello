@@ -23,7 +23,7 @@ RSpec.describe "Sign In", :type => :request do
         expect(response.status).to eq(422)
         expect(response.status_message).to eq("Unprocessable Entity")
         expect(json_response).to eq({
-          "username"=>["was not found"],
+          "login"=>["was not found"],
         })
       end
     end
@@ -36,7 +36,7 @@ RSpec.describe "Sign In", :type => :request do
 
       expect(response.status).to eq(201)
       expect(response.status_message).to eq("Created")
-      expect(json_response.keys).to match_array %w[access_token expires_at username email email_confirmed_at user user_id]
+      expect(json_response.keys).to match_array %w[access_token expires_at user user_id]
     end
 
   end

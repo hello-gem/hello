@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>Dummy</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -24,7 +24,7 @@
       <ul class="nav nav-pills pull-right">
         <li><%= link_to human_current_locale, hello.locale_path %></li>
         <% if current_user %>
-          <li><%= link_to "My Profile", profile_path(hello_credential.username) %></li>
+          <li><%= link_to "My Profile", profile_path(current_user.username) %></li>
           <li><%= link_to "Settings", hello.user_path %></li>
           <li><%= link_to "Sign Out", hello.sign_out_path %></li>
           <% if impersonated? %>
@@ -56,6 +56,12 @@
 
   <footer>
     <%= debug session.to_hash %>
+    <% if hello_access_token %>
+      <p>dummy-logged-in-User#<%= current_user.id %></p>
+      <p>dummy-logged-in-AccessToken#<%= hello_access_token.id %></p>
+    <% else %>
+      <p>dummy-logged-out</p>
+    <% end %>
   </footer>
 
 </body>

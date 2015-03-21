@@ -15,7 +15,9 @@ module Hello
         private
 
           def user_time_zone(&block)
+            Thread.current["Hello.destroying_user"] = nil
             Time.use_zone(hello_user.time_zone, &block)
+            Thread.current["Hello.destroying_user"] = nil
           end
 
       end

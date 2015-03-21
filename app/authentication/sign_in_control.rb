@@ -3,7 +3,7 @@ class SignInControl < Hello::AbstractControl
   alias :sign_in :entity
 
   def success
-    access_token = c.create_hello_access_token(expires_at)
+    access_token = c.create_hello_access_token(sign_in.user, expires_at)
 
     c.respond_to do |format|
       format.html { c.redirect_to c.session.delete(:url) || c.hello.authenticated_path }

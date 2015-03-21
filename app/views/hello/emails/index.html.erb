@@ -1,0 +1,84 @@
+
+<div class="row">
+
+<%= render '/hello/shared/settings' %>
+
+<div class="col-sm-3-offset col-md-2-offset col-sm-9 col-md-10">
+
+  <table class="table table-bordered">
+    <tbody>
+      <% credentials.each do |credential| %>
+        <tr>
+          <td>
+            <%= credential.email %>
+          </td>
+          <td>
+
+
+
+            <% if credential.email_confirmed? %>
+              <span class="label label-success">
+                Confirmed
+                <%= time_ago_in_words credential.email_confirmed_at %>
+                ago
+              </span>
+            <% else %>
+              <%= button_to "Confirm", deliver_email_path(credential), class: "btn btn-block" %>
+            <% end %>
+
+
+
+          </td>
+          <td>
+
+
+            <% unless credential.email_confirmed? %>
+              <% if credential.email_delivered? %>
+                <span class="label label-info">
+                  Last confirmation sent
+                  <%= time_ago_in_words credential.email_delivered_at %>
+                  ago
+                </span>
+              <% else %>
+                <span class="label label-warning">
+                  Confirmation never sent
+                </span>
+              <% end %>
+            <% end %>
+
+
+
+          </td>
+          <td>
+            <%= button_to 'Remove', email_path(credential), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-block" %>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+
+
+
+        <%= form_for(@credential, url: emails_path) do |f| %>
+        <td>
+          <%= f.email_field :email, placeholder: "email@provider.com", class: "form-control" %>
+        </td>
+        <td>
+          <%= f.submit "Add Email", class: "btn btn-block" %>
+        </td>
+        <td colspan="2">
+          <% if @credential.first_error_message %>
+            <span class="label label-danger">
+              <%= @credential.first_error_message %>
+            </span>
+          <% end %>
+        </td>
+        <% end %>
+
+
+
+      </tr>
+    </tbody>
+  </table>
+  
+</div>
+</div>

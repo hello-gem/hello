@@ -60,8 +60,7 @@ GEM
     addressable (2.3.7)
     arel (4.0.2)
     bcrypt (3.1.10)
-    before_actions (2.0.2)
-      rails (>= 3.1, < 5.0)
+    before_actions (2.0.3)
     builder (3.1.4)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -72,6 +71,8 @@ GEM
     codeclimate-test-reporter (0.4.7)
       simplecov (>= 0.7.1, < 1.0.0)
     colorize (0.7.5)
+    did-you-mean (0.1.1)
+      levenshtein (>= 0.2.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
     email_spec (1.6.0)
@@ -90,12 +91,13 @@ GEM
     i18n (0.7.0)
     launchy (2.4.3)
       addressable (~> 2.3)
+    levenshtein (0.2.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (4.7.5)
-    multi_json (1.10.1)
+    multi_json (1.11.0)
     nav_lynx (1.1.1)
       rails (>= 3.1.0)
     nokogiri (1.6.6.2)
@@ -107,8 +109,10 @@ GEM
       i18n (~> 0.6)
       railties (~> 4.0)
     rake (10.4.2)
-    rspec-core (3.2.1)
+    rspec-core (3.2.2)
       rspec-support (~> 3.2.0)
+    rspec-example_steps (3.0.2)
+      rspec-core (>= 3.0.0)
     rspec-expectations (3.2.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
@@ -140,7 +144,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
     sqlite3 (1.3.10)
     thor (0.19.1)
-    thread_safe (0.3.4)
+    thread_safe (0.3.5)
     tilt (1.4.1)
     tzinfo (0.3.43)
     user_agent_parser (2.2.0)
@@ -155,11 +159,13 @@ PLATFORMS
 DEPENDENCIES
   capybara
   codeclimate-test-reporter
+  did-you-mean
   email_spec
   factory_girl_rails
   faker
   hello!
   launchy
   rails!
+  rspec-example_steps
   rspec-rails
   sqlite3

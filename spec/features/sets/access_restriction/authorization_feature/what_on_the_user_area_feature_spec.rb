@@ -59,20 +59,19 @@ describe "Feature Set: Access Restriction" do
 
       who "As a User" do
         scenario "Access Granted" do
-          visit2 :user, "/hello/classic/credentials/1/email"
+          visit2 :user, "/hello/emails"
         end
       end
 
       who "As an Admin" do
         scenario "Access Granted" do
-          visit2 :admin, "/hello/classic/credentials/1/email"
+          visit2 :admin, "/hello/emails"
         end
       end
 
       def visit2(role, expected_path, expected_flash_alert=nil)
         sign_up_as_a(role)
-        id = Credential.maximum(:id) || '999'
-        visit "/hello/classic/credentials/#{id}/email"
+        visit "/hello/emails"
         expect(current_path).to eq(expected_path)
         expect_flash_auth(expected_flash_alert)
       end

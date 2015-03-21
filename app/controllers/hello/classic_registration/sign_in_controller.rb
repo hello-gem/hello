@@ -15,7 +15,7 @@ module ClassicRegistration
     # POST /hello/sign_in
     def authenticate
       @sign_in = SignInEntity.new(params.require(:sign_in))
-      @credential = @sign_in.credential
+      @user = @sign_in.user
 
       control = SignInControl.new(self, @sign_in)
 

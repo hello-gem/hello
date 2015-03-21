@@ -1,12 +1,12 @@
 module Hello
   class ImpersonateEntity < AbstractEntity
 
-    def initialize(credential)
-      @credential = credential
+    def initialize(user)
+      @user = user
     end
 
     def success_message(extra={})
-      super(name: @credential.user.name)
+      super(name: @user.name)
     end
 
   end

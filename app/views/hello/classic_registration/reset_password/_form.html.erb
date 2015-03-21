@@ -5,19 +5,22 @@
     <%= render '/hello/shared/errors', active_model: @reset_password %>
   <% end %>
 
+  <% @reset_password.user.credentials.each do |credential| %>
   <div class="form-group">
     <%= f.label :email, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
       <span class="form-control" style="border: 0px; box-shadow: none">
-        <%= @reset_password.credential.email %>
+        <%= credential.email %>
       </span>
     </div>
   </div>
+  <% end %>
+
   <div class="form-group">
     <%= f.label :username, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
       <span class="form-control" style="border: 0px; box-shadow: none">
-        <%= @reset_password.credential.username %>
+        <%= @reset_password.user.username %>
       </span>
     </div>
   </div>

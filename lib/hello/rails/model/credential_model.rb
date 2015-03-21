@@ -11,20 +11,10 @@ module Hello
       validates_presence_of :strategy
       validates_inclusion_of :strategy, in: strategies
 
-
-      before_validation :ensure_username_if_blank_allowed_on_create, on: :create
-
-
-      # username
-      validates_format_of :username, with: /\A[a-z0-9_-]+\z/i
-      validates_uniqueness_of :username
-      validates_length_of :username,
-                          in: 4..32,
-                          too_long:  'maximum of %{count} characters',
-                          too_short: 'minimum of %{count} characters'
+      before_destroy :cannot_destroy_last_credential
 
       # concerns
-      include CredentialModelPassword
+      include CredentialModelEmail
       # include Twitter
     end
 
@@ -43,96 +33,31 @@ module Hello
       end
     end
 
-    # we recommend programmers to override this method in their apps
-    def encrypt_password(plain_text_password)
-      BCrypt::Password.create(plain_text_password)
+
+    def is_classic?
+      strategy.to_s.inquiry.classic?
     end
 
-    # we recommend programmers to override this method in their apps
-    def password_is?(plain_text_password)
-      bc_password = BCrypt::Password.new(password_digest)
-      bc_password == plain_text_password 
-    rescue BCrypt::Errors::InvalidHash
+    def first_error_message
+      errors.messages.values.flatten.first if errors.any?
+    end
+
+    private
+
+    def cannot_destroy_last_credential
+      return if hello_is_user_being_destroyed?
+      return if not is_last_credential?
+      errors[:base] << "must have at least one credential"
       false
     end
 
-
-    #
-    # downcase setters
-    #
-
-    def username=(v)
-      v = v.to_s.downcase.gsub(' ', '')
-      write_attribute(:username, v)
+    def is_last_credential?
+      user.credentials_count == 1
     end
 
-    def email=(v)
-      v = v.to_s.downcase.gsub(' ', '')
-      write_attribute(:email, v)
+    def hello_is_user_being_destroyed?
+      !!Thread.current["Hello.destroying_user"]
     end
-
-    #
-    # email confirmation
-    #
-
-    def confirmation_status
-      case
-      # when !is_classic?
-      #   :not_classic
-      when email_confirmed?
-        :confirmed
-      when email_token_old?
-        :must_deliver
-      else
-        :check_inbox
-      end
-    end
-
-        def email_confirmed?
-          !!email_confirmed_at
-        end
-
-        def email_token_old?
-          x = email_token_digested_at
-          x.nil? || x < 7.days.ago
-        end
-
-
-
-    def ensure_username_if_blank_allowed_on_create
-      return true if username.present?              # skip if username has been set
-      return true if username_presence_is_required? # skip if username presence is required
-      
-      loop do
-        self.username = make_up_new_username
-        break unless username_used_by_another?(username)
-      end
-    end
-
-        def make_up_new_username
-          SecureRandom.hex(16) # probability = 1 / (32 ** 32)
-        end
-
-        def username_used_by_another?(a_username)
-          self.class.where(username: a_username).where.not(id: id).exists?
-        end
-
-        def username_presence_is_required?
-          _validators[:username].map(&:class).include? ActiveRecord::Validations::PresenceValidator
-        end
-
-
-
-
-
-
-    # def username_suggestions
-    #   email1 = email.to_s.split('@').first
-    #   name1  = name.to_s.split(' ')
-    #   ideas = [name1, email1].flatten
-    #   [ideas.sample, rand(999)].join.parameterize
-    # end
-
 
   end
 end

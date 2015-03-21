@@ -13,26 +13,28 @@ FactoryGirl.define do
     time_zone Time.zone.name
     role 'user'
 
+    username { Faker::Internet.user_name(name, %w(-_)) }
+    password '1234'
+
     factory :admin_user do
       name 'Admin'
       role 'admin'
+      username 'admin'
+      password 'admin'
     end
   end
 
   factory :credential do
     user
-    username { Faker::Internet.user_name(user.name, %w(-_)) }
 
     factory :classic_credential do
       strategy Credential._classic
       email    { Faker::Internet.email }
-      password '1234'
     end
   end
 
   factory :access_token do
     user
-    credential
     user_agent_string "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36"
   end
 

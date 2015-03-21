@@ -12,10 +12,10 @@ module Hello
 
     # POST /hello/admin/impersonate credential_id: 1
     def create
-      credential = Credential.find(params[:credential_id])
-      hello_impersonate(credential)
+      user = User.find(params[:user_id])
+      hello_impersonate(user)
 
-      entity = ImpersonateEntity.new(credential)
+      entity = ImpersonateEntity.new(user)
       flash[:notice] = entity.success_message
       redirect_to :back
     end

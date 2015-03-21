@@ -87,7 +87,7 @@ es:
         success: "Ahora eres %{name}"
       impersonate_back:
         success: "Eres tu nuevamente"
-      update_classic_credential:
+      update_field:
         success: "Tu %{field} ha sido actualizado satisfactoriamente"
         alert: "1 error ocurrió mientras actualizabamos %{field}"
       update_locale:

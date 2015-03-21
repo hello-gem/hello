@@ -10,12 +10,21 @@ module Hello
 
     def deliver
       token = credential.reset_email_token!
-      url   = controller.confirm_token_credential_url(credential, token)
-      Hello::RegistrationMailer.confirm_email(credential, url).deliver
+      check_token!(token)
+      url   = controller.confirm_email_url(credential, token)
+      mail  = Hello::RegistrationMailer.confirm_email(credential, url)
+      mail.deliver
     end
 
     def success_message(extra={})
       super(email: credential.email)
+    end
+
+    private
+
+    def check_token!(token)
+      e = ConfirmEmailEntity.new(credential)
+      raise "no match" unless e.validate_token(token)
     end
 
   end

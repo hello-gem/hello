@@ -6,7 +6,7 @@ class DeactivationControl < Hello::AbstractControl
     # c.hello_user.update! deactivated_at: Time.now
     # c.hello_user.update! deactivated: true
     c.hello_user.destroy!
-  rescue ActiveRecord::RecordNotDestroyed
+  rescue ActiveRecord::RecordNotDestroyed => invalid
     raise ActiveRecord::Rollback
   end
 
