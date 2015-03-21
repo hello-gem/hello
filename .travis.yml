@@ -9,7 +9,7 @@ gemfile:
   - gemfiles/rails-4-2-stable.gemfile
 matrix:
   include:
-    - rvm: 2.2.0
+    - rvm: 2.2.1
       gemfile: gemfiles/rails-master.gemfile
 cache:
   - bundler
