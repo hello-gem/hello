@@ -45,12 +45,10 @@ module Hello
     private
 
     def cannot_destroy_last_credential
-      if not hello_is_user_being_destroyed?
-        if is_last_credential?
-          errors[:base] << "must have at least one credential"
-          false
-        end
-      end
+      return if hello_is_user_being_destroyed?
+      return if not is_last_credential?
+      errors[:base] << "must have at least one credential"
+      false
     end
 
     def is_last_credential?
@@ -58,8 +56,7 @@ module Hello
     end
 
     def hello_is_user_being_destroyed?
-      return false if user.nil?
-      user.hello_is_this_being_destroyed?
+      !!Thread.current["Hello.destroying_user"]
     end
 
   end

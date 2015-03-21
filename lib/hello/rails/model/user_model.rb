@@ -33,13 +33,19 @@ module Hello
     end
 
     def destroy
-      @hello_is_this_being_destroyed = true
+      # In Rails 4.0
+      # 'this instance' and the 'user in the credential instance'
+      # are 2 separate instances, making it impossible for them to share state
+      # therefore, an instance variable used as a flag will not work for Rails 4.0
+      # It will however, work for Rails 4.1 and 4.2
+      # @hello_is_this_being_destroyed = true 
+      Thread.current["Hello.destroying_user"] = true
       super
     end
 
-    def hello_is_this_being_destroyed?
-      !!@hello_is_this_being_destroyed
-    end
+    # def hello_is_this_being_destroyed?
+    #   !!@hello_is_this_being_destroyed
+    # end
 
 
 

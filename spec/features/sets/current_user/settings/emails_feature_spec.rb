@@ -112,6 +112,9 @@ RSpec.describe "Feature Set: Settings", :type => :feature do
       end
 
       scenario "Invalid Scenario" do
+        Given "I have 1 email" do
+        end
+
         When "I click remove" do
           click_button "Remove", match: :first
         end
