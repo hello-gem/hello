@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140920192959) do
     t.string   "strategy"
     t.string   "email"
     t.string   "email_token_digest"
-    t.datetime "email_token_digested_at", default: '2000-01-01 00:00:00'
+    t.datetime "email_token_digested_at"
     t.datetime "email_confirmed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
