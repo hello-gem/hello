@@ -19,6 +19,12 @@ module Hello
       @credential = nil
     end
 
+    def confirm_with_token(token)
+      if validate_token(token)
+        confirm_email! and return true
+      end
+    end
+
     def confirm_email!
       credential.confirm_email!
     end

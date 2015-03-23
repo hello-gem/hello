@@ -12,9 +12,8 @@ module Hello
     def confirm
       entity = ConfirmEmailEntity.new(@credential)
 
-      if entity.validate_token(params[:token])
-        entity.confirm_email!
-        sign_in_with_sudo_mode
+      if entity.confirm_with_token(params[:token])
+        _sign_in
         flash[:notice] = entity.success_message
         redirect_to emails_path
       else
@@ -29,9 +28,12 @@ module Hello
 
     private
 
-    def sign_in_with_sudo_mode
+    def _sign_in
+      # In RSpec and Capybara (Rails 4.2):
+      # when the user gets access, the session of the next request will assume the values it had before,
+      # if before you were a guest, you will be redirected as a user, but the following request will be as a guest again
+      # if before you were a user1, you will be redirected as a user2, but the following request will be as a user1 again
       access_token = create_hello_access_token(@credential.user, 1.hour.from_now)
-      access_token.update! sudo_expires_at: 60.seconds.from_now
     end
 
   end
