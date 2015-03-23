@@ -58,6 +58,8 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
   
+  config.include Hello::FeatureSupportGiven, :type => :feature
+
   config.include FactoryGirl::Syntax::Methods
 
   config.include(EmailSpec::Helpers)

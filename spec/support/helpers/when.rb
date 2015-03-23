@@ -78,11 +78,20 @@ def when_I_sign_out
   __fetch_current_active_session
 end
 
-def when_I_confirm_my_user_password(custom_password=nil)
+def when_I_confirm_my_user_password(custom_password=nil, expect_to_be_valid=true)
+  # expect(current_path).to eq '/hello/sudo'
+  expect_to_see "Confirm Password to Continue"
   within("form") do
     fill_in 'user_password', with: (custom_password || 'foobar')
     click_button 'Confirm Password'
   end
+  if expect_to_be_valid
+    expect_flash_notice "Now we know it's really you. We won't be asking your password again for 60 minutes"
+  end
+end
+
+def when_I_confirm_sudo_mode(custom_password=nil)
+  when_I_confirm_my_user_password(custom_password)
 end
 
 def sign_up_as_a_novice

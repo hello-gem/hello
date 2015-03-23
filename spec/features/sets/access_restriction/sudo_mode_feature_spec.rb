@@ -20,10 +20,10 @@ describe "Sudo Mode" do
 
     describe "Error" do
       it "Blank" do
-        when_I_confirm_my_user_password('')
+        when_I_confirm_my_user_password('', false)
       end
       it "Wrong" do
-        when_I_confirm_my_user_password('wrong')
+        when_I_confirm_my_user_password('wrong', false)
       end
 
       after do

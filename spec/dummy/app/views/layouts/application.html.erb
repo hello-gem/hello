@@ -56,6 +56,7 @@
 
   <footer>
     <%= debug session.to_hash %>
+    <p>dummy-path: <%= request.fullpath %></p>
     <% if hello_access_token %>
       <p>dummy-logged-in-User#<%= current_user.id %></p>
       <p>dummy-logged-in-AccessToken#<%= hello_access_token.id %></p>

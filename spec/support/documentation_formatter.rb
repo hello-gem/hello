@@ -16,15 +16,15 @@ class RSpec::Core::ExampleGroup
   end
 
   def Given(msg, &block)
-    step("[Given] #{msg}", &block)
+    step("Given #{msg}", &block)
   end
 
   def When(msg, &block)
-    step("[When]  #{msg}", &block)
+    step("When  #{msg}", &block)
   end
 
   def Then(msg, &block)
-    step("[Then]  #{msg}", &block)
+    step("Then  #{msg}", &block)
   end
 end
 
@@ -81,7 +81,7 @@ module RSpec
         def read_steps(example, color)
           example.metadata[:step_messages].map do |msg|
             # output.puts detail_color("#{'  ' * (@group_level + 1)}#{msg}")
-            ConsoleCodes.wrap("#{next_indentation}#{msg}", color)
+            ConsoleCodes.wrap("#{next_indentation}- #{msg}", color)
             # "#{next_indentation}#{msg}"
           end
         end
