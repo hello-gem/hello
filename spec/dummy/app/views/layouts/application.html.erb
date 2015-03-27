@@ -60,6 +60,11 @@
     <% if hello_access_token %>
       <p>dummy-logged-in-User#<%= current_user.id %></p>
       <p>dummy-logged-in-AccessToken#<%= hello_access_token.id %></p>
+      <p>dummy-logged-in-role-<%= current_user.role %></p>
+
+      
+      <p>dummy-logged-in-<%= sudo_mode? ? 'with' : 'without' %>-sudo-mode</p>
+
     <% else %>
       <p>dummy-logged-out</p>
     <% end %>

@@ -50,23 +50,19 @@ def when_sign_up_as_a_novice(options={})
 end
 
 def when_sign_in_with_standard_data(options={})
-  data = ['foobar', (options[:password] || 'foobar')]
-  visit hello.root_path
-  within("form#new_sign_in") do
-    fill_in 'sign_in_login',    with: data[0]
-    fill_in 'sign_in_password', with: data[1]
-    check 'keep_me' if options[:keep_me]
-    click_button 'Sign In'
-  end
-  __fetch_current_active_session
+  when_sign_in('foobar', (options[:password] || 'foobar'), options)
 end
 
 def when_sign_in_with_admin_data
-  data = ['admin', 'admin']
+  when_sign_in('admin', 'admin')
+end
+
+def when_sign_in(login, password, options={})
   visit hello.root_path
   within("form#new_sign_in") do
-    fill_in 'sign_in_login',    with: data[0]
-    fill_in 'sign_in_password', with: data[1]
+    fill_in 'sign_in_login',    with: login
+    fill_in 'sign_in_password', with: password
+    check 'keep_me' if options[:keep_me]
     click_button 'Sign In'
   end
   __fetch_current_active_session

@@ -8,8 +8,15 @@ class RSpec::Core::ExampleGroup
     m = RSpec.current_example.metadata
     
     if block_given?
-      m[:step_messages] << msg #if m[:step_messages]
-      yield
+      # m[:step_messages] << msg #if m[:step_messages]
+      if @is_during_rspec_step
+        yield
+      else
+        m[:step_messages] << msg
+        @is_during_rspec_step = true
+        yield
+        @is_during_rspec_step = false
+      end
     else
       m[:step_messages] << "SKIPPED #{msg}"
     end
