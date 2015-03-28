@@ -193,4 +193,5 @@ Look for these terms in the source code
 
   2. Test this method: Hello::Rails::Controller::AccessRestrictionConcern::ClassMethods#restrict_if_role_is
 
+  3. Generate Access Token Feature
 

@@ -41,7 +41,7 @@ RSpec.describe "Top Feature Set: Current User", :type => :feature do
 
       end
 
-      feature "Feature: Unlink" do
+      feature "Feature: Generate" do
 
         scenario "Scenario: Success" do
           skip "TODO"
