@@ -53,6 +53,21 @@ RSpec.describe "Top Feature Set: Current User", :type => :feature do
       end
 
 
+      feature "Feature: Unlinked" do
+        scenario "Scenario: Success (Single)" do
+          given_I_have_signed_in
+          
+          then_I_expect_to_be_signed_in
+
+          When "My Access Token gets destroyed by somebody else" do
+            AccessToken.destroy_all
+            visit hello.root_path
+          end
+
+          then_I_expect_to_be_signed_out
+        end
+      end
+
       
     end
   end
