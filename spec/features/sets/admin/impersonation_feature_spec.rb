@@ -51,9 +51,9 @@ RSpec.describe "Top Feature Set: Admin", :type => :feature do
           expect_flash_notice "You are yourself again"
         end
 
-        # then_I_should_be_logged_in_as_an_admin
+        then_I_should_be_logged_in_as_an_admin
 
-        # then_I_expect_not_to_be_on_sudo_mode
+        then_I_expect_not_to_be_on_sudo_mode
       end
 
       scenario "Scenario: Failure" do
