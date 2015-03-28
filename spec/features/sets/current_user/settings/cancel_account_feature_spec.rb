@@ -63,6 +63,7 @@ RSpec.describe "Top Feature Set: Current User", :type => :feature do
             _invalid_scenarios
           end
 
+          # KNOWNBUG: this scenario only fails in Rails 4.0
           scenario "Scenario 2: User has dependent grandchildren" do
             given_I_have_signed_in_with_sudo_mode
 

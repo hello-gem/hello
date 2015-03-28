@@ -175,3 +175,22 @@ __Hello__ uses [Semantic Versioning 2.0.0](http://semver.org)
 ## Copyright
 
 Copyright 2013-2014 James Pinto – Released under [MIT License](http://www.opensource.org/licenses/MIT)
+
+
+## Additional
+
+Look for these terms in the source code
+
+"TODO", "KNOWNBUG"
+
+## Known bugs
+
+  1. (Rails 4.0 only) Top Feature Set: Current User Feature Set: Settings Feature: Cancel Account Invalid Scenarios Validation: has_many restrict_with_error Scenario 2: User has dependent grandchildren
+
+## To Do
+
+  1. One translation missing: config/locales/*.yml
+
+  2. Test this method: Hello::Rails::Controller::AccessRestrictionConcern::ClassMethods#restrict_if_role_is
+
+
