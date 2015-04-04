@@ -26,6 +26,7 @@ module Hello
     def update
       control = UserControl.new(self, @user)
       if @user_entity.update(user_params)
+        hello_ensure_thread_locale
         flash[:notice] = @user_entity.success_message
         control.success
       else

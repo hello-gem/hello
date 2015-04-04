@@ -36,7 +36,7 @@ module Hello
         s = AccessToken.create!(attrs)
         set_hello_access_token_token(s.access_token)
         session['locale'] = nil
-        set_locale
+        hello_ensure_thread_locale
         return s
       end
 

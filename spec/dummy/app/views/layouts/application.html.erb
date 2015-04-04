@@ -57,6 +57,7 @@
   <footer>
     <%= debug session.to_hash %>
     <p>dummy-path: <%= request.fullpath %></p>
+    <p>dummy-locale: <%= I18n.locale %></p>
     <% if hello_access_token %>
       <p>dummy-logged-in-User#<%= current_user.id %></p>
       <p>dummy-logged-in-AccessToken#<%= hello_access_token.id %></p>

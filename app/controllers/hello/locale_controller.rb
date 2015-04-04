@@ -15,12 +15,30 @@ module Hello
 
     # POST /hello/locale
     def update
+      #
+      # Filter params
+      #
       excluded_unsupported_locales = ([params['locale']] & Hello.available_locales)
-      session['locale'] = excluded_unsupported_locales.first || 'en'
-      set_locale
-      
-      hello_user && hello_user.update!(locale: session['locale'])
+      locale = excluded_unsupported_locales.first || 'en'
 
+      #
+      # Update Database / Session
+      #
+      if hello_user
+        hello_user.update!(locale: locale)
+      else
+        session['locale'] = locale
+      end
+
+      #
+      # Ensure Thread
+      #
+      hello_ensure_thread_locale
+
+
+      #
+      # Render Response
+      #
       entity = UpdateLocaleEntity.new
 
       respond_to do |format|

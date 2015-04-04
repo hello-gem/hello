@@ -29,7 +29,7 @@ module Hello
 
 
         included do
-          before_action :set_locale
+          before_action :hello_ensure_thread_locale
           helper_method :available_locales, :available_locales_with_names, :hello_locale_select_options
         end
 
@@ -37,13 +37,12 @@ module Hello
 
             # locale
 
-            def set_locale
-              v = if hello_user
-                    hello_user.locale
-                  else
-                    hello_recommended_locale.to_s
-                  end
-              I18n.locale = session['locale'] ||= v
+            def hello_ensure_thread_locale
+              v = hello_user.try(:locale)
+              v ||= session['locale']
+              v ||= hello_recommended_locale.to_s
+              
+              I18n.locale = session['locale'] = v
             end
 
 
