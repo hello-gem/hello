@@ -19,9 +19,9 @@ class SignUpControl < Hello::AbstractControl
   end
   
   def success
-    deliver_welcome_email!
+    deliver_welcome_email
 
-    access_token = c.create_hello_access_token(sign_up.user)
+    access_token = c.create_hello_access_token(sign_up.user, expires_at)
 
     c.respond_to do |format|
       format.html { c.redirect_to '/novice' }
@@ -44,8 +44,12 @@ class SignUpControl < Hello::AbstractControl
 
   private
 
-  def deliver_welcome_email!
-    Hello::RegistrationMailer.welcome(sign_up.credential, sign_up.password).deliver!
+  def expires_at
+    30.days.from_now
+  end
+
+  def deliver_welcome_email
+    Hello::RegistrationMailer.welcome(sign_up.credential, sign_up.password).deliver
   end
 
 end

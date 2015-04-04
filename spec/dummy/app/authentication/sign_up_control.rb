@@ -14,11 +14,11 @@ class SignUpControl < Hello::AbstractControl
       time_zone: Time.zone.name
     }
   end
-  
-  def success
-    Hello::RegistrationMailer.welcome(sign_up.credential, sign_up.password).deliver
 
-    access_token = c.create_hello_access_token(sign_up.user)
+  def success
+    deliver_welcome_email
+
+    access_token = c.create_hello_access_token(sign_up.user, expires_at)
 
     c.respond_to do |format|
       format.html { c.redirect_to '/novice' }
@@ -34,6 +34,19 @@ class SignUpControl < Hello::AbstractControl
       format.html { c.render action: 'index' }
       format.json { c.render json: sign_up.errors, status: :unprocessable_entity }
     end
+  end
+
+
+
+
+  private
+
+  def expires_at
+    30.days.from_now
+  end
+
+  def deliver_welcome_email
+    Hello::RegistrationMailer.welcome(sign_up.credential, sign_up.password).deliver
   end
 
 end

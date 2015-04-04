@@ -35,7 +35,7 @@ class ForgotPasswordControl < Hello::AbstractControl
     token  = @user.reset_password_token
     url    = c.hello.reset_token_url(token)
     @user.credentials.each do |credential|
-      Hello::RegistrationMailer.forgot_password(credential, url).deliver!
+      Hello::RegistrationMailer.forgot_password(credential, url).deliver
     end
   end
 
