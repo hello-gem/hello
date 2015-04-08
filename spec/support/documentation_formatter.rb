@@ -12,13 +12,15 @@ class RSpec::Core::ExampleGroup
       if @is_during_rspec_step
         yield
       else
-        m[:step_messages] << msg
+        m[:step_messages] << hash = {msg: msg}
         @is_during_rspec_step = true
         yield
+        # apply green color if example passes
+        hash[:color] = :green
         @is_during_rspec_step = false
       end
     else
-      m[:step_messages] << "SKIPPED #{msg}"
+      m[:step_messages] << {msg: "SKIPPED #{msg}"}
     end
   end
 
@@ -68,28 +70,29 @@ module RSpec
 
         def example_passed(passed)
           output.puts passed_output(passed.example)
-          output.puts read_steps(passed.example, :success)
+          output.puts read_steps(passed.example)
         end
 
         def example_pending(pending)
           output.puts pending_output(pending.example,
                                      pending.example.execution_result.pending_message)
-          output.puts read_steps(pending.example, :pending)
+          output.puts read_steps(pending.example, :yellow)
         end
 
         def example_failed(failure)
           output.puts failure_output(failure.example,
                                      failure.example.execution_result.exception)
-          output.puts read_steps(failure.example, :failure)
+          output.puts read_steps(failure.example, :red)
         end
 
       private
 
-        def read_steps(example, color)
-          example.metadata[:step_messages].map do |msg|
-            # output.puts detail_color("#{'  ' * (@group_level + 1)}#{msg}")
-            ConsoleCodes.wrap("#{next_indentation}- #{msg}", color)
-            # "#{next_indentation}#{msg}"
+        def read_steps(example, color2=nil)
+          example.metadata[:step_messages].map do |hash|
+            msg   = hash[:msg]
+            color = hash[:color] || color2 || :light_black
+            # light_black doesn't really get used because the test failure prevents other messages from being added
+            "#{next_indentation}- #{msg}".colorize(color)
           end
         end
 
