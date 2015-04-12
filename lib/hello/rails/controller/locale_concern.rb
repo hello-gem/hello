@@ -9,7 +9,7 @@ module Hello
         end
 
         def hello_recommended_locale
-          default_locale = ::Rails.application.config.i18n.default_locale || 'en'
+          default_locale = I18n.default_locale || 'en'
           # http_accept_language.compatible_language_from(I18n.available_locales)
           http_accept_language.compatible_language_from(Hello.available_locales) || default_locale
         end
