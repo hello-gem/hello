@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'faker'
   s.add_development_dependency 'codeclimate-test-reporter'
-  s.add_development_dependency 'rspec-example_steps'
+  s.add_development_dependency 'rspec-step'
   s.add_development_dependency 'did-you-mean'
 
 
