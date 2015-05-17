@@ -34,7 +34,7 @@ module Hello
         def initialize_user
           @user = if login_is_email
             credential = Credential.classic.where(email: login).first_or_initialize
-            credential.build_user if credential.new_record
+            credential.build_user if credential.new_record?
             credential.user
           else
             User.where(username: login).first_or_initialize

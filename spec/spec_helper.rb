@@ -10,6 +10,7 @@ SPEC_ROOT=File.dirname(__FILE__)
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 
 
+ActiveSupport::Deprecation.silenced = true
 
 # require 'rspec/rails'
 # require 'rspec/autorun'
@@ -58,7 +59,8 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
   
-  config.include Hello::FeatureSupportGiven, :type => :feature
+  config.include Hello::FeatureSupportGiven, type: :feature
+  config.include Hello::RequestSupport, type: :request
 
   config.include FactoryGirl::Syntax::Methods
 

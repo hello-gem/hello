@@ -74,6 +74,7 @@ Hello::Engine.routes.draw do
     # sign up
     get  "sign_up"         => "classic_registration/sign_up#index"
     post "sign_up"         => "classic_registration/sign_up#create"
+    get  "sign_up/widget"  => "classic_registration/sign_up#widget"
 
     # sign in
     get  "sign_in"         => "classic_registration/sign_in#index"

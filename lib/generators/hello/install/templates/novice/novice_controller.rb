@@ -6,12 +6,22 @@ class NoviceController < Hello::ApplicationController
   end
   
   def continue
-    if params[:agree]
-      current_user.update! role: User.user
-      redirect_to hello.user_path
-    else
-      @show_agree_error = true
-      render action: 'index'
+    respond_to do |format|
+
+
+      if params[:agree]
+        current_user.update! role: User.user
+        #
+        format.html { redirect_to hello.user_path, notice: "Welcome!" }
+        format.json { render json: {user: current_user.to_hash_profile}, status: :ok }
+      else
+        @show_agree_error = true
+        #
+        format.html { render action: 'index' }
+        format.json { render json: {errors: "must agree to terms"}, status: :unprocessable_entity }
+      end
+
+
     end
   end
 

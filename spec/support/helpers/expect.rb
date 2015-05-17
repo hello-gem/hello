@@ -31,6 +31,14 @@
     expect(page.text).not_to include text
   end
 
+  def expect_to_have_a_layout
+    expect_to_see("dummy")
+  end
+
+  def expect_not_to_have_a_layout
+    expect_not_to_see("dummy")
+  end
+
 
   def expect_flash_notice_signed_in
     expect_flash_notice "You have signed in successfully"

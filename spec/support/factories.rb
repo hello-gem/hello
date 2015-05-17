@@ -22,6 +22,13 @@ FactoryGirl.define do
       username 'admin'
       password 'admin'
     end
+
+    factory :novice do
+      name 'Novice'
+      role 'novice'
+      username 'novice'
+      password 'novice'
+    end
   end
 
   factory :credential do
@@ -35,7 +42,11 @@ FactoryGirl.define do
 
   factory :access_token do
     user
+    expires_at nil
     user_agent_string "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36"
+    factory :valid_access_token do
+      expires_at { 30.minutes.from_now }
+    end
   end
 
 

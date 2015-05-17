@@ -10,15 +10,21 @@ module ClassicRegistration
 
     restrict_if_authenticated
 
+    before_action do
+      @sign_up = SignUpEntity.new(self)
+    end
+
     # GET /hello/sign_up
     def index
-      @sign_up = SignUpEntity.new(self)
+    end
+
+    # GET /hello/sign_up/widget
+    def widget
+      render layout: false
     end
 
     # POST /hello/sign_up
     def create
-      @sign_up = SignUpEntity.new(self)
-
       control = SignUpControl.new(self, @sign_up)
 
       if @sign_up.save(params.require(:sign_up))
