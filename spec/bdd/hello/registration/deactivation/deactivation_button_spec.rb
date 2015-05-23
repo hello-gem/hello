@@ -18,7 +18,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
     sstory "Valid Destroy" do
 
-      scenario "Valid" do
+      sscenario "Valid" do
         _when_I_attempt_to_deactivate_but_before
 
         Then "I should see a confirmation message" do
@@ -42,7 +42,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
     sstory "Invalid Destroy" do
 
-      scenario "Scenario 1: User has dependent children" do
+      sscenario "Scenario 1: User has dependent children" do
         _invalid_scenarios_but_before do
           But "User has dependent children" do
             User.last.addresses.create! text: "foo"
@@ -53,7 +53,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
       # KNOWNBUG: this scenario only fails in Rails 4.0
-      scenario "Scenario 2: User has dependent grandchildren" do
+      sscenario "Scenario 2: User has dependent grandchildren" do
         if Hello.is_this_rails_4_0?
           skip "known bug: this scenario only fails because of a Rails 4.0 bug"
         else
