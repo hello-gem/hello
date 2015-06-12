@@ -27,6 +27,7 @@ module Hello
       if @credential.save
         redirect_to hello.emails_path, notice: "Your email was successfully added."
       else
+        flash.now[:alert] = @credential.errors.full_messages.first
         render action: :index
       end
     end
@@ -36,6 +37,7 @@ module Hello
       if @credential.destroy
         redirect_to hello.emails_path, notice: "Your email was successfully removed."
       else
+        flash.now[:alert] = @credential.errors.full_messages.first
         render action: :index
       end
     end

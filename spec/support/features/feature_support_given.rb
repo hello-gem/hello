@@ -7,6 +7,9 @@ module Hello::FeatureSupportGiven
   def given_I_have_signed_in
     Given "I have signed in" do
       given_I_am_logged_in
+      # @current_user         = User.last
+      # @current_credential   = Credential.last
+      # @current_access_token = AccessToken.last
       then_I_expect_to_be_signed_in_with_role('user')
     end
   end

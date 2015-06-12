@@ -1,17 +1,19 @@
 
-
+USER_TEST_EMAIL    = 'foo@bar.com'
+USER_TEST_USERNAME = 'foobar'
+USER_TEST_PASSWORD = 'foobar'
 
 def given_I_have_a_classic_access_token
-  user = create(:user, name: 'James Pinto', username: 'foobar', password: 'foobar', city: 'Brasilia')
+  user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, password: USER_TEST_PASSWORD, city: 'Brasilia')
   credential = Credential.classic.create! user:     user,
-                                          email:    'foo@bar.com'
+                                          email:    USER_TEST_EMAIL
   AccessToken.create!(user: user, user_agent_string: 'testing', expires_at: 24.hours.from_now)
 end
 
 def given_I_have_a_classic_credential
-  user = create(:user, name: 'James Pinto', username: 'foobar', password: 'foobar', city: 'Brasilia')
+  user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, password: USER_TEST_PASSWORD, city: 'Brasilia')
   Credential.classic.create!  user:     user,
-                              email:    'foo@bar.com'
+                              email:    USER_TEST_EMAIL
 end
 
 def given_I_have_an_admin_password_credential
