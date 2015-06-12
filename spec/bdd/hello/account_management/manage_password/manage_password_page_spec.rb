@@ -29,13 +29,11 @@ RSpec.describe "Hello Gem", type: :feature do
           click_button 'Update'
         end
 
-
-
         Then "I should see a confirmation message" do
           expect_flash_notice "You have updated your profile successfully"
         end
 
-
+        then_I_expect_to_be_signed_in
 
         Then "and I should be able to sign in with the new password" do
           click_link "Sign Out"
@@ -51,8 +49,6 @@ RSpec.describe "Hello Gem", type: :feature do
           fill_in 'user_password', with: ''
           click_button 'Update'
         end
-
-
 
         Then "I should see an alert message" do
           expect_error_message "1 error was found while updating your profile"

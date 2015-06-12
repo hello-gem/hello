@@ -58,8 +58,8 @@ en:
         success: "You have reset your password successfully"
         alert: "This link has expired, please ask for a new link"
         error:
-          one: "1 error was found while reseting your password"
-          other: "%{count} errors were found while reseting your password"
+          one: "1 error was found while resetting your password"
+          other: "%{count} errors were found while resetting your password"
       send_confirmation_email:
         success: "We have sent a confirmation email to %{email}"
       confirm_email:

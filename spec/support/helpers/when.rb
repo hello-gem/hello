@@ -1,13 +1,4 @@
 
-
-
-def when_I_update_a_reset_password_form_with(password)
-  within("form") do
-    fill_in 'reset_password_password', with: (password)
-    click_button 'Save'
-  end
-end
-
 def when_I_ask_to_reset_my_password(custom_login=nil)
   visit hello.root_path
   click_link "Forgot"

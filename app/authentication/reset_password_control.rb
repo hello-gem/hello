@@ -3,6 +3,7 @@ class ResetPasswordControl < Hello::AbstractControl
   alias :reset_password :entity
 
   def success
+    # comment the line below in order to force the user to sign in manually
     access_token = c.create_hello_access_token(reset_password.user, expires_at)
 
     c.redirect_to c.hello.password_reset_done_path

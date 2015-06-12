@@ -16,6 +16,11 @@ def given_I_have_a_classic_credential
                               email:    USER_TEST_EMAIL
 end
 
+def given_I_have_a_novice_password_credential
+  Credential.classic.create!  user:     create(:novice),
+                              email:    USER_TEST_EMAIL
+end
+
 def given_I_have_an_admin_password_credential
   Credential.classic.create!  user:     create(:admin_user),
                               email:    'admin@bar.com'
