@@ -10,9 +10,9 @@ module Hello
     helper_method :credentials
 
     restrict_to_users
+    restrict_access_to_sudo_mode
     
     before_actions do
-      all { restrict_access_to_sudo_mode }
       only(:index)  { @credential = Credential.new }
       only(:create) { @credential = hello_user.credentials.classic.build(credential_params) }
       only(:destroy, :deliver)  { @credential = hello_user.credentials.classic.find(params[:id]) }

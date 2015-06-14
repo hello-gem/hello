@@ -2,6 +2,7 @@ module Hello
   class PasswordController < ApplicationController
 
     restrict_to_users
+    restrict_access_to_sudo_mode
 
     before_action do
       @user_entity = UpdateMyUserEntity.new(@user = current_user)

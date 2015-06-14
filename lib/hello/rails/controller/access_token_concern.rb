@@ -6,9 +6,6 @@ module Hello
       extend ActiveSupport::Concern
 
       module ClassMethods
-        def restrict_access_to_sudo_mode
-          before_action(:restrict_access_to_sudo_mode)
-        end
       end
 
       #
@@ -16,7 +13,7 @@ module Hello
       #
 
       included do
-        helper_method :current_user, :hello_access_token, :sudo_mode?, :impersonated?
+        helper_method :current_user, :hello_access_token, :impersonated?
         before_action :hello_keep_alive, if: :hello_access_token
       end
 
@@ -69,25 +66,7 @@ module Hello
         hello_impersonator_token.present?
       end
 
-      #
-      # Sudo Mode
-      #
 
-      # helper method
-      def sudo_mode?
-        hello_access_token && hello_access_token.sudo_expires_at.future?
-      end
-
-      def restrict_access_to_sudo_mode
-        if hello_access_token.nil? || hello_access_token.sudo_expires_at.past?
-          render_hello_sudo_mode
-        end
-      end
-
-          def render_hello_sudo_mode
-            session[:hello_url] = url_for(params.merge only_path: true)
-            render '/hello/sudo_mode/form'
-          end
 
       private
 
