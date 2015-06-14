@@ -13,7 +13,7 @@ module Hello
     # POST /hello/admin/impersonate credential_id: 1
     def create
       user = User.find(params[:user_id])
-      hello_impersonate(user)
+      impersonate(user)
 
       entity = ImpersonateEntity.new(user)
       flash[:notice] = entity.success_message

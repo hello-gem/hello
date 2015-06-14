@@ -13,7 +13,7 @@ module Hello
       #
 
       included do
-        helper_method :current_user, :hello_access_token, :impersonated?
+        helper_method :current_user, :hello_access_token
         before_action :hello_keep_alive, if: :hello_access_token
       end
 
@@ -50,22 +50,6 @@ module Hello
         @hello_access_token ||= get_hello_access_token
       end
 
-      def hello_impersonate(user)
-        store_impersonator
-        create_hello_access_token(user, 60.minutes.from_now, 60.minutes.from_now)
-      end
-
-      def hello_back_to_myself
-        return unless hello_impersonator_token
-        destroy_hello_access_token
-        set_hello_access_token_token(hello_impersonator_token)
-      end
-
-      # helper method
-      def impersonated?
-        hello_impersonator_token.present?
-      end
-
 
 
       private
@@ -90,18 +74,6 @@ module Hello
 
           def clear_session_ivars
             @hello_user = @hello_access_token = nil
-          end
-
-          def store_impersonator
-            set_hello_impersonator_token(access_token)
-          end
-
-          def hello_impersonator_token
-            session['hello_impersonator']
-          end
-
-          def set_hello_impersonator_token(v)
-            session['hello_impersonator'] = v
           end
 
           def get_hello_access_token

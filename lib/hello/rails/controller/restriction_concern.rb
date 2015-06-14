@@ -1,7 +1,7 @@
 module Hello
   module Rails
     module Controller
-      module AccessRestrictionConcern
+      module RestrictionConcern
         
         extend ActiveSupport::Concern
 
