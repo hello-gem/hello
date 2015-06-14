@@ -1,27 +1,22 @@
-require_dependency "hello/application_controller"
-
 module Hello
-module ClassicRegistration
-  class ForgotPasswordController < ApplicationController
+  class SuperEmailForgotPasswordController < ApplicationController
 
     restrict_if_authenticated
 
     # GET /hello/forgot
     def index
-      @forgot_password = ForgotPasswordEntity.new
+      @entity = @forgot_password = ForgotPasswordEntity.new
     end
 
     # POST /hello/remember
     def remember
-      @forgot_password = ForgotPasswordEntity.new(params.require(:forgot_password))
+      @entity = @forgot_password = ForgotPasswordEntity.new(params.require(:forgot_password))
       @user = @forgot_password.user
 
-      control = ForgotPasswordControl.new(self, @forgot_password)
-
       if @forgot_password.reset
-        control.success
+        success
       else
-        control.failure
+        failure
       end
       
       session[:forgot_login] = @forgot_password.login
@@ -35,5 +30,4 @@ module ClassicRegistration
 
 
   end
-end
 end

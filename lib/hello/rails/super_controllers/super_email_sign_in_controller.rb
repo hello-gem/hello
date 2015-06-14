@@ -1,33 +1,24 @@
-require_dependency "hello/application_controller"
-
-#
-# IT IS RECOMMENDED THAT YOU DO NOT OVERRIDE THIS FILE IN YOUR APP
-#
-
 module Hello
-module ClassicRegistration
-  class SignInController < ApplicationController
+  class SuperEmailSignInController < ApplicationController
 
     restrict_if_authenticated     except: [:authenticated]
     restrict_unless_authenticated only:   [:authenticated]
 
     # GET /hello/sign_in
     def index
-      @sign_in = SignInEntity.new
+      @entity = @sign_in = SignInEntity.new
     end
 
     # POST /hello/sign_in
     def authenticate
-      @sign_in = SignInEntity.new(params.require(:sign_in))
+      @entity = @sign_in = SignInEntity.new(params.require(:sign_in))
       @user = @sign_in.user
-
-      control = SignInControl.new(self, @sign_in)
 
       if @sign_in.authenticate
         flash[:notice] = @sign_in.success_message
-        control.success
+        success
       else
-        control.failure
+        failure
       end
     end
 
@@ -39,5 +30,4 @@ module ClassicRegistration
 
 
   end
-end
 end

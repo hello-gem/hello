@@ -9,12 +9,12 @@
 <div class="col-sm-3 col-md-2">
 <div class="list-group">
   <%= nav_link_to "Profile",
-                  hello.user_path,
+                  hello.current_user_path,
                   {class: "list-group-item"},
                   {selected_class: "active"}
                   %>
   <%= nav_link_to "Password",
-                  hello.user_password_path,
+                  hello.password_path,
                   {class: "list-group-item"},
                   {selected_class: "active"}
                   %>

@@ -17,7 +17,7 @@
         <li><%= link_to human_current_locale, hello.locale_path %></li>
         <% if current_user %>
           <li><%= link_to "My Profile", profile_path(current_user.username) %></li>
-          <li><%= link_to "Settings", hello.user_path %></li>
+          <li><%= link_to "Settings", hello.current_user_path %></li>
           <li><%= link_to "Sign Out", hello.sign_out_path %></li>
           <% if impersonated? %>
             <li><%= link_to "Back to Myself", hello.admin_impersonate_path %></li>

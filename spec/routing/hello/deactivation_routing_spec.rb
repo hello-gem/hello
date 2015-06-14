@@ -14,8 +14,8 @@ module Hello
             expect(post("/deactivation")).to route_to("hello/deactivation#deactivate")
           end
 
-              it "routes to #done" do
-                expect(get("/deactivation/done")).to route_to("hello/deactivation#done")
+              it "routes to #deactivated" do
+                expect(get("/deactivated")).to route_to("hello/deactivation#deactivated")
               end
    
     end

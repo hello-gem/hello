@@ -11,7 +11,7 @@ describe "Authentication" do
 
   describe "Not Authenticated" do
 
-    describe UserController do
+    describe CurrentUserController do
 
       it "HTML" do
         get :edit
@@ -42,7 +42,7 @@ describe "Authentication" do
 
   describe "Authenticated" do
 
-    describe UserController do
+    describe CurrentUserController do
 
       before { @s = given_I_have_a_classic_access_token }
 
@@ -85,7 +85,7 @@ describe "Authentication" do
   end
 
   describe "Others" do
-    describe UserController do
+    describe CurrentUserController do
 
       it "Access Token Expired" do
         @s = given_I_have_a_classic_access_token

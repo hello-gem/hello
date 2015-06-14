@@ -1,23 +1,14 @@
- require_dependency "hello/application_controller"
-
-#
-# IT IS RECOMMENDED THAT YOU DO NOT OVERRIDE THIS FILE IN YOUR APP
-#
-
 module Hello
-  class SignOutController < ApplicationController
+  class SignOutController < SuperSignOutController
 
-    # access to all roles
-
-    # GET /hello/sign_out
-    def sign_out
-      destroy_and_clear_hello_access_token
-
-      entity = SignOutEntity.new
-      flash.now[:notice] = entity.success_message
-      control = SignOutControl.new(self, nil)
-      control.success
+    def success
+      respond_to do |format|
+        # format.html { redirect_to hello.root_path }
+        # format.html { redirect_to root_path }
+        format.html { render :sign_out }
+        format.json { head :reset_content }
+      end
     end
-    
+
   end
 end

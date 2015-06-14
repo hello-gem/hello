@@ -1,7 +1,5 @@
-require_dependency "hello/application_controller"
-
 module Hello
-  class ClassicRegistration::ResetPasswordController < ApplicationController
+  class SuperResetPasswordController < ApplicationController
 
     # restrict_if_authenticated, except: [:done]
 
@@ -27,15 +25,13 @@ module Hello
     # POST /hello/password/reset
     def save
       fetch_registration_reset_ivar
-      control = ResetPasswordControl.new(self, @reset_password)
 
       new_password = params.require(:reset_password)[:password]
       if @reset_password.update_password(new_password)
-        @user.invalidate_password_token
         flash[:notice] = @reset_password.success_message
-        control.success
+        success
       else
-        control.failure
+        failure
       end
     end
 

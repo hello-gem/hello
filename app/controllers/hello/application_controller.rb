@@ -17,6 +17,15 @@ class Hello::ApplicationController < ApplicationController
 
 
 
+  def success
+    raise NotImplementedError
+  end
+
+  def failure
+    raise NotImplementedError
+  end
+
+
 
   private
 

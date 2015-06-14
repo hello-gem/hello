@@ -4,7 +4,8 @@ module Hello
     attr_accessor :credential
 
     def initialize(controller)
-      @controller = controller
+      @controller  = controller
+      set_internal_vars
       generate_accessors
       write_defaults
     end
@@ -37,34 +38,28 @@ module Hello
 
         # initialize helpers
 
+        def set_internal_vars
+          x = User.new
+          @user_fields = x.sign_up_attribute_names.map(&:to_s)
+          @defaults    = x.sign_up_default_attributes.stringify_keys
+        end
+
         def generate_accessors
           self.class.send :attr_accessor, *all_fields
         end
 
             def all_fields
-              credential_fields + user_fields
+              credential_fields + @user_fields
             end
 
                 def credential_fields
                   %w(email)
                 end
 
-                def user_fields
-                  control.user_fields.map(&:to_s)
-                end
-
         def write_defaults
           # defaults.each { |k, v| instance_variable_set(:"@#{k}", v) }
-          defaults.each { |k, v| send("#{k}=", v) }
+          @defaults.each { |k, v| send("#{k}=", v) }
         end
-
-            def defaults
-              control.defaults.stringify_keys
-            end
-
-                def control
-                  @control ||= SignUpControl.new(@controller, self)
-                end
 
         # save helpers
 
@@ -97,7 +92,7 @@ module Hello
         # returns {name: "...", city: "..."}
         def user_attributes
           r = {}
-          user_fields.each { |k| r[k.to_s] = instance_variable_get(:"@#{k}") }
+          @user_fields.each { |k| r[k.to_s] = instance_variable_get(:"@#{k}") }
           r['role'] = 'novice'
           r
         end

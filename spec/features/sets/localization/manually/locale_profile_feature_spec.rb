@@ -8,7 +8,7 @@ RSpec.describe "Top Feature Set: Localization", :type => :feature do
 
       def _when_I_update_my_locale_to(string)
         When "I update my locale to '#{string}'" do
-          visit hello.user_path
+          visit hello.current_user_path
           
 
           within("form") do

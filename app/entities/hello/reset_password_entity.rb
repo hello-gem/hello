@@ -10,13 +10,9 @@ module Hello
     end
 
     def update_password(password)
-      user.password = password
-      merge_errors_to_self and return false unless user.save
-      return true
+      simply_update_password(password)
+      @user.invalidate_password_token
     end
-
-
-
 
     private
 
@@ -29,10 +25,16 @@ module Hello
 
         # update password helpers
 
-        def merge_errors_to_self
-          hash = user.errors.to_hash
-          hash.each { |k,v| v.each { |v1| errors.add(k, v1) } }
+        def simply_update_password(password)
+          user.password = password
+          merge_errors_to_self and return false unless user.save
+          return true
         end
+
+            def merge_errors_to_self
+              hash = user.errors.to_hash
+              hash.each { |k,v| v.each { |v1| errors.add(k, v1) } }
+            end
 
   end
 end

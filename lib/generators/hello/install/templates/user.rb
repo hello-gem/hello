@@ -11,4 +11,17 @@ class User < ActiveRecord::Base
   # has_many :things_to_nulify,   dependent: :nullify
   # has_many :things_to_restrict, dependent: :restrict_with_error
 
+
+
+  # def sign_up_attribute_names
+  #   %w(name username password time_zone locale)
+  # end
+
+  # def sign_up_default_attributes
+  #   {
+  #     locale:    I18n.locale.to_s,
+  #     time_zone: Time.zone.name
+  #   }
+  # end
+  
 end

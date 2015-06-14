@@ -131,7 +131,7 @@ module Hello
               {
                 guest:  hello.sign_in_path,
                 novice: '/novice',
-                user:   hello.user_path,
+                user:   hello.current_user_path,
                 admin:  hello.admin_path,
               }
             end

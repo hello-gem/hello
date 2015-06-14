@@ -1,8 +1,7 @@
 require "spec_helper"
 
 module Hello
-module Classic
-  describe CredentialsController do
+  describe EmailsController do
     describe "routing" do
       routes { Hello::Engine.routes }
 
@@ -38,5 +37,4 @@ module Classic
 
     end
   end
-end
 end

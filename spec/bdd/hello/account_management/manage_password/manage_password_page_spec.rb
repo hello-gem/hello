@@ -11,7 +11,7 @@ RSpec.describe "Hello Gem", type: :feature do
           given_I_have_signed_in
           click_link "Settings"
           click_link "Password"
-          expect(current_path).to eq hello.user_password_path
+          expect(current_path).to eq hello.password_path
         end
       end
     end

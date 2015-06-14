@@ -49,6 +49,22 @@ module Hello
 
 
 
+    def sign_up_attribute_names
+      %w(name username password time_zone locale)
+    end
+
+    def sign_up_default_attributes
+      {
+        locale:    I18n.locale.to_s,
+        time_zone: Time.zone.name
+      }
+    end
+    
+
+
+
+
+
     module ClassMethods
       def roles
         [guest, novice, user, admin]

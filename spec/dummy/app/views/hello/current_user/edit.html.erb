@@ -4,7 +4,7 @@
 
 <div class="col-sm-3-offset col-md-2-offset col-sm-9 col-md-10">
 
-<%= form_for @user, html: {class: "form-horizontal", role: "form"} do |f| %>
+<%= form_for @user, url: current_user_path, html: {class: "form-horizontal", role: "form"} do |f| %>
   <%= render '/hello/shared/errors', active_model: @user_entity %>
 
   <% current_user.credentials.classic.each do |credential| %>
@@ -61,6 +61,16 @@
   </div>
 
 
+  <!-- city is a custom field -->
+  <div class="form-group">
+    <%= f.label :city, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :city, class: "form-control", placeholder: "City" %>
+    </div>
+  </div>
+
+
+
 
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-4">
@@ -70,4 +80,5 @@
 <% end %>
 
 </div>
+
 </div>

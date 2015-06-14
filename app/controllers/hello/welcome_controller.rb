@@ -24,7 +24,7 @@ module Hello
       }
 
       role = (current_user && current_user.role || 'guest').to_sym
-      redirect_to homepages[role] || hello.user_path
+      redirect_to homepages[role] || hello.current_user_path
     end
 
   end

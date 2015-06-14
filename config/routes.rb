@@ -1,29 +1,6 @@
 Hello::Engine.routes.draw do
   
 
-
-
-
-
-  namespace :classic_registration do
-  get 'reset_password/token'
-  end
-
-  namespace :classic_registration do
-  get 'reset_password/index'
-  end
-
-  namespace :classic_registration do
-  get 'reset_password/save'
-  end
-
-  namespace :classic_registration do
-  get 'reset_password/done'
-  end
-
-  # namespace :hello do
-  # end
-
   get  'locale' => 'locale#index'
   post 'locale' => 'locale#update'
 
@@ -36,10 +13,11 @@ Hello::Engine.routes.draw do
 
   # account
     # user
-    get   'user/password(/:id)' => "user#edit_password",  as: 'user_password'
-    patch 'user/password(/:id)' => "user#update_password"
-    get   'user(/:id)' => "user#edit",  as: 'user'
-    patch 'user(/:id)' => "user#update"
+    get   'user' => "current_user#edit",  as: 'current_user'
+    patch 'user' => "current_user#update"
+
+    get   'password' => "password#edit"
+    patch 'password' => "password#update"
     # (:/id) so it won't understand format: '1' in some Rails versions, causing an UnknownFormat error
 
   # sudo mode
@@ -48,9 +26,9 @@ Hello::Engine.routes.draw do
     get   'sudo_mode/expire' => 'sudo_mode#expire'
 
   # deactivation
-    get  'deactivation'       => 'deactivation#proposal'
-    post 'deactivation'       => 'deactivation#deactivate'
-    get  'deactivation/done'  => 'deactivation#done'
+    get  'deactivation' => 'deactivation#proposal'
+    post 'deactivation' => 'deactivation#deactivate'
+    get  'deactivated'  => 'deactivation#deactivated'
 
   
   namespace "admin" do
@@ -72,25 +50,25 @@ Hello::Engine.routes.draw do
 
   # classic registration
     # sign up
-    get  "sign_up"         => "classic_registration/sign_up#index"
-    post "sign_up"         => "classic_registration/sign_up#create"
-    get  "sign_up/widget"  => "classic_registration/sign_up#widget"
+    get  "sign_up"         => "email_sign_up#index"
+    post "sign_up"         => "email_sign_up#create"
+    get  "sign_up/widget"  => "email_sign_up#widget"
 
     # sign in
-    get  "sign_in"         => "classic_registration/sign_in#index"
-    post "sign_in"         => "classic_registration/sign_in#authenticate"
-    get  "authenticated"   => "classic_registration/sign_in#authenticated"
+    get  "sign_in"         => "email_sign_in#index"
+    post "sign_in"         => "email_sign_in#authenticate"
+    get  "authenticated"   => "email_sign_in#authenticated"
 
     # forgot
-    get  "password/forgot"          => "classic_registration/forgot_password#index"
-    post "password/forgot"          => "classic_registration/forgot_password#remember"
-    get  "password/remembered"      => "classic_registration/forgot_password#remembered"
+    get  "password/forgot"          => "email_forgot_password#index"
+    post "password/forgot"          => "email_forgot_password#remember"
+    get  "password/remembered"      => "email_forgot_password#remembered"
 
     # reset
-    get  "password/reset/done"      => "classic_registration/reset_password#done"
-    get  "password/reset/:token"    => "classic_registration/reset_password#reset_token", as: 'reset_token'
-    get  "password/reset"           => "classic_registration/reset_password#index"
-    post "password/reset"           => "classic_registration/reset_password#save"
+    get  "password/reset/done"      => "reset_password#done"
+    get  "password/reset/:token"    => "reset_password#reset_token", as: 'reset_token'
+    get  "password/reset"           => "reset_password#index"
+    post "password/reset"           => "reset_password#save"
 
 
 

@@ -10,7 +10,7 @@ RSpec.describe "Hello Gem", type: :feature do
         Given "I am on the Profile Management Page" do
           given_I_have_signed_in
           click_link "Settings"
-          expect(current_path).to eq hello.user_path
+          expect(current_path).to eq hello.current_user_path
         end
       end
     end

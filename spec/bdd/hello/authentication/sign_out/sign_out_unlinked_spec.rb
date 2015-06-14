@@ -14,7 +14,7 @@ RSpec.describe "Hello Gem", type: :feature do
         end
 
         Then "I should be sent to the sign in page" do
-          visit hello.user_path
+          visit hello.current_user_path
           then_I_expect_to_be_signed_out
           expect(current_path).to eq hello.sign_in_path
         end
