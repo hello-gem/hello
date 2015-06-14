@@ -7,7 +7,7 @@ RSpec.describe "Security", :type => :request do
     let(:auth_headers) { {'HTTP_ACCESS_TOKEN' => given_I_have_a_classic_access_token.access_token} }
 
     it "Role" do
-      user_params = {user: {role: "admin"}}
+      user_params = {user: {role: "master"}}
       auth_headers # touch
       expect {
         patch "/hello/user.json", user_params, auth_headers

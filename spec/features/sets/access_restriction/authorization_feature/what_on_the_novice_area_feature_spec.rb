@@ -22,9 +22,9 @@ describe "Feature Set: Access Restriction" do
       end
     end
 
-    who "As an Admin" do
+    who "As a Master" do
       scenario "Access Denied" do
-        visit2 :admin, '/novice', '/hello/admin', :must_be_a_novice
+        visit2 :master, '/novice', '/hello/master', :must_be_a_novice
       end
     end
 

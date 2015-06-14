@@ -20,7 +20,7 @@
           <li><%= link_to "Settings", hello.current_user_path %></li>
           <li><%= link_to "Sign Out", hello.sign_out_path %></li>
           <% if impersonated? %>
-            <li><%= link_to "Back to Myself", hello.admin_impersonate_path %></li>
+            <li><%= link_to "Back to Myself", hello.master_impersonate_path %></li>
           <% end %>
         <% else %>
           <li><%= link_to "Sign Up", hello.sign_up_path %></li>

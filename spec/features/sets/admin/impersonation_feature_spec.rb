@@ -4,7 +4,7 @@ RSpec.describe "Top Feature Set: Admin", :type => :feature do
   context "Feature Set: Impersonation" do
 
     def _impersonate
-      given_I_have_signed_in_as_an_admin
+      given_I_have_signed_in_as_a_master
 
       Given "I visit a user's profile page" do
         @credential = given_I_have_a_classic_credential
@@ -51,7 +51,7 @@ RSpec.describe "Top Feature Set: Admin", :type => :feature do
           expect_flash_notice "You are yourself again"
         end
 
-        then_I_should_be_logged_in_as_an_admin
+        then_I_should_be_logged_in_as_a_master
 
         then_I_expect_not_to_be_on_sudo_mode
       end

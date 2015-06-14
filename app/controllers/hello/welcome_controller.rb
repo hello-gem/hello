@@ -20,7 +20,7 @@ module Hello
       homepages = {
         guest:  hello.sign_in_path,
         novice: '/novice',
-        admin:  hello.admin_path,
+        master:  hello.master_path,
       }
 
       role = (current_user && current_user.role || 'guest').to_sym

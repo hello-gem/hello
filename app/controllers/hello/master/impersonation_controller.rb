@@ -5,12 +5,12 @@ require_dependency "hello/application_controller"
 #
 
 module Hello
-  class Admin::ImpersonationController < ApplicationController
+  class Master::ImpersonationController < ApplicationController
 
     restrict_unless_authenticated
-    restrict_unless_role_is :admin, only: [:create]
+    restrict_unless_role_is :master, only: [:create]
 
-    # POST /hello/admin/impersonate credential_id: 1
+    # POST /hello/master/impersonate credential_id: 1
     def create
       user = User.find(params[:user_id])
       impersonate(user)
@@ -20,7 +20,7 @@ module Hello
       redirect_to :back
     end
 
-    # GET /hello/admin/impersonate
+    # GET /hello/master/impersonate
     def destroy
       hello_back_to_myself
 

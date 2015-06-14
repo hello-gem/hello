@@ -26,9 +26,9 @@ describe "Feature Set: Access Restriction" do
         end
       end
 
-      who "As an Admin" do
+      who "As a Master" do
         scenario "Access Denied" do
-          visit2 :admin, '/hello/admin', :cannot_be_a_authenticated
+          visit2 :master, '/hello/master', :cannot_be_a_authenticated
         end
       end
 
@@ -63,9 +63,9 @@ describe "Feature Set: Access Restriction" do
         end
       end
 
-      who "As an Admin" do
+      who "As a Master" do
         scenario "Access Denied" do
-          visit2 :admin, '/hello/admin', :cannot_be_a_authenticated
+          visit2 :master, '/hello/master', :cannot_be_a_authenticated
         end
       end
 
@@ -100,9 +100,9 @@ describe "Feature Set: Access Restriction" do
         end
       end
 
-      who "As an Admin" do
+      who "As a Master" do
         scenario "Access Denied" do
-          visit2 :admin, '/hello/admin', :cannot_be_a_authenticated
+          visit2 :master, '/hello/master', :cannot_be_a_authenticated
         end
       end
 
@@ -137,9 +137,9 @@ describe "Feature Set: Access Restriction" do
         end
       end
 
-      who "As an Admin" do
+      who "As a Master" do
         scenario "Access Denied" do
-          visit2 :admin, '/hello/admin', :cannot_be_a_authenticated
+          visit2 :master, '/hello/master', :cannot_be_a_authenticated
         end
       end
 

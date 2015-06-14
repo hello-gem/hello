@@ -26,9 +26,9 @@ describe "Feature Set: Access Restriction" do
         end
       end
 
-      who "As an Admin" do
+      who "As a Master" do
         scenario "Access Granted" do
-          visit2 :admin, '/hello/user'
+          visit2 :master, '/hello/user'
         end
       end
 
@@ -63,9 +63,9 @@ describe "Feature Set: Access Restriction" do
         end
       end
 
-      who "As an Admin" do
+      who "As a Master" do
         scenario "Access Granted" do
-          visit2 :admin, "/hello/emails"
+          visit2 :master, "/hello/emails"
         end
       end
 
@@ -100,9 +100,9 @@ describe "Feature Set: Access Restriction" do
         end
       end
 
-      who "As an Admin" do
+      who "As a Master" do
         scenario "Access Granted" do
-          visit2 :admin, "/hello/access_tokens"
+          visit2 :master, "/hello/access_tokens"
         end
       end
 
@@ -137,9 +137,9 @@ describe "Feature Set: Access Restriction" do
         end
       end
 
-      who "As an Admin" do
+      who "As a Master" do
         scenario "Access Granted" do
-          visit2 :admin, "/hello/sudo_mode"
+          visit2 :master, "/hello/sudo_mode"
         end
       end
 
@@ -174,9 +174,9 @@ describe "Feature Set: Access Restriction" do
         end
       end
 
-      who "As an Admin" do
+      who "As a Master" do
         scenario "Access Granted" do
-          visit2 :admin, "/hello/deactivation"
+          visit2 :master, "/hello/deactivation"
         end
       end
 

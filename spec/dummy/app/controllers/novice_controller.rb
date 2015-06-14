@@ -10,7 +10,7 @@ class NoviceController < Hello::ApplicationController
 
 
       if params[:agree]
-        current_user.update! role: User.user
+        current_user.update! role: User.user_role
         #
         format.html { redirect_to hello.current_user_path, notice: "Welcome!" }
         format.json { render json: {user: current_user.to_hash_profile}, status: :ok }

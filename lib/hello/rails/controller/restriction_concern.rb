@@ -132,12 +132,12 @@ module Hello
                 guest:  hello.sign_in_path,
                 novice: '/novice',
                 user:   hello.current_user_path,
-                admin:  hello.admin_path,
+                master:  hello.master_path,
               }
             end
 
             def _roles
-              [:guest, :novice, :user, :admin]
+              [:guest, :novice, :user, :master]
             end
 
             def _min_required_role(roles)

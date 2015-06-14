@@ -8,14 +8,6 @@ module Hello
       attributes.slice(*self.class.hello_profile_column_names)
     end
 
-    def novice?
-      role == self.class.novice
-    end
-
-    def admin?
-      role == self.class.admin
-    end
-
     def to_hash_profile
       attributes.reject { |key| %w[password_digest password_token_digest password_token_digested_at].include? key }
     end
@@ -30,6 +22,7 @@ module Hello
 
       include UserModelUsername
       include UserModelPassword
+      include UserModelRoles
     end
 
     def destroy
@@ -66,26 +59,6 @@ module Hello
 
 
     module ClassMethods
-      def roles
-        [guest, novice, user, admin]
-      end
-
-      def guest
-        'guest'
-      end
-
-      def novice
-        'novice'
-      end
-
-      def user
-        'user'
-      end
-
-      def admin
-        'admin'
-      end
-
       # ['name', 'city']
       def hello_profile_column_names
         ignore_columns = ['id', 'created_at', 'updated_at', 'role']

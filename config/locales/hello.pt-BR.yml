@@ -17,14 +17,14 @@ pt-BR:
           novice:
             message: "Você já completou seu cadastro."
             alert:   "Você já completou seu cadastro."
-          admin:
+          master:
             message: "Esta seção do site é de acesso restrito a seus administradores."
             alert:   "Esta seção do site é de acesso restrito a seus administradores."
         cannot_be:
           novice:
             message: "Por favor conclua seu cadastro."
             alert:   "Por favor conclua seu cadastro."
-          admin:
+          master:
             message: "Administradores não tem acesso a esta parte do site."
             alert:   "Administradores não tem acesso a esta parte do site."
 

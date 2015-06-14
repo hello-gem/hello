@@ -31,11 +31,11 @@ module Hello::FeatureSupportGiven
     end
   end
 
-  def given_I_have_signed_in_as_an_admin
-    Given "I have signed in as an admin" do
-      given_I_have_an_admin_password_credential
-      when_sign_in_with_admin_data
-      then_I_expect_to_be_signed_in_with_role('admin')
+  def given_I_have_signed_in_as_a_master
+    Given "I have signed in as a master" do
+      given_I_have_a_master_password_credential
+      when_sign_in_with_master_data
+      then_I_expect_to_be_signed_in_with_role('master')
     end
   end
 

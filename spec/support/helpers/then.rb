@@ -11,7 +11,7 @@
     expect(AccessToken.count).to eq(expected_access_tokens_count)
   end
 
-  def then_I_should_be_logged_in_as_an_admin
+  def then_I_should_be_logged_in_as_a_master
     then_I_should_see "Hello, Admin!"
     then_I_should_see "Sign Out"
     expect(AccessToken.count).to eq(1)

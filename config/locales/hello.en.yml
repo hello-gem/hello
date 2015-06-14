@@ -17,14 +17,14 @@ en:
           novice:
             message: "You have already completed your registration."
             alert:   "You have already completed your registration."
-          admin:
+          master:
             message: "You need an admin access token for this URL."
             alert:   "This section of website is restricted to admins."
         cannot_be:
           novice:
             message: "Please complete your registration."
             alert:   "Please complete your registration."
-          admin:
+          master:
             message: "Admins not allowed here."
             alert:   "Admins not allowed here."
 

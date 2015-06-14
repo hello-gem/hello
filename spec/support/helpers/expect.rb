@@ -51,7 +51,7 @@
     when :cannot_be_a_authenticated   then expect_flash_alert "You have already signed in."
     when :must_be_a_novice            then expect_flash_alert "You have already completed your registration."
     when :cannot_be_a_novice          then expect_flash_alert "Please complete your registration."
-    when :must_be_an_admin            then expect_flash_alert "This section of website is restricted to admins."
+    when :must_be_a_master            then expect_flash_alert "This section of website is restricted to admins."
     else raise("unknown auth_situation '#{situation}'")
       
     end

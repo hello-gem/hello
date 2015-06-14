@@ -51,8 +51,8 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-      sscenario "As an Admin" do
-        given_I_have_signed_in_as_an_admin
+      sscenario "As a Master" do
+        given_I_have_signed_in_as_a_master
         _when_I_visit_with_an_invalid_token_then
         then_I_expect_to_be_signed_out
       end

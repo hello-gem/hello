@@ -16,11 +16,11 @@ FactoryGirl.define do
     username { Faker::Internet.user_name(name, %w(-_)) }
     password '1234'
 
-    factory :admin_user do
+    factory :master_user do
       name 'Admin'
-      role 'admin'
-      username 'admin'
-      password 'admin'
+      role 'master'
+      username 'master'
+      password 'master'
     end
 
     factory :novice do

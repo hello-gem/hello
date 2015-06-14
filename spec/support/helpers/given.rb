@@ -21,9 +21,9 @@ def given_I_have_a_novice_password_credential
                               email:    USER_TEST_EMAIL
 end
 
-def given_I_have_an_admin_password_credential
-  Credential.classic.create!  user:     create(:admin_user),
-                              email:    'admin@bar.com'
+def given_I_have_a_master_password_credential
+  Credential.classic.create!  user:     create(:master_user),
+                              email:    'master@bar.com'
 end
 
 def given_I_have_a_classic_credential_and_forgot_my_password
