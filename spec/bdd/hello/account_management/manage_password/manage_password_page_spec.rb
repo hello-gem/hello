@@ -8,7 +8,7 @@ RSpec.describe "Hello Gem", type: :feature do
     def self._before__given_I_am_on_the_password_page
       before do
         Given "I am on the Password Management Page" do
-          given_I_have_signed_in
+          given_I_have_signed_in_with_sudo_mode
           click_link "Settings"
           click_link "Password"
           expect(current_path).to eq hello.password_path
