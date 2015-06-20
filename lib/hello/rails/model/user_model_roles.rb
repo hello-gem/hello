@@ -55,6 +55,10 @@ module Hello
       role == self.class.master_role
     end
 
+    def role_is?(role)
+      self.send("#{role}?")
+    end
+
 
 
     # def turn_novice_to_user!

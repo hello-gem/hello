@@ -29,14 +29,12 @@ module Hello
         end
 
         def kick(*roles)
-          roles.map(&:to_s).each do |role|
-            should_kick = current_user_or_guest.role == role
-            return kick_redirection if should_kick
-          end
+          should_kick = roles.map { |r| current_user_or_guest.role_is? r }.inject(:|)
+          return kick_redirection if should_kick
         end
 
         def dont_kick(*roles)
-          should_not_kick = roles.map(&:to_s).include?(current_user_or_guest.role)
+          should_not_kick = roles.map { |r| current_user_or_guest.role_is? r }.inject(:|)
           return kick_redirection unless should_not_kick
         end
 
@@ -45,14 +43,11 @@ module Hello
         private
 
             def kick_redirection
-              case current_user_or_guest.role
-              when 'guest'
-                redirect_to_sign_in
-              when 'novice'
-                redirect_to_novice
-              else
-                redirect_to_root
-              end
+              u = current_user_or_guest
+              
+              return redirect_to_sign_in if u.guest?
+              return redirect_to_novice  if u.novice?
+              redirect_to_root
             end
 
             def current_user_or_guest
