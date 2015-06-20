@@ -5,29 +5,6 @@ es:
     others:
       locale: "Español"
 
-    exceptions:
-      authenticated:
-        message: "No active access token must be used here."
-        alert:   "You have already signed in."
-      not_authenticated:
-        message: "Un token de acceso debe ser utilizado para consultar información acerca del usuario."
-        alert: "Debes loguearte para continuar."
-      not_authorized:
-        must_be:
-          novice:
-            message: "You have already completed your registration."
-            alert:   "You have already completed your registration."
-          master:
-            message: "You need an admin access token for this URL."
-            alert:   "This section of website is restricted to admins."
-        cannot_be:
-          novice:
-            message: "Please complete your registration."
-            alert:   "Please complete your registration."
-          master:
-            message: "Admins not allowed here."
-            alert:   "Admins not allowed here."
-
     registration_mailer:
       welcome:
         subject: "Bienvenido a nuestro sitio web"
