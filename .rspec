@@ -1,3 +1,2 @@
+--format Bdd::RSpec::Formatter
 --color
---format documentation
-
