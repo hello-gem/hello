@@ -6,8 +6,8 @@ module Hello
         extend ActiveSupport::Concern
 
         module ClassMethods
-          def restrict_access_to_sudo_mode
-            before_action(:restrict_access_to_sudo_mode)
+          def sudo_mode
+            before_action(:sudo_mode)
           end
         end
 
@@ -23,7 +23,7 @@ module Hello
           hello_access_token && hello_access_token.sudo_expires_at.future?
         end
 
-        def restrict_access_to_sudo_mode
+        def sudo_mode
           render_sudo_mode unless sudo_mode?
         end
 

@@ -10,7 +10,7 @@ module Hello
     helper_method :credentials
 
     kick :guest, :novice
-    restrict_access_to_sudo_mode
+    sudo_mode
     
     before_actions do
       only(:index)  { @credential = Credential.new }

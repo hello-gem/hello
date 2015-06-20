@@ -2,7 +2,7 @@ module Hello
   class PasswordController < ApplicationController
 
     kick :guest, :novice
-    restrict_access_to_sudo_mode
+    sudo_mode
 
     before_action do
       @user_entity = UpdateMyUserEntity.new(@user = current_user)
