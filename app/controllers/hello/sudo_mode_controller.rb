@@ -7,7 +7,7 @@ require_dependency "hello/application_controller"
 module Hello
   class SudoModeController < ApplicationController
 
-    restrict_to_users
+    kick :guest, :novice
     
     # GET /hello/sudo_mode
     def form
@@ -32,7 +32,7 @@ module Hello
       entity = SudoModeExpirationEntity.new(hello_access_token)
       entity.expire!
       flash[:notice] = entity.success_message
-      redirect_to hello.homepage_path
+      redirect_to '/'
     end
 
     private

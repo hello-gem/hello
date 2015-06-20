@@ -72,7 +72,6 @@ RSpec.describe "Hello Gem", type: :feature do
         Given "I was asked to sign in upon visiting a URL" do
           visit @url = hello.current_user_path
           expect(current_path).to eq hello.sign_in_path
-          expect_flash_alert "You must sign in to continue."
         end
 
         When "I sign in with valid credentials" do

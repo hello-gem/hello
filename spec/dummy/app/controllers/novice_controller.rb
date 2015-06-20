@@ -1,6 +1,6 @@
 class NoviceController < Hello::ApplicationController
 
-  restrict_unless_role_is :novice
+  dont_kick :novice
   
   def index
   end

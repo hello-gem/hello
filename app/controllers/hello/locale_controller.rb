@@ -3,7 +3,7 @@ require_dependency "hello/application_controller"
 module Hello
   class LocaleController < ApplicationController
 
-    # access to all roles
+    dont_kick_people
 
     # GET /hello/locale
     def index

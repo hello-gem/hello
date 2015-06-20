@@ -7,8 +7,7 @@ require_dependency "hello/application_controller"
 module Hello
   class Master::ImpersonationController < ApplicationController
 
-    restrict_unless_authenticated
-    restrict_unless_role_is :master, only: [:create]
+    dont_kick :master, only: [:create]
 
     # POST /hello/master/impersonate credential_id: 1
     def create
@@ -26,7 +25,7 @@ module Hello
 
       entity = ImpersonateBackEntity.new
       flash[:notice] = entity.success_message
-      redirect_to hello.homepage_path
+      redirect_to '/'
     end
 
   end

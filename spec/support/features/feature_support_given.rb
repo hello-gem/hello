@@ -31,6 +31,12 @@ module Hello::FeatureSupportGiven
     end
   end
 
+  def given_I_have_signed_in_as_a_user
+    Given "I have signed in as a user" do
+      given_I_have_signed_in
+    end
+  end
+
   def given_I_have_signed_in_as_a_master
     Given "I have signed in as a master" do
       given_I_have_a_master_password_credential

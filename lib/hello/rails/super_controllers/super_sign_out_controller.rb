@@ -1,7 +1,7 @@
 module Hello
   class SuperSignOutController < ApplicationController
 
-    # access to all roles
+    dont_kick_people
 
     # GET /hello/sign_out
     def sign_out

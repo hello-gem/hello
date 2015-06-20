@@ -7,7 +7,7 @@ require_dependency "hello/application_controller"
 module Hello
   class AccessTokensController < ApplicationController
     
-    restrict_to_users
+    kick :guest, :novice
     
     before_actions do
       all            { restrict_access_to_sudo_mode }

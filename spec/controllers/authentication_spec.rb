@@ -18,14 +18,15 @@ describe "Authentication" do
         expect(response.status).to eq(302)
         expect(response.status_message).to eq("Found")
         
-        expect(session.keys).to match_array ["flash", "locale", "url"]
+        # expect(session.keys).to match_array ["flash", "locale", "url"]
+        expect(session.keys).to match_array ["locale", "url"]
         expect(session['locale']).to eq "en"
         expect(session['url']).to    eq "/hello/user"
-        expect(flash[:alert]).to     eq "You must sign in to continue."
+        # expect(flash[:alert]).to     eq "You must sign in to continue."
 
         # expect(session.to_hash).to eq({"locale" => "en", "url"=>"/hello/user", "flash"=>{"discard"=>[], "flashes"=>{:alert=>"You must sign in to continue."}}})
 
-        expect(response).to redirect_to('/hello/homepage')
+        expect(response).to redirect_to('/hello/sign_in')
       end
 
       it "JSON" do
@@ -33,7 +34,7 @@ describe "Authentication" do
         json_body = JSON(response.body)
         expect(response.status).to eq(401)
         expect(response.status_message).to eq("Unauthorized")
-        expect(json_body['exception']).to eq({"class"=>"Hello::NotAuthenticated", "message"=>"An active access token must be used to query information about the current user."})
+        expect(json_body).to eq({"message"=>"An active access token must be used to query information about the current user."})
       end
 
     end
@@ -95,7 +96,7 @@ describe "Authentication" do
         json_body = JSON(response.body)
         expect(response.status).to eq(401)
         expect(response.status_message).to eq("Unauthorized")
-        expect(json_body['exception']).to eq({"class"=>"Hello::NotAuthenticated", "message"=>"An active access token must be used to query information about the current user."})
+        expect(json_body).to eq({"message"=>"An active access token must be used to query information about the current user."})
       end
 
       it "Sudo Mode Required" do

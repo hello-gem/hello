@@ -1,7 +1,7 @@
 module Hello
   class SuperEmailSignUpController < ApplicationController
 
-    restrict_if_authenticated
+    dont_kick :guest
 
     before_action do
       @entity = @sign_up = SignUpEntity.new(self)

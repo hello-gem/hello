@@ -1,7 +1,7 @@
 module Hello
   class PasswordController < ApplicationController
 
-    restrict_to_users
+    kick :guest, :novice
     restrict_access_to_sudo_mode
 
     before_action do

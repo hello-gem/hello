@@ -7,9 +7,12 @@ module Hello
     # included do
     # end
 
-
-
     module ClassMethods
+
+      def mock_guest
+        new(role: 'guest')
+      end
+
       def roles
         # [guest, novice, user, master]
         [novice_role, user_role, master_role]
@@ -35,11 +38,16 @@ module Hello
 
 
 
+    def guest?
+      role == 'guest'
+    end
+
     def novice?
       role == self.class.novice_role
     end
 
     def user?
+      master? ||
       role == self.class.user_role
     end
 

@@ -1,7 +1,7 @@
 module Hello
   class SuperCurrentUserController < ApplicationController
 
-    restrict_to_users
+    kick :guest, :novice
 
     before_action do
       @user_entity = UpdateMyUserEntity.new(@user = current_user)

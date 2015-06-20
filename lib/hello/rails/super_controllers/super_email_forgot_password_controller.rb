@@ -1,7 +1,7 @@
 module Hello
   class SuperEmailForgotPasswordController < ApplicationController
 
-    restrict_if_authenticated
+    dont_kick :guest
 
     # GET /hello/forgot
     def index

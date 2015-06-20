@@ -5,13 +5,14 @@ require_dependency "hello/application_controller"
 #
 
 module Hello
-  class Master::RootController < ApplicationController
+  class RootController < ApplicationController
 
-    dont_kick :master
+    dont_kick :guest
 
-    # GET /hello/master
+    # GET /hello
     def index
-      render text: "access granted :)", layout: 'application'
+      @sign_up = SignUpEntity.new(self)
+      @sign_in = SignInEntity.new
     end
 
   end

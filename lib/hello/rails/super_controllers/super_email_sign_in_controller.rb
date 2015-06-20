@@ -1,8 +1,8 @@
 module Hello
   class SuperEmailSignInController < ApplicationController
 
-    restrict_if_authenticated     except: [:authenticated]
-    restrict_unless_authenticated only:   [:authenticated]
+    dont_kick :guest, only: [:index, :authenticate]
+    kick      :guest, only: [:authenticated]
 
     # GET /hello/sign_in
     def index

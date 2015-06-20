@@ -3,6 +3,8 @@ require_dependency "hello/application_controller"
 module Hello
   class ConfirmEmailsController < ApplicationController
 
+    dont_kick_people
+
     before_actions do
       all { destroy_and_clear_hello_access_token }
       only(:confirm) { @credential = Credential.where(id: params[:id]).first }

@@ -1,7 +1,7 @@
 module Hello
   class SuperResetPasswordController < ApplicationController
 
-    # restrict_if_authenticated, except: [:done]
+    dont_kick_people
 
     # GET /hello/password/reset/:token
     def reset_token

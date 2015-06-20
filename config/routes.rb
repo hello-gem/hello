@@ -3,8 +3,7 @@ Hello::Engine.routes.draw do
 
 
 
-  root "welcome#index"
-  get  "homepage" => "welcome#homepage"
+  root "root#index"
 
 
   

@@ -18,10 +18,6 @@ RSpec.describe "Hello Gem", type: :feature do
           then_I_expect_to_be_signed_out
           expect(current_path).to eq hello.sign_in_path
         end
-
-        Then "and see an authentication alert" do
-          expect_flash_alert "You must sign in to continue."
-        end
       end
     end
 

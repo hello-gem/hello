@@ -1,8 +1,8 @@
 module Hello
   class SuperDeactivationController < ApplicationController
     
-    restrict_unless_authenticated except: [:deactivated]
-    restrict_if_authenticated     only:   [:deactivated]
+    kick      :guest, only: [:proposal, :deactivate]
+    dont_kick :guest, only: [:deactivated]
 
     before_actions do
       only(:proposal, :deactivate) { @deactivation = DeactivateEntity.new }

@@ -9,7 +9,7 @@ module Hello
     
     helper_method :credentials
 
-    restrict_to_users
+    kick :guest, :novice
     restrict_access_to_sudo_mode
     
     before_actions do
