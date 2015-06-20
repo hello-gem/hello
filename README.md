@@ -40,36 +40,36 @@ These files are generated when you install this gem.
 
 They are simple to customize, just open them.
 
-    ├── app
-    │   ├── authentication
-    │   │   ├── deactivation_control.rb
-    │   │   ├── forgot_password_control.rb
-    │   │   ├── reset_password_control.rb
-    │   │   ├── sign_in_control.rb
-    │   │   ├── sign_out_control.rb
-    │   │   ├── sign_up_control.rb
-    │   │   └── user_control.rb
-    │   ├── controllers
+    ├── app/
+    │   ├── controllers/
     │   │   ├── novice_controller.rb
-    │   │   └── profile_controller.rb
-    │   ├── models
+    │   │   ├── profile_controller.rb
+    │   │   └── hello/
+    │   │       ├── deactivation_controller.rb
+    │   │       ├── email_forgot_password_controller.rb
+    │   │       ├── email_sign_in_controller.rb
+    │   │       ├── email_sign_up_controller.rb
+    │   │       ├── reset_password_controller.rb
+    │   │       ├── sign_out_controller.rb
+    │   │       └── user_controller.rb
+    │   ├── models/
     │   │   ├── credential.rb
     │   │   ├── active_session.rb
     │   │   └── user.rb
-    │   └── views
-    │       ├── hello
+    │   └── views/
+    │       ├── hello/
     │       │   └── [...optional...]
-    │       ├── layouts
+    │       ├── layouts/
     │       │   └── application.html.erb
-    │       ├── novice
+    │       ├── novice/
     │       │   └── index.html.erb
-    │       └── profile
+    │       └── profile/
     │           └── profile.html.erb
-    ├── config
+    ├── config/
     │   └── initializers
     │       └── hello.rb
-    └── db
-        └── migrate
+    └── db/
+        └── migrate/
             ├── 1_create_credentials.hello.rb
             ├── 2_create_access_tokens.hello.rb
             └── 3_create_users.hello.rb
@@ -91,24 +91,21 @@ class Credential < ActiveRecord::Base
 
 end
 
-class SignUpControl < Hello::AbstractControl
+module Hello
+  class EmailSignUpController < SuperEmailSignUpController
 
-  def success
-    deliver_welcome_email!
-
-    c.respond_to do |format|
-      format.html { c.redirect_to root_path }
-      format.json { c.render json: access_token, status: :created }
+    def success
+      deliver_welcome_email
+      deliver_confirmation_email
+      redirect_to root_path
     end
-  end
 
-  def failure
-    c.respond_to do |format|
-      format.html { c.render :sign_up }
-      format.json { c.render json: sign_up.errors, status: :unprocessable_entity }
+    def failure
+      render action: 'index'
     end
-  end
 
+
+  end
 end
 ```
 
