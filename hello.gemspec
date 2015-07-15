@@ -7,8 +7,8 @@ require "hello/version"
 Gem::Specification.new do |s|
   s.name        = "hello"
   s.version     = Hello::VERSION
-  s.authors     = ["James Pinto"]
-  s.email       = ["thejamespinto@gmail.com"]
+  s.authors     = ["James Pinto", "Michal Papis"]
+  s.email       = ["thejamespinto@gmail.com", "mpapis@gmail.com"]
   s.homepage    = "http://github.com/hello-gem/hello"
   s.summary     = "Rails Gem to authenticate you and your users"
   s.description = "We want enjoyable Rails authentication"
