@@ -39,6 +39,10 @@
     expect_not_to_see("dummy")
   end
 
+  def expect_to_be_on(path)
+    expect(current_path).to eq path
+  end
+
 
   def expect_flash_notice_signed_in
     expect_flash_notice "You have signed in successfully"

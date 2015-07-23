@@ -3,10 +3,12 @@ require 'spec_helper'
 RSpec.describe "Hello Gem", type: :feature do
   goal_feature "System Management", "Webwebmasters Can Impersonate Users", "On Their Profile Page" do
 
-    # ACCEPTANCE CRITERIA
-    # - 
-
     sstory "Impersonate" do
+      # ACCEPTANCE CRITERIA
+      # 1 Flash Message
+      # 2 Roled as 'user'
+      # 3 Enables Sudo Mode
+
       sscenario "Success" do
         _impersonate
       end
@@ -16,16 +18,18 @@ RSpec.describe "Hello Gem", type: :feature do
       end
     end
 
-    # ACCEPTANCE CRITERIA
-    # - 
-
     sstory "Back to Self" do
+      # ACCEPTANCE CRITERIA
+      # 1 Flash Message
+      # 2 Roled as 'webmaster'
+      # 3 Disables Sudo Mode
+
       sscenario "Success" do
         Given "I have impersonated a user" do
           _impersonate
         end
         
-        When "I click 'Back to Myself'" do
+        When "I attempt to go back to myself" do
           click_link 'Back to Myself'
         end
 
@@ -46,15 +50,15 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
     def _impersonate
-      given_I_have_signed_in_as_a_webmaster
-
       Given "I visit a user's profile page" do
+        given_I_have_signed_in_as_a_webmaster
+
         @credential = given_I_have_a_classic_credential
         # visit profile_path(credential.username)
         visit profile_path('foobar')
       end
 
-      When "I click 'Impersonate'" do
+      When "I attempt to impersonate them" do
         click_button 'Impersonate'
       end
 
