@@ -37,11 +37,11 @@ module Hello::FeatureSupportGiven
     end
   end
 
-  def given_I_have_signed_in_as_a_master
-    Given "I have signed in as a master" do
-      given_I_have_a_master_password_credential
-      when_sign_in_with_master_data
-      then_I_expect_to_be_signed_in_with_role('master')
+  def given_I_have_signed_in_as_a_webmaster
+    Given "I have signed in as a webmaster" do
+      given_I_have_a_webmaster_password_credential
+      when_sign_in_with_webmaster_data
+      then_I_expect_to_be_signed_in_with_role('webmaster')
     end
   end
 

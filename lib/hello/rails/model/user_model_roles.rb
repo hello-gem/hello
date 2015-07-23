@@ -14,8 +14,8 @@ module Hello
       end
 
       def roles
-        # [guest, novice, user, master]
-        [novice_role, user_role, master_role]
+        # [guest, novice, user, webmaster]
+        [novice_role, user_role, webmaster_role]
       end
 
       # def guest
@@ -30,8 +30,8 @@ module Hello
         'user'
       end
 
-      def master_role
-        'master'
+      def webmaster_role
+        'webmaster'
       end
 
     end
@@ -47,12 +47,12 @@ module Hello
     end
 
     def user?
-      master? ||
+      webmaster? ||
       role == self.class.user_role
     end
 
-    def master?
-      role == self.class.master_role
+    def webmaster?
+      role == self.class.webmaster_role
     end
 
     def role_is?(role)

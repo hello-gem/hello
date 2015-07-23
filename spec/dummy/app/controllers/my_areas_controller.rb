@@ -5,13 +5,13 @@ class MyAreasController < ApplicationController
   #
   dont_kick :guest,  only: :guest_page
   dont_kick :novice, only: :novice_page
-  dont_kick :master, only: :master_page
+  dont_kick :webmaster, only: :webmaster_page
 
 
   #
   # KICK ONE
   #
-  kick :master, only: :non_master_page
+  kick :webmaster, only: :non_webmaster_page
   kick :guest,  only: :authenticated_page
 
 
@@ -45,11 +45,11 @@ class MyAreasController < ApplicationController
     yes
   end
 
-  def master_page
+  def webmaster_page
     yes
   end
 
-  def non_master_page
+  def non_webmaster_page
     yes
   end
 

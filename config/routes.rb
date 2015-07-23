@@ -86,7 +86,7 @@ Hello::Engine.routes.draw do
   # MASTER
   #
 
-  namespace "master" do
+  namespace "webmaster" do
     get '' => 'root#index'
     # impersonation
       get  'impersonate' => 'impersonation#destroy'

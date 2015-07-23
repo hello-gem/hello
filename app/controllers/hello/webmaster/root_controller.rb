@@ -5,11 +5,11 @@ require_dependency "hello/application_controller"
 #
 
 module Hello
-  class Master::RootController < ApplicationController
+  class Webmaster::RootController < ApplicationController
 
-    dont_kick :master
+    dont_kick :webmaster
 
-    # GET /hello/master
+    # GET /hello/webmaster
     def index
       render text: "access granted :)", layout: 'application'
     end

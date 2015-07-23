@@ -44,8 +44,8 @@ def when_sign_in_with_standard_data(options={})
   when_sign_in('foobar', (options[:password] || 'foobar'), options)
 end
 
-def when_sign_in_with_master_data
-  when_sign_in('master', 'master')
+def when_sign_in_with_webmaster_data
+  when_sign_in('webmaster', 'webmaster')
 end
 
 def when_sign_in(login, password, options={})
@@ -93,9 +93,9 @@ def sign_up_as_a_user
   expect(current_user.role).to eq('user')
 end
 
-def sign_up_as_a_master
+def sign_up_as_a_webmaster
   sign_up_as_a_user
-  current_user.update! role: 'master'
+  current_user.update! role: 'webmaster'
 end
 
 
@@ -104,7 +104,7 @@ def sign_up_as_a(role)
   when :guest  # nothing to do
   when :novice then sign_up_as_a_novice
   when :user   then sign_up_as_a_user
-  when :master  then sign_up_as_a_master
+  when :webmaster  then sign_up_as_a_webmaster
   else raise("Role #{role} is unknown")
   end
 end

@@ -5,11 +5,11 @@ require_dependency "hello/application_controller"
 #
 
 module Hello
-  class Master::ImpersonationController < ApplicationController
+  class Webmaster::ImpersonationController < ApplicationController
 
-    dont_kick :master, only: [:create]
+    dont_kick :webmaster, only: [:create]
 
-    # POST /hello/master/impersonate credential_id: 1
+    # POST /hello/webmaster/impersonate credential_id: 1
     def create
       user = User.find(params[:user_id])
       impersonate(user)
@@ -19,7 +19,7 @@ module Hello
       redirect_to :back
     end
 
-    # GET /hello/master/impersonate
+    # GET /hello/webmaster/impersonate
     def destroy
       hello_back_to_myself
 

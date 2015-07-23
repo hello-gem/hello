@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe "Hello Gem", type: :feature do
-  goal_feature "System Management", "Webmasters Can Impersonate Users", "On Their Profile Page" do
+  goal_feature "System Management", "Webwebmasters Can Impersonate Users", "On Their Profile Page" do
 
     # ACCEPTANCE CRITERIA
     # - 
@@ -33,7 +33,7 @@ RSpec.describe "Hello Gem", type: :feature do
           expect_flash_notice "You are yourself again"
         end
 
-        then_I_should_be_logged_in_as_a_master
+        then_I_should_be_logged_in_as_a_webmaster
 
         then_I_expect_not_to_be_on_sudo_mode
       end
@@ -46,7 +46,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
     def _impersonate
-      given_I_have_signed_in_as_a_master
+      given_I_have_signed_in_as_a_webmaster
 
       Given "I visit a user's profile page" do
         @credential = given_I_have_a_classic_credential

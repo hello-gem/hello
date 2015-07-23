@@ -67,8 +67,8 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-      sscenario "As a Master" do
-        given_I_have_signed_in_as_a_master
+      sscenario "As a Webmaster" do
+        given_I_have_signed_in_as_a_webmaster
         _when_I_visit
         _then_redirect_to_root
       end
@@ -107,8 +107,8 @@ RSpec.describe "Hello Gem", type: :feature do
       end
 
 
-      sscenario "As a Master" do
-        given_I_have_signed_in_as_a_master
+      sscenario "As a Webmaster" do
+        given_I_have_signed_in_as_a_webmaster
         _when_I_visit
         _then_redirect_to_root
       end
@@ -149,8 +149,8 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-      sscenario "As a Master" do
-        given_I_have_signed_in_as_a_master
+      sscenario "As a Webmaster" do
+        given_I_have_signed_in_as_a_webmaster
         _when_I_visit
         _then_allowed
       end
@@ -191,8 +191,8 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-      sscenario "As a Master" do
-        given_I_have_signed_in_as_a_master
+      sscenario "As a Webmaster" do
+        given_I_have_signed_in_as_a_webmaster
         _when_I_visit
         _then_allowed
       end
@@ -200,10 +200,10 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-    sstory "Master Area" do
+    sstory "Webmaster Area" do
       def _when_I_visit
-        When "I visit the Master Area" do
-          visit '/my_areas/master_page'
+        When "I visit the Webmaster Area" do
+          visit '/my_areas/webmaster_page'
         end
       end
 
@@ -233,8 +233,8 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-      sscenario "As a Master" do
-        given_I_have_signed_in_as_a_master
+      sscenario "As a Webmaster" do
+        given_I_have_signed_in_as_a_webmaster
         _when_I_visit
         _then_allowed
       end
@@ -242,10 +242,10 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-    sstory "Non Master Area" do
+    sstory "Non Webmaster Area" do
       def _when_I_visit
-        When "I visit the Non Master Area" do
-          visit '/my_areas/non_master_page'
+        When "I visit the Non Webmaster Area" do
+          visit '/my_areas/non_webmaster_page'
         end
       end
 
@@ -275,8 +275,8 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-      sscenario "As a Master" do
-        given_I_have_signed_in_as_a_master
+      sscenario "As a Webmaster" do
+        given_I_have_signed_in_as_a_webmaster
         _when_I_visit
         _then_redirect_to_root
       end

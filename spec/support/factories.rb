@@ -1,5 +1,5 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
-# https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md
+# https://github.com/thoughtbot/factory_girl/blob/webmaster/GETTING_STARTED.md
 
 # https://github.com/stympy/faker#usage
 
@@ -16,11 +16,11 @@ FactoryGirl.define do
     username { Faker::Internet.user_name(name, %w(-_)) }
     password '1234'
 
-    factory :master_user do
+    factory :webmaster_user do
       name 'Admin'
-      role 'master'
-      username 'master'
-      password 'master'
+      role 'webmaster'
+      username 'webmaster'
+      password 'webmaster'
     end
 
     factory :novice do
