@@ -1,32 +1,13 @@
-# encoding: UTF-8
 require 'spec_helper'
 
-RSpec.describe "Top Feature Set: Localization", :type => :feature do
-  context "Feature Set: Manually" do
+RSpec.describe "Hello Gem", type: :feature do
+  goal_feature "Internationalization", "Anyone Can Change Their Locale", "On The Sign In Form" do
 
-    feature "On Locale Page" do
+    # ACCEPTANCE CRITERIA
+    # - 
 
-      def _set_the_locale_to(string)
-        visit hello.locale_path
-        click_button string
-      end
-
-      def _then_the_browser_locale_should_be(string)
-        Then "the Browser's locale should be #{string}" do
-          expect_to_see "dummy-locale: #{string}"
-        end
-      end
-
-      def _then_the_database_locale_should_be(string)
-        Then "the Database's locale should be '#{string}'" do
-          expect(User.last.locale).to eq string
-        end
-      end
-
-
-
-      scenario "As a Guest" do
-
+    sstory "As a Guest" do
+      sscenario "Success" do
         Given "the Browser's locale is set to 'Portuguese (Brazil)'" do
           _set_the_locale_to 'Portuguese (Brazil)'
         end
@@ -48,16 +29,13 @@ RSpec.describe "Top Feature Set: Localization", :type => :feature do
         end
 
         _then_the_browser_locale_should_be('en')
-
-
       end
+    end
 
 
 
-      scenario "As a User" do
-
-
-
+    sstory "As a User" do
+      sscenario "Success" do
         given_I_have_signed_in
 
         _then_the_database_locale_should_be('en')
@@ -89,12 +67,26 @@ RSpec.describe "Top Feature Set: Localization", :type => :feature do
         _then_the_browser_locale_should_be('es')
 
         _then_the_database_locale_should_be('es')
-
-
-
       end
-
     end
 
+
+
+    def _set_the_locale_to(string)
+      visit hello.locale_path
+      click_button string
+    end
+
+    def _then_the_browser_locale_should_be(string)
+      Then "the Browser's locale should be #{string}" do
+        expect_to_see "dummy-locale: #{string}"
+      end
+    end
+
+    def _then_the_database_locale_should_be(string)
+      Then "the Database's locale should be '#{string}'" do
+        expect(User.last.locale).to eq string
+      end
+    end
   end
 end

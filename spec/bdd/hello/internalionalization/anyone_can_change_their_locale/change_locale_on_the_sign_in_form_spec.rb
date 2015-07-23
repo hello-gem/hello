@@ -1,14 +1,13 @@
-# encoding: UTF-8
 require 'spec_helper'
 
-RSpec.describe "Top Feature Set: Localization", :type => :feature do
-  context "Feature Set: On Registration" do
+RSpec.describe "Hello Gem", type: :feature do
+  goal_feature "Internationalization", "Anyone Can Change Their Locale", "On The Sign In Form" do
 
-    feature "Sign In Resets Locale" do
-      scenario "Scenario: Success" do
+    # ACCEPTANCE CRITERIA
+    # - My browser learns my account’s locale
 
-
-
+    sstory "As a Guest" do
+      sscenario "Success" do
         Given "The browser's locale is set to 'English'" do
           visit '/'
           expect_to_see "dummy-locale: en"
@@ -27,9 +26,6 @@ RSpec.describe "Top Feature Set: Localization", :type => :feature do
         Then "the Browser's locale should be 'pt-BR'" do
           expect_to_see "dummy-locale: pt-BR"
         end
-
-
-
       end
     end
 
