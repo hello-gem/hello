@@ -1,0 +1,7 @@
+<h1>Home Page</h1>
+
+<% if current_user %>
+  <p><%= link_to "visit /hello/user for My Account", hello.current_user_path %></p>
+<% else %>
+  <p><%= link_to "visit /hello for User Registration", hello_path %></p>
+<% end %>

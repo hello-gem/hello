@@ -10,8 +10,15 @@ class Hello::InstallGenerator < Rails::Generators::Base
   rescue Errno::ENOENT
   end
 
+  # a root route is needed
+  # we were previously redirecting to /hello which caused a redirection loop bug
+  def generate_root
+    route "root to: 'root#index'"
+    copy_file "root/root_controller.rb", "app/controllers/root_controller.rb"
+    copy_file "root/index.html.erb",     "app/views/root/index.html.erb"
+  end
+
   def append_to_the_routes
-    route "root to: redirect('/hello') # TODO: add a custom root route :)"
     route 'mount Hello::Engine => "/hello"'
   end
 

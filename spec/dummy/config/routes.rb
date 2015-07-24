@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   get 'profile/:username' => 'profile#profile', as: 'profile'
   resources :users, only: [:index, :show]
 
-  root "welcome#index"
+  root to: 'root#index'
   mount Hello::Engine => "/hello"
 end
