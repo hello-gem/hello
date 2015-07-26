@@ -11,17 +11,17 @@ describe "Authentication" do
 
   describe "Not Authenticated" do
 
-    describe CurrentUserController do
+    describe CurrentUsersController do
 
       it "HTML" do
-        get :edit
+        get :show
         expect(response.status).to eq(302)
         expect(response.status_message).to eq("Found")
         
         # expect(session.keys).to match_array ["flash", "locale", "url"]
         expect(session.keys).to match_array ["locale", "url"]
         expect(session['locale']).to eq "en"
-        expect(session['url']).to    eq "/hello/user"
+        expect(session['url']).to    eq "/hello/current_user"
         # expect(flash[:alert]).to     eq "You must sign in to continue."
 
         # expect(session.to_hash).to eq({"locale" => "en", "url"=>"/hello/user", "flash"=>{"discard"=>[], "flashes"=>{:alert=>"You must sign in to continue."}}})
@@ -30,7 +30,7 @@ describe "Authentication" do
       end
 
       it "JSON" do
-        get :edit, {format: :json}
+        get :show, {format: :json}
         json_body = JSON(response.body)
         expect(response.status).to eq(401)
         expect(response.status_message).to eq("Unauthorized")
@@ -43,12 +43,12 @@ describe "Authentication" do
 
   describe "Authenticated" do
 
-    describe CurrentUserController do
+    describe CurrentUsersController do
 
       before { @s = given_I_have_a_classic_access_token }
 
       it "PARAMS" do
-        get :edit, {format: :json, access_token: @s.access_token}
+        get :show, {format: :json, access_token: @s.access_token}
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
@@ -57,7 +57,7 @@ describe "Authentication" do
 
       it "SESSION" do
         @request.session['access_token'] = @s.access_token
-        get :edit, {format: :json}#, {access_token: @s.access_token}
+        get :show, {format: :json}#, {access_token: @s.access_token}
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
@@ -66,7 +66,7 @@ describe "Authentication" do
 
       it "COOKIE" do
         @request.cookies['access_token'] = @s.access_token
-        get :edit, {format: :json}
+        get :show, {format: :json}
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
@@ -75,7 +75,7 @@ describe "Authentication" do
 
       it "HEADER" do
         @request.headers['HTTP_ACCESS_TOKEN'] = @s.access_token
-        get :edit, {format: :json}
+        get :show, {format: :json}
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
         expect(response.status_message).to eq("OK")
@@ -86,13 +86,13 @@ describe "Authentication" do
   end
 
   describe "Others" do
-    describe CurrentUserController do
+    describe CurrentUsersController do
 
       it "Access Token Expired" do
         @s = given_I_have_a_classic_access_token
         @s.update! expires_at: 1.second.ago
 
-        get :edit, {format: :json, access_token: @s.access_token}
+        get :show, {format: :json, access_token: @s.access_token}
         json_body = JSON(response.body)
         expect(response.status).to eq(401)
         expect(response.status_message).to eq("Unauthorized")

@@ -13,6 +13,11 @@ class User < ActiveRecord::Base
 
 
 
+
+  def to_param
+    username
+  end
+  
   # def sign_up_attribute_names
   #   %w(name username password time_zone locale)
   # end

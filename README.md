@@ -43,7 +43,7 @@ They are simple to customize, just open them.
     ├── app/
     │   ├── controllers/
     │   │   ├── novice_controller.rb
-    │   │   ├── profile_controller.rb
+    │   │   ├── users_controller.rb
     │   │   └── hello/
     │   │       ├── deactivation_controller.rb
     │   │       ├── email_forgot_password_controller.rb
@@ -63,8 +63,9 @@ They are simple to customize, just open them.
     │       │   └── application.html.erb
     │       ├── novice/
     │       │   └── index.html.erb
-    │       └── profile/
-    │           └── profile.html.erb
+    │       └── users/
+    │           ├── index.html.erb
+    │           └── show.html.erb
     ├── config/
     │   └── initializers
     │       └── hello.rb

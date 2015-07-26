@@ -11,7 +11,6 @@ module Hello
 
     # GET /hello/webmaster
     def index
-      render text: "access granted :)", layout: 'application'
     end
 
   end

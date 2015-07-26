@@ -62,9 +62,9 @@ class Hello::InstallGenerator < Rails::Generators::Base
   end
 
   def generate_profile
-    route "get 'profile/:username' => 'profile#profile', as: 'profile'"
-    copy_file "profile/profile_controller.rb", "app/controllers/profile_controller.rb"
-    copy_file "profile/profile.html.erb",      "app/views/profile/profile.html.erb"
+    route "resources :users, only: [:index, :show]"
+    directory "users/controllers", "app/controllers"
+    directory "users/views", "app/views"
   end
 
   def generate_novice

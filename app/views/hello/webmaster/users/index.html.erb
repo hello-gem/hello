@@ -1,3 +1,5 @@
+<%= render "hello/webmaster/dashboard" %>
+
 <h1>Listing Users</h1>
 
 <table class="table table-condensed">
@@ -8,6 +10,10 @@
       <th>Role</th>
       <th>Locale</th>
       <th>Time zone</th>
+      <th>Credentials</th>
+      <th>Tokens</th>
+        <!-- actions -->
+      <th colspan="1"></th>
     </tr>
   </thead>
 
@@ -19,6 +25,10 @@
         <td><%= user.role %></td>
         <td><%= user.locale %></td>
         <td><%= user.time_zone %></td>
+        <td><%= user.credentials_count %></td>
+        <td><%= user.access_tokens_count %></td>
+        <!-- actions -->
+        <td><%= button_to "Impersonate!", hello.webmaster_impersonate_path(user_id: user.id) unless current_user == user %></td>
       </tr>
     <% end %>
   </tbody>

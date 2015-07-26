@@ -1,7 +1,15 @@
 require 'spec_helper'
 
 RSpec.describe "Hello Gem", type: :feature do
-  goal_feature "System Management", "Webwebmasters Can Impersonate Users", "On Their Profile Page" do
+  goal_feature "System Management", "Webmasters Can Impersonate Users", "From the webmaster dashboard" do
+
+    before(:each) do
+      given_I_have_signed_in_as_a_webmaster
+
+      @credential = given_I_have_a_classic_credential
+      visit hello.webmaster_path
+      click_link "Users"
+    end
 
     sstory "Impersonate" do
       # ACCEPTANCE CRITERIA
@@ -50,16 +58,8 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
     def _impersonate
-      Given "I visit a user's profile page" do
-        given_I_have_signed_in_as_a_webmaster
-
-        @credential = given_I_have_a_classic_credential
-        # visit profile_path(credential.username)
-        visit profile_path('foobar')
-      end
-
       When "I attempt to impersonate them" do
-        click_button 'Impersonate'
+        click_button 'Impersonate!'
       end
 
       Then "I should see a confirmation message" do

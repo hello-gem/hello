@@ -1,5 +1,5 @@
 module Hello
-  class SuperCurrentUserController < ApplicationController
+  class SuperCurrentUsersController < ApplicationController
 
     kick :guest, :novice
 
@@ -8,7 +8,7 @@ module Hello
     end
 
     # GET /hello/user
-    def edit
+    def show
       respond_to do |format|
         format.html {  }
         format.json { render json: @user.to_hash_profile, status: :ok }

@@ -1,5 +1,5 @@
 module Hello
-  class CurrentUserController < SuperCurrentUserController
+  class CurrentUsersController < SuperCurrentUsersController
 
     puts "TODO: change this -> user.to_hash_profile".red.blink
 
@@ -12,7 +12,7 @@ module Hello
 
     def failure
       respond_to do |format|
-        format.html { render :edit }
+        format.html { render :show }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

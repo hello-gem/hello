@@ -10,7 +10,7 @@ RSpec.describe "Security", :type => :request do
       user_params = {user: {role: "webmaster"}}
       auth_headers # touch
       expect {
-        patch "/hello/user.json", user_params, auth_headers
+        patch "/hello/current_user.json", user_params, auth_headers
 
         expect(response.status).to eq(200)
       }.not_to change { User.last.role }.from('user')
@@ -20,7 +20,7 @@ RSpec.describe "Security", :type => :request do
       user_params = {user: {password_digest: "new"}}
       auth_headers # touch
       expect {
-        patch "/hello/user.json", user_params, auth_headers
+        patch "/hello/current_user.json", user_params, auth_headers
 
         expect(response.status).to eq(200)
       }.not_to change { User.last.password_digest }
@@ -30,7 +30,7 @@ RSpec.describe "Security", :type => :request do
       user_params = {user: {password_token_digest: "new"}}
       auth_headers # touch
       expect {
-        patch "/hello/user.json", user_params, auth_headers
+        patch "/hello/current_user.json", user_params, auth_headers
 
         expect(response.status).to eq(200)
       }.not_to change { User.last.password_token_digest }
@@ -40,7 +40,7 @@ RSpec.describe "Security", :type => :request do
       user_params = {user: {password_token_digested_at: Time.now}}
       auth_headers # touch
       expect {
-        patch "/hello/user.json", user_params, auth_headers
+        patch "/hello/current_user.json", user_params, auth_headers
 
         expect(response.status).to eq(200)
       }.not_to change { User.last.password_token_digested_at }

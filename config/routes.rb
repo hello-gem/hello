@@ -40,9 +40,7 @@ Hello::Engine.routes.draw do
   #
   # ACCOUNT MANAGEMENT
   #
-
-  get   'user' => "current_user#edit",  as: 'current_user'
-  patch 'user' => "current_user#update"
+  resource :current_user, only: [:show, :update]
 
   get   'sudo_mode'        => 'sudo_mode#form'
   patch 'sudo_mode'        => 'sudo_mode#authenticate'
@@ -88,6 +86,7 @@ Hello::Engine.routes.draw do
 
   namespace "webmaster" do
     get '' => 'root#index'
+    resources :users, only: [:index]
     # impersonation
       get  'impersonate' => 'impersonation#destroy'
       post 'impersonate' => 'impersonation#create'

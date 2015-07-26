@@ -9,7 +9,7 @@ module Hello
 
     dont_kick :webmaster, only: [:create]
 
-    # POST /hello/webmaster/impersonate credential_id: 1
+    # POST /hello/webmaster/impersonate user_id: 1
     def create
       user = User.find(params[:user_id])
       impersonate(user)
@@ -25,7 +25,7 @@ module Hello
 
       entity = ImpersonateBackEntity.new
       flash[:notice] = entity.success_message
-      redirect_to '/'
+      redirect_to hello.webmaster_path
     end
 
   end
