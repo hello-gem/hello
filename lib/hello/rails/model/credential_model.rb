@@ -1,3 +1,5 @@
+require "hello/rails/model/credential_model_email"
+
 module Hello
   module CredentialModel
     extend ActiveSupport::Concern

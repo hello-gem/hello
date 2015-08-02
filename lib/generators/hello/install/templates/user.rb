@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  include Hello::UserModel # keep this line for gem hello
-
   # don't want usernames?
   # just comment out the line below
   # we strongly recommend the field exists in case your CEO ever ever ever changes their mind
@@ -28,5 +26,4 @@ class User < ActiveRecord::Base
   #     time_zone: Time.zone.name
   #   }
   # end
-  
 end

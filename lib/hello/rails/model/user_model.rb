@@ -1,3 +1,7 @@
+require "hello/rails/model/user_model_username"
+require "hello/rails/model/user_model_password"
+require "hello/rails/model/user_model_roles"
+
 module Hello
   module UserModel
     extend ActiveSupport::Concern

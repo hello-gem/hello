@@ -1,7 +1,15 @@
-require "hello/rails/model/credential_model"
-require "hello/rails/model/credential_model_email"
 require "hello/rails/model/user_model"
-require "hello/rails/model/user_model_username"
-require "hello/rails/model/user_model_password"
-require "hello/rails/model/user_model_roles"
+require "hello/rails/model/credential_model"
 require "hello/rails/model/access_token_model"
+
+class User < ActiveRecord::Base
+  include Hello::UserModel
+end
+
+class Credential < ActiveRecord::Base
+  include Hello::CredentialModel
+end
+
+class AccessToken < ActiveRecord::Base
+  include Hello::AccessTokenModel
+end

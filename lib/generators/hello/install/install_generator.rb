@@ -47,20 +47,6 @@ class Hello::InstallGenerator < Rails::Generators::Base
     copy_file "user.rb",           "app/models/user.rb"
   end
 
-  def tell_programmer_what_to_do_next
-    the_root = File.expand_path("../../../../../", __FILE__)
-    user_rb  = File.join(the_root, "app/models/user.rb")
-
-    puts "-" * 100
-    puts "Hello Developer,\nplease keep the user model in mind: ".red
-
-    puts "\t\t\t\t\tapp/models/user.rb".green
-      puts "-" * 100
-      puts open(user_rb).read.green
-      puts "\n" * 3
-      puts "-" * 100
-  end
-
   def generate_profile
     route "resources :users, only: [:index, :show]"
     directory "users/controllers", "app/controllers"
