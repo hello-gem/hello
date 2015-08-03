@@ -67,7 +67,7 @@ RSpec.describe "Hello Gem", type: :feature do
       end
 
       def _expect_to_be_on_foobar
-        expect_to_be_on user_path('foobar')
+        expect_to_be_on "/users/foobar"
         expect_to_see "James Pinto"
       end
     end

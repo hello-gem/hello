@@ -23,12 +23,12 @@
     <div class="header">
       <ul class="nav nav-pills pull-right">
         <li><%= link_to human_current_locale, hello.locale_path %></li>
-        <li><%= link_to "User List", users_path %></li>
+        <li><%= link_to "User List", main_app.users_path %></li>
         <% if current_user %>
           <% if current_user.webmaster? %>
             <li><%= link_to "Web Master Dashboard", hello.webmaster_path %></li>
           <% end %>
-          <li><%= link_to "My Profile", user_path(current_user.username) %></li>
+          <li><%= link_to "My Profile", main_app.url_for(current_user) %></li>
           <li><%= link_to "Settings", hello.current_user_path %></li>
           <li><%= link_to "Sign Out", hello.sign_out_path %></li>
           <% if impersonated? %>
@@ -62,7 +62,7 @@
     <%= debug session.to_hash %>
     <p>dummy-path: <%= request.fullpath %></p>
     <p>dummy-locale: <%= I18n.locale %></p>
-    <% if hello_access_token %>
+    <% if current_user %>
       <p>dummy-logged-in-User#<%= current_user.id %></p>
       <p>dummy-logged-in-AccessToken#<%= hello_access_token.id %></p>
       <p>dummy-logged-in-role-<%= current_user.role %></p>

@@ -1,27 +1,74 @@
-<%= link_to 'Users', users_path %>
-
-<hr>
-
-<h2>
-  <%= @user.username %>
-</h2>
-
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @user.role %>
-</p>
-
-<p>
-  <strong>Locale:</strong>
-  <%= @user.locale %>
-</p>
-
-<p>
-  <strong>Time zone:</strong>
-  <%= @user.time_zone %>
-</p>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @user.name %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-3 col-lg-3 " align="center">
+        <img alt="User Pic" src="http://placehold.it/300x300" class="img-circle img-responsive">
+      </div>
+      
+      <div class=" col-md-9 col-lg-9 "> 
+        <table class="table table-user-information">
+          <tbody>
+            <tr>
+              <td>ID:</td>
+              <td>#<%= @user.id %></td>
+            </tr>
+            <tr>
+              <td>Username:</td>
+              <td><%= @user.username %></td>
+            </tr>
+            <tr>
+              <td>Page:</td>
+              <td><%= user_url(@user) %></td>
+            </tr>
+            <tr>
+              <td>Role</td>
+              <td><%= @user.role %></td>
+            </tr>
+            <tr>
+              <td>Locale</td>
+              <td><%= @user.locale %></td>
+            </tr>
+            <tr>
+              <td>Time zone</td>
+              <td><%= @user.time_zone %></td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td><%= @user.credentials.classic.map(&:email).to_sentence %></td>
+            </tr>
+            <tr>
+              <td>Credentials:</td>
+              <td><%= @user.credentials_count %></td>
+            </tr>
+            <tr>
+              <td>Sessions:</td>
+              <td><%= @user.access_tokens_count %></td>
+            </tr>
+            <tr>
+              <td>Created:</td>
+              <td><%= l @user.created_at, format: :long %></td>
+            </tr>
+            <tr>
+              <td>Updated</td>
+              <td><%= l @user.updated_at, format: :long %></td>
+            </tr>
+           
+          </tbody>
+        </table>
+        
+        <a href="#" class="btn btn-primary">Button</a>
+        <a href="#" class="btn btn-primary">Button</a>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+    <span class="pull-right">
+      <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+      <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+    </span>
+  </div>
+</div>
