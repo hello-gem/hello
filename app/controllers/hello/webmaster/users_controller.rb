@@ -46,8 +46,11 @@ module Hello
 
     # DELETE /users/1
     def destroy
-      @user.destroy
-      redirect_to users_url, notice: 'User was successfully destroyed.'
+      if @user.destroy
+        redirect_to users_url, notice: 'User was successfully destroyed.'
+      else
+        render :edit
+      end
     end
 
     private
