@@ -14,8 +14,8 @@ module Hello
     
     before_actions do
       only(:index)  { @credential = Credential.new }
-      only(:create) { @credential = hello_user.credentials.classic.build(credential_params) }
-      only(:destroy, :deliver)  { @credential = hello_user.credentials.classic.find(params[:id]) }
+      only(:create) { @credential = current_user.credentials.classic.build(credential_params) }
+      only(:destroy, :deliver)  { @credential = current_user.credentials.classic.find(params[:id]) }
     end
 
     # GET /hello/emails
@@ -61,7 +61,7 @@ module Hello
       end
 
       def credentials
-        hello_user.credentials.classic
+        current_user.credentials.classic
       end
 
   end

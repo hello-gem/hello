@@ -2,7 +2,7 @@ module Hello
   class EmailSignInController < SuperEmailSignInController
 
     def success
-      access_token = create_hello_access_token(@sign_in.user, expires_at)
+      access_token = create_access_token_for(@sign_in.user, expires_at)
 
       respond_to do |format|
         format.html { redirect_to session.delete(:url) || hello.authenticated_path }

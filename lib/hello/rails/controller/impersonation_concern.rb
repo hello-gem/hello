@@ -14,13 +14,13 @@ module Hello
 
         def impersonate(user)
           store_impersonator
-          create_hello_access_token(user, 60.minutes.from_now, 60.minutes.from_now)
+          create_access_token_for(user, 60.minutes.from_now, 60.minutes.from_now)
         end
 
         def hello_back_to_myself
           if impersonated?
-            destroy_hello_access_token
-            set_hello_access_token_token(hello_impersonator_token)
+            destroy_current_access_token
+            set_current_access_token_token(hello_impersonator_token)
           end
         end
 

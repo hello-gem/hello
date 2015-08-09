@@ -38,7 +38,7 @@ module Hello
             # locale
 
             def hello_ensure_thread_locale
-              v = hello_user.try(:locale)
+              v = current_user.try(:locale)
               v ||= session['locale']
               v ||= hello_recommended_locale.to_s
               

@@ -11,8 +11,8 @@ module Hello
     
     before_actions do
       all            { sudo_mode }
-      only(:index)   { @access_tokens = hello_user.access_tokens }
-      only(:destroy) { @access_token  = hello_user.access_tokens.find(params[:id]) }
+      only(:index)   { @access_tokens = current_user.access_tokens }
+      only(:destroy) { @access_token  = current_user.access_tokens.find(params[:id]) }
     end
 
     # GET /hello/access_tokens

@@ -6,7 +6,7 @@ module Hello
     dont_kick_people
 
     before_actions do
-      all { destroy_and_clear_hello_access_token }
+      all { destroy_and_clear_current_access_token }
       only(:confirm) { @credential = Credential.where(id: params[:id]).first }
     end
 
@@ -35,7 +35,7 @@ module Hello
       # when the user gets access, the session of the next request will assume the values it had before,
       # if before you were a guest, you will be redirected as a user, but the following request will be as a guest again
       # if before you were a user1, you will be redirected as a user2, but the following request will be as a user1 again
-      access_token = create_hello_access_token(@credential.user, 1.hour.from_now)
+      access_token = create_access_token_for(@credential.user, 1.hour.from_now)
     end
 
   end

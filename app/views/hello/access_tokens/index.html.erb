@@ -16,18 +16,21 @@
   <tbody>
 
 
-    <% @access_tokens.each_with_index do |a_session, i| %>
-      <% is_this_session = a_session == hello_access_token  %>
+    <% @access_tokens.each_with_index do |atoken, i| %>
 
-      <tr class="<%= 'success' if is_this_session %>">
+      <tr class="<%= 'success' if is_current_access_token? atoken %>">
         <td>Device #<%= i+1 %></td>
-        <td><%= a_session.full_device_name %></td>
-        <td><%= a_session.ip %></td>
+        <td><%= atoken.full_device_name %></td>
+        <td><%= atoken.ip %></td>
         <td>
-          <% if is_this_session %>
+          <% if is_current_access_token? atoken %>
             [this device]
           <% else %>
-            <%= button_to 'Unlink', a_session, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+            <%= button_to 'Unlink',
+                          atoken,
+                          method: :delete,
+                          class: 'btn btn-danger',
+                          data: { confirm: 'Are you sure?' } %>
           <% end %>
         </td>
       </tr>

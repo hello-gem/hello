@@ -24,8 +24,8 @@ module Hello
       #
       # Update Database / Session
       #
-      if hello_user
-        hello_user.update!(locale: locale)
+      if current_user
+        current_user.update!(locale: locale)
       else
         session['locale'] = locale
       end

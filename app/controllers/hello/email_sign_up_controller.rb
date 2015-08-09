@@ -4,7 +4,7 @@ module Hello
     def success
       deliver_welcome_email
 
-      access_token = create_hello_access_token(@sign_up.user, expires_at)
+      access_token = create_access_token_for(@sign_up.user, expires_at)
 
       respond_to do |format|
         format.html { redirect_to '/novice' }
