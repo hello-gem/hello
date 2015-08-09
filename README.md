@@ -11,8 +11,13 @@ __This gem is in rapid development, currently in Beta__
 
 [![Build Status](https://travis-ci.org/hello-gem/hello.svg?branch=master)](https://travis-ci.org/hello-gem/hello) [![Code Climate](https://codeclimate.com/github/hello-gem/hello.png)](https://codeclimate.com/github/hello-gem/hello) [![Code Climate](https://codeclimate.com/github/hello-gem/hello/coverage.png)](https://codeclimate.com/github/hello-gem/hello) [![Dependency Status](https://gemnasium.com/hello-gem/hello.svg)](https://gemnasium.com/hello-gem/hello) [![Inline docs](http://inch-ci.org/github/hello-gem/hello.png?branch=master)](http://inch-ci.org/github/hello-gem/hello)
 
+## Tested With
 
-
+| Ruby Versions | Rails Versions      |
+| ------------- |---------------------|
+| Ruby 2.0.0    | Rails 4.1.*         |
+| Ruby 2.1.5    | Rails 4.2.*         |
+| Ruby 2.2.1    | Rails 5 beta (soon) |
 
 
 
@@ -128,11 +133,6 @@ end
 * Bugs/Issues: https://github.com/hello-gem/hello/issues
 * Support: http://stackoverflow.com/questions/tagged/hello
 * Support/Chat: [![Gitter chat](https://badges.gitter.im/hello-gem/hello.png)](https://gitter.im/hello-gem/hello)
-
-## Requirements and Compatibility
-
-* Ruby 1.9+
-* Rails 4.0+
 
 ## Demo
 

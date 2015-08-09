@@ -52,15 +52,10 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-      # KNOWNBUG: this scenario only fails in Rails 4.0
       sscenario "Scenario 2: User has dependent grandchildren" do
-        if Hello.is_this_rails_4_0?
-          skip "known bug: this scenario only fails because of a Rails 4.0 bug"
-        else
-          _invalid_scenarios_but_before do
-            But "User has dependent grandchildren" do
-              Credential.last.some_credential_data.create! text: "foo"
-            end
+        _invalid_scenarios_but_before do
+          But "User has dependent grandchildren" do
+            Credential.last.some_credential_data.create! text: "foo"
           end
         end
       end
