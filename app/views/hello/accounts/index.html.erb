@@ -1,0 +1,37 @@
+<h1>Listing Accounts</h1>
+
+<p>
+  <%= link_to "Sign Up", hello.sign_up_path %> |
+  <%= link_to "Sign In", hello.sign_in_path %>
+</p>
+
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Expiry</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @access_tokens.each do |at| %>
+      <tr>
+        <td><%= link_to at.user.username, url_for(at.user) %></td>
+        <td><%= at.user.name %></td>
+        <td><%= at.user.role %></td>
+        <td><%= distance_of_time_in_words_to_now(at.expires_at) %></td>
+        <td><%= link_to "Switch!",
+                        hello.account_path(at.id),
+                        class: 'btn btn-xs btn-success' unless is_current_access_token?(at) %></td>
+        <td><%= button_to "Remove",
+                          hello.account_path(at.id),
+                          method: :delete,
+                          class: 'btn btn-xs btn-danger',
+                          data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

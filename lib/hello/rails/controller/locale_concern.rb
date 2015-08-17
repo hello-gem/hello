@@ -27,6 +27,11 @@ module Hello
           available_locales_with_names.map { |k,v| [v, k] }
         end
 
+        def set_session_locale(v)
+          session['locale'] = v
+          hello_ensure_thread_locale
+        end
+
 
         included do
           before_action :hello_ensure_thread_locale

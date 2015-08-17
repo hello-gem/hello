@@ -115,8 +115,7 @@ RSpec.describe "Hello Gem", type: :feature do
         end
 
         When "I attempt to remove that email" do
-          # click_button "Remove", match: :last
-          page.all(:button, "Remove")[1].click
+          click_nth_button("Remove", 1)
         end
 
         Then "I should see a confirmation message" do

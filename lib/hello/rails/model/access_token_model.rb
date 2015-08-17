@@ -25,6 +25,14 @@ module Hello
       Hello.user_agent_parser.parse(user_agent_string)
     end
 
+    def active_access_token_or_destroy
+      if expires_at.future?
+        access_token
+      else
+        destroy and return nil
+      end
+    end
+
 
 
     included do
@@ -52,6 +60,14 @@ module Hello
 
 
     module ClassMethods
+      def delete_all_expired
+        where('expires_at < ?', Time.now).delete_all
+        true
+      end
+
+      def cached_delete_all_expired
+        @@delete_all_expired ||= delete_all_expired
+      end
     end
 
 

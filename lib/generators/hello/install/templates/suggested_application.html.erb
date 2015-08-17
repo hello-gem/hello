@@ -24,6 +24,11 @@
       <ul class="nav nav-pills pull-right">
         <li><%= link_to human_current_locale, hello.locale_path %></li>
         <li><%= link_to "User List", main_app.users_path %></li>
+
+        <% if current_access_tokens.any? %>
+          <li><%= link_to "Switch Accounts", hello.accounts_path %></li>
+        <% end %>
+
         <% if current_user %>
           <% if current_user.webmaster? %>
             <li><%= link_to "Web Master Dashboard", hello.webmaster_path %></li>

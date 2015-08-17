@@ -1,8 +1,7 @@
 module Hello
   class SuperEmailSignInController < ApplicationController
 
-    dont_kick :guest, only: [:index, :authenticate]
-    kick      :guest, only: [:authenticated]
+    kick :guest, only: [:authenticated]
 
     # GET /hello/sign_in
     def index

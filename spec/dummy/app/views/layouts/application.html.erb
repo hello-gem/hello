@@ -24,6 +24,11 @@
       <ul class="nav nav-pills pull-right">
         <li><%= link_to human_current_locale, hello.locale_path %></li>
         <li><%= link_to "User List", main_app.users_path %></li>
+
+        <% if current_access_tokens.any? %>
+          <li><%= link_to "Switch Accounts", hello.accounts_path %></li>
+        <% end %>
+        
         <% if current_user %>
           <% if current_user.webmaster? %>
             <li><%= link_to "Web Master Dashboard", hello.webmaster_path %></li>
@@ -62,14 +67,17 @@
     <%= debug session.to_hash %>
     <p>dummy-path: <%= request.fullpath %></p>
     <p>dummy-locale: <%= I18n.locale %></p>
+
+    <p>dummy-accounts-<%= current_access_tokens.size %></p>
+    <% current_access_tokens.each do |access_token| %>
+      <p>dummy-account-<%= access_token.user.username %></p>
+    <% end %>
+
     <% if current_user %>
       <p>dummy-logged-in-User#<%= current_user.id %></p>
       <p>dummy-logged-in-AccessToken#<%= current_access_token.id %></p>
       <p>dummy-logged-in-role-<%= current_user.role %></p>
-
-      
       <p>dummy-logged-in-<%= sudo_mode? ? 'with' : 'without' %>-sudo-mode</p>
-
     <% else %>
       <p>dummy-logged-out</p>
     <% end %>

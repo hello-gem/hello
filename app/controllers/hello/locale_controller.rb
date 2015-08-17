@@ -24,17 +24,8 @@ module Hello
       #
       # Update Database / Session
       #
-      if current_user
-        current_user.update!(locale: locale)
-      else
-        session['locale'] = locale
-      end
-
-      #
-      # Ensure Thread
-      #
-      hello_ensure_thread_locale
-
+      current_user && current_user.update!(locale: locale)
+      set_session_locale(locale)
 
       #
       # Render Response

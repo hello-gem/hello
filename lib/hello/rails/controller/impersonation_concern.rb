@@ -19,8 +19,9 @@ module Hello
 
         def hello_back_to_myself
           if impersonated?
-            destroy_current_access_token
-            set_current_access_token_token(hello_impersonator_token)
+            string = hello_impersonator_token
+            destroy_and_clear_current_access_token_from_session
+            self.session_access_token = string
           end
         end
 
@@ -33,7 +34,7 @@ module Hello
         private
 
             def store_impersonator
-              set_hello_impersonator_token(access_token)
+              set_hello_impersonator_token(session_access_token)
             end
 
             def hello_impersonator_token

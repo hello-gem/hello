@@ -6,7 +6,7 @@ module Hello
     dont_kick_people
 
     before_actions do
-      all { destroy_and_clear_current_access_token }
+      all { destroy_and_clear_current_access_token_from_session }
       only(:confirm) { @credential = Credential.where(id: params[:id]).first }
     end
 

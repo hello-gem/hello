@@ -24,7 +24,8 @@ def when_sign_up_as_a_novice(options={})
   #   Hello::RegistrationMailer.should_not_receive(:welcome)
   # end
 
-  visit hello.root_path
+  # visit hello.root_path
+  visit hello.sign_up_path
   within("form#new_sign_up") do
     fill_in 'sign_up_name',     with: 'James Pinto'
     fill_in 'sign_up_email',    with: 'foo@bar.com'
@@ -49,7 +50,8 @@ def when_sign_in_with_webmaster_data
 end
 
 def when_sign_in(login, password, options={})
-  visit hello.root_path
+  # visit hello.root_path
+  visit hello.sign_in_path
   within("form#new_sign_in") do
     fill_in 'sign_in_login',    with: login
     fill_in 'sign_in_password', with: password

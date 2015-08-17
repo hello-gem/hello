@@ -1,7 +1,8 @@
 module Hello
   class SuperEmailSignUpController < ApplicationController
 
-    dont_kick :guest
+    # dont_kick :guest
+    dont_kick_people # yup :)
 
     before_action do
       @entity = @sign_up = SignUpEntity.new(self)

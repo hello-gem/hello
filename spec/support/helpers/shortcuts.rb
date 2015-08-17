@@ -14,3 +14,7 @@ end
 def page_reload
   visit current_url
 end
+
+def click_nth_button(string, i)
+  page.all(:button, string)[i].click
+end

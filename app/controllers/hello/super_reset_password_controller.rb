@@ -5,7 +5,7 @@ module Hello
 
     # GET /hello/password/reset/:token
     def reset_token
-      destroy_and_clear_current_access_token
+      destroy_and_clear_current_access_token_from_session
       @reset_password = ResetPasswordEntity.new(params[:token])
 
       if @reset_password.user

@@ -12,6 +12,7 @@ require "hello/engine"
 require "hello/configuration"
 
 
+require "hello/access_token_lister"
 require "hello/errors"
 require "hello/locales"
 require "hello/user_agent"

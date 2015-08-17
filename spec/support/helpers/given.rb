@@ -42,3 +42,11 @@ def given_I_am_logged_in
   given_I_am_logged_in_with_a_classic_credential
 end
 
+def given_I_am_logged_in_with_two_accounts
+  given_I_have_signed_in
+  given_I_have_a_webmaster_password_credential
+  when_sign_in_with_webmaster_data
+  then_I_expect_to_be_signed_in_with_role('webmaster')
+  expect_to_see "dummy-accounts-2"
+end
+
