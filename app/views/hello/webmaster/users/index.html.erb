@@ -28,7 +28,7 @@
         <td><%= user.credentials_count %></td>
         <td><%= user.access_tokens_count %></td>
         <!-- actions -->
-        <td><%= button_to "Impersonate!", hello.webmaster_impersonate_path(user_id: user.id) unless current_user == user %></td>
+        <td><%= button_to "Impersonate!", hello.impersonate_webmaster_user_path(user.id) unless current_user == user %></td>
       </tr>
     <% end %>
   </tbody>

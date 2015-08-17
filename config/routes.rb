@@ -82,15 +82,19 @@ Hello::Engine.routes.draw do
 
 
   #
-  # MASTER
+  # WEBMASTER
   #
 
   namespace "webmaster" do
     get '' => 'root#index'
-    resources :users, only: [:index]
-    # impersonation
-      get  'impersonate' => 'impersonation#destroy'
-      post 'impersonate' => 'impersonation#create'
+    resources :users, only: [:index] do
+      member do
+        post 'impersonate'
+      end
+      collection do
+        get 'impersonate_back'
+      end
+    end
   end
 
 

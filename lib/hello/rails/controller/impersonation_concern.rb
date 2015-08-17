@@ -12,39 +12,21 @@ module Hello
           helper_method :impersonated?
         end
 
-        def impersonate(user)
-          store_impersonator
+        def hello_impersonate(user)
+          session['impersonated'] = 1
           create_access_token_for(user, 60.minutes.from_now, 60.minutes.from_now)
         end
 
         def hello_back_to_myself
           if impersonated?
-            string = hello_impersonator_token
             destroy_and_clear_current_access_token_from_session
-            self.session_access_token = string
+            self.session_access_token = session_access_tokens.first
           end
         end
 
         def impersonated?
-          hello_impersonator_token.present?
+          !!session['impersonated']
         end
-
-
-
-        private
-
-            def store_impersonator
-              set_hello_impersonator_token(session_access_token)
-            end
-
-            def hello_impersonator_token
-              session['hello_impersonator']
-            end
-
-            def set_hello_impersonator_token(v)
-              session['hello_impersonator'] = v
-            end
-
 
       end
     end

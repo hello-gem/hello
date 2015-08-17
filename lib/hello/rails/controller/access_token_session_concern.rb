@@ -14,7 +14,7 @@ module Hello
         def destroy_and_clear_current_access_token_from_session
           current_access_token && current_access_token.destroy
           self.session_access_token = nil
-          set_hello_impersonator_token(nil)
+          session['impersonated'] = nil
         end
 
         def session_access_tokens
