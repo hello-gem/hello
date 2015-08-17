@@ -26,19 +26,20 @@ class Hello::InstallGenerator < Rails::Generators::Base
     rake "hello:install:migrations"
   end
 
-  def inject_suggested_header
-    puts "\t\t\tapp/views/layouts/application.html.erb".green
-
-    the_template_path = File.expand_path('../templates', __FILE__)
-    suggested_header_erb = File.join(the_template_path, "suggested_header.html.erb")
-    after_regex = /<body(.*)>/i
-    destination = 'app/views/layouts/application.html.erb'
-    content = open(suggested_header_erb).read
-
-    inject_into_file destination, content, after: after_regex
-
-  rescue Errno::ENOENT
-    copy_file "suggested_application.html.erb", destination
+  def create_layout_file
+    destination = "app/views/layouts/application.html.erb"
+    if yes?("Replace application.html.erb automatically?")
+      copy_file "application.html.erb", "app/views/layouts/application.html.erb"
+    else
+      the_template_path = File.expand_path('../templates', __FILE__)
+      app_erb_path = File.join(the_template_path, "application.html.erb")
+      content = open(app_erb_path).read
+      puts ("-" * 100).light_yellow
+      puts "  We recommend you add these elements to your application.html.erb file".light_yellow
+      puts ("-" * 100).light_yellow
+      puts content.light_green.on_black.bold
+      puts ("-" * 100).light_yellow
+    end
   end
 
   def create_models

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+  <div class="container">
+    <div class="header">
+      <%= render "/hello/shared/nav_pills" %>
+
+      <h3 class="text-muted"><a href="/">Project name</a></h3>
+      <p class="lead">Hello, <%= current_user && current_user.name || "Guest" %>!</p>
+
+      <%= render "/hello/shared/session_expiration" %>
+    </div>
+
+    <%= render "/hello/shared/flash" %>
+
+    <%= yield %>
+
+  </div>
+
+</body>
+</html>
