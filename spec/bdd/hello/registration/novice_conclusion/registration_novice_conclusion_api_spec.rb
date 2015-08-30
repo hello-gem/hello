@@ -6,6 +6,8 @@ RSpec.describe "Hello Gem", type: :request do
 
 
     before do
+      allow_any_instance_of(ActionController::Base).to receive(:is_request_stateless?).and_return(true)
+
       Given "I have a novice access token" do
         u = create(:novice)
         at = create(:access_token, user: u, expires_at: 24.hours.from_now)

@@ -14,6 +14,7 @@ module Hello
         def destroy_and_clear_current_access_token_from_session
           current_access_token && current_access_token.destroy
           self.session_access_token = nil
+          self.session_access_tokens = AccessToken.where(access_token: self.session_access_tokens).pluck(:access_token)
           session['impersonated'] = nil
         end
 
@@ -27,7 +28,7 @@ module Hello
         end
 
         def session_access_token
-          request.session['access_token'] ||= []
+          request.session['access_token']
         end
 
         def session_access_token=(v)

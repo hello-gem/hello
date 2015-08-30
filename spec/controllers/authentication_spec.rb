@@ -48,6 +48,7 @@ describe "Authentication" do
       before { @s = given_I_have_a_classic_access_token }
 
       it "PARAMS" do
+        @request.host = "api.test.host"
         get :show, {format: :json, access_token: @s.access_token}
         json_body = JSON(response.body)
         expect(response.status).to eq(200)
@@ -56,6 +57,7 @@ describe "Authentication" do
       end
 
       it "SESSION" do
+        @request.session['access_tokens'] = [@s.access_token]
         @request.session['access_token'] = @s.access_token
         get :show, {format: :json}#, {access_token: @s.access_token}
         json_body = JSON(response.body)
@@ -64,16 +66,8 @@ describe "Authentication" do
         expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "username", "locale", "time_zone", "credentials_count", "access_tokens_count", "city"])
       end
 
-      it "COOKIE" do
-        @request.cookies['access_token'] = @s.access_token
-        get :show, {format: :json}
-        json_body = JSON(response.body)
-        expect(response.status).to eq(200)
-        expect(response.status_message).to eq("OK")
-        expect(json_body.keys).to match_array(["id", "created_at", "updated_at", "name", "role", "username", "locale", "time_zone", "credentials_count", "access_tokens_count", "city"])
-      end
-
       it "HEADER" do
+        @request.host = "api.test.host"
         @request.headers['HTTP_ACCESS_TOKEN'] = @s.access_token
         get :show, {format: :json}
         json_body = JSON(response.body)
