@@ -8,23 +8,27 @@ module Hello
         module ClassMethods
         end
 
+        # OBSERVATION: this capability does not cover stateless requests
+
         included do
           helper_method :impersonated?
         end
 
         def hello_impersonate(user)
           session['impersonated'] = 1
-          create_access_token_for(user, 60.minutes.from_now, 60.minutes.from_now)
+          sign_in!(user, 60.minutes.from_now, 60.minutes.from_now)
         end
 
         def hello_back_to_myself
           if impersonated?
-            destroy_and_clear_current_access_token_from_session
+            sign_out!
+            # sign in with next in line
             self.session_access_token = session_access_tokens.first
           end
         end
 
         def impersonated?
+          # check StatefulRequestManager for a reference to session['impersonated']
           !!session['impersonated']
         end
 

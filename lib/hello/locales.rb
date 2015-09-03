@@ -8,4 +8,8 @@ module Hello
     ['en', 'pt-BR', 'es']
   end
 
+  def self.default_locale
+    I18n.default_locale || 'en'
+  end
+
 end

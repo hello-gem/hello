@@ -45,7 +45,7 @@
         <p>dummy-account-<%= access_token.user.username %></p>
       <% end %>
 
-      <% if current_user %>
+      <% if signed_in? %>
         <p>dummy-logged-in-User#<%= current_user.id %></p>
         <p>dummy-logged-in-AccessToken#<%= current_access_token.id %></p>
         <p>dummy-logged-in-role-<%= current_user.role %></p>

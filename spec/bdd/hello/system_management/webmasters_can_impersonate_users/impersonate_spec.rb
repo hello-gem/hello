@@ -21,6 +21,10 @@ RSpec.describe "Hello Gem", type: :feature do
         _impersonate
       end
 
+      sscenario "Stateless" do
+        skip "provide scenario for an API usage with a JSON return"
+      end
+
       sscenario "Failure" do
         skip "provide scenario on how an impersonation can go wrong"
       end

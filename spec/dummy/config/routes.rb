@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'middleware/bad_kitty',  constraints: -> (request) { request.env['hello'].signed_in? }
+
   get 'my_areas/guest_page'
   get 'my_areas/authenticated_page'
   get 'my_areas/novice_page'

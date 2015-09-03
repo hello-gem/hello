@@ -5,6 +5,8 @@ module Hello
         
         extend ActiveSupport::Concern
 
+        # OBSERVATION: Kicking cares about the request format, not so much about state
+
         module ClassMethods
 
           def kick(*args)

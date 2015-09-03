@@ -15,22 +15,9 @@ module Hello
 
     # POST /hello/locale
     def update
-      #
-      # Filter params
-      #
-      excluded_unsupported_locales = ([params['locale']] & Hello.available_locales)
-      locale = excluded_unsupported_locales.first || 'en'
-
-      #
-      # Update Database / Session
-      #
-      current_user && current_user.update!(locale: locale)
-      set_session_locale(locale)
-
-      #
-      # Render Response
-      #
-      entity = UpdateLocaleEntity.new
+      entity = UpdateLocaleEntity.new(params['locale'])
+      
+      set_locale(entity.locale)
 
       respond_to do |format|
         format.html { redirect_to :back, notice: entity.success_message }

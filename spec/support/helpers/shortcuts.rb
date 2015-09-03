@@ -18,3 +18,7 @@ end
 def click_nth_button(string, i)
   page.all(:button, string)[i].click
 end
+
+def mock_stateless!
+  allow_any_instance_of(Hello::Manager::RequestManagerFactory).to receive(:is_stateless?).and_return(true)
+end

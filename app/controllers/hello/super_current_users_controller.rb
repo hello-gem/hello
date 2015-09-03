@@ -18,7 +18,7 @@ module Hello
     # PATCH /hello/user
     def update
       if @user_entity.update(user_params)
-        hello_ensure_thread_locale
+        use_locale
         flash[:notice] = @user_entity.success_message
         success
       else

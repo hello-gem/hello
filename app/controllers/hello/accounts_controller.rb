@@ -27,5 +27,11 @@ module Hello
       redirect_to hello.accounts_path, notice: "Signed Out Successfully!"
     end
 
+    private
+
+    def current_access_tokens_find_by_id(string)
+      current_access_tokens.select { |at| at.id.to_s == string }.first
+    end
+
   end
 end

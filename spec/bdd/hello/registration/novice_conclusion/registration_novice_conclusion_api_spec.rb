@@ -6,7 +6,7 @@ RSpec.describe "Hello Gem", type: :request do
 
 
     before do
-      allow_any_instance_of(ActionController::Base).to receive(:is_request_stateless?).and_return(true)
+      mock_stateless!
 
       Given "I have a novice access token" do
         u = create(:novice)
