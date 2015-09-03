@@ -28,7 +28,7 @@ module Hello
         end
 
             def render_sudo_mode
-              session[:hello_url] = url_for(params.merge only_path: true)
+              session[:url] = url_for(params.merge only_path: true)
               render '/hello/sudo_mode/form'
             end
 
