@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe "Hello Gem", type: :feature do
-  goal_feature "Registration", "Sign Out", "Button" do
+  goal_feature "Authentication", "Sign Out", "Button" do
 
 
 
