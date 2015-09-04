@@ -35,8 +35,8 @@ And then execute:
 bundle install
 bundle exec rails generate hello:install
 bundle exec rake db:migrate
-bundle exec rails generate hello:controllers # optional
-bundle exec rails generate hello:views # optional
+bundle exec rails generate hello:modules # optional
+bundle exec rails generate hello:views   # optional
 ```
 
 ## Customizing - behavior and views
@@ -48,29 +48,25 @@ They are simple to customize, just open them.
     ├── app/
     │   ├── controllers/
     │   │   ├── novice_controller.rb
-    │   │   ├── users_controller.rb
-    │   │   └── hello/
-    │   │       ├── deactivation_controller.rb
-    │   │       ├── email_forgot_password_controller.rb
-    │   │       ├── email_sign_in_controller.rb
-    │   │       ├── email_sign_up_controller.rb
-    │   │       ├── reset_password_controller.rb
-    │   │       ├── sign_out_controller.rb
-    │   │       └── user_controller.rb
+    │   │   └── users_controller.rb
     │   ├── models/
     │   │   ├── credential.rb
     │   │   ├── active_session.rb
     │   │   └── user.rb
-    │   └── views/
-    │       ├── hello/
-    │       │   └── [...optional...]
-    │       ├── layouts/
-    │       │   └── application.html.erb
-    │       ├── novice/
-    │       │   └── index.html.erb
-    │       └── users/
-    │           ├── index.html.erb
-    │           └── show.html.erb
+    │   ├── views/
+    │   │   ├── hello/
+    │   │   │   └── [...optional...]
+    │   │   ├── layouts/
+    │   │   │   └── application.html.erb
+    │   │   ├── novice/
+    │   │   │   └── index.html.erb
+    │   │   └── users/
+    │   │       ├── index.html.erb
+    │   │       └── show.html.erb
+    │   └── lib/
+    │       └── hello/
+    │           └── modules/
+    │               └── [...optional...]
     ├── config/
     │   └── initializers
     │       └── hello.rb
@@ -90,27 +86,25 @@ They are simple to customize, just open them.
 ## Customizing
 
 ```ruby
-class Credential < ActiveRecord::Base
-  include Hello::CredentialModel
-
+class User < ActiveRecord::Base
   validates_presence_of :username
-
 end
 
 module Hello
-  class EmailSignUpController < SuperEmailSignUpController
+  module Modules
+    module EmailSignUp
 
-    def success
-      deliver_welcome_email
-      deliver_confirmation_email
-      redirect_to root_path
+      def success
+        deliver_welcome_email
+        deliver_confirmation_email
+        redirect_to root_path
+      end
+
+      def failure
+        render action: 'index'
+      end
+
     end
-
-    def failure
-      render action: 'index'
-    end
-
-
   end
 end
 ```

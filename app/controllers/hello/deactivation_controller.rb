@@ -1,20 +1,38 @@
 module Hello
-  class DeactivationController < SuperDeactivationController
+  class DeactivationController < ApplicationController
     
-    def perform_deactivation
-      # current_user.update! deactivated_at: Time.now
-      # current_user.update! deactivated: true
-      current_user.destroy!
-    rescue ActiveRecord::RecordNotDestroyed => invalid
-      raise ActiveRecord::Rollback
+    kick      :guest, only: [:proposal, :deactivate]
+    dont_kick :guest, only: [:deactivated]
+
+    before_actions do
+      only(:proposal, :deactivate) { @deactivation = DeactivateEntity.new }
     end
 
-    def success
-      respond_to do |format|
-        format.html { redirect_to hello.deactivated_path }
-        format.json { render json: {deactivated: true}, status: :ok }
-      end
+    # GET /hello/deactivation
+    def proposal
     end
+
+        # POST /hello/deactivation
+        def deactivate
+          has_deactivated = false
+          User.transaction { has_deactivated = perform_deactivation }
+
+          if has_deactivated
+            flash[:notice] = @deactivation.success_message
+            success
+          else
+            flash.now[:alert] = @deactivation.alert_message
+            render :proposal
+            # respond_to do |format|
+            #   format.html {  }
+            #   format.json { render json: {message: @deactivation.alert_message }, status: :unprocessable_entity }
+            # end
+          end
+        end
+
+            # GET /hello/deactivation/deactivated
+            def deactivated
+            end
 
   end
 end

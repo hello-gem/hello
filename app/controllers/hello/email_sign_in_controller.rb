@@ -1,35 +1,29 @@
 module Hello
-  class EmailSignInController < SuperEmailSignInController
+  class EmailSignInController < ApplicationController
 
-    def success
-      access_token = sign_in!(@sign_in.user, expires_at)
+    kick :guest, only: [:authenticated]
 
-      respond_to do |format|
-        format.html { redirect_to session.delete(:url) || hello.authenticated_path }
-        format.json { render json: access_token.as_json_api, status: :created }
-      end
+    # GET /hello/sign_in
+    def index
+      @entity = @sign_in = SignInEntity.new
     end
 
-    def failure
-      # SUGGESTION: register failed attempt if password was incorrect
+    # POST /hello/sign_in
+    def authenticate
+      @entity = @sign_in = SignInEntity.new(params.require(:sign_in))
+      @user = @sign_in.user
 
-      respond_to do |format|
-        format.html { render action: 'index' }
-        format.json { render json: @sign_in.errors, status: :unprocessable_entity }
-      end
-    end
-
-
-
-    def expires_at
-      if params[:keep_me]
-        30.days.from_now
+      if @sign_in.authenticate
+        flash[:notice] = @sign_in.success_message
+        success
       else
-        30.minutes.from_now
+        failure
       end
     end
 
-
+    # GET /hello/authenticated
+    def authenticated
+    end
 
   end
 end

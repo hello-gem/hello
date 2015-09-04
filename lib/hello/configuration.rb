@@ -1,25 +1,32 @@
 module Hello
 
-  def self.configuration
-    @configuration ||= Configuration.new
-  end
-
+  # invoked from config/initializers/hello.rb
   def self.configure
     yield(configuration)
   end
 
-  class Configuration
-    attr_accessor :mailer_sender
-
-    def initialize
-      self.mailer_sender = 'hello@example.com'
-    end
-
-    def mailer_sender=(v)
-      message_array = ValidatesEmailFormatOf.validate_email_format v.to_s
-      raise ArgumentError.new(message_array.to_sentence) if message_array
-      @mailer_sender=v
-    end
-    
+  # invoked internally
+  def self.configuration
+    @configuration ||= ::Rails.configuration.hello
   end
+  
+  # invoked from engine.rb
+  def self.apply_config!
+    User.hello_apply_config!
+
+    configuration.modules.tap do |m|
+      # User Registration
+      EmailSignUpController.send     :include, m.email_sign_up
+      DeactivationController.send    :include, m.deactivation
+      # User Authentication
+      EmailSignInController.send     :include, m.email_sign_in
+      ForgotPasswordController.send  :include, m.forgot_password
+      ResetPasswordController.send   :include, m.reset_password
+      SignOutController.send         :include, m.sign_out
+      # Account Management
+      CurrentUsersController.send    :include, m.update_profile
+
+    end
+  end
+
 end

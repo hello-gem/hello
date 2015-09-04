@@ -1,20 +1,37 @@
 module Hello
-  class CurrentUsersController < SuperCurrentUsersController
+  class CurrentUsersController < ApplicationController
 
-    puts "TODO: change this -> user.to_hash_profile".red.blink
+    kick :guest, :novice
 
-    def success
+    before_action do
+      @user_entity = UpdateMyUserEntity.new(@user = current_user)
+    end
+
+    # GET /hello/user
+    def show
       respond_to do |format|
-        format.html { redirect_to hello.current_user_path }
+        format.html {  }
         format.json { render json: @user.to_hash_profile, status: :ok }
       end
     end
 
-    def failure
-      respond_to do |format|
-        format.html { render :show }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    # PATCH /hello/user
+    def update
+      if @user_entity.update(user_params)
+        use_locale
+        flash[:notice] = @user_entity.success_message
+        success
+      else
+        failure
       end
+    end
+
+
+
+    private
+
+    def user_params
+      params.require(:user)
     end
 
   end

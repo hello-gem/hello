@@ -9,7 +9,7 @@ describe "Authentication" do
   # I can see the website
   # So I don't face missing translation issues
 
-  describe EmailForgotPasswordController do
+  describe ForgotPasswordController do
 
     describe "Browser locale or default" do
 

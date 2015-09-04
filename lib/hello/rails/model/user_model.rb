@@ -71,6 +71,21 @@ module Hello
         the_columns.reject! { |column| column.starts_with? 'password_' }
         the_columns
       end
+
+      def hello_apply_config!
+        Hello.configuration.tap do |c|
+          validates_length_of  :password,
+                                    in: c.password_length,
+                                    too_long:  'maximum of %{count} characters',
+                                    too_short: 'minimum of %{count} characters',
+                                    if: :password_digest_changed?
+          validates_format_of :username, with: c.username_regex
+          validates_length_of :username,
+                                   in: c.username_length,
+                                   too_long:  'maximum of %{count} characters',
+                                   too_short: 'minimum of %{count} characters'
+        end
+      end
     end
 
 

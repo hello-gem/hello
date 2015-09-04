@@ -1,5 +1,5 @@
 module Hello
-  class SuperEmailForgotPasswordController < ApplicationController
+  class ForgotPasswordController < ApplicationController
 
     dont_kick :guest
 
@@ -20,6 +20,7 @@ module Hello
       end
       
       session[:forgot_login] = @forgot_password.login
+      puts "TODO: clear this from session some time"
     end
 
     # GET /hello/remembered

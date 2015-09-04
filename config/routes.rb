@@ -21,10 +21,6 @@ Hello::Engine.routes.draw do
   post "sign_in"         => "email_sign_in#authenticate"
   get  "authenticated"   => "email_sign_in#authenticated"
 
-  get  "password/forgot"          => "email_forgot_password#index"
-  post "password/forgot"          => "email_forgot_password#remember"
-  get  "password/remembered"      => "email_forgot_password#remembered"
-
   resources :emails, only: [:index, :create, :destroy] do
     member do
       post "deliver"
@@ -57,6 +53,10 @@ Hello::Engine.routes.draw do
 
   get   'password' => "password#edit"
   patch 'password' => "password#update"
+
+  get  "password/forgot"     => "forgot_password#index"
+  post "password/forgot"     => "forgot_password#remember"
+  get  "password/remembered" => "forgot_password#remembered"
 
   get  "password/reset/done"      => "reset_password#done"
   get  "password/reset/:token"    => "reset_password#reset_token", as: 'reset_token'

@@ -1,13 +1,16 @@
 module Hello
-  class SignOutController < SuperSignOutController
+  class SignOutController < ApplicationController
 
-    def success
-      respond_to do |format|
-        # format.html { redirect_to hello.root_path }
-        # format.html { redirect_to root_path }
-        format.html { render :sign_out }
-        format.json { head :reset_content }
-      end
+    dont_kick_people
+
+    # GET /hello/sign_out
+    def sign_out
+      sign_out!
+
+      @sign_out = SignOutEntity.new
+      flash.now[:notice] = @sign_out.success_message
+      
+      success
     end
 
   end
