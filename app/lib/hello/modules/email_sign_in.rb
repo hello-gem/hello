@@ -7,7 +7,7 @@ module Hello
 
         respond_to do |format|
           format.html { redirect_to session.delete(:url) || hello.authenticated_path }
-          format.json { render json: access_token.as_json_api, status: :created }
+          format.json { render json: access_token.to_json_web_api, status: :created }
         end
       end
 

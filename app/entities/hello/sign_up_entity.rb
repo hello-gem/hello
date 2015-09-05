@@ -1,6 +1,10 @@
 module Hello
   class SignUpEntity < AbstractEntity
 
+    # Used for configuration only
+    class Mod
+    end
+
     attr_accessor :credential
 
     def initialize(controller)
@@ -39,9 +43,10 @@ module Hello
         # initialize helpers
 
         def set_internal_vars
-          x = User.new
-          @user_fields = x.sign_up_attribute_names.map(&:to_s)
-          @defaults    = x.sign_up_default_attributes.stringify_keys
+          Mod.new.tap do |x|
+            @user_fields = x.fields.map(&:to_s)
+            @defaults    = x.defaults.stringify_keys
+          end
         end
 
         def generate_accessors

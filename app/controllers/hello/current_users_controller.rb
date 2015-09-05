@@ -11,7 +11,7 @@ module Hello
     def show
       respond_to do |format|
         format.html {  }
-        format.json { render json: @user.to_hash_profile, status: :ok }
+        format.json { render json: @user.to_json_web_api, status: :ok }
       end
     end
 

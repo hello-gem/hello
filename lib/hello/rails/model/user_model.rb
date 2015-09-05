@@ -6,16 +6,6 @@ module Hello
   module UserModel
     extend ActiveSupport::Concern
 
-
-    # {"name" => "...", "city" => "..."}
-    def hello_profile_attributes
-      attributes.slice(*self.class.hello_profile_column_names)
-    end
-
-    def to_hash_profile
-      attributes.reject { |key| %w[password_digest password_token_digest password_token_digested_at].include? key }
-    end
-
     included do
       has_many :credentials,     dependent: :destroy
       has_many :access_tokens, dependent: :destroy
@@ -27,6 +17,12 @@ module Hello
       include UserModelUsername
       include UserModelPassword
       include UserModelRoles
+    end
+
+    # NOTE:
+    # dup your changes on lib/generators/hello/install/templates/user.rb
+    def to_json_web_api
+      attributes.reject { |k, v| k.include?("password") }
     end
 
     def destroy
@@ -46,31 +42,12 @@ module Hello
 
 
 
-    def sign_up_attribute_names
-      %w(name username password time_zone locale)
-    end
-
-    def sign_up_default_attributes
-      {
-        locale:    I18n.locale.to_s,
-        time_zone: Time.zone.name
-      }
-    end
-    
 
 
 
 
 
     module ClassMethods
-      # ['name', 'city']
-      def hello_profile_column_names
-        ignore_columns = ['id', 'created_at', 'updated_at', 'role']
-        the_columns = column_names - ignore_columns
-        the_columns.reject! { |column| column.ends_with? '_count' }
-        the_columns.reject! { |column| column.starts_with? 'password_' }
-        the_columns
-      end
 
       def hello_apply_config!
         Hello.configuration.tap do |c|
@@ -87,7 +64,6 @@ module Hello
         end
       end
     end
-
 
   end
 end

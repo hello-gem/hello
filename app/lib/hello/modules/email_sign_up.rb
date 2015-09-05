@@ -2,6 +2,17 @@ module Hello
   module Modules
     module EmailSignUp
 
+      def fields
+        %w(name username password time_zone locale)
+      end
+
+      def defaults
+        {
+          locale:    I18n.locale.to_s,
+          time_zone: Time.zone.name
+        }
+      end
+
       # YOUR VARIABLES
       #
       # @errors
@@ -17,7 +28,7 @@ module Hello
 
         respond_to do |format|
           format.html { redirect_to '/novice' }
-          format.json { render json: access_token.as_json_api, status: :created }
+          format.json { render json: access_token.to_json_web_api, status: :created }
         end
       end
 
@@ -28,7 +39,7 @@ module Hello
         end
       end
 
-
+      private
 
       def expires_at
         30.days.from_now

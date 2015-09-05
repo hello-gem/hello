@@ -3,7 +3,7 @@ module Hello
 
     def initialize(user)
       @user = user
-      self.class.send :attr_accessor, *permitted_fields
+      self.class.send :attr_accessor, *permitted_column_names
     end
 
     def update(attrs)
@@ -24,12 +24,16 @@ module Hello
     private
 
         def clear_attrs(attrs)
-          # puts "permitted_fields -> #{permitted_fields}".blue
-          attrs.slice(*permitted_fields)
+          attrs.slice(*permitted_column_names)
         end
 
-        def permitted_fields
-          User.hello_profile_column_names
+        def permitted_column_names
+          ignore_columns = ['id', 'created_at', 'updated_at', 'role']
+          the_columns = User.column_names
+          the_columns -= ignore_columns
+          the_columns.reject! { |column| column.ends_with? '_count' }
+          the_columns.reject! { |column| column.starts_with? 'password_' }
+          the_columns
         end
 
   end

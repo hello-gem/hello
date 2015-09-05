@@ -26,6 +26,8 @@ module Hello
       # Account Management
       CurrentUsersController.send    :include, m.update_profile
 
+      # Internals
+      SignUpEntity::Mod.send         :include, m.email_sign_up
     end
   end
 

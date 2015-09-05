@@ -51,11 +51,9 @@ module Hello
     #
     # JSON
     #
-    def as_json_api
-      base_attrs = {}
-      base_attrs.merge!(attributes.slice(*%w[expires_at access_token user_id]))
-      base_attrs.merge!({user: user.to_hash_profile})
-      base_attrs
+    def to_json_web_api
+      hash = attributes.slice(*%w[expires_at access_token user_id])
+      hash.merge!({user: user.to_json_web_api})
     end
 
 

@@ -7,7 +7,7 @@ Hello.configure do |config|
   config.username_regex  = /\A[a-z0-9_-]+\z/i
 
   # User Registration
-  config.modules.email_sign_up    = Hello::Modules::EmailSignUp
+  config.modules.email_sign_up    = Hello::Modules::EmailSignUpDummy
   config.modules.deactivation     = Hello::Modules::Deactivation
   # User Authentication
   config.modules.email_sign_in    = Hello::Modules::EmailSignIn

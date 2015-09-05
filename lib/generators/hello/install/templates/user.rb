@@ -16,14 +16,8 @@ class User < ActiveRecord::Base
     username
   end
   
-  # def sign_up_attribute_names
-  #   %w(name username password time_zone locale)
-  # end
-
-  # def sign_up_default_attributes
-  #   {
-  #     locale:    I18n.locale.to_s,
-  #     time_zone: Time.zone.name
-  #   }
-  # end
+  def to_json_web_api
+    attributes.reject { |k, v| k.include?("password") }
+  end
+  
 end
