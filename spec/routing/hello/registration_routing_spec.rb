@@ -35,15 +35,15 @@ module Hello
 
 
       it "routes to #index" do
-        expect(get("/password/forgot")).to route_to("hello/email_forgot_password#index")
+        expect(get("/password/forgot")).to route_to("hello/forgot_password#index")
       end
 
           it "routes to #remember" do
-            expect(post("/password/forgot")).to route_to("hello/email_forgot_password#remember")
+            expect(post("/password/forgot")).to route_to("hello/forgot_password#remember")
           end
 
               it "routes to #remembered" do
-                expect(get("/password/remembered")).to route_to("hello/email_forgot_password#remembered")
+                expect(get("/password/remembered")).to route_to("hello/forgot_password#remembered")
               end
 
 
