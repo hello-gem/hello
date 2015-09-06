@@ -6,6 +6,8 @@ Hello.configure do |config|
   config.username_length = 4..32
   config.username_regex  = /\A[a-z0-9_-]+\z/i
 
+
+
   # User Registration
   config.modules.email_sign_up    = Hello::Modules::EmailSignUp
   config.modules.deactivation     = Hello::Modules::Deactivation

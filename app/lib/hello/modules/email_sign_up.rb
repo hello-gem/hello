@@ -1,3 +1,6 @@
+# Generated with gem 'hello', '<%= Hello::VERSION %>'
+# Learn more at config/initializers/hello.rb
+#
 module Hello
   module Modules
     module EmailSignUp
@@ -34,7 +37,7 @@ module Hello
 
       def failure
         respond_to do |format|
-          format.html { render action: 'index', layout: true }
+          format.html { render action: 'index' }
           format.json { render json: @errors, status: :unprocessable_entity }
         end
       end
