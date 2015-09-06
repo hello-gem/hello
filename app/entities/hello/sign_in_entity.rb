@@ -2,51 +2,48 @@ module Hello
   class SignInEntity < AbstractEntity
 
     attr_accessor :login, :password
-    attr_reader :user
 
-    def initialize(attrs=nil)
-      if attrs
-        write_attributes_to_self(attrs)
-        initialize_user
-      end
-    end
+    def authenticate(login, password)
+      @login, @password = login, password
 
-    def authenticate
-      add_errors_for_login_not_found    and return false if not_found?
-      add_errors_for_password_incorrect and return false if incorrect_password?
+      add_errors_for_login_not_found    and return false if bad_login?
+      add_errors_for_password_incorrect and return false if bad_password?
       return true
     end
 
-    def not_found?
-      initialized? && user.new_record?
+    def bad_login?
+      not found_user?
     end
 
-    def incorrect_password?
-      was_login_found = initialized? && !not_found?
-      was_login_found && !user.password_is?(password)
+    def bad_password?
+      found_user? && !user.password_is?(password)
     end
 
+    def user
+      @user ||= if login_is_email?
+        find_or_build_user_by_email
+      else
+        find_or_build_user_by_username
+      end
+    end
 
     private
 
-        # initialize helpers
-
-        def initialize_user
-          @user = if login_is_email
-            credential = Credential.classic.where(email: login).first_or_initialize
-            credential.build_user if credential.new_record?
-            credential.user
-          else
-            User.where(username: login).first_or_initialize
-          end
-          
-        end
-
-        def write_attributes_to_self(attrs)
-          attrs.permit(:login, :password).each { |k, v| instance_variable_set(:"@#{k}", v) }
-        end
-
         # authenticate helpers
+
+        def find_or_build_user_by_email
+          Credential.classic.find_by_email!(login).user
+        rescue ActiveRecord::RecordNotFound
+          User.new
+        end
+
+        def find_or_build_user_by_username
+          User.where(username: login).first_or_initialize
+        end
+
+        def found_user?
+          user.persisted?
+        end
 
         def add_errors_for_login_not_found
           errors.add(:login, "was not found")
@@ -56,21 +53,11 @@ module Hello
           errors.add(:password, "is incorrect")
         end
 
-        def initialized?
-          !!user
-        end
-
         # helpers
 
-        # def key
-        #   @key ||= login_is_email ? :email : :username
-        # end
-
-            def login_is_email
-              login.to_s.include? '@'
-            end
-
-
+        def login_is_email?
+          login.to_s.include? '@'
+        end
 
   end
 end
