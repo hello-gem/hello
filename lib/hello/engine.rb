@@ -15,10 +15,6 @@ module Hello
     config.hello         = ActiveSupport::OrderedOptions.new
     config.hello.modules = ActiveSupport::OrderedOptions.new
 
-    initializer "hello.apply_config" do |app|
-      Hello.apply_config!
-    end
-
     config.generators do |g|
       g.test_framework :rspec, view_specs: false,
                                controller_specs: false

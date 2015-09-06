@@ -3,6 +3,7 @@ module Hello
   # invoked from config/initializers/hello.rb
   def self.configure
     yield(configuration)
+    apply_config!
   end
 
   # invoked internally
