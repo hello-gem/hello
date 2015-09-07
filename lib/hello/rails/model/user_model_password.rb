@@ -35,8 +35,7 @@ module Hello
 
 
       def reset_password_token
-        uuid = SecureRandom.hex(8) # probability = 1 / (16 ** 16)
-        digest = Hello.encrypt_token(uuid)
+        uuid, digest = Token.pair
         update(password_token_digest: digest, password_token_digested_at: 1.second.ago)
         return uuid
       end

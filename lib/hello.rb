@@ -11,7 +11,7 @@ require 'nav_lynx'
 require "hello/engine"
 require "hello/configuration"
 
-
+require "hello/token"
 require "hello/access_token_lister"
 require "hello/errors"
 require "hello/locales"

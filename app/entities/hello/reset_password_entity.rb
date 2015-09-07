@@ -19,8 +19,8 @@ module Hello
         # initialize helpers
 
         def find_user(unencrypted_token)
-          token_digest = Hello.encrypt_token(unencrypted_token)
-          User.where(password_token_digest: token_digest).first
+          digest = Token.encrypt(unencrypted_token)
+          User.where(password_token_digest: digest).first
         end
 
         # update password helpers

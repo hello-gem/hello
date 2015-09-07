@@ -45,7 +45,7 @@ module Hello
     end
 
         def make_up_new_username
-          SecureRandom.hex(16) # probability = 1 / (32 ** 32)
+          Token.single(16)
         end
 
         def username_used_by_another?(a_username)

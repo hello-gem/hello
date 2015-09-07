@@ -42,7 +42,7 @@ module Hello
       validates_uniqueness_of :access_token
 
       before_validation on: :create do
-        self.access_token = SecureRandom.hex(16) # probability = 1 / (32 ** 32)
+        self.access_token = Token.single(16)
       end
     end
 

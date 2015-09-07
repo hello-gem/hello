@@ -38,8 +38,7 @@ module Hello
     end
 
     def reset_email_token!
-      uuid = SecureRandom.hex(8) # probability = 1 / (16 ** 16)
-      digest = Hello.encrypt_token(uuid)
+      uuid, digest = Token.pair
       update!(email_token_digest: digest, email_token_digested_at: 1.second.ago)
       return uuid
     end
@@ -47,11 +46,6 @@ module Hello
     def confirm_email!
       update! email_token_digest: nil, email_token_digested_at: nil, email_confirmed_at: 1.second.ago
     end
-
-
-
-
-
 
   end
 end
