@@ -4,7 +4,7 @@ module Hello
     dont_kick_people
 
     before_action do
-      @entity = @sign_up = SignUpEntity.new(self)
+      @entity = @sign_up = SignUpEntity.new
     end
 
     # GET /hello/sign_up
@@ -18,10 +18,7 @@ module Hello
 
     # POST /hello/sign_up
     def create
-      @errors = @sign_up.errors
       if @sign_up.save(params.require(:sign_up))
-        @user       = @sign_up.user
-        @credential = @sign_up.credential
         flash[:notice] = @sign_up.success_message
         success
       else

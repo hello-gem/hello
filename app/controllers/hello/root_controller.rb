@@ -11,7 +11,7 @@ module Hello
 
     # GET /hello
     def index
-      @sign_up = SignUpEntity.new(self)
+      @sign_up = SignUpEntity.new
       @sign_in = SignInEntity.new
     end
 

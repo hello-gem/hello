@@ -16,18 +16,16 @@ module Hello
         }
       end
 
-      # YOUR VARIABLES
-      #
-      # @errors
-      # @user
-      # @credential
-      #
+      def starting_role
+        'novice'
+      end
+
       def success
         deliver_welcome_email
 
         deliver_confirmation_email
 
-        access_token = sign_in!(@user, expires_at)
+        access_token = sign_in!(@sign_up.user, expires_at)
 
         respond_to do |format|
           format.html { redirect_to '/novice' }
@@ -38,7 +36,7 @@ module Hello
       def failure
         respond_to do |format|
           format.html { render action: 'index' }
-          format.json { render json: @errors, status: :unprocessable_entity }
+          format.json { render json: @sign_up.errors, status: :unprocessable_entity }
         end
       end
 
@@ -49,13 +47,13 @@ module Hello
       end
 
       def deliver_welcome_email
-        Hello::RegistrationMailer.welcome(@credential, @user.password).deliver
+        Hello::RegistrationMailer.welcome(@sign_up.credential, @sign_up.user.password).deliver
       end
 
       def deliver_confirmation_email
-        token = @credential.reset_email_token!
-        url   = hello.confirm_email_url(@credential, token)
-        Hello::RegistrationMailer.confirm_email(@credential, url).deliver
+        token = @sign_up.credential.reset_email_token!
+        url   = hello.confirm_email_url(@sign_up.credential, token)
+        Hello::RegistrationMailer.confirm_email(@sign_up.credential, url).deliver
       end
       
     end
