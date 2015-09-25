@@ -42,7 +42,7 @@ module Hello
       validates_uniqueness_of :access_token
 
       before_validation on: :create do
-        self.access_token = Token.single(16)
+        self.access_token = "#{user_id}-#{Token.single(16)}"
       end
     end
 

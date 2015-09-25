@@ -36,6 +36,10 @@ module Hello
           when 1 then strings = strings.first
           end
 
+          # TODO:
+          # optimize this process since each string starts with the user_id,
+          # check StatelessRequestManager for example
+
           @models = AccessToken.where(access_token: strings)
         end
 
