@@ -2,7 +2,7 @@
 # Learn more at config/initializers/hello.rb
 #
 module Hello
-  module Modules
+  module Extensions
     module Deactivation
 
       def perform_deactivation

@@ -1,7 +1,7 @@
 module Hello
-  module Modules
+  module Extensions
     module EmailSignUpDummy
-      include Hello::Modules::EmailSignUp
+      include Hello::Extensions::EmailSignUp
 
       def fields
         %w(name username password time_zone locale city)

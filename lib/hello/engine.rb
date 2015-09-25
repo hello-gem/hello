@@ -12,8 +12,8 @@ module Hello
       app.config.app_middleware.use Hello::Manager::Middleware
     end
 
-    config.hello         = ActiveSupport::OrderedOptions.new
-    config.hello.modules = ActiveSupport::OrderedOptions.new
+    config.hello            = ActiveSupport::OrderedOptions.new
+    config.hello.extensions = ActiveSupport::OrderedOptions.new
 
     config.generators do |g|
       g.test_framework :rspec, view_specs: false,

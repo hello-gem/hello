@@ -35,7 +35,7 @@ And then execute:
 bundle install
 bundle exec rails generate hello:install
 bundle exec rake db:migrate
-bundle exec rails generate hello:modules # optional
+bundle exec rails generate hello:extensions # optional
 bundle exec rails generate hello:views   # optional
 ```
 
@@ -65,7 +65,7 @@ They are simple to customize, just open them.
     │   │       └── show.html.erb
     │   └── lib/
     │       └── hello/
-    │           └── modules/
+    │           └── extensions/
     │               └── [...optional...]
     ├── config/
     │   └── initializers
@@ -91,7 +91,7 @@ class User < ActiveRecord::Base
 end
 
 module Hello
-  module Modules
+  module Extensions
     module EmailSignUp
 
       def success

@@ -20,15 +20,15 @@ module Hello
         value = value.to_s.gsub(' ', '')
         @password = value
         
-        self.password_digest = password_encryption_module.encrypt(value)
+        self.password_digest = password_encryption_extension.encrypt(value)
       end
 
       def password_is?(plain_text_password)
-        password_encryption_module.check(self, plain_text_password)
+        password_encryption_extension.check(self, plain_text_password)
       end
 
-      def password_encryption_module
-        Hello.configuration.modules.encrypt_password
+      def password_encryption_extension
+        Hello.configuration.extensions.encrypt_password
       end
 
 

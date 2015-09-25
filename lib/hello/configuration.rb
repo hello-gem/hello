@@ -15,20 +15,20 @@ module Hello
   def self.apply_config!
     User.hello_apply_config!
 
-    configuration.modules.tap do |m|
+    configuration.extensions.tap do |ex|
       # User Registration
-      EmailSignUpController.send     :include, m.email_sign_up
-      DeactivationController.send    :include, m.deactivation
+      EmailSignUpController.send     :include, ex.email_sign_up
+      DeactivationController.send    :include, ex.deactivation
       # User Authentication
-      EmailSignInController.send     :include, m.email_sign_in
-      ForgotPasswordController.send  :include, m.forgot_password
-      ResetPasswordController.send   :include, m.reset_password
-      SignOutController.send         :include, m.sign_out
+      EmailSignInController.send     :include, ex.email_sign_in
+      ForgotPasswordController.send  :include, ex.forgot_password
+      ResetPasswordController.send   :include, ex.reset_password
+      SignOutController.send         :include, ex.sign_out
       # Account Management
-      CurrentUsersController.send    :include, m.update_profile
+      CurrentUsersController.send    :include, ex.update_profile
 
       # Internals
-      SignUpEntity::Mod.send         :include, m.email_sign_up
+      SignUpEntity::Mod.send         :include, ex.email_sign_up
     end
   end
 

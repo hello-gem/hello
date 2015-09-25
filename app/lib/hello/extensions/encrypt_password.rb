@@ -2,7 +2,7 @@
 # Learn more at config/initializers/hello.rb
 #
 module Hello
-  module Modules
+  module Extensions
     module EncryptPassword
 
       def self.encrypt(plain_text)
