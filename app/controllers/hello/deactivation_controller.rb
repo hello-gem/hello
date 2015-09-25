@@ -15,7 +15,7 @@ module Hello
         # POST /hello/deactivation
         def deactivate
           has_deactivated = false
-          User.transaction { has_deactivated = perform_deactivation }
+          User.transaction { has_deactivated = deactivate! }
 
           if has_deactivated
             flash[:notice] = @deactivation.success_message

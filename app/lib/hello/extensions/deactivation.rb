@@ -5,7 +5,7 @@ module Hello
   module Extensions
     module Deactivation
 
-      def perform_deactivation
+      def deactivate!
         # current_user.update! deactivated_at: Time.now
         # current_user.update! deactivated: true
         current_user.destroy!
