@@ -15,7 +15,7 @@ module Hello
 
       def success
         respond_to do |format|
-          format.html { redirect_to hello.deactivated_path }
+          format.html { redirect_to '/' }
           format.json { render json: {deactivated: true}, status: :ok }
         end
       end

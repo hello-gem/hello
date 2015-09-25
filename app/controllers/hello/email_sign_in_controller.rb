@@ -21,10 +21,6 @@ module Hello
       end
     end
 
-    # GET /hello/authenticated
-    def authenticated
-    end
-
     private
 
     def sign_in_params

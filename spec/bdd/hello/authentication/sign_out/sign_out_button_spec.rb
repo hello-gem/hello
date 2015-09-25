@@ -19,10 +19,6 @@ RSpec.describe "Hello Gem", type: :feature do
 
         then_I_expect_to_be_signed_out
 
-        Then "I shoud be on the signed out page" do
-          expect(current_path).to eq hello.sign_out_path
-        end
-
         Then "and my access token should be removed from the database" do
           expect(User.count).to        eq(1)
           expect(Credential.count).to  eq(1)

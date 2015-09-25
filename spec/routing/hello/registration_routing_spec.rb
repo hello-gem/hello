@@ -26,10 +26,6 @@ module Hello
             expect(post("/sign_in")).to route_to("hello/email_sign_in#authenticate")
           end
 
-              it "routes to #authenticated" do
-                expect(get("/authenticated")).to route_to("hello/email_sign_in#authenticated")
-              end
-
 
 
 
@@ -60,10 +56,6 @@ module Hello
               it "routes to #save" do
                 expect(post("/password/reset")).to route_to("hello/reset_password#save")
               end
-
-                  it "routes to #done" do
-                    expect(get("/password/reset/done")).to route_to("hello/reset_password#done")
-                  end
 
       
 

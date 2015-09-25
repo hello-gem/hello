@@ -49,7 +49,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
         _and_be_signed_in_for("30 minutes", 29.minutes)
 
-        _and_be_sent_to_the_url('authenticated', hello.authenticated_path)
+        _and_be_sent_to_the_url('root', '/')
       end
 
 
@@ -63,7 +63,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
         _and_be_signed_in_for("30 minutes", 29.minutes)
 
-        _and_be_sent_to_the_url('authenticated', hello.authenticated_path)
+        _and_be_sent_to_the_url('root', '/')
       end
 
 
@@ -96,7 +96,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
         _and_be_signed_in_for("30 days", 29.days)
 
-        _and_be_sent_to_the_url('authenticated', hello.authenticated_path)
+        _and_be_sent_to_the_url('root', '/')
       end
 
 

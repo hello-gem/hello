@@ -8,7 +8,7 @@ module Hello
       sign_out!
 
       @sign_out = SignOutEntity.new
-      flash.now[:notice] = @sign_out.success_message
+      flash[:notice] = @sign_out.success_message
       
       success
     end

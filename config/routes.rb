@@ -19,7 +19,6 @@ Hello::Engine.routes.draw do
 
   get  "sign_in"         => "email_sign_in#index"
   post "sign_in"         => "email_sign_in#authenticate"
-  get  "authenticated"   => "email_sign_in#authenticated"
 
   resources :emails, only: [:index, :create, :destroy] do
     member do
@@ -42,9 +41,8 @@ Hello::Engine.routes.draw do
   patch 'sudo_mode'        => 'sudo_mode#authenticate'
   get   'sudo_mode/expire' => 'sudo_mode#expire'
 
-  get  'deactivation' => 'deactivation#proposal'
+  get  'deactivation' => 'deactivation#index'
   post 'deactivation' => 'deactivation#deactivate'
-  get  'deactivated'  => 'deactivation#deactivated'
 
 
   #
@@ -58,7 +56,6 @@ Hello::Engine.routes.draw do
   post "password/forgot"     => "forgot_password#remember"
   get  "password/remembered" => "forgot_password#remembered"
 
-  get  "password/reset/done"      => "reset_password#done"
   get  "password/reset/:token"    => "reset_password#reset_token", as: 'reset_token'
   get  "password/reset"           => "reset_password#index"
   post "password/reset"           => "reset_password#save"

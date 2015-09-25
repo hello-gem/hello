@@ -9,7 +9,7 @@ module Hello
         access_token = sign_in!(@sign_in.user, expires_at)
 
         respond_to do |format|
-          format.html { redirect_to session.delete(:url) || hello.authenticated_path }
+          format.html { redirect_to session.delete(:url) || '/' }
           format.json { render json: access_token.to_json_web_api, status: :created }
         end
       end

@@ -9,7 +9,7 @@ module Hello
         # comment the line below in order to force the user to sign in manually
         access_token = sign_in!(@reset_password.user, expires_at)
 
-        redirect_to hello.password_reset_done_path
+        redirect_to '/'
       end
 
       def failure

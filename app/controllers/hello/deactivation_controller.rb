@@ -1,15 +1,15 @@
 module Hello
   class DeactivationController < ApplicationController
     
-    kick      :guest, only: [:proposal, :deactivate]
+    kick      :guest, only: [:index, :deactivate]
     dont_kick :guest, only: [:deactivated]
 
     before_actions do
-      only(:proposal, :deactivate) { @deactivation = DeactivateEntity.new }
+      only(:index, :deactivate) { @deactivation = DeactivateEntity.new }
     end
 
     # GET /hello/deactivation
-    def proposal
+    def index
     end
 
         # POST /hello/deactivation
@@ -22,17 +22,13 @@ module Hello
             success
           else
             flash.now[:alert] = @deactivation.alert_message
-            render :proposal
+            render :index
             # respond_to do |format|
             #   format.html {  }
             #   format.json { render json: {message: @deactivation.alert_message }, status: :unprocessable_entity }
             # end
           end
         end
-
-            # GET /hello/deactivation/deactivated
-            def deactivated
-            end
 
   end
 end

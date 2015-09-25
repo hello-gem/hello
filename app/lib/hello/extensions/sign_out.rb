@@ -9,7 +9,7 @@ module Hello
         respond_to do |format|
           # format.html { redirect_to hello.root_path }
           # format.html { redirect_to root_path }
-          format.html { render :sign_out }
+          format.html { redirect_to '/' }
           format.json { head :reset_content }
         end
       end

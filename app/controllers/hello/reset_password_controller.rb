@@ -35,10 +35,6 @@ module Hello
       end
     end
 
-    # GET /hello/password/reset/done
-    def done
-    end
-
     private
 
         def fetch_registration_reset_ivar
