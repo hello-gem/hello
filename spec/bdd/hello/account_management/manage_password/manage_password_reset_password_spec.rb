@@ -13,7 +13,7 @@ RSpec.describe "Hello Gem", type: :feature do
     end
 
     def _I_visit_with_a_valid_token
-      @reset_token ||= given_I_have_a_classic_credential_and_forgot_my_password
+      @reset_token ||= given_I_have_an_email_credential_and_forgot_my_password
       visit hello.reset_token_path(@reset_token)
     end
 

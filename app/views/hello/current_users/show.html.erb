@@ -7,7 +7,7 @@
 <%= form_for @user, url: current_user_path, html: {class: "form-horizontal", role: "form"} do |f| %>
   <%= render '/hello/shared/errors', active_model: @user_entity %>
 
-  <% current_user.credentials.classic.each do |credential| %>
+  <% current_user.email_credentials.each do |credential| %>
   <div class="form-group">
     <%= f.label :email, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">

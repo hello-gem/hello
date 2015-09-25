@@ -77,7 +77,7 @@ module Hello
             end
 
                 def build_models
-                  Credential.classic.new(email: email) do |c|
+                  EmailCredential.new(email: email) do |c|
                     c.build_user(user_attributes)
                   end
                 end

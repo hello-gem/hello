@@ -2,7 +2,7 @@ class CreateCredentials < ActiveRecord::Migration
   def change
     create_table :credentials do |t|
       t.references :user, index: true
-      t.string :strategy
+      t.string :type
       t.string :email
 
       t.string   :email_token_digest

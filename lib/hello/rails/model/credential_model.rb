@@ -1,5 +1,3 @@
-require "hello/rails/model/credential_model_email"
-
 module Hello
   module CredentialModel
     extend ActiveSupport::Concern
@@ -8,37 +6,20 @@ module Hello
       belongs_to :user, counter_cache: true
       validates_presence_of :user
 
-      scope :classic, -> { where(strategy: _classic) }
-
-      validates_presence_of :strategy
-      validates_inclusion_of :strategy, in: strategies
+      validates_presence_of :type
+      validates_inclusion_of :type, in: %w(EmailCredential)
 
       before_destroy :cannot_destroy_last_credential
-
-      # concerns
-      include CredentialModelEmail
-      # include Twitter
     end
 
 
     module ClassMethods
-      def strategies
-        [_classic, _twitter]
-      end
-
-      def _classic
-        'classic'
-      end
-
-      def _twitter
-        'twitter'
-      end
     end
 
 
-    def is_classic?
-      strategy.to_s.inquiry.classic?
-    end
+    # def is_email?
+    #   is_a?(EmailCredential)
+    # end
 
     def first_error_message
       errors.messages.values.flatten.first if errors.any?

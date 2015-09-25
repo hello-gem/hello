@@ -37,7 +37,7 @@
             </tr>
             <tr>
               <td>Email:</td>
-              <td><%= @user.credentials.classic.map(&:email).to_sentence %></td>
+              <td><%= @user.email_credentials.map(&:email).to_sentence %></td>
             </tr>
             <tr>
               <td>Credentials:</td>

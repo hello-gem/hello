@@ -14,7 +14,7 @@ RSpec.describe "Hello Gem", type: :request do
 
 
     before do
-      given_I_have_a_classic_credential
+      given_I_have_an_email_credential
     end
 
 

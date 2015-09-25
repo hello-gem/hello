@@ -6,7 +6,7 @@ RSpec.describe "Hello Gem", type: :feature do
     before(:each) do
       given_I_have_signed_in_as_a_webmaster
 
-      @credential = given_I_have_a_classic_credential
+      @credential = given_I_have_an_email_credential
       visit hello.webmaster_path
       click_link "Users"
     end

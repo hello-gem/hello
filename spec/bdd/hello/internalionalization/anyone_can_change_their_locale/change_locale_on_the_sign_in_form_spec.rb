@@ -14,7 +14,7 @@ RSpec.describe "Hello Gem", type: :feature do
         end
 
         When "I sign in to a 'pt-BR' user" do
-          user = given_I_have_a_classic_credential.user
+          user = given_I_have_an_email_credential.user
           user.update! locale: 'pt-BR'
           when_sign_in_with_standard_data
         end

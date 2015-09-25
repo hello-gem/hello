@@ -5,35 +5,33 @@ USER_TEST_PASSWORD = 'foobar'
 
 def given_I_have_a_classic_access_token
   user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, password: USER_TEST_PASSWORD, city: 'Brasilia')
-  credential = Credential.classic.create! user:     user,
-                                          email:    USER_TEST_EMAIL
+  create(:email_credential, user: user, email: USER_TEST_EMAIL)
   AccessToken.create!(user: user, user_agent_string: 'testing', expires_at: 24.hours.from_now)
 end
 
-def given_I_have_a_classic_credential
+def given_I_have_an_email_credential
   user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, password: USER_TEST_PASSWORD, city: 'Brasilia')
-  Credential.classic.create!  user:     user,
-                              email:    USER_TEST_EMAIL
+  create(:email_credential, user: user, email: USER_TEST_EMAIL)
 end
 
 def given_I_have_a_novice_password_credential
-  Credential.classic.create!  user:     create(:novice),
-                              email:    USER_TEST_EMAIL
+  user = create(:novice)
+  create(:email_credential, user: user, email: USER_TEST_EMAIL)
 end
 
 def given_I_have_a_webmaster_password_credential
-  Credential.classic.create!  user:     create(:webmaster_user),
-                              email:    'webmaster@bar.com'
+  user = create(:webmaster_user)
+  create(:email_credential, user: user, email: 'webmaster@bar.com')
 end
 
-def given_I_have_a_classic_credential_and_forgot_my_password
-  credential = given_I_have_a_classic_credential
+def given_I_have_an_email_credential_and_forgot_my_password
+  credential = given_I_have_an_email_credential
   return unencrypted_token = credential.user.reset_password_token
 end
 
 def given_I_am_logged_in_with_a_classic_credential
   # when_sign_up_with_standard_data(expect_welcome_mailer: true)
-  given_I_have_a_classic_credential
+  given_I_have_an_email_credential
   when_sign_in_with_standard_data
   then_I_should_be_logged_in
 end

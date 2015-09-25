@@ -24,7 +24,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
       def _when_I_submit(text, email)
         When "I submit #{text} email" do
-          fill_in 'credential_email', with: (@new_email = email)
+          fill_in 'email_credential_email', with: (@new_email = email)
           click_button 'Add'
         end
       end
@@ -110,7 +110,7 @@ RSpec.describe "Hello Gem", type: :feature do
       sscenario "Can remove a second email" do
         And "I have a second email" do
           @new_email = "newemail@provider.com"
-          create(:classic_credential, user: User.last, email: @new_email)
+          create(:email_credential, user: User.last, email: @new_email)
           page_reload
         end
 
@@ -220,7 +220,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
       def _when_visit_valid
         When "I visit a valid token URL" do
-          @credential = create(:classic_credential)
+          @credential = create(:email_credential)
           token       = @credential.reset_email_token!
           visit the_url(@credential.id, token)
         end

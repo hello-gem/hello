@@ -6,16 +6,16 @@ require_dependency "hello/application_controller"
 
 module Hello
   class EmailsController < ApplicationController
-    
-    helper_method :credentials
 
     kick :guest, :novice
     sudo_mode
+
+    helper_method :credentials
     
     before_actions do
-      only(:index)  { @credential = Credential.new }
-      only(:create) { @credential = current_user.credentials.classic.build(credential_params) }
-      only(:destroy, :deliver)  { @credential = current_user.credentials.classic.find(params[:id]) }
+      only(:index)  { @credential = EmailCredential.new }
+      only(:create) { @credential = current_user.email_credentials.build(email_credential_params) }
+      only(:destroy, :deliver)  { @credential = current_user.email_credentials.find(params[:id]) }
     end
 
     # GET /hello/emails
@@ -56,12 +56,12 @@ module Hello
     private
 
       # Only allow a trusted parameter "white list" through.
-      def credential_params
-        params.require(:credential).permit(:email)
+      def email_credential_params
+        params.require(:email_credential).permit(:email)
       end
 
       def credentials
-        current_user.credentials.classic
+        current_user.credentials
       end
 
   end

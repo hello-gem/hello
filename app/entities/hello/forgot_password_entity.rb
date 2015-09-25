@@ -33,9 +33,8 @@ module Hello
         # initialize helpers
 
         def find_user
-          # Credential.classic.where(key => login).first
           if email?
-            credential = Credential.where(email: login).first
+            credential = EmailCredential.where(email: login).first
             credential.user
           else
             User.where(username: login).first

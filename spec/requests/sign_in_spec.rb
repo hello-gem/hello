@@ -29,7 +29,7 @@ RSpec.describe "Sign In", :type => :request do
     end
 
     it "Success" do
-      given_I_have_a_classic_credential
+      given_I_have_an_email_credential
 
       sign_in_params = {login: "foobar", password: "foobar"}
       post "/hello/sign_in.json", sign_in: sign_in_params

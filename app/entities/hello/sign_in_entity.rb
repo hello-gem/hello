@@ -32,7 +32,7 @@ module Hello
         # authenticate helpers
 
         def find_or_build_user_by_email
-          Credential.classic.find_by_email!(login).user
+          EmailCredential.find_by_email!(login).user
         rescue ActiveRecord::RecordNotFound
           User.new
         end

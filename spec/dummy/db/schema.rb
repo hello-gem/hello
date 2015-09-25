@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140920192959) do
 
   create_table "credentials", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "strategy"
+    t.string   "type"
     t.string   "email"
     t.string   "email_token_digest"
     t.datetime "email_token_digested_at"
@@ -61,17 +61,17 @@ ActiveRecord::Schema.define(version: 20140920192959) do
   create_table "users", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",                       limit: 255
-    t.string   "role",                       limit: 255
-    t.string   "locale",                     limit: 255
-    t.string   "time_zone",                  limit: 255
-    t.integer  "credentials_count",                      default: 0
-    t.integer  "access_tokens_count",                    default: 0
-    t.string   "city",                       limit: 255
+    t.string   "name"
+    t.string   "role"
+    t.string   "locale"
+    t.string   "time_zone"
     t.string   "username"
     t.string   "password_digest"
     t.string   "password_token_digest"
-    t.datetime "password_token_digested_at",             default: '2000-01-01 00:00:00'
+    t.datetime "password_token_digested_at", default: '2000-01-01 00:00:00'
+    t.integer  "credentials_count",          default: 0
+    t.integer  "access_tokens_count",        default: 0
+    t.string   "city"
   end
 
 end

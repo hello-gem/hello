@@ -6,7 +6,7 @@ RSpec.describe "Hello Gem", type: :feature do
       sscenario "As a Guest" do
         visit root_path
         given_I_have_not_signed_in
-        given_I_have_a_classic_credential # seeds a user
+        given_I_have_an_email_credential # seeds a user
 
         _then_I_can_navigate_to_the_user_list
 

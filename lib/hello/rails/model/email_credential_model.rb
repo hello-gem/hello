@@ -1,12 +1,12 @@
 module Hello
-  module CredentialModelEmail
+  module EmailCredentialModel
     extend ActiveSupport::Concern
 
 
     included do
-      validates_presence_of     :email, if: :is_classic?
-      validates_email_format_of :email, if: :is_classic?
-      validates_uniqueness_of   :email, if: :is_classic?
+      validates_presence_of     :email
+      validates_email_format_of :email
+      validates_uniqueness_of   :email
     end
 
     module ClassMethods
@@ -17,8 +17,7 @@ module Hello
     #
 
     def email=(v)
-      v = v.to_s.downcase.gsub(' ', '')
-      write_attribute(:email, v)
+      super(v.to_s.downcase.gsub(' ', ''))
     end
 
     #

@@ -5,7 +5,6 @@
 
 FactoryGirl.define do
 
-
   factory :user do
     name { Faker::Name.name }
     city { Faker::Address.city  } # for dummy's customized sign up
@@ -31,13 +30,9 @@ FactoryGirl.define do
     end
   end
 
-  factory :credential do
+  factory :email_credential do
     user
-
-    factory :classic_credential do
-      strategy Credential._classic
-      email    { Faker::Internet.email }
-    end
+    email    { Faker::Internet.email }
   end
 
   factory :access_token do
@@ -48,7 +43,5 @@ FactoryGirl.define do
       expires_at { 30.minutes.from_now }
     end
   end
-
-
 
 end

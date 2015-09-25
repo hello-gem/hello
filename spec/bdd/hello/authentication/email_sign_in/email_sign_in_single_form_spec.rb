@@ -16,7 +16,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
       before do
-        given_I_have_a_classic_credential
+        given_I_have_an_email_credential
       end
 
       def _then_I_should_see_a_confirmation_message
@@ -203,7 +203,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
       sscenario "Wrong Password" do
         When "I sign in with a wrong password" do
-          given_I_have_a_classic_credential
+          given_I_have_an_email_credential
           when_sign_in("foobar", "wrong")
         end
 
@@ -217,7 +217,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
       sscenario "Blank Password" do
         When "I sign in with a wrong password" do
-          given_I_have_a_classic_credential
+          given_I_have_an_email_credential
           when_sign_in("foobar", "")
         end
 

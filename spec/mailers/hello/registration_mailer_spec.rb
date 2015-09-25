@@ -2,15 +2,15 @@ require "spec_helper"
 
 module Hello
   describe RegistrationMailer do
-    let(:credential) { create(:classic_credential, user: create(:user, name: "John O'Cornel")) }
+    let(:email_credential) { create(:email_credential, user: create(:user, name: "John O'Cornel")) }
     let(:name) { "John O&#39;Cornel" }
 
     describe "welcome" do
-      let(:mail) { RegistrationMailer.welcome(credential, "THE_PASSWORD") }
+      let(:mail) { RegistrationMailer.welcome(email_credential, "THE_PASSWORD") }
 
       it "renders the headers" do
         expect(mail.subject).to eq("Welcome to our website")
-        expect(mail.to).to eq([credential.email])
+        expect(mail.to).to eq([email_credential.email])
         expect(mail.from).to eq(["hello@example.com"])
       end
 
@@ -21,11 +21,11 @@ module Hello
     end
 
     describe "confirm_email" do
-      let(:mail) { RegistrationMailer.confirm_email(credential, "THE_URL") }
+      let(:mail) { RegistrationMailer.confirm_email(email_credential, "THE_URL") }
 
       it "renders the headers" do
         expect(mail.subject).to eq("Confirm This Email")
-        expect(mail.to).to eq([credential.email])
+        expect(mail.to).to eq([email_credential.email])
         expect(mail.from).to eq(["hello@example.com"])
       end
 
@@ -36,11 +36,11 @@ module Hello
     end
 
     describe "forgot_password" do
-      let(:mail) { RegistrationMailer.forgot_password(credential, "THE_URL") }
+      let(:mail) { RegistrationMailer.forgot_password(email_credential, "THE_URL") }
 
       it "renders the headers" do
         expect(mail.subject).to eq("Reset Password Instructions")
-        expect(mail.to).to eq([credential.email])
+        expect(mail.to).to eq([email_credential.email])
         expect(mail.from).to eq(["hello@example.com"])
       end
 
