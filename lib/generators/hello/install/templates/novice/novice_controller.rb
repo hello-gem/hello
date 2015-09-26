@@ -1,4 +1,4 @@
-class NoviceController < Hello::ApplicationController
+class NoviceController < ApplicationController
 
   dont_kick :novice
   
