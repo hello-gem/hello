@@ -13,7 +13,7 @@ module Hello
       end
 
       def clear_cache
-        @current_access_token = @current_access_tokens = nil
+        @current_access = @current_accesses = nil
       end
 
 
@@ -26,19 +26,19 @@ module Hello
         current_user == user
       end
 
-      def is_current_access_token?(access_token)
-        current_access_token == access_token
+      def is_current_access?(access)
+        current_access == access
       end
 
       def current_user
-        current_access_token && current_access_token.user
+        current_access && current_access.user
       end
 
-      def current_access_tokens
+      def current_accesses
         raise NotImplementedError
       end
 
-      def current_access_token
+      def current_access
         raise NotImplementedError
       end
 
@@ -54,11 +54,11 @@ module Hello
           ip:                 remote_ip
         }
         attrs[:sudo_expires_at] = sudo_expires_at if sudo_expires_at
-        AccessToken.create!(attrs)
+        Access.create!(attrs)
       end
 
       def sign_out!
-        current_access_token && current_access_token.destroy!
+        current_access && current_access.destroy!
       end
 
       # protected

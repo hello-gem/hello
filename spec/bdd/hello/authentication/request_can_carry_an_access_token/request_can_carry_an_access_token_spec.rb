@@ -6,7 +6,7 @@ RSpec.describe "Hello Gem", type: :controller do
     capability "Request Can Carry an Access Token" do
 
       before do
-        @access_token = given_I_have_a_classic_access_token.access_token
+        @token = given_I_have_a_classic_access_token.token
       end
 
 
@@ -15,8 +15,8 @@ RSpec.describe "Hello Gem", type: :controller do
         ffeature "Via Session" do
           before(:each) do
             Given "a valid access token will be passed via session" do
-              @request.session['access_token'] = @access_token
-              @request.session['access_tokens'] = [@access_token]
+              @request.session['token'] = @token
+              @request.session['tokens'] = [@token]
             end
           end
 
@@ -86,7 +86,7 @@ RSpec.describe "Hello Gem", type: :controller do
         ffeature "Via Session" do
           before(:each) do
             Given "a valid access token will be passed via headers" do
-              @request.headers['HTTP_ACCESS_TOKEN'] = @access_token
+              @request.headers['HTTP_ACCESS_TOKEN'] = @token
             end
           end
 
@@ -167,7 +167,7 @@ RSpec.describe "Hello Gem", type: :controller do
             end
             sscenario "As HTML" do
               When "I send a GET HTML request" do
-                get :show, {format: :html, access_token: @access_token}
+                get :show, {format: :html, access_token: @token}
               end
 
               Then "it should have a status 302 Found" do
@@ -178,7 +178,7 @@ RSpec.describe "Hello Gem", type: :controller do
 
             sscenario "As JSON" do
               When "I send a GET JSON request" do
-                get :show, {format: :json, access_token: @access_token}
+                get :show, {format: :json, access_token: @token}
               end
               Then "it should have a status 401 Unauthorized" do
                 expect(response.status).to eq(401)
@@ -195,7 +195,7 @@ RSpec.describe "Hello Gem", type: :controller do
             end
             sscenario "As HTML" do
               When "I send a GET HTML request" do
-                get :show, {format: :html, access_token: @access_token}
+                get :show, {format: :html, access_token: @token}
               end
 
               Then "it should have a status 200 OK" do
@@ -206,7 +206,7 @@ RSpec.describe "Hello Gem", type: :controller do
 
             sscenario "As JSON" do
               When "I send a GET JSON request" do
-                get :show, {format: :json, access_token: @access_token}
+                get :show, {format: :json, access_token: @token}
               end
 
               Then "it should have a status 200 OK" do

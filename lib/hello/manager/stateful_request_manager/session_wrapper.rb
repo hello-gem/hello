@@ -9,21 +9,21 @@ module Hello
           @manager = manager
         end
 
-        def session_access_tokens
-          session['access_tokens'] ||= []
+        def session_tokens
+          session['tokens'] ||= []
         end
 
-        def session_access_tokens=(v)
-          session['access_tokens']=v
+        def session_tokens=(v)
+          session['tokens']=v
           manager.clear_cache
         end
 
-        def session_access_token
-          session['access_token']
+        def session_token
+          session['token']
         end
 
-        def session_access_token=(v)
-          session['access_token']=v
+        def session_token=(v)
+          session['token']=v
           manager.clear_cache
         end
 

@@ -8,10 +8,10 @@ RSpec.describe "Hello Gem", type: :request do
     before do
       mock_stateless!
 
-      Given "I have an onboarding access token" do
+      Given "I have a onboarding access token" do
         u = create(:onboarding)
-        at = create(:access_token, user: u, expires_at: 24.hours.from_now)
-        @token = at.access_token
+        a = create(:access, user: u, expires_at: 24.hours.from_now)
+        @token = a.token
         expect(User.last.role).to eq('onboarding')
       end
     end

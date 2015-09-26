@@ -17,17 +17,17 @@
   </thead>
 
   <tbody>
-    <% @access_tokens.each do |at| %>
+    <% @accesses.each do |a| %>
       <tr>
-        <td><%= link_to at.user.username, at.user %></td>
-        <td><%= at.user.name %></td>
-        <td><%= at.user.role %></td>
-        <td><%= distance_of_time_in_words_to_now(at.expires_at) %></td>
+        <td><%= link_to a.user.username, a.user %></td>
+        <td><%= a.user.name %></td>
+        <td><%= a.user.role %></td>
+        <td><%= distance_of_time_in_words_to_now(a.expires_at) %></td>
         <td><%= link_to "Switch!",
-                        hello.switch_user_path(at.id),
-                        class: 'btn btn-xs btn-success' unless is_current_access_token?(at) %></td>
+                        hello.switch_user_path(a.id),
+                        class: 'btn btn-xs btn-success' unless is_current_access?(a) %></td>
         <td><%= button_to "Forget",
-                          hello.switch_user_path(at.id),
+                          hello.switch_user_path(a.id),
                           method: :delete,
                           class: 'btn btn-xs btn-danger',
                           data: { confirm: 'Are you sure?' } %></td>

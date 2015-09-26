@@ -8,30 +8,30 @@ module Hello
         @session_wrapper = SessionWrapper.new(self)
       end
 
-      delegate  :session_access_token,  :session_access_token=,
-                :session_access_tokens, :session_access_tokens=,
+      delegate  :session_token,  :session_token=,
+                :session_tokens, :session_tokens=,
                 to: :@session_wrapper
 
-      delegate :current_access_tokens, to: :@finder
+      delegate :current_accesses, to: :@finder
       
-      def current_access_token
-        return nil if not session_access_token.presence
-        @current_access_token ||= current_access_tokens.select { |at| at.access_token == session_access_token }.first
+      def current_access
+        return nil if not session_token.presence
+        @current_access ||= current_accesses.select { |a| a.token == session_token }.first
       end
 
 
       
       def sign_in!(*args)
-        super(*args).tap do |model|
-          self.session_access_token = model.access_token
-          self.session_access_tokens << model.access_token
+        super(*args).tap do |access|
+          self.session_token = access.token
+          self.session_tokens << access.token
         end
       end
 
       def sign_out!
         super
-        self.session_access_token = nil
-        self.session_access_tokens = AccessToken.where(access_token: self.session_access_tokens).pluck(:access_token)
+        self.session_token = nil
+        self.session_tokens = Access.where(token: self.session_tokens).pluck(:token)
         self.request.session['impersonated'] = nil
       end
 

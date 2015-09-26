@@ -1,14 +1,14 @@
 module Hello
   class SudoModeExpirationEntity < AbstractEntity
 
-    attr_reader :access_token
+    attr_reader :access
 
-    def initialize(access_token)
-      @access_token = access_token
+    def initialize(access)
+      @access = access
     end
 
     def expire!
-      access_token.update! sudo_expires_at: 1.second.ago
+      access.update! sudo_expires_at: 1.second.ago
     end
   end
 end

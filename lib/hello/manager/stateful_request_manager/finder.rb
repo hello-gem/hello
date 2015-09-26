@@ -7,7 +7,7 @@ module Hello
           @manager = manager
         end
 
-        def current_access_tokens
+        def current_accesses
           @models || models
         end
 
@@ -24,7 +24,7 @@ module Hello
         private
 
         def gather_wanted_strings
-          @wanted_strings = @manager.session_access_tokens
+          @wanted_strings = @manager.session_tokens
         end
 
         def gather_wanted_models
@@ -40,17 +40,17 @@ module Hello
           # optimize this process since each string starts with the user_id,
           # check StatelessRequestManager for example
 
-          @models = AccessToken.where(access_token: strings)
+          @models = Access.where(token: strings)
         end
 
         def gather_valid_strings
-          @valid_strings = @models.map(&:active_access_token_or_destroy).map(&:presence).compact
+          @valid_strings = @models.map(&:active_token_or_destroy).map(&:presence).compact
         end
 
         def ensure_consistency_accross_models_and_session
           if @wanted_strings != @valid_strings
-            @manager.session_access_tokens = @valid_strings
-            @models = @models.select { |at| @valid_strings.include?(at.access_token) }
+            @manager.session_tokens = @valid_strings
+            @models = @models.select { |a| @valid_strings.include?(a.token) }
           end
         end
 

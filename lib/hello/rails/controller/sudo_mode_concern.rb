@@ -20,7 +20,7 @@ module Hello
 
 
         def sudo_mode?
-          current_access_token && current_access_token.sudo_expires_at.future?
+          current_access && current_access.sudo_expires_at.future?
         end
 
         def sudo_mode

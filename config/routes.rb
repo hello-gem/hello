@@ -66,7 +66,7 @@ Hello::Engine.routes.draw do
   # AUTHENTICATION
   #
   
-  resources :access_tokens, only: [:index, :destroy]
+  resources :accesses, only: [:index, :destroy]
   match  "sign_out" => "sign_out#sign_out", via: [:get, :post, :head, :put, :delete]
   
   get    "switch_users"     => "switch_users#index"

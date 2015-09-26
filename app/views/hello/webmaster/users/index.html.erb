@@ -11,7 +11,7 @@
       <th>Locale</th>
       <th>Time zone</th>
       <th>Credentials</th>
-      <th>Tokens</th>
+      <th>Accesses</th>
         <!-- actions -->
       <th colspan="1"></th>
     </tr>
@@ -26,7 +26,7 @@
         <td><%= user.locale %></td>
         <td><%= user.time_zone %></td>
         <td><%= user.credentials_count %></td>
-        <td><%= user.access_tokens_count %></td>
+        <td><%= user.accesses_count %></td>
         <!-- actions -->
         <td><%= button_to "Impersonate!", hello.impersonate_webmaster_user_path(user.id) unless current_user == user %></td>
       </tr>

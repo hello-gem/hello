@@ -9,7 +9,7 @@ module Hello::FeatureSupportGiven
       given_I_am_logged_in
       # @current_user         = User.last
       # @current_credential   = Credential.last
-      # @current_access_token = AccessToken.last
+      # @current_access       = Access.last
       then_I_expect_to_be_signed_in_with_role('user')
     end
   end

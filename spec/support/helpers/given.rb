@@ -6,7 +6,7 @@ USER_TEST_PASSWORD = 'foobar'
 def given_I_have_a_classic_access_token
   user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, password: USER_TEST_PASSWORD, city: 'Brasilia')
   create(:email_credential, user: user, email: USER_TEST_EMAIL)
-  AccessToken.create!(user: user, user_agent_string: 'testing', expires_at: 24.hours.from_now)
+  Access.create!(user: user, user_agent_string: 'testing', expires_at: 24.hours.from_now)
 end
 
 def given_I_have_an_email_credential

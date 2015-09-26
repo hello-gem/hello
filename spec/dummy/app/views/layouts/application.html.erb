@@ -40,14 +40,14 @@
       <p>dummy-path: <%= request.fullpath %></p>
       <p>dummy-locale: <%= I18n.locale %></p>
 
-      <p>dummy-accounts-<%= current_access_tokens.size %></p>
-      <% current_access_tokens.each do |access_token| %>
+      <p>dummy-accounts-<%= current_accesses.size %></p>
+      <% current_accesses.each do |access_token| %>
         <p>dummy-account-<%= access_token.user.username %></p>
       <% end %>
 
       <% if signed_in? %>
         <p>dummy-logged-in-User#<%= current_user.id %></p>
-        <p>dummy-logged-in-AccessToken#<%= current_access_token.id %></p>
+        <p>dummy-logged-in-Access#<%= current_access.id %></p>
         <p>dummy-logged-in-role-<%= current_user.role %></p>
         <p>dummy-logged-in-<%= sudo_mode? ? 'with' : 'without' %>-sudo-mode</p>
       <% else %>

@@ -1,5 +1,5 @@
 module Hello
-  module AccessTokenModel
+  module AccessModel
     extend ActiveSupport::Concern
 
     def full_device_name
@@ -25,9 +25,9 @@ module Hello
       Hello.user_agent_parser.parse(user_agent_string)
     end
 
-    def active_access_token_or_destroy
+    def active_token_or_destroy
       if expires_at.future?
-        access_token
+        token
       else
         destroy and return nil
       end
@@ -38,11 +38,11 @@ module Hello
     included do
       belongs_to :user, counter_cache: true
 
-      validates_presence_of :user, :expires_at, :user_agent_string, :access_token
-      validates_uniqueness_of :access_token
+      validates_presence_of :user, :expires_at, :user_agent_string, :token
+      validates_uniqueness_of :token
 
       before_validation on: :create do
-        self.access_token = "#{user_id}-#{Token.single(16)}"
+        self.token = "#{user_id}-#{Token.single(16)}"
       end
     end
 
@@ -52,7 +52,7 @@ module Hello
     # JSON
     #
     def to_json_web_api
-      hash = attributes.slice(*%w[expires_at access_token user_id])
+      hash = attributes.slice(*%w[expires_at token user_id])
       hash.merge!({user: user.to_json_web_api})
     end
 

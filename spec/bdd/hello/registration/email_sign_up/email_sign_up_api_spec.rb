@@ -18,8 +18,8 @@ RSpec.describe "Hello Gem", type: :request do
 
       then_I_should_get_a_response(201, 'Created')
 
-      Then "and an access token" do
-        expect(json_response.keys).to include "access_token"
+      Then "and a token" do
+        expect(json_response.keys).to include "token"
       end
 
       Then "and an expiration time" do

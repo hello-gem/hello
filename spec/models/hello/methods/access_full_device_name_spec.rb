@@ -10,15 +10,15 @@ require 'spec_helper'
 # http://www.webapps-online.com/online-tools/user-agent-strings
 
 module Hello
-  describe AccessToken do
+  describe Access do
 
     before(:each) do
-      @access_token = AccessToken.new
+      @access = Access.new
     end
 
     def expect_device_name(original, expected)
-      @access_token.user_agent_string = original
-      expect(@access_token.full_device_name).to eq(expected)
+      @access.user_agent_string = original
+      expect(@access.full_device_name).to eq(expected)
     end
 
     describe "#full_device_name" do

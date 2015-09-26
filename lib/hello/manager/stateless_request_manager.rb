@@ -2,17 +2,17 @@ module Hello
   module Manager
     class StatelessRequestManager < RequestManager
       
-      def current_access_tokens
+      def current_accesses
         []
       end
 
-      def current_access_token
-        @current_access_token ||= begin
+      def current_access
+        @current_access ||= begin
           return nil unless string  = param || header
           return nil unless user_id = string.split('-').first
           return nil unless user    = User.find_by_id(user_id)
-          return nil unless model   = user.access_tokens.find_by_access_token(string)
-          return nil unless model.active_access_token_or_destroy
+          return nil unless model   = user.accesses.find_by_token(string)
+          return nil unless model.active_token_or_destroy
 
           model
         end

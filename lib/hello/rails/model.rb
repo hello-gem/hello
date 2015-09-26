@@ -6,10 +6,10 @@ end
 
 
 
-require "hello/rails/model/access_token_model"
+require "hello/rails/model/access_model"
 
-class AccessToken < ActiveRecord::Base
-  include Hello::AccessTokenModel
+class Access < ActiveRecord::Base
+  include Hello::AccessModel
 end
 
 

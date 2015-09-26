@@ -35,7 +35,7 @@ RSpec.describe "Hello Gem", type: :feature do
         Then "and my access token should be removed from the database" do
           expect(User.count).to        eq(1)
           expect(Credential.count).to  eq(1)
-          expect(AccessToken.count).to eq(0)
+          expect(Access.count).to      eq(0)
         end
       end
     end
@@ -48,7 +48,7 @@ RSpec.describe "Hello Gem", type: :feature do
       expect(my_token_expiracy).to be < 31.minutes.from_now
 
       When "#{minutes} minutes have passed" do
-        access_token = AccessToken.last
+        access_token = Access.last
         expires_at = access_token.expires_at - minutes.minutes
         access_token.update_attribute :expires_at, expires_at
         visit root_path
@@ -56,7 +56,7 @@ RSpec.describe "Hello Gem", type: :feature do
     end
 
     def my_token_expiracy
-      AccessToken.last.expires_at
+      Access.last.expires_at
     end
 
     def expect_token_to_be_renewed

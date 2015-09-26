@@ -2,7 +2,7 @@
   <li><%= link_to human_current_locale, hello.locale_path %></li>
   <li><%= link_to "User List", users_path %></li>
 
-  <% if current_access_tokens.any? %>
+  <% if current_accesses.any? %>
     <li><%= link_to "Switch Accounts", hello.switch_users_path %></li>
   <% end %>
   

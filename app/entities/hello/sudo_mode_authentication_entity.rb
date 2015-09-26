@@ -1,14 +1,14 @@
 module Hello
   class SudoModeAuthenticationEntity < AbstractEntity
-    attr_reader :access_token
+    attr_reader :access
 
-    def initialize(access_token)
-      @access_token = access_token
+    def initialize(access)
+      @access = access
     end
 
     def authenticate!(password, sudo_expires_at)
-      if access_token.user.password_is?(password)
-        access_token.update! sudo_expires_at: sudo_expires_at
+      if access.user.password_is?(password)
+        access.update! sudo_expires_at: sudo_expires_at
       end
     end
 

@@ -5,8 +5,8 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-    def get_last_access_token
-      AccessToken.last
+    def get_last_access
+      Access.last
     end
 
 
@@ -28,7 +28,7 @@ RSpec.describe "Hello Gem", type: :feature do
       def _and_be_signed_in_for(s, t)
         Then "and be signed in for #{s}" do
           then_I_should_be_logged_in
-          expect(get_last_access_token.expires_at).to be > t.from_now
+          expect(get_last_access.expires_at).to be > t.from_now
         end
       end
 

@@ -11,11 +11,11 @@ RSpec.describe "Hello Gem", type: :feature do
           given_I_have_signed_in
 
           click_link "Settings"
-          click_link "Access Tokens"
+          click_link "Sessions"
 
           expect(page).to have_content "Confirm Password to Continue"
-          expect(current_path).to eq hello.access_tokens_path
-          expect(AccessToken.last.sudo_expires_at).to be < Time.now
+          expect(current_path).to eq hello.accesses_path
+          expect(Access.last.sudo_expires_at).to be < Time.now
         end
       end
 

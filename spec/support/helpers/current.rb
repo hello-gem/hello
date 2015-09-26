@@ -1,10 +1,10 @@
 
-def __fetch_current_active_session
-  @current_access_token = AccessToken.last
+def __fetch_current_access
+  @current_access = Access.last
 end
 
-def current_access_token
-  @current_access_token
+def current_access
+  @current_access
 end
 
 def last_credential
@@ -12,6 +12,6 @@ def last_credential
 end
 
 def current_user
-  current_access_token.user
+  current_access.user
 end
 

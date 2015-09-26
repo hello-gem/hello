@@ -6,10 +6,10 @@ module Hello
 
         included do
           helper_method :current_user,
-                        :current_access_tokens,
-                        :current_access_token,
+                        :current_accesses,
+                        :current_access,
                         :signed_in?,
-                        :is_current_access_token?
+                        :is_current_access?
 
           delegate  :sign_in!,
                     :sign_out!,
@@ -18,12 +18,12 @@ module Hello
                     :current_user,
                     :is_current_user?,
                     
-                    :current_access_token,
-                    :current_access_tokens,
-                    :is_current_access_token?,
+                    :current_access,
+                    :current_accesses,
+                    :is_current_access?,
 
-                    :session_access_token=,
-                    :session_access_tokens,
+                    :session_token=,
+                    :session_tokens,
 
                     to: :hello_manager
           

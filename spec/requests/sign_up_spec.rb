@@ -38,7 +38,7 @@ RSpec.describe "Sign Up", :type => :request do
 
       expect(response.status).to eq(201)
       expect(response.status_message).to eq("Created")
-      expect(json_response.keys).to match_array %w[access_token expires_at user user_id]
+      expect(json_response.keys).to match_array %w[token expires_at user user_id]
     end
 
   end

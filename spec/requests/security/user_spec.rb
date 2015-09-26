@@ -5,7 +5,7 @@ RSpec.describe "Security", :type => :request do
   context "PATCH /user.json" do
 
     before(:each) do
-      @auth_headers = {'HTTP_ACCESS_TOKEN' => given_I_have_a_classic_access_token.access_token}
+      @auth_headers = {'HTTP_ACCESS_TOKEN' => given_I_have_a_classic_access_token.token}
       mock_stateless!
     end
 

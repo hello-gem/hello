@@ -44,7 +44,7 @@ es:
       confirm_email:
         success: "%{email} ha sido confirmado satisfactoriamente."
         alert: "Este enlace ha expirado, por favor pide un nuevo enlace"
-      destroy_access_token:
+      unlink_access:
         success: "Dispositivo ha sido desconectado satisfactoriamente de tu cuenta"
         alert: "Hubo un error al desconectar este dispositivo"
       sudo_mode_authentication:

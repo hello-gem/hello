@@ -35,11 +35,11 @@ FactoryGirl.define do
     email    { Faker::Internet.email }
   end
 
-  factory :access_token do
+  factory :access do
     user
     expires_at nil
     user_agent_string "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36"
-    factory :valid_access_token do
+    factory :valid_access do
       expires_at { 30.minutes.from_now }
     end
   end

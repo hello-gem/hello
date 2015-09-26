@@ -73,7 +73,7 @@ They are simple to customize, just open them.
     └── db/
         └── migrate/
             ├── 1_create_credentials.hello.rb
-            ├── 2_create_access_tokens.hello.rb
+            ├── 2_create_accesses.hello.rb
             └── 3_create_users.hello.rb
 
 

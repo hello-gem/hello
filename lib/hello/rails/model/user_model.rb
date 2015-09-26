@@ -9,7 +9,7 @@ module Hello
     included do
       has_many :credentials,       dependent: :destroy
       has_many :email_credentials, dependent: :destroy
-      has_many :access_tokens,     dependent: :destroy
+      has_many :accesses,          dependent: :destroy
 
       validates_presence_of :name, :locale, :time_zone
       validates_inclusion_of :locale,    in: Hello.available_locales

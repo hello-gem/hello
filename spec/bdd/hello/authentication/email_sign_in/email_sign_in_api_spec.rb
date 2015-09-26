@@ -24,8 +24,8 @@ RSpec.describe "Hello Gem", type: :request do
 
       then_I_should_get_a_response(201, 'Created')
 
-      Then "and an access token" do
-        expect(json_response.keys).to include "access_token"
+      Then "and a token" do
+        expect(json_response.keys).to include "token"
       end
 
       Then "and an expiration time" do
@@ -40,7 +40,7 @@ RSpec.describe "Hello Gem", type: :request do
 
     def _and_I_should_not_have_signed_in
       Then "and should not have signed in" do
-        expect(AccessToken.count).to eq(0)
+        expect(Access.count).to eq(0)
       end
     end
 

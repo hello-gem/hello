@@ -44,7 +44,7 @@ pt-BR:
       confirm_email:
         success: "%{email} foi confirmado com sucesso."
         alert: "O link expirou, por favor solicite um novo email de confirmação"
-      destroy_access_token:
+      unlink_access:
         success: "Dispositivo foi desconectado com sucesso da sua conta"
         alert: "Houve um erro ao desconectar esse dispositivo"
       sudo_mode_authentication:

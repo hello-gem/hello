@@ -14,8 +14,8 @@ class CreateUsers < ActiveRecord::Migration
     add_users_column_safe :password_token_digest,      :string
     add_users_column_safe :password_token_digested_at, :datetime, default:  DateTime.new(2000, 1,1)
 
-    add_users_column_safe :credentials_count,   :integer, default: 0
-    add_users_column_safe :access_tokens_count, :integer, default: 0
+    add_users_column_safe :credentials_count, :integer, default: 0
+    add_users_column_safe :accesses_count,    :integer, default: 0
     
     add_users_column_safe :city, :string
   end

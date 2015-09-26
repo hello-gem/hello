@@ -6,8 +6,8 @@ module Hello
     dont_kick_people
 
     before_actions do
-      all { @access_tokens = current_access_tokens }
-      only(:switch, :forget) { @access_token = current_access_tokens_find_by_id(params[:id]) }
+      all { @accesses = current_accesses }
+      only(:switch, :forget) { @access = current_accesses_find_by_id(params[:id]) }
     end
 
     # GET /hello/switch_users
@@ -16,21 +16,21 @@ module Hello
 
     # GET /hello/switch_users/1
     def switch
-      self.session_access_token = @access_token.access_token
+      self.session_token = @access.token
       redirect_to hello.switch_users_path, notice: "Switched Accounts Successfully!"
     end
 
     # DELETE /hello/switch_users/1
     def forget
-      @access_token.destroy
-      self.session_access_token = nil
+      @access.destroy
+      self.session_token = nil
       redirect_to hello.switch_users_path, notice: "Signed Out Successfully!"
     end
 
     private
 
-    def current_access_tokens_find_by_id(string)
-      current_access_tokens.select { |at| at.id.to_s == string }.first
+    def current_accesses_find_by_id(string)
+      current_accesses.select { |at| at.id.to_s == string }.first
     end
 
   end

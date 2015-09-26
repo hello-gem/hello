@@ -23,7 +23,7 @@ module Hello
           if impersonated?
             sign_out!
             # sign in with next in line
-            self.session_access_token = session_access_tokens.first
+            self.session_token = session_tokens.first
           end
         end
 

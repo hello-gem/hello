@@ -10,7 +10,7 @@ RSpec.describe "Hello Gem", type: :feature do
         given_I_have_signed_in
         
         When "I get unlinked" do
-          AccessToken.destroy_all
+          Access.destroy_all
         end
 
         Then "I should be sent to the sign in page" do

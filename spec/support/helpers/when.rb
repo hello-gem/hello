@@ -58,13 +58,13 @@ def when_sign_in(login, password, options={})
     check 'keep_me' if options[:keep_me]
     click_button 'Sign In'
   end
-  __fetch_current_active_session
+  __fetch_current_access
 end
 
 
 def when_I_sign_out
   click_link 'Sign Out'
-  __fetch_current_active_session
+  __fetch_current_access
 end
 
 def when_I_confirm_my_user_password(custom_password=nil, expect_to_be_valid=true)
@@ -85,13 +85,13 @@ end
 
 def sign_up_as_an_onboarding
   when_sign_up_as_an_onboarding(expect_success: true)
-  __fetch_current_active_session
+  __fetch_current_access
   expect(current_user.role).to eq('onboarding')
 end
 
 def sign_up_as_a_user
   when_sign_up_with_standard_data
-  __fetch_current_active_session
+  __fetch_current_access
   expect(current_user.role).to eq('user')
 end
 
