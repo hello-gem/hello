@@ -20,7 +20,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= link_to user.username, url_for(user) %></td>
+        <td><%= link_to user.username, user %></td>
         <td><%= user.name %></td>
         <td><%= user.role %></td>
         <td><%= user.locale %></td>

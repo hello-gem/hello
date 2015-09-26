@@ -36,6 +36,8 @@ RSpec.describe "Hello Gem", type: :feature do
       sscenario "Success" do
         When "I attempt to switch to another account" do
           click_link "Switch Accounts"
+          # ensuring url_for context and to_param
+          expect(page.html).to include(%{<a href="/users/foobar">foobar</a>})
           click_link "Switch!"
         end
         
