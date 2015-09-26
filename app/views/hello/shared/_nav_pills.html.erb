@@ -3,7 +3,7 @@
   <li><%= link_to "User List", users_path %></li>
 
   <% if current_access_tokens.any? %>
-    <li><%= link_to "Switch Accounts", hello.accounts_path %></li>
+    <li><%= link_to "Switch Accounts", hello.switch_users_path %></li>
   <% end %>
   
   <% if signed_in? %>

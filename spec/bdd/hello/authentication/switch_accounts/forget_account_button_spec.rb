@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe "Hello Gem", type: :feature do
-  goal_feature "Authentication", "Switch Accounts", "Remove Account Button" do
+  goal_feature "Authentication", "Switch Accounts", "Forget Account Button" do
 
 
 
@@ -16,7 +16,7 @@ RSpec.describe "Hello Gem", type: :feature do
       sscenario "Success" do
         When "I attempt to sign out from one of my accounts" do
           click_link "Switch Accounts"
-          click_button "Remove"
+          click_button "Forget"
         end
         
         Then "I should see a confirmation message" do
@@ -26,7 +26,7 @@ RSpec.describe "Hello Gem", type: :feature do
         then_I_expect_to_be_signed_out
 
         Then "I should be on the accounts page" do
-          expect_to_be_on hello.accounts_path
+          expect_to_be_on '/hello/switch_users'
         end
 
         Then "my access token should be removed from the database" do
@@ -47,7 +47,7 @@ RSpec.describe "Hello Gem", type: :feature do
       sscenario "Success" do
         When "I attempt to sign out from one of my accounts" do
           click_link "Switch Accounts"
-          click_nth_button("Remove", 1)
+          click_nth_button("Forget", 1)
         end
         
         Then "I should see a confirmation message" do
@@ -57,7 +57,7 @@ RSpec.describe "Hello Gem", type: :feature do
         then_I_expect_to_be_signed_out
 
         Then "I should be on the accounts page" do
-          expect_to_be_on hello.accounts_path
+          expect_to_be_on '/hello/switch_users'
         end
 
         Then "my access token should be removed from the database" do

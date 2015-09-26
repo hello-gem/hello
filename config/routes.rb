@@ -68,7 +68,10 @@ Hello::Engine.routes.draw do
   
   resources :access_tokens, only: [:index, :destroy]
   match  "sign_out" => "sign_out#sign_out", via: [:get, :post, :head, :put, :delete]
-  resources :accounts, only: [:index, :show, :destroy]
+  
+  get    "switch_users"     => "switch_users#index"
+  get    "switch_users/:id" => "switch_users#switch", as: 'switch_user'
+  delete "switch_users/:id" => "switch_users#forget"
 
   #
   # LOCALE
