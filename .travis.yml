@@ -1,21 +1,23 @@
 # http://lint.travis-ci.org/
 # http://docs.travis-ci.com/user/build-configuration/
 language: ruby
+sudo: false
+cache: bundler
 
 matrix:
   include:
     # latest Rails; Old Rubies: 2.0.0   2.1.5
     - rvm: 2.0.0
       gemfile: gemfiles/rails-4-2-stable.gemfile
-    - rvm: 2.1.5
+    - rvm: 2.1
       gemfile: gemfiles/rails-4-2-stable.gemfile
 
     # latest Ruby, old Rails: 4-1-stable
-    - rvm: 2.2.1
+    - rvm: 2.2
       gemfile: gemfiles/rails-4-1-stable.gemfile
 
     # both latest
-    - rvm: 2.2.1
+    - rvm: 2.2
       gemfile: gemfiles/rails-4-2-stable.gemfile
 
     # latest Ruby, next Rails
