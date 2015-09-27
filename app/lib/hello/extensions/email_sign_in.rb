@@ -1,4 +1,3 @@
-# Generated with gem 'hello', '<%= Hello::VERSION %>'
 # Learn more at config/initializers/hello.rb
 #
 module Hello
