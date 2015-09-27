@@ -12,6 +12,11 @@ module Hello
       app.config.app_middleware.use Hello::Manager::Middleware
     end
 
+    initializer "hello.load_config" do |app|
+      app.config.autoload_paths += %W(#{Engine.root}/lib)
+      app.config.watchable_dirs["#{Engine.root}/lib"] = [:rb]
+    end
+    
     config.hello            = ActiveSupport::OrderedOptions.new
     config.hello.extensions = ActiveSupport::OrderedOptions.new
 
