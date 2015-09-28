@@ -8,7 +8,11 @@ class UsersController < ApplicationController
   end
 
   # GET /users/username
+  # GET /users/id -> redirects to /users/username
   def show
-    @user = User.find_by_username!(params[:id]) rescue User.find(params[:id])
+    @user = User.find_by_username!(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to User.find_by_id!(params[:id]) # forces redirect to path with username if used id on URL
   end
+
 end

@@ -44,32 +44,59 @@ RSpec.describe "Hello Gem", type: :feature do
           _expect_to_be_on_foobar
         end
       end
+    end
 
-
-
-      def _then_I_can_navigate_to_the_user_list
-        Then "I should be able to navigate to 'User List'" do
-          click_link "User List"
-          _expect_to_be_on_users
+    sstory "Redirects to username" do
+      before do
+        Given "a user" do
+          given_I_have_an_email_credential
         end
       end
 
-      def _then_I_can_navigate_to_a_user
-        Then "I should be able to navigate to a user" do
-          click_link "foobar"
+      sscenario "Visits ID URL" do
+        When "I visit /users/1" do
+          visit "/users/1"
+        end
+      end
+
+
+
+      sscenario "Visits username URL" do
+        When "I visit /users/foobar" do
+          visit "/users/foobar"
+        end
+      end
+
+      after do
+        Then "I should be on /users/foobar" do
           _expect_to_be_on_foobar
         end
       end
+    end
 
-      def _expect_to_be_on_users
-        expect_to_be_on users_path
-        expect_to_see "Listing Users"
-      end
 
-      def _expect_to_be_on_foobar
-        expect_to_be_on "/users/foobar"
-        expect_to_see "James Pinto"
+    def _then_I_can_navigate_to_the_user_list
+      Then "I should be able to navigate to 'User List'" do
+        click_link "User List"
+        _expect_to_be_on_users
       end
+    end
+
+    def _then_I_can_navigate_to_a_user
+      Then "I should be able to navigate to a user" do
+        click_link "foobar"
+        _expect_to_be_on_foobar
+      end
+    end
+
+    def _expect_to_be_on_users
+      expect_to_be_on users_path
+      expect_to_see "Listing Users"
+    end
+
+    def _expect_to_be_on_foobar
+      expect_to_be_on "/users/foobar"
+      expect_to_see "James Pinto"
     end
   end
 end
