@@ -8,7 +8,7 @@ module Hello
     
     # GET /webmaster/users
     def index
-      @users = User.all
+      @users = User.order(:id)
     end
 
     # # GET /webmaster/users/1
