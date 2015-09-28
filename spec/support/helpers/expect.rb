@@ -53,8 +53,8 @@
     when nil                          then expect_flash_alert_blank
     when :must_be_authenticated       then expect_flash_alert "You must sign in to continue."
     when :cannot_be_a_authenticated   then expect_flash_alert "You have already signed in."
-    when :must_be_a_novice            then expect_flash_alert "You have already completed your registration."
-    when :cannot_be_a_novice          then expect_flash_alert "Please complete your registration."
+    when :must_be_an_onboarding            then expect_flash_alert "You have already completed your registration."
+    when :cannot_be_an_onboarding          then expect_flash_alert "Please complete your registration."
     when :must_be_a_master            then expect_flash_alert "This section of website is restricted to admins."
     else raise("unknown auth_situation '#{situation}'")
       

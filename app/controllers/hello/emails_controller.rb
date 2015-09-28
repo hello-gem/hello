@@ -7,7 +7,7 @@ require_dependency "hello/application_controller"
 module Hello
   class EmailsController < ApplicationController
 
-    kick :guest, :novice
+    kick :guest, :onboarding
     sudo_mode
 
     helper_method :credentials

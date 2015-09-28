@@ -20,19 +20,19 @@ RSpec.describe "Hello Gem", type: :feature do
           visit hello.sign_up_path
           within("form#new_sign_up") do
             fill_in 'sign_up_name',     with: 'James Pinto'
-            fill_in 'sign_up_email',    with: 'novice@bar.com'
-            fill_in 'sign_up_username', with: 'novice'
-            fill_in 'sign_up_password', with: 'novice'
+            fill_in 'sign_up_email',    with: 'onboarding@bar.com'
+            fill_in 'sign_up_username', with: 'onboarding'
+            fill_in 'sign_up_password', with: 'onboarding'
             fill_in 'sign_up_city',     with: 'OMG! I can customize Hello!'
             click_button 'Sign Up'
           end
-          then_I_expect_to_be_signed_in_with_role('novice')
+          then_I_expect_to_be_signed_in_with_role('onboarding')
           expect_flash_notice "You have signed up successfully"
         end
         
         Then "I should see I have 2 accounts" do
           expect_to_see "dummy-accounts-2"
-          expect_to_see "dummy-account-novice"
+          expect_to_see "dummy-account-onboarding"
           expect_to_see "dummy-account-foobar"
         end
       end

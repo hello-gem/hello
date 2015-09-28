@@ -1,7 +1,7 @@
 module Hello
   class CurrentUsersController < ApplicationController
 
-    kick :guest, :novice
+    kick :guest, :onboarding
 
     before_action do
       @user_entity = UpdateMyUserEntity.new(@user = current_user)

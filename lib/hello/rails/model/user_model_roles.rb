@@ -14,16 +14,16 @@ module Hello
       end
 
       def roles
-        # [guest, novice, user, webmaster]
-        [novice_role, user_role, webmaster_role]
+        # [guest, onboarding, user, webmaster]
+        [onboarding_role, user_role, webmaster_role]
       end
 
       # def guest
       #   'guest'
       # end
 
-      def novice_role
-        'novice'
+      def onboarding_role
+        'onboarding'
       end
 
       def user_role
@@ -42,8 +42,8 @@ module Hello
       role == 'guest'
     end
 
-    def novice?
-      role == self.class.novice_role
+    def onboarding?
+      role == self.class.onboarding_role
     end
 
     def user?
@@ -61,7 +61,7 @@ module Hello
 
 
 
-    # def turn_novice_to_user!
+    # def turn_onboarding_to_user!
     #   # place additional code here
     #   update! role: User.user_role
     # end

@@ -23,9 +23,9 @@ RSpec.describe "Hello Gem", type: :feature do
       end
     end
 
-    def _then_redirect_to_novice
-      Then "I should be taken to novice" do
-        expect(current_path).to eq '/novice'
+    def _then_redirect_to_onboarding
+      Then "I should be taken to onboarding" do
+        expect(current_path).to eq '/onboarding'
       end
     end
 
@@ -51,10 +51,10 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-      sscenario "As a Novice" do
-        given_I_have_signed_in_as_a_novice
+      sscenario "As an Onboarding" do
+        given_I_have_signed_in_as_an_onboarding
         _when_I_visit
-        _then_redirect_to_novice
+        _then_redirect_to_onboarding
       end
 
 
@@ -76,11 +76,11 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-    sstory "Novice Area" do
+    sstory "Onboarding Area" do
 
       def _when_I_visit
-        When "I visit the Novice Area" do
-          visit '/my_areas/novice_page'
+        When "I visit the Onboarding Area" do
+          visit '/my_areas/onboarding_page'
         end
       end
 
@@ -93,8 +93,8 @@ RSpec.describe "Hello Gem", type: :feature do
       end
 
 
-      sscenario "As a Novice" do
-        given_I_have_signed_in_as_a_novice
+      sscenario "As an Onboarding" do
+        given_I_have_signed_in_as_an_onboarding
         _when_I_visit
         _then_allowed
       end
@@ -133,8 +133,8 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-      sscenario "As a Novice" do
-        given_I_have_signed_in_as_a_novice
+      sscenario "As an Onboarding" do
+        given_I_have_signed_in_as_an_onboarding
         _when_I_visit
         _then_allowed
       end
@@ -175,10 +175,10 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-      sscenario "As a Novice" do
-        given_I_have_signed_in_as_a_novice
+      sscenario "As an Onboarding" do
+        given_I_have_signed_in_as_an_onboarding
         _when_I_visit
-        _then_redirect_to_novice
+        _then_redirect_to_onboarding
       end
 
 
@@ -217,10 +217,10 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-      sscenario "As a Novice" do
-        given_I_have_signed_in_as_a_novice
+      sscenario "As an Onboarding" do
+        given_I_have_signed_in_as_an_onboarding
         _when_I_visit
-        _then_redirect_to_novice
+        _then_redirect_to_onboarding
       end
 
 
@@ -259,8 +259,8 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-      sscenario "As a Novice" do
-        given_I_have_signed_in_as_a_novice
+      sscenario "As an Onboarding" do
+        given_I_have_signed_in_as_an_onboarding
         _when_I_visit
         _then_allowed
       end

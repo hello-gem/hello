@@ -9,7 +9,7 @@ def when_I_ask_to_reset_my_password(custom_login=nil)
 end
 
 def when_sign_up_with_standard_data(options={})
-  when_sign_up_as_a_novice(expect_success: true)
+  when_sign_up_as_an_onboarding(expect_success: true)
 
   click_button "Continue"
   # expect(current_path).to eq root_path
@@ -17,7 +17,7 @@ def when_sign_up_with_standard_data(options={})
 end
 
 
-def when_sign_up_as_a_novice(options={})
+def when_sign_up_as_an_onboarding(options={})
   # if options[:expect_welcome_mailer] === true
   #   Hello::RegistrationMailer.should_receive(:welcome).and_return(double("mailer", deliver: true))
   # elsif options[:expect_welcome_mailer] === false
@@ -36,7 +36,7 @@ def when_sign_up_as_a_novice(options={})
   end
 
   if options[:expect_success] === true
-    expect(current_path).to eq('/novice')
+    expect(current_path).to eq('/onboarding')
   end
   
 end
@@ -83,10 +83,10 @@ def when_I_confirm_sudo_mode(custom_password=nil)
   when_I_confirm_my_user_password(custom_password)
 end
 
-def sign_up_as_a_novice
-  when_sign_up_as_a_novice(expect_success: true)
+def sign_up_as_an_onboarding
+  when_sign_up_as_an_onboarding(expect_success: true)
   __fetch_current_active_session
-  expect(current_user.role).to eq('novice')
+  expect(current_user.role).to eq('onboarding')
 end
 
 def sign_up_as_a_user
@@ -104,7 +104,7 @@ end
 def sign_up_as_a(role)
   case role.to_sym
   when :guest  # nothing to do
-  when :novice then sign_up_as_a_novice
+  when :onboarding then sign_up_as_an_onboarding
   when :user   then sign_up_as_a_user
   when :webmaster  then sign_up_as_a_webmaster
   else raise("Role #{role} is unknown")

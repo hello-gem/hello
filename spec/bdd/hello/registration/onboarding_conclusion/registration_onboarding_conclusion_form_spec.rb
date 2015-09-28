@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 RSpec.describe "Hello Gem", type: :feature do
-  goal_feature "Registration", "Novice Conclusion", "Form" do
+  goal_feature "Registration", "Onboarding Conclusion", "Form" do
 
 
 
     before do
-      Given "I have signed up as a novice" do
-        sign_up_as_a_novice
-        expect(User.last.role).to eq('novice')
+      Given "I have signed up as an onboarding" do
+        sign_up_as_an_onboarding
+        expect(User.last.role).to eq('onboarding')
       end
     end
 
@@ -43,8 +43,8 @@ RSpec.describe "Hello Gem", type: :feature do
         expect_to_see "You cannot join the website unless you agree with our terms and policies"
       end
 
-      Then "and be signed in as a novice" do
-        then_I_expect_to_be_signed_in_with_role('novice')
+      Then "and be signed in as an onboarding" do
+        then_I_expect_to_be_signed_in_with_role('onboarding')
       end
 
     end

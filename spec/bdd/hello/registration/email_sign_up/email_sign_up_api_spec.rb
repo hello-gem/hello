@@ -26,10 +26,10 @@ RSpec.describe "Hello Gem", type: :request do
         expect(json_response.keys).to include "expires_at"
       end
 
-      Then "and a novice user" do
+      Then "and an onboarding user" do
         expect(json_response.keys).to include "user_id"
         expect(json_response.keys).to include "user"
-        expect(json_response['user']['role']).to eq "novice"
+        expect(json_response['user']['role']).to eq "onboarding"
       end
     end
 

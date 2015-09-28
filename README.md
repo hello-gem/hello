@@ -47,7 +47,7 @@ They are simple to customize, just open them.
 
     ├── app/
     │   ├── controllers/
-    │   │   ├── novice_controller.rb
+    │   │   ├── onboarding_controller.rb
     │   │   └── users_controller.rb
     │   ├── models/
     │   │   ├── credential.rb
@@ -58,7 +58,7 @@ They are simple to customize, just open them.
     │   │   │   └── [...optional...]
     │   │   ├── layouts/
     │   │   │   └── application.html.erb
-    │   │   ├── novice/
+    │   │   ├── onboarding/
     │   │   │   └── index.html.erb
     │   │   └── users/
     │   │       ├── index.html.erb

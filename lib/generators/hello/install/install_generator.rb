@@ -54,13 +54,13 @@ class Hello::InstallGenerator < Rails::Generators::Base
     directory "users/views", "app/views"
   end
 
-  def generate_novice
+  def generate_onboarding
     route %{
-  get  'novice' => 'novice#index'
-  post 'novice' => 'novice#continue'
+  get  'onboarding' => 'onboarding#index'
+  post 'onboarding' => 'onboarding#continue'
     }
-    copy_file "novice/novice_controller.rb", "app/controllers/novice_controller.rb"
-    copy_file "novice/index.html.erb",       "app/views/novice/index.html.erb"
+    copy_file "onboarding/onboarding_controller.rb", "app/controllers/onboarding_controller.rb"
+    copy_file "onboarding/index.html.erb",           "app/views/onboarding/index.html.erb"
   end
 
 

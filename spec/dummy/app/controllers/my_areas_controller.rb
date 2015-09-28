@@ -4,7 +4,7 @@ class MyAreasController < ApplicationController
   # KEEP ONE
   #
   dont_kick :guest,  only: :guest_page
-  dont_kick :novice, only: :novice_page
+  dont_kick :onboarding, only: :onboarding_page
   dont_kick :webmaster, only: :webmaster_page
 
 
@@ -19,7 +19,7 @@ class MyAreasController < ApplicationController
   #
   # USER AREA
   #
-  kick :guest, :novice, only: :user_page
+  kick :guest, :onboarding, only: :user_page
 
 
 
@@ -37,7 +37,7 @@ class MyAreasController < ApplicationController
     yes
   end
 
-  def novice_page
+  def onboarding_page
     yes
   end
 

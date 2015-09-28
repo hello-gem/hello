@@ -7,7 +7,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
     sscenario "Valid Form" do
       When "I sign up with a valid form" do
-        when_sign_up_as_a_novice
+        when_sign_up_as_an_onboarding
       end
 
       Then "I should see a confirmation message" do
@@ -22,9 +22,9 @@ RSpec.describe "Hello Gem", type: :feature do
         then_I_should_be_logged_in
       end
 
-      Then "as a novice" do
-        expect(User.last.role).to eq('novice')
-        expect(current_path).to eq '/novice'
+      Then "as an onboarding" do
+        expect(User.last.role).to eq('onboarding')
+        expect(current_path).to eq '/onboarding'
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe "Hello Gem", type: :feature do
     end
     #       sscenario taken
     # #     given_I_have_a_classic_access_token
-    # #     when_sign_up_as_a_novice(expect_welcome_mailer: false, expect_success: false)
+    # #     when_sign_up_as_an_onboarding(expect_welcome_mailer: false, expect_success: false)
     # #     expect_error_message "2 errors were found while trying to sign up"
     # #     expect_to_see "This email address has already been registered."
     # #     expect_to_see "This username has already been registered."

@@ -1,18 +1,18 @@
 require 'spec_helper'
 
 RSpec.describe "Hello Gem", type: :request do
-  goal_feature "Registration", "Novice Conclusion", "API" do
+  goal_feature "Registration", "Onboarding Conclusion", "API" do
 
 
 
     before do
       mock_stateless!
 
-      Given "I have a novice access token" do
-        u = create(:novice)
+      Given "I have an onboarding access token" do
+        u = create(:onboarding)
         at = create(:access_token, user: u, expires_at: 24.hours.from_now)
         @token = at.access_token
-        expect(User.last.role).to eq('novice')
+        expect(User.last.role).to eq('onboarding')
       end
     end
 
@@ -21,7 +21,7 @@ RSpec.describe "Hello Gem", type: :request do
     def _when_I_post(s, params={})
       When "I post #{s}" do
         params.merge!(access_token: @token)
-        post "/novice.json", params
+        post "/onboarding.json", params
       end
     end
 
@@ -50,8 +50,8 @@ RSpec.describe "Hello Gem", type: :request do
         expect(json_response).to eq("errors"=>"must agree to terms")
       end
 
-      Then "and still be a novice" do
-        expect(User.last.role).to eq('novice')
+      Then "and still be an onboarding" do
+        expect(User.last.role).to eq('onboarding')
       end
     end
 

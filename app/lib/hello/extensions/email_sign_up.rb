@@ -16,7 +16,7 @@ module Hello
       end
 
       def starting_role
-        'novice'
+        'onboarding'
       end
 
       def success
@@ -27,7 +27,7 @@ module Hello
         access_token = sign_in!(@sign_up.user, expires_at)
 
         respond_to do |format|
-          format.html { redirect_to '/novice' }
+          format.html { redirect_to '/onboarding' }
           format.json { render json: access_token.to_json_web_api, status: :created }
         end
       end

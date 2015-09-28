@@ -1,7 +1,7 @@
 module Hello
   class PasswordController < ApplicationController
 
-    kick :guest, :novice
+    kick :guest, :onboarding
     sudo_mode
 
     before_action do

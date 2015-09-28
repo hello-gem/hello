@@ -48,7 +48,7 @@ module Hello
               u = current_user_or_guest
               
               return redirect_to_sign_in if u.guest?
-              return redirect_to_novice  if u.novice?
+              return redirect_to_onboarding  if u.onboarding?
               redirect_to_root
             end
 
@@ -81,11 +81,11 @@ module Hello
               end
             end
 
-            def redirect_to_novice
+            def redirect_to_onboarding
               respond_to do |format|
-                format.html { redirect_to '/novice' }
+                format.html { redirect_to '/onboarding' }
                 format.json do
-                  data   = {"message"=>"Access Denied, visit /novice and complete your registration."}
+                  data   = {"message"=>"Access Denied, visit /onboarding and complete your registration."}
                   status = :forbidden # 403
                   render json: data, status: status
                 end

@@ -22,11 +22,11 @@ FactoryGirl.define do
       password 'webmaster'
     end
 
-    factory :novice do
-      name 'Novice'
-      role 'novice'
-      username 'novice'
-      password 'novice'
+    factory :onboarding do
+      name 'Onboarding'
+      role 'onboarding'
+      username 'onboarding'
+      password 'onboarding'
     end
   end
 

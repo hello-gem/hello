@@ -15,7 +15,7 @@ RSpec.describe "Hello Gem", type: :feature do
         end
 
         When "I sign up" do
-          when_sign_up_as_a_novice(expect_welcome_mailer: true)
+          when_sign_up_as_an_onboarding(expect_welcome_mailer: true)
         end
 
         Then "I expect to a confirmation message in 'pt-BR'" do

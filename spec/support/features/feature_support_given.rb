@@ -24,10 +24,10 @@ module Hello::FeatureSupportGiven
     end
   end
 
-  def given_I_have_signed_in_as_a_novice
-    Given "I have signed in as a novice" do
-      sign_up_as_a_novice
-      then_I_expect_to_be_signed_in_with_role('novice')
+  def given_I_have_signed_in_as_an_onboarding
+    Given "I have signed in as an onboarding" do
+      sign_up_as_an_onboarding
+      then_I_expect_to_be_signed_in_with_role('onboarding')
     end
   end
 

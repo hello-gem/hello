@@ -7,7 +7,7 @@ require_dependency "hello/application_controller"
 module Hello
   class SudoModeController < ApplicationController
 
-    kick :guest, :novice
+    kick :guest, :onboarding
     
     # GET /hello/sudo_mode
     def form

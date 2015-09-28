@@ -35,8 +35,8 @@ RSpec.describe "Hello Gem", type: :feature do
 
 
 
-      sscenario "As a Novice" do
-        given_I_have_signed_in_as_a_novice
+      sscenario "As an Onboarding" do
+        given_I_have_signed_in_as_an_onboarding
         _when_I_visit_with_an_invalid_token_then
         then_I_expect_to_be_signed_out
       end

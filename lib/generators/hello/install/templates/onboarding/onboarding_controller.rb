@@ -1,6 +1,6 @@
-class NoviceController < ApplicationController
+class OnboardingController < ApplicationController
 
-  dont_kick :novice
+  dont_kick :onboarding
   
   def index
   end

@@ -1,6 +1,6 @@
 class RootController < ApplicationController
 
-  kick :novice
+  kick :onboarding
 
   def index
   end

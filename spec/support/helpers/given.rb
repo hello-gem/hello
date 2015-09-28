@@ -14,8 +14,8 @@ def given_I_have_an_email_credential
   create(:email_credential, user: user, email: USER_TEST_EMAIL)
 end
 
-def given_I_have_a_novice_password_credential
-  user = create(:novice)
+def given_I_have_an_onboarding_password_credential
+  user = create(:onboarding)
   create(:email_credential, user: user, email: USER_TEST_EMAIL)
 end
 
