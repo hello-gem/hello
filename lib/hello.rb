@@ -8,13 +8,13 @@ require 'bcrypt'
 require 'nav_lynx'
 
 
-require "hello/engine"
-require "hello/configuration"
+require_relative "hello/engine"
+require_relative "hello/configuration"
 
-require "hello/token"
-require "hello/errors"
-require "hello/locales"
-require "hello/user_agent"
-require "hello/support"
-require "hello/manager"
-require "hello/rails"
+require_relative "hello/token"
+require_relative "hello/errors"
+require_relative "hello/locales"
+require_relative "hello/user_agent"
+require_relative "hello/support"
+require_relative "hello/manager"
+require_relative "hello/rails"

@@ -1,4 +1,4 @@
-require "hello/manager"
+require_relative "manager"
 
 module Hello
   class Engine < ::Rails::Engine

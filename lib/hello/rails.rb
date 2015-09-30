@@ -1,3 +1,3 @@
-require "hello/rails/controller"
-require "hello/rails/helper"
-require "hello/rails/model"
+require_relative "rails/controller"
+require_relative "rails/helper"
+require_relative "rails/model"
