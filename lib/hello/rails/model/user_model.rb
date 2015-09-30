@@ -1,6 +1,6 @@
-require "hello/rails/model/user_model_username"
-require "hello/rails/model/user_model_password"
-require "hello/rails/model/user_model_roles"
+require_relative "user_model_username"
+require_relative "user_model_password"
+require_relative "user_model_roles"
 
 module Hello
   module UserModel

@@ -1,4 +1,4 @@
-require 'hello/locales/locale_names'
+require_relative 'locales/locale_names'
 
 module Hello
 
