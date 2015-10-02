@@ -1,16 +1,15 @@
 
 USER_TEST_EMAIL    = 'foo@bar.com'
 USER_TEST_USERNAME = 'foobar'
-USER_TEST_PASSWORD = 'foobar'
 
 def given_I_have_a_classic_access_token
-  user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, password: USER_TEST_PASSWORD, city: 'Brasilia')
+  user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, city: 'Brasilia')
   create(:email_credential, user: user, email: USER_TEST_EMAIL)
   Access.create!(user: user, user_agent_string: 'testing', expires_at: 24.hours.from_now)
 end
 
 def given_I_have_an_email_credential
-  user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, password: USER_TEST_PASSWORD, city: 'Brasilia')
+  user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, city: 'Brasilia')
   create(:email_credential, user: user, email: USER_TEST_EMAIL)
 end
 
@@ -26,7 +25,7 @@ end
 
 def given_I_have_an_email_credential_and_forgot_my_password
   credential = given_I_have_an_email_credential
-  return unencrypted_token = credential.user.reset_password_token
+  return unencrypted_token = credential.user.password_credential.reset_password_token
 end
 
 def given_I_am_logged_in_with_a_classic_credential

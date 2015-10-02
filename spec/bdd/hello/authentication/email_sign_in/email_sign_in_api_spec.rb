@@ -20,7 +20,7 @@ RSpec.describe "Hello Gem", type: :request do
 
 
     sscenario "Valid Parameters" do
-      _when_I_post "valid parameters", sign_in: {login: "foo@bar.com", password: "foobar"}
+      _when_I_post "valid parameters", sign_in: {login: "foo@bar.com", password: "1234"}
 
       then_I_should_get_a_response(201, 'Created')
 

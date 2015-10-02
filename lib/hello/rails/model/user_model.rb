@@ -1,5 +1,4 @@
 require_relative "user_model_username"
-require_relative "user_model_password"
 require_relative "user_model_roles"
 
 module Hello
@@ -9,14 +8,14 @@ module Hello
     included do
       has_many :credentials,       dependent: :destroy
       has_many :email_credentials, dependent: :destroy
-      has_many :accesses,          dependent: :destroy
+      has_one  :password_credential, dependent: :destroy
+      has_many :accesses, dependent: :destroy
 
       validates_presence_of :name, :locale, :time_zone
       validates_inclusion_of :locale,    in: Hello.available_locales
       validates_inclusion_of :time_zone, in: Hello.available_time_zones
 
       include UserModelUsername
-      include UserModelPassword
       include UserModelRoles
     end
 
@@ -32,7 +31,7 @@ module Hello
       # are 2 separate instances, making it impossible for them to share state
       # therefore, an instance variable used as a flag will not work for Rails 4.0
       # It will however, work for Rails 4.1 and 4.2
-      # @hello_is_this_being_destroyed = true 
+      # @hello_is_this_being_destroyed = true
       Thread.current["Hello.destroying_user"] = true
       super
     end
@@ -42,7 +41,9 @@ module Hello
     # end
 
 
-
+    def password_is?(plain_text_password)
+      password_credential.password_is?(plain_text_password)
+    end
 
 
 
@@ -52,11 +53,7 @@ module Hello
 
       def hello_apply_config!
         Hello.configuration.tap do |c|
-          validates_length_of  :password,
-                                    in: c.password_length,
-                                    too_long:  'maximum of %{count} characters',
-                                    too_short: 'minimum of %{count} characters',
-                                    if: :password_digest_changed?
+          PasswordCredential.hello_apply_config!
           validates_format_of :username, with: c.username_regex
           validates_length_of :username,
                                    in: c.username_length,

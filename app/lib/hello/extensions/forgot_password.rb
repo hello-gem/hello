@@ -30,9 +30,9 @@ module Hello
 
 
       def reset_token_and_deliver_email!
-        token  = @user.reset_password_token
+        token  = @user.password_credential.reset_password_token
         url    = hello.reset_token_url(token)
-        @user.credentials.each do |credential|
+        @user.email_credentials.each do |credential|
           Hello::RegistrationMailer.forgot_password(credential, url).deliver
         end
       end

@@ -8,8 +8,8 @@ module Hello
         BCrypt::Password.create(plain_text)
       end
 
-      def self.check(user, plain_text)
-        BCrypt::Password.new(user.password_digest) == plain_text 
+      def self.check(password_credential, plain_text)
+        BCrypt::Password.new(password_credential.digest) == plain_text
       rescue BCrypt::Errors::InvalidHash
         false
       end

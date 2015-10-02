@@ -18,32 +18,5 @@ RSpec.describe "Security", :type => :request do
       }.not_to change { User.last.role }.from('user')
     end
 
-    it "PasswordDigest" do
-      user_params = {user: {password_digest: "new"}}
-      expect {
-        patch "/hello/current_user.json", user_params, @auth_headers
-
-        expect(response.status).to eq(200)
-      }.not_to change { User.last.password_digest }
-    end
-
-    it "PasswordTokenDigest" do
-      user_params = {user: {password_token_digest: "new"}}
-      expect {
-        patch "/hello/current_user.json", user_params, @auth_headers
-
-        expect(response.status).to eq(200)
-      }.not_to change { User.last.password_token_digest }
-    end
-
-    it "PasswordTokenDigestedAt" do
-      user_params = {user: {password_token_digested_at: Time.now}}
-      expect {
-        patch "/hello/current_user.json", user_params, @auth_headers
-
-        expect(response.status).to eq(200)
-      }.not_to change { User.last.password_token_digested_at }
-    end
-
   end
 end

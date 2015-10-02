@@ -4,7 +4,7 @@ module Hello
       include Hello::Extensions::EmailSignUp
 
       def fields
-        %w(name username password time_zone locale city)
+        %w(name username time_zone locale city)
       end
     end
   end

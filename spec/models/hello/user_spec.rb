@@ -15,11 +15,18 @@ module Hello
           :name=>["can't be blank"],
           :locale=>["can't be blank", "is not included in the list"],
           :time_zone=>["can't be blank", "is not included in the list"],
-          :password=>["can't be blank"],
           :city=>["can't be blank"],
           # :username=>["is invalid", "minimum of 4 characters", "can't be blank"]
         }
         )
+      end
+    end
+
+    describe "passwords" do
+      example "one is automatically created with factories" do
+        expect {
+          create(:user)
+        }.to change { PasswordCredential.count }.from(0).to(1)
       end
     end
 
@@ -116,45 +123,6 @@ module Hello
 
       end
       
-    end
-
-
-    describe "password" do
-      describe "validations" do
-
-        let(:user) { User.new }
-        
-        it "presence" do
-          user.valid?
-          expect(user.errors[:password]).to include "can't be blank"
-        end
-
-        it "length" do
-          user.password = '1' * 1
-          user.valid?
-          expect(user.errors[:password]).to eq ["minimum of 4 characters"]
-
-          user.password = '1' * 4
-          user.valid?
-          expect(user.errors[:password]).to be_empty
-
-          user.password = '1' * 201
-          user.valid?
-          expect(user.errors[:password]).to eq ["maximum of 200 characters"]
-        end
-
-        it "spaced" do
-          user.password = "   123   4   "
-          expect(user.password_is?('1234')).to eq(true)
-        end
-
-        it "cased" do
-          user.password = "Abcd"
-          expect(user.password_is?('Abcd')).to eq(true)
-          expect(user.password_is?('abcd')).to eq(false)
-        end
-        
-      end
     end
 
   end

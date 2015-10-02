@@ -61,7 +61,8 @@ module Hello
       end
 
       def credentials
-        current_user.credentials
+        # TODO: this is necessary to hide a temporary bug, must solve this later
+        current_user.credentials.where(type: "EmailCredential")
       end
 
   end

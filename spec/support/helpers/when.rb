@@ -30,7 +30,7 @@ def when_sign_up_as_an_onboarding(options={})
     fill_in 'sign_up_name',     with: 'James Pinto'
     fill_in 'sign_up_email',    with: 'foo@bar.com'
     fill_in 'sign_up_username', with: 'foobar'
-    fill_in 'sign_up_password', with: 'foobar'
+    fill_in 'sign_up_password', with: '1234'
     fill_in 'sign_up_city',     with: 'OMG! I can customize Hello!'
     click_button 'Sign Up'
   end
@@ -42,11 +42,11 @@ def when_sign_up_as_an_onboarding(options={})
 end
 
 def when_sign_in_with_standard_data(options={})
-  when_sign_in('foobar', (options[:password] || 'foobar'), options)
+  when_sign_in('foobar', (options[:password] || '1234'), options)
 end
 
 def when_sign_in_with_webmaster_data
-  when_sign_in('webmaster', 'webmaster')
+  when_sign_in('webmaster', '1234')
 end
 
 def when_sign_in(login, password, options={})
@@ -71,7 +71,7 @@ def when_I_confirm_my_user_password(custom_password=nil, expect_to_be_valid=true
   # expect(current_path).to eq '/hello/sudo'
   expect_to_see "Confirm Password to Continue"
   within("form") do
-    fill_in 'user_password', with: (custom_password || 'foobar')
+    fill_in 'user_password', with: (custom_password || '1234')
     click_button 'Confirm Password'
   end
   if expect_to_be_valid

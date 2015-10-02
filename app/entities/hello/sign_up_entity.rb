@@ -5,7 +5,7 @@ module Hello
     class Mod
     end
 
-    attr_reader :credential
+    attr_reader :email_credential, :password_credential, :user
 
     def initialize
       @config = get_config
@@ -15,21 +15,17 @@ module Hello
 
     def save(attrs)
       write_attrs(attrs)
-      create_credential
+      create_models
     end
 
     # errors.added? DOES NOT WORK when the validation was given a custom message :)
     def email_taken?
-      credential && credential.errors.added?(:email, :taken)
+      @email_credential and @email_credential.errors.added?(:email, :taken)
     end
 
     # errors.added? DOES NOT WORK when the validation was given a custom message :)
     def username_taken?
-      credential && user.errors.added?(:username, :taken)
-    end
-
-    def user
-      credential.user
+      @user and user.errors.added?(:username, :taken)
     end
 
     private
@@ -50,7 +46,7 @@ module Hello
         end
 
             def all_fields
-              @config[:user_fields] + %w(email)
+              @config[:user_fields] + %w(email password)
             end
 
         def write_defaults
@@ -65,32 +61,35 @@ module Hello
           attrs.slice(*all_fields).each { |k, v| send("#{k}=", v) if v }
         end
 
-            # NOTE: 
+            # NOTE:
             # All validations are delegated to the models
-            def create_credential
-              @credential = build_models
+            def create_models
+              build_models
               if invalidate_models
                 merge_model_errors
                 return false
               end
-              @credential.save!
+              @user.save!
+              @email_credential.save!
+              @password_credential.save!
             end
 
                 def build_models
-                  EmailCredential.new(email: email) do |c|
-                    c.build_user(user_attributes)
-                  end
+                  @user                = User.new(user_attributes)
+                  @email_credential    = EmailCredential.new    user: @user, email:    email
+                  @password_credential = PasswordCredential.new user: @user, password: password
                 end
 
                 def invalidate_models
-                  # credential.invalid? || user.invalid?
-                  a=credential.invalid?
-                  b=user.invalid?
-                  a || b
+                  # run all model validations without skipping
+                  a = email_credential.invalid?
+                  b = password_credential.invalid?
+                  c = user.invalid?
+                  a || b || c
                 end
 
                 def merge_model_errors
-                  hash = credential.errors.to_hash.merge(user.errors)
+                  hash = email_credential.errors.to_hash.merge(user.errors).merge(password_credential.errors)
                   hash.each { |k,v| v.each { |v1| errors.add(k, v1) } }
                 end
 

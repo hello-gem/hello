@@ -4,8 +4,8 @@
 
 <div class="col-sm-3-offset col-md-2-offset col-sm-9 col-md-10">
 
-<%= form_for @user, url: password_path, html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= render '/hello/shared/errors', active_model: @user_entity %>
+<%= form_for @password_credential, url: password_path, html: {class: "form-horizontal", role: "form"} do |f| %>
+  <%= render '/hello/shared/errors', active_model: @entity %>
 
   <div class="form-group">
     <%= f.label :password, class: "col-sm-4 control-label" %>

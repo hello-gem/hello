@@ -8,7 +8,7 @@ module Hello
       sign_out!
       @reset_password = ResetPasswordEntity.new(params[:token])
 
-      if @reset_password.user
+      if @reset_password.password_credential
         session[:hello_reset_token] = params[:token]
         redirect_to password_reset_path
       else
@@ -40,7 +40,6 @@ module Hello
         def fetch_registration_reset_ivar
           return redirect_to forgot_path unless session[:hello_reset_token]
           @reset_password = ResetPasswordEntity.new(session[:hello_reset_token])
-          @user = @reset_password.user
         end
 
   end

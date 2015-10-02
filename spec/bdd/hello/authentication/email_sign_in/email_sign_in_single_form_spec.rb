@@ -42,7 +42,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
       sscenario "Valid Email & Password" do
         When "I sign in with valid Email & Password" do
-          when_sign_in('foo@bar.com', 'foobar')
+          when_sign_in('foo@bar.com', '1234')
         end
 
         _then_I_should_see_a_confirmation_message
@@ -56,7 +56,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
       sscenario "Valid Username & Password" do
         When "I sign in with valid Username & Password" do
-          when_sign_in('foobar', 'foobar')
+          when_sign_in('foobar', '1234')
         end
 
         _then_I_should_see_a_confirmation_message

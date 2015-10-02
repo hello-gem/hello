@@ -5,7 +5,7 @@ module Hello
     module EmailSignUp
 
       def fields
-        %w(name username password time_zone locale)
+        %w(name username time_zone locale)
       end
 
       def defaults
@@ -46,15 +46,15 @@ module Hello
       end
 
       def deliver_welcome_email
-        Hello::RegistrationMailer.welcome(@sign_up.credential, @sign_up.user.password).deliver
+        Hello::RegistrationMailer.welcome(@sign_up.email_credential, @sign_up.password).deliver
       end
 
       def deliver_confirmation_email
-        token = @sign_up.credential.reset_email_token!
-        url   = hello.confirm_email_url(@sign_up.credential, token)
-        Hello::RegistrationMailer.confirm_email(@sign_up.credential, url).deliver
+        token = @sign_up.email_credential.reset_email_token!
+        url   = hello.confirm_email_url(@sign_up.email_credential, token)
+        Hello::RegistrationMailer.confirm_email(@sign_up.email_credential, url).deliver
       end
-      
+
     end
   end
 end

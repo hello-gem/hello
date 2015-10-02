@@ -19,7 +19,7 @@
             <% if credential.email_confirmed? %>
               <span class="label label-success">
                 Confirmed
-                <%= time_ago_in_words credential.email_confirmed_at %>
+                <%= time_ago_in_words credential.confirmed_at %>
                 ago
               </span>
             <% else %>

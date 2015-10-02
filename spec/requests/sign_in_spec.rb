@@ -31,7 +31,7 @@ RSpec.describe "Sign In", :type => :request do
     it "Success" do
       given_I_have_an_email_credential
 
-      sign_in_params = {login: "foobar", password: "foobar"}
+      sign_in_params = {login: "foobar", password: "1234"}
       post "/hello/sign_in.json", sign_in: sign_in_params
 
       expect(response.status).to eq(201)

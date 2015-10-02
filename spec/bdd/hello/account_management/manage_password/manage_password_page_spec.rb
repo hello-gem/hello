@@ -25,7 +25,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
       sscenario "Valid" do
         When "I submit a new valid password" do
-          fill_in 'user_password', with: (@new_password = 'new_password')
+          fill_in 'password_credential_password', with: (@new_password = 'new_password')
           click_button 'Update'
         end
 
@@ -46,7 +46,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
       sscenario "Invalid" do
         When "I submit an invalid password" do
-          fill_in 'user_password', with: ''
+          fill_in 'password_credential_password', with: ''
           click_button 'Update'
         end
 

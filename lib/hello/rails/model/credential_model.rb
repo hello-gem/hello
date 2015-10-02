@@ -7,9 +7,7 @@ module Hello
       validates_presence_of :user
 
       validates_presence_of :type
-      validates_inclusion_of :type, in: %w(EmailCredential)
-
-      before_destroy :cannot_destroy_last_credential
+      validates_inclusion_of :type, in: %w(EmailCredential PasswordCredential)
     end
 
 
@@ -26,17 +24,6 @@ module Hello
     end
 
     private
-
-    def cannot_destroy_last_credential
-      return if hello_is_user_being_destroyed?
-      return if not is_last_credential?
-      errors[:base] << "must have at least one credential"
-      false
-    end
-
-    def is_last_credential?
-      user.credentials_count == 1
-    end
 
     def hello_is_user_being_destroyed?
       !!Thread.current["Hello.destroying_user"]
