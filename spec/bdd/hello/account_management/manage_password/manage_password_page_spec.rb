@@ -11,12 +11,12 @@ RSpec.describe "Hello Gem", type: :feature do
           given_I_have_signed_in_with_sudo_mode
           click_link "Settings"
           click_link "Password"
-          expect(current_path).to eq hello.password_path
+          expect(current_path).to eq hello.password_path(PasswordCredential.last)
         end
       end
     end
 
-    
+
 
     sstory "Update Password" do
       _before__given_I_am_on_the_password_page

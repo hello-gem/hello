@@ -2,14 +2,14 @@ require 'spec_helper'
 
 module Hello
 
-describe "Authentication" do
+describe "Browser Locale" do
   routes { Hello::Engine.routes }
 
   # As a Guest
   # I can see the website
   # So I don't face missing translation issues
 
-  describe ForgotPasswordController do
+  describe LocaleController do
 
     describe "Browser locale or default" do
 
@@ -49,7 +49,7 @@ describe "Authentication" do
       hash.each do |value, expected|
         it "#{value || 'nil'} \t -> #{expected}" do
           @request.headers['HTTP_ACCEPT_LANGUAGE'] = value if value
-          post :remember, forgot_password: {login: 'foo'} # this is a good example because it triggers validations
+          get :index
           expect(response.status).to eq(200)
           expect(response.status_message).to eq("OK")
           expect(session['locale'].to_s).to eq(expected)

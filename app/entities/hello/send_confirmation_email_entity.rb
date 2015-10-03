@@ -9,7 +9,7 @@ module Hello
     end
 
     def deliver
-      token = credential.reset_email_token!
+      token = credential.reset_verifying_token!
       check_token!(token)
       url   = controller.confirm_email_url(credential, token)
       mail  = Hello::RegistrationMailer.confirm_email(credential, url)
@@ -22,9 +22,8 @@ module Hello
 
     private
 
-    def check_token!(token)
-      e = ConfirmEmailEntity.new(credential)
-      raise "no match" unless e.validate_token(token)
+    def check_token!(unencrypted_token)
+      raise "no match" unless credential.verifying_token_is?(unencrypted_token)
     end
 
   end

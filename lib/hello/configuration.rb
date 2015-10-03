@@ -10,7 +10,7 @@ module Hello
   def self.configuration
     @configuration ||= ::Rails.configuration.hello
   end
-  
+
   # invoked from engine.rb
   def self.apply_config!
     User.hello_apply_config!

@@ -12,7 +12,7 @@ module Hello
     def validate_token(unencrypted_token)
       # puts "validate_token('#{unencrypted_token}')".blue
       return false if not found_credential?
-      return true  if token_matches(unencrypted_token)
+      return true  if credential.verifying_token_is?(unencrypted_token)
       @credential = nil
     end
 
@@ -32,12 +32,6 @@ module Hello
 
     def success_message
       super(email: credential.email)
-    end
-
-    private
-
-    def token_matches(unencrypted_token)
-      Token.match(unencrypted_token, credential.email_token_digest)
     end
 
   end

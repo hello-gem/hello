@@ -1,16 +1,16 @@
-<%= form_for @reset_password, as: :reset_password, url: password_reset_path, html: {class: "form-horizontal", role: "form"} do |f| %>
-  
+<%= form_for @reset_password, as: :reset_password, url: @current_url, html: {class: "form-horizontal", role: "form"} do |f| %>
+
   <!-- Errors -->
   <% if @reset_password.errors.any? %>
     <%= render '/hello/shared/errors', active_model: @reset_password %>
   <% end %>
 
-  <% @reset_password.user.credentials.each do |credential| %>
+  <% @user.email_credentials.map(&:email).each do |email| %>
   <div class="form-group">
     <%= f.label :email, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
       <span class="form-control" style="border: 0px; box-shadow: none">
-        <%= credential.email %>
+        <%= email %>
       </span>
     </div>
   </div>
@@ -20,7 +20,7 @@
     <%= f.label :username, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
       <span class="form-control" style="border: 0px; box-shadow: none">
-        <%= @reset_password.user.username %>
+        <%= @user.username %>
       </span>
     </div>
   </div>

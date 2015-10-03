@@ -9,6 +9,7 @@ module Hello
       has_many :credentials,       dependent: :destroy
       has_many :email_credentials, dependent: :destroy
       has_one  :password_credential, dependent: :destroy
+      has_many :password_credentials, dependent: :destroy
       has_many :accesses, dependent: :destroy
 
       validates_presence_of :name, :locale, :time_zone

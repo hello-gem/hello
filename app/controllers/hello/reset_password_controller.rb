@@ -1,31 +1,27 @@
 module Hello
   class ResetPasswordController < ApplicationController
 
-    dont_kick_people
+    sign_out!
 
-    # GET /hello/password/reset/:token
-    def reset_token
-      sign_out!
-      @reset_password = ResetPasswordEntity.new(params[:token])
-
-      if @reset_password.password_credential
-        session[:hello_reset_token] = params[:token]
-        redirect_to password_reset_path
-      else
-        flash[:alert] = @reset_password.alert_message
-        redirect_to password_forgot_path
+    before_action do
+      # a helping ivar
+      @current_url = request.fullpath
+      # find
+      @user = User.find(params[:user_id])
+      @password_credential = @user.password_credentials.find(params[:id])
+      if not @password_credential.verifying_token_is?(params[:token])
+        raise ActiveRecord::RecordNotFound
       end
+      # entity
+      @reset_password = ResetPasswordEntity.new(@password_credential)
     end
 
-    # GET /hello/password/reset
+    # # GET /passwords/:id/reset/:user_id/:token
     def index
-      fetch_registration_reset_ivar
     end
 
-    # POST /hello/password/reset
-    def save
-      fetch_registration_reset_ivar
-
+    # POST /passwords/:id/reset/:user_id/:token
+    def update
       new_password = params.require(:reset_password)[:password]
       if @reset_password.update_password(new_password)
         flash[:notice] = @reset_password.success_message
@@ -35,12 +31,10 @@ module Hello
       end
     end
 
-    private
-
-        def fetch_registration_reset_ivar
-          return redirect_to forgot_path unless session[:hello_reset_token]
-          @reset_password = ResetPasswordEntity.new(session[:hello_reset_token])
-        end
+    rescue_from ActiveRecord::RecordNotFound do
+      flash[:alert] = ResetPasswordEntity.new(nil).alert_message
+      redirect_to forgot_passwords_path
+    end
 
   end
 end

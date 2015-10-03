@@ -14,7 +14,6 @@ module Hello
     module ClassMethods
     end
 
-
     # def is_email?
     #   is_a?(EmailCredential)
     # end
@@ -22,6 +21,28 @@ module Hello
     def first_error_message
       errors.messages.values.flatten.first if errors.any?
     end
+
+
+
+
+    # verifying token
+
+    def verifying_token_is?(unencrypted_token)
+      digest = Token.encrypt(unencrypted_token)
+      verifying_token_digest == digest
+    end
+
+    def reset_verifying_token!
+      uuid, digest = Token.pair
+      update!(verifying_token_digest: digest, verifying_token_digested_at: 1.second.ago)
+      return uuid
+    end
+
+    def invalidate_verifying_token!
+      update(verifying_token_digest: nil, verifying_token_digested_at: nil)
+    end
+
+
 
     private
 

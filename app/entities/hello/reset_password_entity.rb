@@ -3,15 +3,18 @@ module Hello
 
     attr_reader :password_credential
 
-    def initialize(unencrypted_token=nil)
-      if unencrypted_token
-        @password_credential = find_password_credential(unencrypted_token)
-      end
+    def initialize(password_credential)
+      @password_credential = password_credential
     end
 
     def update_password(plain_text_password)
-      simply_update_password(plain_text_password)
-      @password_credential.invalidate_password_token
+      if @password_credential.update(password: plain_text_password)
+        @password_credential.reset_verifying_token!
+        return true
+      else
+        merge_errors_to_self
+        return false
+      end
     end
 
     def user
@@ -20,25 +23,10 @@ module Hello
 
     private
 
-        # initialize helpers
-
-        def find_password_credential(unencrypted_token)
-          digest = Token.encrypt(unencrypted_token)
-          PasswordCredential.where(reset_token_digest: digest).first
-        end
-
-        # update password helpers
-
-        def simply_update_password(password)
-          @password_credential.password = password
-          merge_errors_to_self and return false unless @password_credential.save
-          return true
-        end
-
-            def merge_errors_to_self
-              hash = @password_credential.errors.to_hash
-              hash.each { |k,v| v.each { |v1| errors.add(k, v1) } }
-            end
+    def merge_errors_to_self
+      hash = @password_credential.errors.to_hash
+      hash.each { |k,v| v.each { |v1| errors.add(k, v1) } }
+    end
 
   end
 end

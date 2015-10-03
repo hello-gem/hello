@@ -142,7 +142,7 @@ RSpec.describe "Hello Gem", type: :feature do
       sscenario "Success" do
 
         expect_any_instance_of(Hello::SendConfirmationEmailEntity).to receive(:deliver).and_call_original
-      
+
         When "I click the confirm button" do
           click_button "Confirm"
         end
@@ -221,7 +221,7 @@ RSpec.describe "Hello Gem", type: :feature do
       def _when_visit_valid
         When "I visit a valid token URL" do
           @credential = create(:email_credential)
-          token       = @credential.reset_email_token!
+          token       = @credential.reset_verifying_token!
           visit the_url(@credential.id, token)
         end
       end

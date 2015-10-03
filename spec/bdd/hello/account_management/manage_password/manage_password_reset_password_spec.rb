@@ -7,20 +7,21 @@ RSpec.describe "Hello Gem", type: :feature do
 
     def _when_I_visit_with_an_invalid_token_then
       When "I visit with an invalid token" do
-        visit hello.reset_token_path('wrong')
+        visit hello.reset_password_path(999, 999, 'wrong')
       end
       _then_I_should_see_a_token_invalid_message
     end
 
     def _I_visit_with_a_valid_token
       @reset_token ||= given_I_have_an_email_credential_and_forgot_my_password
-      visit hello.reset_token_path(@reset_token)
+      p = PasswordCredential.last
+      visit hello.reset_password_path(p.id, p.user_id, @reset_token)
     end
 
     def _then_I_should_see_a_token_invalid_message
       Then "I expect to see an alert message" do
         expect_flash_alert "This link has expired, please ask for a new link"
-        expect(current_path).to eq hello.password_forgot_path
+        expect(current_path).to eq hello.forgot_passwords_path
       end
     end
 

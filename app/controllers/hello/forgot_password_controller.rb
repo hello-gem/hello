@@ -3,13 +3,15 @@ module Hello
 
     dont_kick :guest
 
-    # GET /hello/forgot
+    before_action { @sender = Hello.configuration.mailer_sender }
+
+    # GET /hello/passwords/forgot
     def index
       @entity = @forgot_password = ForgotPasswordEntity.new
     end
 
-    # POST /hello/remember
-    def remember
+    # POST /hello/passwords/forgot
+    def forgot
       @entity = @forgot_password = ForgotPasswordEntity.new(params.require(:forgot_password))
       @user = @forgot_password.user
 
@@ -18,17 +20,7 @@ module Hello
       else
         failure
       end
-      
-      session[:forgot_login] = @forgot_password.login
-      puts "TODO: clear this from session some time"
     end
-
-    # GET /hello/remembered
-    def remembered
-      @forgot_password = ForgotPasswordEntity.new
-      @forgot_password.login = session[:forgot_login]
-    end
-
 
   end
 end

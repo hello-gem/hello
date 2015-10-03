@@ -4,6 +4,12 @@ module Hello
       module HelloConcern
         extend ActiveSupport::Concern
 
+        module ClassMethods
+          def sign_out!(options={})
+            before_action(options) { sign_out! }
+          end
+        end
+
         included do
           helper_method :current_user,
                         :current_accesses,
@@ -14,10 +20,10 @@ module Hello
           delegate  :sign_in!,
                     :sign_out!,
                     :signed_in?,
-                    
+
                     :current_user,
                     :is_current_user?,
-                    
+
                     :current_access,
                     :current_accesses,
                     :is_current_access?,
@@ -26,7 +32,7 @@ module Hello
                     :session_tokens,
 
                     to: :hello_manager
-          
+
         end
 
         def hello_manager

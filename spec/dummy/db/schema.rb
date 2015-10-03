@@ -39,13 +39,11 @@ ActiveRecord::Schema.define(version: 20140920192959) do
   create_table "credentials", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "type"
-    t.datetime "confirmed_at"
     t.string   "email"
     t.string   "digest"
-    t.string   "email_token_digest"
-    t.datetime "email_token_digested_at"
-    t.string   "reset_token_digest"
-    t.datetime "reset_token_digested_at"
+    t.datetime "confirmed_at"
+    t.string   "verifying_token_digest"
+    t.datetime "verifying_token_digested_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

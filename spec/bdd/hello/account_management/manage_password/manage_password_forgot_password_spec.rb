@@ -24,13 +24,15 @@ RSpec.describe "Hello Gem", type: :feature do
 
         Then "I should see a confirmation message" do
           expect_to_see "To get back into your account, follow the instructions we've sent to your \"foobar\" email address."
-          expect(current_path).to eq hello.password_remembered_path
+          expect(current_path).to eq hello.forgot_passwords_path
         end
 
 
 
         Then "and I should receive an email with a password reset URL" do
-          expect(open_last_email.to_s).to have_content "/hello/password/reset/"
+          regexp = Regexp.new(/hello\/passwords\/(\d*)\/reset\/(\d*)\/\w*/)
+          expect(open_last_email.to_s).to match regexp
+          # TODO: test this for a valid route
         end
       end
 
@@ -45,7 +47,7 @@ RSpec.describe "Hello Gem", type: :feature do
 
         Then "I should see an alert message" do
           expect_error_message "1 error was found while locating your credentials"
-          expect(current_path).to eq hello.password_forgot_path
+          expect(current_path).to eq hello.forgot_passwords_path
         end
       end
     end

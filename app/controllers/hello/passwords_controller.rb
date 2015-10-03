@@ -1,5 +1,6 @@
 module Hello
-  class PasswordController < ApplicationController
+  class PasswordsController < ApplicationController
+
 
     kick :guest, :onboarding
     sudo_mode
@@ -9,17 +10,25 @@ module Hello
       @entity = UpdateMyUserEntity.new(@password_credential)
     end
 
+    # GET /hello/passwords
+    def index
+      respond_to do |format|
+        format.html { redirect_to password_path(@password_credential.id) }
+        format.json { head :no_content }
+      end
+    end
 
 
-    # GET /hello/password
-    def edit
+
+    # GET /hello/passwords/1
+    def show
       respond_to do |format|
         format.html {  }
         format.json { head :no_content }
       end
     end
 
-    # PATCH /hello/password
+    # PATCH /hello/passwords/1
     def update
       @password_credential.password = password_credential_params[:password]
       # @password_credential.password_confirmation = password_credential_params[:password_confirmation] if password_credential_params[:password_confirmation]
@@ -27,12 +36,12 @@ module Hello
       if @password_credential.save
         flash[:notice] = @entity.success_message
         respond_to do |format|
-          format.html { redirect_to hello.password_path }
+          format.html { redirect_to hello.password_path(@password_credential.id) }
           format.json { head :no_content }
         end
       else
         respond_to do |format|
-          format.html { render :edit }
+          format.html { render :show }
           format.json { render json: @password_credential.errors, status: :unprocessable_entity }
         end
       end

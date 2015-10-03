@@ -5,7 +5,7 @@
   <% if current_accesses.any? %>
     <li><%= link_to "Switch Accounts", hello.switch_users_path %></li>
   <% end %>
-  
+
   <% if signed_in? %>
     <% if current_user.webmaster? %>
       <li><%= link_to "Web Master Dashboard", hello.webmaster_path %></li>
@@ -19,6 +19,6 @@
   <% else %>
     <li><%= link_to "Sign Up", hello.sign_up_path %></li>
     <li><%= link_to "Sign In", hello.sign_in_path %></li>
-    <li><%= link_to "Forgot Password", hello.password_forgot_path %></li>
+    <li><%= link_to "Forgot Password", hello.forgot_passwords_path %></li>
   <% end %>
 </ul>

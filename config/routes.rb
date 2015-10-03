@@ -1,12 +1,12 @@
 Hello::Engine.routes.draw do
-  
+
 
 
 
   root "root#index"
 
 
-  
+
 
 
   #
@@ -49,26 +49,28 @@ Hello::Engine.routes.draw do
   # PASSWORD MANAGEMENT
   #
 
-  get   'password' => "password#edit"
-  patch 'password' => "password#update"
-
-  get  "password/forgot"     => "forgot_password#index"
-  post "password/forgot"     => "forgot_password#remember"
-  get  "password/remembered" => "forgot_password#remembered"
-
-  get  "password/reset/:token"    => "reset_password#reset_token", as: 'reset_token'
-  get  "password/reset"           => "reset_password#index"
-  post "password/reset"           => "reset_password#save"
+  resources :passwords, only: [:index, :show, :update] do
+    collection do
+      get  "forgot" => "forgot_password#index"
+      post "forgot" => "forgot_password#forgot"
+    end
+    member do
+      scope "/reset/:user_id/:token" do
+        get  "/" => "reset_password#index",  as: 'reset'
+        post "/" => "reset_password#update", as: nil
+      end
+    end
+  end
 
 
 
   #
   # AUTHENTICATION
   #
-  
+
   resources :accesses, only: [:index, :destroy]
   match  "sign_out" => "sign_out#sign_out", via: [:get, :post, :head, :put, :delete]
-  
+
   get    "switch_users"     => "switch_users#index"
   get    "switch_users/:id" => "switch_users#switch", as: 'switch_user'
   delete "switch_users/:id" => "switch_users#forget"

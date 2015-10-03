@@ -2,7 +2,7 @@ module Hello
   module Rails
     module Controller
       module KickingConcern
-        
+
         extend ActiveSupport::Concern
 
         # OBSERVATION: Kicking cares about the request format, not so much about state
@@ -46,7 +46,7 @@ module Hello
 
             def kick_redirection
               u = current_user_or_guest
-              
+
               return redirect_to_sign_in if u.guest?
               return redirect_to_onboarding  if u.onboarding?
               redirect_to_root

@@ -35,17 +35,11 @@ module Hello
     end
 
     def email_delivered_at
-      email_token_digested_at
-    end
-
-    def reset_email_token!
-      uuid, digest = Token.pair
-      update!(email_token_digest: digest, email_token_digested_at: 1.second.ago)
-      return uuid
+      verifying_token_digested_at
     end
 
     def confirm_email!
-      update! email_token_digest: nil, email_token_digested_at: nil, confirmed_at: 1.second.ago
+      update! verifying_token_digest: nil, verifying_token_digested_at: nil, confirmed_at: 1.second.ago
     end
 
     # private
