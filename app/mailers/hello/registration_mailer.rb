@@ -2,28 +2,25 @@ module Hello
   class RegistrationMailer < ActionMailer::Base
     default from: Hello.configuration.mailer_sender
 
-    def welcome(credential, password)
-      @credential = credential
-      @user       = credential.user
-      @password   = password
+    def welcome(email_credential, password)
+      @user     = email_credential.user
+      @password = password
 
-      mail to: credential.email
+      mail to: email_credential.email
     end
 
-    def confirm_email(credential, url)
-      @credential = credential
-      @user       = credential.user
-      @url        = url
+    def confirm_email(email_credential, url)
+      @user = email_credential.user
+      @url  = url
 
-      mail to: credential.email
+      mail to: email_credential.email
     end
 
-    def forgot_password(credential, url)
-      @credential = credential
-      @user       = credential.user
-      @url        = url
+    def forgot_password(email_credential, url)
+      @user = email_credential.user
+      @url  = url
 
-      mail to: credential.email
+      mail to: email_credential.email
     end
 
   end
