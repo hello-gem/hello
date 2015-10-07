@@ -11,10 +11,13 @@ module Hello
         :user_agent_string=>["can't be blank"],
       })
     end
- 
+
     describe "methods" do
-      it "parsed_user_agent" do
-        expect(subject.parsed_user_agent).to be_a(UserAgentParser::UserAgent)
+      it "#full_device_name" do
+        # Mock
+        expect(Hello::DeviceName.instance).to receive(:parse)
+        # When
+        subject.full_device_name
       end
     end
 

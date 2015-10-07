@@ -10,15 +10,9 @@ require 'spec_helper'
 # http://www.webapps-online.com/online-tools/user-agent-strings
 
 module Hello
-  describe Access do
-
-    before(:each) do
-      @access = Access.new
-    end
-
+  describe DeviceName do
     def expect_device_name(original, expected)
-      @access.user_agent_string = original
-      expect(@access.full_device_name).to eq(expected)
+      expect(DeviceName.instance.parse(original)).to eq(expected)
     end
 
     describe "#full_device_name" do
@@ -54,7 +48,7 @@ module Hello
           end
         end
       end
-      
+
       describe "Safari" do
         it "Mac OS X 10 - Safari 7" do
           expect_device_name  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/537.75.14",
@@ -90,11 +84,11 @@ module Hello
       end
 
       describe "Android" do
-        it "Android 4 (LG-L160L) - Android 4" do  
+        it "Android 4 (LG-L160L) - Android 4" do
           expect_device_name  "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
                               "Android 4 (LG L160L) - Android 4"
         end
-        it "Android 2 (T-Mobile myTouch 3G Slide) - Android 2" do  
+        it "Android 2 (T-Mobile myTouch 3G Slide) - Android 2" do
           expect_device_name  "Mozilla/5.0 (Linux; U; Android 2.3.4; en-us; T-Mobile myTouch 3G Slide Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
                               "Android 2 (T-Mobile myTouch 3G Slide) - Android 2"
         end
@@ -102,11 +96,11 @@ module Hello
           expect_device_name  "Mozilla/5.0 (Linux; U; Android 2.3.5; en-us; HTC Vision Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
                               "Android 2 (HTC Vision) - Android 2"
         end
-        it "Android 4 (SAMSUNG GT-I9300/I9300XXEMRD) - Android 4" do  
+        it "Android 4 (SAMSUNG GT-I9300/I9300XXEMRD) - Android 4" do
           expect_device_name  "Mozilla/5.0 (Linux; U; Android 4.1.2; nl-nl; SAMSUNG GT-I9300/I9300XXEMRD Build/JZO54K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
                               "Android 4 (Samsung GT-I9300) - Android 4"
         end
-        it "Symbian OS 9 (Nokia 5800d-1) - Nokia Browser 7" do  
+        it "Symbian OS 9 (Nokia 5800d-1) - Nokia Browser 7" do
           expect_device_name  "Mozilla/5.0 (SymbianOS/9.4; Series60/5.0 Nokia5800d-1/60.0.003; Profile/MIDP-2.1 Configuration/CLDC-1.1 ) AppleWebKit/533.4 (KHTML, like Gecko) NokiaBrowser/7.3.1.33 Mobile Safari/533.4",
                               "Symbian OS 9 (Nokia 5800d-1) - Nokia Browser 7"
         end
@@ -137,19 +131,19 @@ module Hello
                               "Linux 2 (LG BDP) - Other"
         end
         # NeoTV
-        it "Android 3.2 (GTV100) - Android 3.2" do 
+        it "Android 3.2 (GTV100) - Android 3.2" do
           expect_device_name  "Mozilla/5.0 (Linux; U; Android 3.2; en-us; GTV100 Build/MASTER) AppleWebKit/534.13 (KHTML, like Gecko) Version/4.0 Safari/534.13",
                               "Android 3 (GTV100) - Android 3"
         end
       end
 
-  
 
-  
 
-  
 
-  
+
+
+
+
 
 
 
@@ -201,7 +195,7 @@ module Hello
       end
 
       describe "Spiders" do
-        
+
         describe "bingbot 2.0" do
           it "1" do
             expect_device_name  "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)",
