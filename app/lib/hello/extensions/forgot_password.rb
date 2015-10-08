@@ -40,7 +40,7 @@ module Hello
 
 
       def reset_token_and_deliver_email!
-        p      = @user.password_credential
+        p      = @user.main_password_credential
         token  = p.reset_verifying_token!
         url    = hello.reset_password_path(p.id, @user.id, token)
         @user.email_credentials.each do |email_credential|

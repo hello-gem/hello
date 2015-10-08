@@ -20,6 +20,10 @@ module Hello
       include UserModelRoles
     end
 
+    def main_password_credential
+      password_credential
+    end
+
     # NOTE:
     # dup your changes on lib/generators/hello/install/templates/user.rb
     def to_json_web_api
