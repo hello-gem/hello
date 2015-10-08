@@ -25,8 +25,7 @@ module Hello
     #
 
     def username=(v)
-      v = v.to_s.downcase.gsub(' ', '')
-      write_attribute(:username, v)
+      super(v.to_s.downcase.gsub(' ', ''))
     end
 
 
@@ -37,7 +36,7 @@ module Hello
     def ensure_username_if_blank_allowed_on_create
       return true if username.present?              # skip if username has been set
       return true if username_presence_is_required? # skip if username presence is required
-      
+
       loop do
         self.username = make_up_new_username
         break unless username_used_by_another?(username)
