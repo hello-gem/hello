@@ -2,7 +2,7 @@ module Hello
   module Rails
     module Controller
       module AliveConcern
-        
+
         extend ActiveSupport::Concern
 
         module ClassMethods
@@ -13,9 +13,9 @@ module Hello
         end
 
         # filters
-        
+
         def hello_keep_alive
-          periodically_delete_expired_accesses_from_database
+          periodically_destroy_expired_accesses_from_database
 
           is_near_expire = current_access.expires_at < 20.minutes.from_now
           current_access.update_attribute :expires_at, 30.minutes.from_now if is_near_expire
@@ -24,8 +24,8 @@ module Hello
         end
 
             # TODO: find a better way
-            def periodically_delete_expired_accesses_from_database
-              Access.cached_delete_all_expired
+            def periodically_destroy_expired_accesses_from_database
+              Access.cached_destroy_all_expired
             end
 
       end

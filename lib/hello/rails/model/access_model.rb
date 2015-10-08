@@ -62,13 +62,13 @@ module Hello
 
 
     module ClassMethods
-      def delete_all_expired
-        where('expires_at < ?', Time.now).delete_all
+      def destroy_all_expired
+        where('expires_at < ?', Time.now).destroy_all
         true
       end
 
-      def cached_delete_all_expired
-        @@delete_all_expired ||= delete_all_expired
+      def cached_destroy_all_expired
+        @@destroy_all_expired ||= destroy_all_expired
       end
     end
 
