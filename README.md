@@ -111,7 +111,30 @@ end
 
 
 
+## Running Tests
 
+Note You do NOT need to migrations to run tests
+
+```bash
+bundle exec rspec
+```
+
+## Running the Dummy App on Development Mode
+
+Note: the dummy app uses SQLite3
+
+```bash
+cd spec/dummy
+rake db:migrate
+rails server
+```
+
+## Demo
+
+Want to see it in action?
+
+* Visit https://bit.ly/hellogem
+* Sources at https://github.com/hello-gem/hello_demo
 
 
 
@@ -127,13 +150,6 @@ end
 * Bugs/Issues: https://github.com/hello-gem/hello/issues
 * Support: http://stackoverflow.com/questions/tagged/hello
 * Support/Chat: [![Gitter chat](https://badges.gitter.im/hello-gem/hello.png)](https://gitter.im/hello-gem/hello)
-
-## Demo
-
-Want to see it in action?
-
-* Visit https://bit.ly/hellogem
-* Sources at https://github.com/hello-gem/hello_demo
 
 
 
