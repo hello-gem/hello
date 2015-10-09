@@ -73,9 +73,9 @@ module Hello
           expect_device_name  "Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 5.1; Media Center PC 3.0; .NET CLR 1.0.3705; .NET CLR 1.1.4322; .NET CLR 2.0.50727; InfoPath.1)",
                               "Windows XP - Internet Explorer 7"
         end
-        it "Windows Phone 8 (HTC) - Internet Explorer Mobile 10" do
+        it "Windows Phone 8 (HTC Windows Phone 8X by HTC) - Internet Explorer Mobile 10" do
           expect_device_name  "Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; HTC; Windows Phone 8X by HTC)",
-                              "Windows Phone 8 (HTC) - Internet Explorer Mobile 10"
+                              "Windows Phone 8 (HTC Windows Phone 8X by HTC) - Internet Explorer Mobile 10"
         end
         it "Windows Phone 8 (Lumia 620) - Internet Explorer Mobile 10" do
           expect_device_name  "Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 620)",
@@ -86,7 +86,7 @@ module Hello
       describe "Android" do
         it "Android 4 (LG-L160L) - Android 4" do
           expect_device_name  "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
-                              "Android 4 (LG L160L) - Android 4"
+                              "Android 4 (LG-L160L) - Android 4"
         end
         it "Android 2 (T-Mobile myTouch 3G Slide) - Android 2" do
           expect_device_name  "Mozilla/5.0 (Linux; U; Android 2.3.4; en-us; T-Mobile myTouch 3G Slide Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
@@ -118,9 +118,9 @@ module Hello
       end
 
       describe "TV" do
-        it "Android 4.1.1 (POV_TV-HDMI-200BT) - Android 4.1.1" do
+        it "Android 4 (POV TV-HDMI-200BT) - Android 4" do
           expect_device_name  "Mozilla/5.0 (Linux; U; Android 4.1.1; nl-nl; POV_TV-HDMI-200BT Build/JRO03H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30",
-                              "Android 4 (POV_TV-HDMI-200BT) - Android 4"
+                              "Android 4 (POV TV-HDMI-200BT) - Android 4"
         end
         it "Linux - WebKit Nightly 531.2" do
           expect_device_name  "Mozilla/5.0 (SmartHub; SMART-TV; U; Linux/SmartTV) AppleWebKit/531.2+ (KHTML, like Gecko) WebBrowser/1.0 SmartTV Safari/531.2+",
@@ -136,18 +136,6 @@ module Hello
                               "Android 3 (GTV100) - Android 3"
         end
       end
-
-
-
-
-
-
-
-
-
-
-
-
 
       describe "Amazon Kindle" do
         it "Android 4 (Kindle Fire HDX 7\" WiFi) - Android 4" do
@@ -188,9 +176,9 @@ module Hello
           expect_device_name  "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_4 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B350 Safari/8536.25",
                               "iOS 6 (iPhone) - Mobile Safari 6"
         end
-        it "iTunes on Windows" do
+        it "Windows - iTunes 9" do
           expect_device_name  "iTunes/9.0.2 (Windows; N)",
-                              "Windows - Other"
+                              "Windows - iTunes 9"
         end
       end
 
@@ -225,21 +213,18 @@ module Hello
         describe "Baidu" do
           it "Baidu 1" do
             expect_device_name  "Baiduspider+(+http://www.baidu.com/search/spider_jp.html)",
-                                "Spider: Other"
+                                "Spider: Baiduspider"
           end
           it "Baidu 2" do
             expect_device_name  "Baiduspider+(+http://www.baidu.com/search/spider.htm)",
-                                "Spider: Other"
+                                "Spider: Baiduspider"
           end
           it "Baidu 3" do
             expect_device_name  "BaiDuSpider",
-                                "Other - Other"
+                                "Spider: BaiDuSpider"
           end
         end
-
       end
-
     end
-
   end
 end
