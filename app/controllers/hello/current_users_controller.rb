@@ -4,7 +4,7 @@ module Hello
     kick :guest, :onboarding
 
     before_action do
-      @user_entity = UpdateMyUserEntity.new(@user = current_user)
+      @user_entity = UpdateCurrentUserEntity.new(@user = current_user)
     end
 
     # GET /hello/user
