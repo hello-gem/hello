@@ -1,5 +1,5 @@
 module Hello
-  class UpdateMyUserEntity < AbstractEntity
+  class UpdateCurrentUserEntity < AbstractEntity
 
     def initialize(user)
       @user = user
