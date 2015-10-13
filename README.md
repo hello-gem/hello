@@ -118,25 +118,6 @@ end
 ```
 
 
-
-## Running Tests
-
-Note You do NOT need to migrations to run tests
-
-```bash
-bundle exec rspec
-```
-
-## Running the Dummy App on Development Mode
-
-Note: the dummy app uses SQLite3
-
-```bash
-cd spec/dummy
-rake db:migrate
-rails server
-```
-
 ## Demo
 
 Want to see it in action?
