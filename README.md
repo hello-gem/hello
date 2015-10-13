@@ -24,6 +24,10 @@ Please take a look at our [issues](https://github.com/hello-gem/hello/issues), a
 | Rubinius (soon) |  |
 
 
+## Running Tests
+
+Please read [Running Tests](https://github.com/hello-gem/hello/blob/master/gemfiles)
+
 
 ## Install
 

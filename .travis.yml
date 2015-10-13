@@ -21,8 +21,8 @@ matrix:
       gemfile: gemfiles/rails-4-2-stable.gemfile
 
     # latest Ruby, next Rails
-    # - rvm: 2.2.1
-    #   gemfile: gemfiles/rails-master.gemfile
+    - rvm: 2.2.3
+      gemfile: gemfiles/rails-master.gemfile
 cache:
   - bundler
   - apt
