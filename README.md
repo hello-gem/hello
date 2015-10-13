@@ -1,8 +1,10 @@
 # Hello
 
-We want enjoyable Rails authentication
+Enjoyable Rails Authentication.
 
-__This gem is in rapid development, currently in Beta__
+__We are very excited and looking forwards to our release of version 0.1.0__
+
+Please take a look at our [issues](https://github.com/hello-gem/hello/issues), all help is appreciated.
 
 
 
@@ -15,9 +17,11 @@ __This gem is in rapid development, currently in Beta__
 
 | Ruby Versions | Rails Versions      |
 | ------------- |---------------------|
-| Ruby 2.0.0    | Rails 4.1.*         |
-| Ruby 2.1.5    | Rails 4.2.*         |
-| Ruby 2.2.1    | Rails 5 beta (soon) |
+| Ruby 2.0.*    | Rails 4.1.*         |
+| Ruby 2.1.*    | Rails 4.2.*         |
+| Ruby 2.2.*    | Rails 5 beta (soon) |
+| JRuby (soon)  |  |
+| Rubinius (soon) |  |
 
 
 
