@@ -1,17 +1,68 @@
-# Hello
-
-Enjoyable Rails Authentication.
-
-__We are very excited and looking forwards to our release of version 0.1.0__
-
-Please take a look at our [issues](https://github.com/hello-gem/hello/issues), all help is appreciated.
-
-
-
-
 ## Status
 
-[![Build Status](https://travis-ci.org/hello-gem/hello.svg)](https://travis-ci.org/hello-gem/hello) [![Code Climate](https://codeclimate.com/github/hello-gem/hello.svg)](https://codeclimate.com/github/hello-gem/hello) [![Code Climate](https://codeclimate.com/github/hello-gem/hello/coverage.svg)](https://codeclimate.com/github/hello-gem/hello) [![Dependency Status](https://gemnasium.com/hello-gem/hello.svg)](https://gemnasium.com/hello-gem/hello) [![Inline docs](http://inch-ci.org/github/hello-gem/hello.svg?branch=master)](http://inch-ci.org/github/hello-gem/hello)
+<!-- [![Build Status](https://travis-ci.org/hello-gem/hello.svg)](https://travis-ci.org/hello-gem/hello) [![Code Climate](https://codeclimate.com/github/hello-gem/hello.svg)](https://codeclimate.com/github/hello-gem/hello) [![Code Climate](https://codeclimate.com/github/hello-gem/hello/coverage.svg)](https://codeclimate.com/github/hello-gem/hello) [![Dependency Status](https://gemnasium.com/hello-gem/hello.svg)](https://gemnasium.com/hello-gem/hello) [![Inline docs](http://inch-ci.org/github/hello-gem/hello.svg?branch=master)](http://inch-ci.org/github/hello-gem/hello) -->
+
+| Hello |  |
+| ------------- |---------------------|
+| TravisCI | [![Build Status](https://travis-ci.org/hello-gem/hello.svg)](https://travis-ci.org/hello-gem/hello) |
+| Version |  [![Gem Version](https://img.shields.io/gem/v/hello.svg)](https://rubygems.org/gems/hello) |
+| Downloads | [![Gem Downloads](http://img.shields.io/gem/dt/hello.svg)](https://rubygems.org/gems/hello) |
+| CodeClimate | [![Code Climate](https://codeclimate.com/github/hello-gem/hello.svg)](https://codeclimate.com/github/hello-gem/hello) [![Code Climate](https://codeclimate.com/github/hello-gem/hello/coverage.svg)](https://codeclimate.com/github/hello-gem/hello) |
+| Gemnasium | [![Dependency Status](https://gemnasium.com/hello-gem/hello.svg)](https://gemnasium.com/hello-gem/hello) |
+| InchCI | [![Inline docs](http://inch-ci.org/github/hello-gem/hello.svg?branch=master)](http://inch-ci.org/github/hello-gem/hello) |
+
+## Introduction
+
+Two things I love are [Ruby](http://www.ruby-lang.org/en/) and [Rails](http://rubyonrails.org/).
+Rale as espigas ou corte-as rente ao sabugo e passe no liquidificador, juntamente com a `água` Acrescente o `coco`, o `açúcar` e mexa bem Coloque a massa na palha de milho e amarre bem. Em uma panela grande ferva bem a água, e vá colocando as pamonhas uma a uma após a fervura completa da água
+
+----
+
+### Goals & Features
+
+> Our goal is to implement various User-centered features in your Rails App.
+>
+> Must-haves and Nice-to-haves, always good defautls, always easy to extend.
+>
+> Specifically:
+
+#### International Support
+1. - [x] User Language _(Browser + API)_ [_specification_](./spec/bdd/hello/internalionalization/anyone_can_change_their_locale)
+1. - [x] User Timezone _(Browser + API)_ [_specification_](./spec/bdd/hello/internalionalization/anyone_can_change_their_timezone)
+
+#### User Registration
+1. - [x] Email Registration _(Browser + IFrame + API)_ [_specification_](./spec/bdd/hello)
+1. - [x] Onboarding Process _(Browser + API)_ [_specification_](./spec/bdd/hello)
+1. - [x] User Profiles _(Browser only)_ [_specification_](./spec/bdd/hello)
+
+#### Account Management
+1. - [x] Cancel Account _(Browser only)_ [_specification_](./spec/bdd/hello)
+1. - [x] Manage Profile _(Browser & API)_ [_specification_](./spec/bdd/hello)
+1. - [x] Manage Email Credentials _(Browser & API)_ [_specification_](./spec/bdd/hello)
+1. - [x] Manage Password Credentials _(Browser & API)_ [_specification_](./spec/bdd/hello)
+1. - [ ] OAuth Registration [_help wanted_][issues_url]
+
+#### User Authentication
+1. - [x] Email Authentication _(Browser + API)_ [_specification_](./spec/bdd/hello)
+1. - [x] Sign Out _(Browser + API)_ [_specification_](./spec/bdd/hello)
+1. - [x] Unlink Devices _(Browser + API)_ [_specification_](./spec/bdd/hello)
+1. - [x] Role-based Authorization _(Browser + API)_ [_specification_](./spec/bdd/hello)
+1. - [x] Route Authorization _(Browser + API)_ [_specification_](./spec/bdd/hello)
+1. - [x] Sudo-mode Authorization _(Browser + API)_ [_specification_](./spec/bdd/hello)
+1. - [x] Switch Account _(Browser + API)_ [_specification_](./spec/bdd/hello)
+1. - [x] HTTP Headers Authentication _(API only)_ [_specification_](./spec/bdd/hello)
+1. - [x] Parameter Authentication _(API only)_ [_specification_](./spec/bdd/hello)
+1. - [ ] OAuth Authentication [_help wanted_][issues_url]
+
+
+<!-- 
+#### System Management (Browser only)
+1. - [x] Impersonate User 
+1. - [ ] ~~Block User~~ [_help wanted_][issues_url]
+ -->
+
+
+----
 
 ## Tested With
 
@@ -20,6 +71,8 @@ Please take a look at our [issues](https://github.com/hello-gem/hello/issues), a
 | Ruby 2.0.*    | Rails 4.1.*         |
 | Ruby 2.1.*    | Rails 4.2.*         |
 | Ruby 2.2.*    | Rails 5 beta (soon) |
+
+
 | JRuby (soon)  |  |
 | Rubinius (soon) |  |
 
@@ -192,3 +245,4 @@ Look for these terms in the source code
 
   3. Generate Access Token Feature
 
+[issues_url]: https://github.com/hello-gem/hello/issues
