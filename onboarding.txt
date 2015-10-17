@@ -1,0 +1,315 @@
+y u no code onboarding process?
+
+Goal: User Registration
+       I am ...: The business owner
+  I want to ...: Grow our userbase
+    Because ...: It will help bring more money to the business
+
+
+This document shows some of the problems many businesses face with User Registration
+
+
+
+
+#### Good News VS Bad News
+
+    https://www.groovehq.com/support/delivering-bad-news-in-customer-service
+    I have 10 bad news and a good news.
+    Which should I tell first?
+
+    Start with how to use Hello's Onboarding Process.
+    Then go by each of the bad alternatives it solves.
+    Each time falling back to how much better Onboarding is.
+
+
+
+Index:
+  Roles:
+    #1 Roles & Multiple Models
+    #2 Roles & ActiveRecord Inheritance
+  Long Forms:
+    #3 Long Forms & Browsers
+    #4 Long Forms & Guests
+    #5 Long Forms & Validations
+  Wizards:
+    #6 Wizards & Roles
+    #7 Wizards & Long Forms
+  Direct Registration (No Onboarding):
+    #8  Direct Registration & Roles
+    #9  Direct Registration & Long Forms
+    #10 Direct Registration & Wizards
+    #11 Direct Registration & Pending Confirm Email Approval
+    #12 Direct Registration & Pending Staff Approval
+    #13 Direct Registration & Promote User to Role
+
+
+
+
+
+13 Bad News:
+
+
+
+
+  Long Forms:
+    #1 Long Forms & Browsers:
+        Session may expire (if you have some kind of invite system)
+    #2 Long Forms & Humans:
+        People might not complete their registration because
+          They are currently busy
+          They will get busy before they finish
+          They don't currently have all the data they need to apply
+    #3 Long Forms & Validations:
+        Scrolling makes it hard to find validation messages
+        More validations mean slower factories
+
+    Partial Conclusion:
+      Bad Practice!
+      If that person does not complete his registration,
+      they will likely never come back again.
+      That hurts one or our CEO's Goals, which is to "Grow our userbase" and the application code.
+
+
+    Observations:
+      In-line Validations Solution:
+        By validating each field as the user types is a great and usually-pleasant strategy, but there are downsides to it such as the time it takes to develop and maintain this feature.
+      Wizards Solution:
+        You can use Wizards and split the registration form in smaller chuncks!
+        We will talk about them in details later.
+
+    Conclusion:
+      Caution with custom code!
+      The main strategies out there rely on too much custom code, which is very likely to make your code hard to maintain.
+      It is best you pick an alternative that involves as little custom code as possible.
+      Stick to Rails defaults.
+
+    Best Solution:
+      Hello Gem's Onboarding Process :troll:
+
+      My recommendation is that you make your registration process as easy as possible.
+      Once that person has filled Name, Phone, Email and Password they now belong in your company's database.
+      Confine them in the Newbie Area until they have finish their registration process, only then allow them full access to the website.
+      Or not! Maybe all those boring fields weren't mandatory at all.
+      Send these people reminding emails, SMS or even have our staff team call them asking for the best time for them to get a personalized call and help finish/approve their registration.
+      Grow Our Userbase!
+
+
+
+
+  Roles:
+
+    #4 Roles & Multiple Models:
+        From Warden Wiki
+          Warden allows for multiple users to be logged in at the same time. This should be used very cautiously.
+        Have you ever maintained code that looks like this?
+          current_user,
+          current_admin,
+          current_manager,
+          current_moderator,
+          current_student,
+          current_teacher,
+          current_buyer,
+          current_seller.
+          current_member.is_a?(Buyer),
+          current_member.is_a?(Seller),
+          current_member.responds_to?(:name),
+          current_member.responds_to?(:birth),
+          current_member.responds_to?(:gender),
+          current_member.responds_to?(:name)
+
+        Observation:
+          Each role will have its own set of pages
+          WIP (GOTO: 'Devise Multiple Models Routes')
+
+        Disclaimer:
+          This is not the intended correct usage for Warden Scopes.
+        Conclusion:
+          Bad Practice! Multiple Models makes
+            1. C, V & H hard to maintain.
+            2. your admin cannot 'easily' use the website user
+            3. your sign up link will be a context menu for various sign up pages
+            4. you won't be able to make a user have 2 roles at the same time
+
+            Young developers don't naturally understand this.
+            Applications have been made using such techniques.
+            These applications became hard to maintain from the start.
+            Such applications are hurting ultimately hurting the Rails Community.
+            Because they make companies have bad experiences with Rails.
+            And we want to protect the Rails Community.
+
+
+    #5 Roles & ActiveRecord Inheritance:
+      Do you remember ever considering doing this?
+        class User,
+        class AdminUser    < User
+        class BusinessUser < User
+        class StudentUser  < User
+        class TeacherUser  < User
+        class ManagerUser  < User
+        current_user.is_a?(Buyer)
+        current_user.is_a?(Seller)
+        current_user.buyer?
+      Observation:
+        There are 3 ways to implement this: STI, MTI, Custom code.
+      Conclusion:
+        Caution! User Inheritance makes Models hard to maintain.
+
+
+  Good Alternatives:
+    Any of the top 10 Rails Authorization gems, it's your choice:
+      Cancan, Pundit, Cancancan, Rolify,
+      Declarative authorization, Authority,
+      Acl9, TheRole, Role requirement, Cantango
+
+    Best Solution:
+      Use any of those 10 gems, they are absolutely awesome!
+      But adding Hello Gem's Onboarding Process can make it awesomeR :troll:
+
+      - bad code
+      User.create(complex_nested_attributes)
+
+      - bad code
+      UserManager.create(User.create(Person.create(Animal.create(params))))
+
+      - bad code
+      User.create(attrs.merge{role: "seller"})
+
+      + good code
+      current_user.update(role: "seller")
+
+      + good code
+      current_user.roles.create(name: "seller")
+
+      Instead of having separate registration forms or toying for days trying to replicate Dog Inherits From Animal trying to replicate your professional childhood... Grow Our Userbase!
+      Once that person has filled Name, Phone, Email and Password they now belong in your company's database.
+      Have them fill any additional fields AFTER you can select them in your SQL queries.
+      Buyers cannot Sell...
+      Men cannot Shave... we get it! But First...
+      Ensure your users have a pleasant registration experience!
+      Ensure your developers have a pleasant work experience!
+      Ensure management never thinks your team has lost control over the code.
+
+
+
+WIP STOPPED HERE!
+WIP STOPPED HERE!
+WIP STOPPED HERE!
+WIP STOPPED HERE!
+WIP STOPPED HERE!
+WIP STOPPED HERE!
+WIP STOPPED HERE!
+WIP STOPPED HERE!
+WIP STOPPED HERE!
+
+  Wizards:
+
+    The best gem for wizard out there is Wicked!
+    Wicked is a Rails engine for producing easy wizard controllers.
+
+
+    #6 Wizards & Roles:
+
+      # Gamefy Your Registration Process
+      Turn your OnboardingController into a Newbie Area where they choose Human/Elf/Dwarf/Orc, pick their starting Skills & Spells, fill their Bio and make sure  to start using your awesome product!
+
+
+
+    #7 Wizards & Long Forms:
+      One of the best ways
+
+      Stop burning neurons worrying about sessions, cookies, HTML5 the latest Javascript Ecmascript because your code has just become a whole deal easier to maintain. Write your best logic and wrap it up with a simple current_user.update(attrs).
+
+      - Even Hadouken code is safer than relying on other storages.
+      - State of Art registration experience is NOT better than delaying your product launch.
+      - Having users in your database who stopped at step 2 is FAR better than not knowing those people tried to sign up.
+
+
+
+  Direct Registration (No Onboarding):
+    #8  Direct Registration & Roles
+    #9  Direct Registration & Long Forms
+    #10 Direct Registration & Wizards
+    #11 Direct Registration & Pending Confirm Email Approval
+    #12 Direct Registration & Pending Staff Approval
+    #13 Direct Registration & Promote User to Role
+
+
+
+
+Solutions:
+  Unrenameable User Model
+  Role String Field (role:string)
+  Essential Sign Up
+  Onboarding Process
+
+
+
+
+
+
+
+
+Top Authentication Gems
+Devise
+OmniAuth
+Authlogic
+Restful-authentication
+Sorcery
+doorkeeper
+Clearance
+
+
+
+Devise Multiple Model Routes
+
+http://cl.ly/image/1T1G1L1K2O2P
+
+
+
+          new_admin_session GET    /admins/sign_in(.:format)         devise/sessions#new
+              admin_session POST   /admins/sign_in(.:format)         devise/sessions#create
+      destroy_admin_session DELETE /admins/sign_out(.:format)        devise/sessions#destroy
+             admin_password POST   /admins/password(.:format)        devise/passwords#create
+         new_admin_password GET    /admins/password/new(.:format)    devise/passwords#new
+        edit_admin_password GET    /admins/password/edit(.:format)   devise/passwords#edit
+                            PATCH  /admins/password(.:format)        devise/passwords#update
+                            PUT    /admins/password(.:format)        devise/passwords#update
+  cancel_admin_registration GET    /admins/cancel(.:format)          devise/registrations#cancel
+         admin_registration POST   /admins(.:format)                 devise/registrations#create
+     new_admin_registration GET    /admins/sign_up(.:format)         devise/registrations#new
+    edit_admin_registration GET    /admins/edit(.:format)            devise/registrations#edit
+                            PATCH  /admins(.:format)                 devise/registrations#update
+                            PUT    /admins(.:format)                 devise/registrations#update
+                            DELETE /admins(.:format)                 devise/registrations#destroy
+        new_manager_session GET    /managers/sign_in(.:format)       devise/sessions#new
+            manager_session POST   /managers/sign_in(.:format)       devise/sessions#create
+    destroy_manager_session DELETE /managers/sign_out(.:format)      devise/sessions#destroy
+           manager_password POST   /managers/password(.:format)      devise/passwords#create
+       new_manager_password GET    /managers/password/new(.:format)  devise/passwords#new
+      edit_manager_password GET    /managers/password/edit(.:format) devise/passwords#edit
+                            PATCH  /managers/password(.:format)      devise/passwords#update
+                            PUT    /managers/password(.:format)      devise/passwords#update
+cancel_manager_registration GET    /managers/cancel(.:format)        devise/registrations#cancel
+       manager_registration POST   /managers(.:format)               devise/registrations#create
+   new_manager_registration GET    /managers/sign_up(.:format)       devise/registrations#new
+  edit_manager_registration GET    /managers/edit(.:format)          devise/registrations#edit
+                            PATCH  /managers(.:format)               devise/registrations#update
+                            PUT    /managers(.:format)               devise/registrations#update
+                            DELETE /managers(.:format)               devise/registrations#destroy
+           new_user_session GET    /users/sign_in(.:format)          devise/sessions#new
+               user_session POST   /users/sign_in(.:format)          devise/sessions#create
+       destroy_user_session DELETE /users/sign_out(.:format)         devise/sessions#destroy
+              user_password POST   /users/password(.:format)         devise/passwords#create
+          new_user_password GET    /users/password/new(.:format)     devise/passwords#new
+         edit_user_password GET    /users/password/edit(.:format)    devise/passwords#edit
+                            PATCH  /users/password(.:format)         devise/passwords#update
+                            PUT    /users/password(.:format)         devise/passwords#update
+   cancel_user_registration GET    /users/cancel(.:format)           devise/registrations#cancel
+          user_registration POST   /users(.:format)                  devise/registrations#create
+      new_user_registration GET    /users/sign_up(.:format)          devise/registrations#new
+     edit_user_registration GET    /users/edit(.:format)             devise/registrations#edit
+                            PATCH  /users(.:format)                  devise/registrations#update
+                            PUT    /users(.:format)                  devise/registrations#update
+                            DELETE /users(.:format)                  devise/registrations#destroy
+
+
