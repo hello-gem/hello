@@ -58,7 +58,7 @@ RSpec.configure do |config|
   # config.order = "random"
 
   config.infer_spec_type_from_file_location!
-  
+
   config.include Hello::FeatureSupportGiven, type: :feature
   config.include Hello::RequestSupport, type: :request
 

@@ -1,16 +1,14 @@
 require 'spec_helper'
 
-RSpec.describe "Hello Gem", type: :feature do
-  goal_feature "Internationalization", "Anyone Can Change Their Timezone", "On The Profile Page" do
+RSpec.bdd.uic "On The Profile Page" do
 
-    # ACCEPTANCE CRITERIA
-    # - 
+  # ACCEPTANCE CRITERIA
+  # -
 
-    sstory "As a User" do
-      sscenario "Success" do
-        skip
-      end
+  story "As a User" do
+    scenario "Success" do
+      skip
     end
-
   end
+
 end
