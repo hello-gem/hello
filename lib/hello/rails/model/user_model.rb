@@ -60,10 +60,7 @@ module Hello
         Hello.configuration.tap do |c|
           PasswordCredential.hello_apply_config!
           validates_format_of :username, with: c.username_regex
-          validates_length_of :username,
-                                   in: c.username_length,
-                                   too_long:  'maximum of %{count} characters',
-                                   too_short: 'minimum of %{count} characters'
+          validates_length_of :username, in:   c.username_length
         end
       end
     end

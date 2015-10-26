@@ -24,7 +24,7 @@ module Hello
         it "length" do
           subject.password = '1' * 1
           subject.valid?
-          expect(subject.errors[:password]).to eq ["minimum of 4 characters"]
+          expect(subject.errors[:password]).to eq ["is too short (minimum is 4 characters)"]
 
           subject.password = '1' * 4
           subject.valid?
@@ -32,7 +32,7 @@ module Hello
 
           subject.password = '1' * 201
           subject.valid?
-          expect(subject.errors[:password]).to eq ["maximum of 200 characters"]
+          expect(subject.errors[:password]).to eq ["is too long (maximum is 200 characters)"]
         end
 
         it "spaced" do
@@ -45,7 +45,7 @@ module Hello
           expect(subject.password_is?('Abcd')).to eq(true)
           expect(subject.password_is?('abcd')).to eq(false)
         end
-        
+
       end
     end
 

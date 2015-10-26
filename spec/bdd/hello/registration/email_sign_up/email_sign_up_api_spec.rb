@@ -61,9 +61,9 @@ RSpec.describe "Hello Gem", type: :request do
 
       Then "and validation errors" do
         expect(json_response).to eq({
-          # "username"=>["is invalid", "minimum of 4 characters", "can't be blank"],
+          # "username"=>["is invalid", "is too short (minimum is 4 characters)", "can't be blank"],
           "email"=>["can't be blank", "does not appear to be a valid e-mail address"],
-          "password"=>["can't be blank", "minimum of 4 characters"],
+          "password"=>["can't be blank", "is too short (minimum is 4 characters)"],
           "name"=>["can't be blank"],
           "city"=>["can't be blank"]
         })

@@ -15,11 +15,7 @@ module Hello
 
       def hello_apply_config!
         Hello.configuration.tap do |c|
-          validates_length_of  :password,
-                                    in: c.password_length,
-                                    too_long:  'maximum of %{count} characters',
-                                    too_short: 'minimum of %{count} characters',
-                                    if: :digest_changed?
+          validates_length_of :password, in: c.password_length, if: :digest_changed?
         end
       end
 
