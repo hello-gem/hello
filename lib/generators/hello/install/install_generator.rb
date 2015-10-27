@@ -13,13 +13,13 @@ class Hello::InstallGenerator < Rails::Generators::Base
   # a root route is needed
   # we were previously redirecting to /hello which caused a redirection loop bug
   def generate_root
-    route "root to: 'root#index'"
+    my_route "root to: 'root#index'"
     copy_file "root/root_controller.rb", "app/controllers/root_controller.rb"
     copy_file "root/index.html.erb",     "app/views/root/index.html.erb"
   end
 
   def append_to_the_routes
-    route 'mount Hello::Engine => "/hello"'
+    my_route 'mount Hello::Engine => "/hello"'
   end
 
   def create_the_migrations
@@ -49,13 +49,13 @@ class Hello::InstallGenerator < Rails::Generators::Base
   end
 
   def generate_profile
-    route "resources :users, only: [:index, :show]"
+    my_route "resources :users, only: [:index, :show]"
     directory "users/controllers", "app/controllers"
     directory "users/views", "app/views"
   end
 
   def generate_onboarding
-    route %{
+    my_route %{
   get  'onboarding' => 'onboarding#index'
   post 'onboarding' => 'onboarding#continue'
     }
@@ -67,5 +67,14 @@ class Hello::InstallGenerator < Rails::Generators::Base
   # hook_for :test_framework
 
   protected
+
+  def my_route(routing_code)
+    log :route, routing_code
+    sentinel = /\.routes\.draw do\s*$/
+
+    in_root do
+      inject_into_file 'config/routes.rb', "\n  #{routing_code}", { after: sentinel, verbose: false, force: false }
+    end
+  end
 
 end
