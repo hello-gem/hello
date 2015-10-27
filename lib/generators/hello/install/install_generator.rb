@@ -28,7 +28,11 @@ class Hello::InstallGenerator < Rails::Generators::Base
 
   def create_layout_file
     destination = "app/views/layouts/application.html.erb"
-    if yes?("Replace application.html.erb automatically?")
+
+    answer = ask("Replace application.html.erb automatically? [Yn]")
+    answer_yes = answer.blank? || answer.downcase.starts_with?("y")
+
+    if answer_yes
       copy_file "application.html.erb", "app/views/layouts/application.html.erb"
     else
       the_template_path = File.expand_path('../templates', __FILE__)
