@@ -1,5 +1,4 @@
 require_relative "user_model_username"
-require_relative "user_model_roles"
 
 module Hello
   module UserModel
@@ -17,7 +16,6 @@ module Hello
       validates_inclusion_of :time_zone, in: Hello.available_time_zones
 
       include UserModelUsername
-      include UserModelRoles
     end
 
     def main_password_credential
@@ -48,6 +46,10 @@ module Hello
 
     def password_is?(plain_text_password)
       password_credential.password_is?(plain_text_password)
+    end
+
+    def role_is?(role)
+      self.send("#{role}?")
     end
 
 

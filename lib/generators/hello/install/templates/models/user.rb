@@ -15,9 +15,29 @@ class User < ActiveRecord::Base
   def to_param
     username
   end
-  
+
   def to_json_web_api
     attributes.reject { |k, v| k.include?("password") }
   end
-  
+
+
+
+  # hello authorization
+
+  def guest?
+    %w(guest).include? role
+  end
+
+  def onboarding?
+    %w(onboarding).include? role
+  end
+
+  def user?
+    %w(user webmaster).include? role
+  end
+
+  def webmaster?
+    %w(webmaster).include? role
+  end
+
 end
