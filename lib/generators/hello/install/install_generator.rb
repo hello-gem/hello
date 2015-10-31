@@ -47,8 +47,6 @@ class Hello::InstallGenerator < Rails::Generators::Base
   end
 
   def create_models
-    copy_file "models/credential.rb", "app/models/credential.rb"
-    copy_file "models/access.rb",     "app/models/access.rb"
     copy_file "models/user.rb",       "app/models/user.rb"
   end
 

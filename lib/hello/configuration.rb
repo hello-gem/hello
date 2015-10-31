@@ -13,7 +13,9 @@ module Hello
 
   # invoked from engine.rb
   def self.apply_config!
-    User.hello_apply_config!
+    if defined?(User)
+      User.hello_apply_config!
+    end
 
     configuration.extensions.tap do |ex|
       # User Registration

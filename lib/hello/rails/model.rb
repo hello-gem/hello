@@ -1,11 +1,5 @@
 require_relative "model/user_model"
 
-class User < ActiveRecord::Base
-  include Hello::UserModel
-end
-
-
-
 require_relative "model/access_model"
 
 class Access < ActiveRecord::Base

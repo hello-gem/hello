@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Hello::UserModel
+
   # don't want usernames?
   # just comment out the line below
   # we strongly recommend the field exists in case your CEO ever ever ever changes their mind
