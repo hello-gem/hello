@@ -3,7 +3,7 @@ require 'spec_helper'
 module Hello
   describe 'Configuration' do
     let(:hello_config) { Hello.configuration }
-    let(:rails_config) { ::Rails.configuration.hello }
+    let(:rails_config) { Rails.configuration.hello }
 
     describe "Works With Rails" do
       it "is the same instance" do

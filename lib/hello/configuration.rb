@@ -8,7 +8,7 @@ module Hello
 
   # invoked internally
   def self.configuration
-    @configuration ||= ::Rails.configuration.hello
+    @configuration ||= Rails.configuration.hello
   end
 
   # invoked from engine.rb

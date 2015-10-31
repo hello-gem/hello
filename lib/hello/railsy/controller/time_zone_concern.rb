@@ -1,8 +1,8 @@
 module Hello
-  module Rails
+  module Railsy
     module Controller
       module TimeZoneConcern
-        
+
         extend ActiveSupport::Concern
 
         # module ClassMethods

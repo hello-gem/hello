@@ -1,5 +1,5 @@
 module Hello
-  module Rails
+  module Railsy
     module Helper
 
       def human_current_locale
@@ -16,6 +16,6 @@ end
 
 if defined? ActionView::Base
   ActionView::Base.class_eval do
-    include Hello::Rails::Helper
+    include Hello::Railsy::Helper
   end
 end

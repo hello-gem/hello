@@ -9,13 +9,13 @@ require_relative "controller/alive_concern"
 
 if defined? ActionController::Base
   ActionController::Base.class_eval do
-    include Hello::Rails::Controller::HelloConcern
+    include Hello::Railsy::Controller::HelloConcern
     #
-    include Hello::Rails::Controller::LocaleConcern
-    include Hello::Rails::Controller::TimeZoneConcern
-    include Hello::Rails::Controller::KickingConcern
-    include Hello::Rails::Controller::SudoModeConcern
-    include Hello::Rails::Controller::ImpersonationConcern
-    include Hello::Rails::Controller::AliveConcern
+    include Hello::Railsy::Controller::LocaleConcern
+    include Hello::Railsy::Controller::TimeZoneConcern
+    include Hello::Railsy::Controller::KickingConcern
+    include Hello::Railsy::Controller::SudoModeConcern
+    include Hello::Railsy::Controller::ImpersonationConcern
+    include Hello::Railsy::Controller::AliveConcern
   end
 end

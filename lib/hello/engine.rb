@@ -1,7 +1,7 @@
 require_relative "manager"
 
 module Hello
-  class Engine < ::Rails::Engine
+  class Engine < Rails::Engine
     isolate_namespace Hello
 
     initializer "hello.filter" do |app|
@@ -16,7 +16,7 @@ module Hello
       app.config.autoload_paths += %W(#{Engine.root}/lib)
       app.config.watchable_dirs["#{Engine.root}/lib"] = [:rb]
     end
-    
+
     config.hello            = ActiveSupport::OrderedOptions.new
     config.hello.extensions = ActiveSupport::OrderedOptions.new
 

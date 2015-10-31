@@ -188,7 +188,7 @@ Look for these terms in the source code
 
   1. One translation missing: config/locales/*.yml
 
-  2. Test this method: Hello::Rails::Controller::AccessRestrictionConcern::ClassMethods#restrict_if_role_is
+  2. Test this method: Hello::Railsy::Controller::AccessRestrictionConcern::ClassMethods#restrict_if_role_is
 
   3. Generate Access Token Feature
 

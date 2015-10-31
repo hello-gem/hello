@@ -1,8 +1,8 @@
 module Hello
-  module Rails
+  module Railsy
     module Controller
       module LocaleConcern
-        
+
         extend ActiveSupport::Concern
 
         module ClassMethods
@@ -42,7 +42,7 @@ module Hello
           locale ||= current_user && current_user.locale
           locale ||= session['locale']
           locale ||= recommended_locale.to_s
-          
+
           I18n.locale = session['locale'] = locale
         end
 

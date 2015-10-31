@@ -1,8 +1,8 @@
 module Hello
-  module Rails
+  module Railsy
     module Controller
       module SudoModeConcern
-        
+
         extend ActiveSupport::Concern
 
         module ClassMethods

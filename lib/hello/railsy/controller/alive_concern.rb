@@ -1,5 +1,5 @@
 module Hello
-  module Rails
+  module Railsy
     module Controller
       module AliveConcern
 
