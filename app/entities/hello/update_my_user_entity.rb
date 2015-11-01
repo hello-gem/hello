@@ -29,7 +29,7 @@ module Hello
 
         def permitted_column_names
           ignore_columns = ['id', 'created_at', 'updated_at', 'role']
-          the_columns = User.column_names
+          the_columns = ::User.column_names
           the_columns -= ignore_columns
           the_columns.reject! { |column| column.ends_with? '_count' }
           the_columns.reject! { |column| column.starts_with? 'password_' }

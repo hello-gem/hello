@@ -75,9 +75,9 @@ module Hello
             end
 
                 def build_models
-                  @user                = User.new(user_attributes)
-                  @email_credential    = EmailCredential.new    user: @user, email:    email
-                  @password_credential = PasswordCredential.new user: @user, password: password
+                  @user                = ::User.new(user_attributes)
+                  @email_credential    = ::EmailCredential.new    user: @user, email:    email
+                  @password_credential = ::PasswordCredential.new user: @user, password: password
                 end
 
                 def invalidate_models

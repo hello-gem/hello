@@ -34,11 +34,11 @@ module Hello
         def find_or_build_user_by_email
           EmailCredential.find_by_email!(login).user
         rescue ActiveRecord::RecordNotFound
-          User.new
+          ::User.new
         end
 
         def find_or_build_user_by_username
-          User.where(username: login).first_or_initialize
+          ::User.where(username: login).first_or_initialize
         end
 
         def found_user?

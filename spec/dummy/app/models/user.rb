@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include Hello::UserModel
+  include Hello::User
 
   def to_param
     username

@@ -7,7 +7,7 @@ module Hello
       # a helping ivar
       @current_url = request.fullpath
       # find
-      @user = User.find(params[:user_id])
+      @user = ::User.find(params[:user_id])
       @password_credential = @user.password_credentials.find(params[:id])
       if not @password_credential.verifying_token_is?(params[:token])
         raise ActiveRecord::RecordNotFound

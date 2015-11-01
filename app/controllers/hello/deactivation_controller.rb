@@ -1,6 +1,6 @@
 module Hello
   class DeactivationController < ApplicationController
-    
+
     kick      :guest, only: [:index, :deactivate]
     dont_kick :guest, only: [:deactivated]
 
@@ -15,7 +15,7 @@ module Hello
         # POST /hello/deactivation
         def deactivate
           has_deactivated = false
-          User.transaction { has_deactivated = deactivate! }
+          ::User.transaction { has_deactivated = deactivate! }
 
           if has_deactivated
             flash[:notice] = @deactivation.success_message

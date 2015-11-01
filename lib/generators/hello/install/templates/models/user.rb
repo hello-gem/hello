@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include Hello::UserModel
+  include Hello::User
 
   # don't want usernames?
   # just comment out the line below

@@ -53,7 +53,7 @@ module Hello
             end
 
             def current_user_or_guest
-              current_user || User.new(role: 'guest')
+              current_user || ::User.new(role: 'guest')
             end
 
             def redirect_to_root

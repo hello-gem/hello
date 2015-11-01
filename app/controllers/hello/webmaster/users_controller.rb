@@ -5,10 +5,10 @@ module Hello
     before_action :set_user, only: [:show, :edit, :update, :destroy, :impersonate]
 
     dont_kick :webmaster, except: [:impersonate_back]
-    
+
     # GET /webmaster/users
     def index
-      @users = User.order(:id)
+      @users = ::User.order(:id)
     end
 
     # # GET /webmaster/users/1
@@ -17,7 +17,7 @@ module Hello
 
     # # GET /webmaster/users/new
     # def new
-    #   @user = User.new
+    #   @user = ::User.new
     # end
 
     # # GET /webmaster/users/1/edit
@@ -26,7 +26,7 @@ module Hello
 
     # # POST /webmaster/users
     # def create
-    #   @user = User.new(user_params)
+    #   @user = ::User.new(user_params)
 
     #   if @user.save
     #     redirect_to @user, notice: 'User was successfully created.'
@@ -79,7 +79,7 @@ module Hello
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_user
-        @user = User.find(params[:id])
+        @user = ::User.find(params[:id])
       end
 
       # # Only allow a trusted parameter "white list" through.

@@ -37,7 +37,7 @@ module Hello
             credential = EmailCredential.find_by_email(login)
             credential.user
           else
-            User.where(username: login).first
+            ::User.where(username: login).first
           end
         end
 
