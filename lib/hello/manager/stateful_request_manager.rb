@@ -13,14 +13,14 @@ module Hello
                 to: :@session_wrapper
 
       delegate :current_accesses, to: :@finder
-      
+
       def current_access
         return nil if not session_token.presence
         @current_access ||= current_accesses.select { |a| a.token == session_token }.first
       end
 
 
-      
+
       def sign_in!(*args)
         super(*args).tap do |access|
           self.session_token = access.token
@@ -31,7 +31,7 @@ module Hello
       def sign_out!
         super
         self.session_token = nil
-        self.session_tokens = Access.where(token: self.session_tokens).pluck(:token)
+        self.session_tokens = ::Access.where(token: self.session_tokens).pluck(:token)
         self.request.session['impersonated'] = nil
       end
 

@@ -54,7 +54,7 @@ module Hello
           ip:                 remote_ip
         }
         attrs[:sudo_expires_at] = sudo_expires_at if sudo_expires_at
-        Access.create!(attrs)
+        ::Access.create!(attrs)
       end
 
       def sign_out!

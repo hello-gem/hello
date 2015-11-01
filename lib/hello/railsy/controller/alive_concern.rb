@@ -25,7 +25,7 @@ module Hello
 
             # TODO: find a better way
             def periodically_destroy_expired_accesses_from_database
-              Access.cached_destroy_all_expired
+              ::Access.cached_destroy_all_expired
             end
 
       end

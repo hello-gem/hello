@@ -1,9 +1,9 @@
-require_relative "model/user_model"
+require_relative "model/user"
 
-require_relative "model/access_model"
+require_relative "model/access"
 
 class Access < ActiveRecord::Base
-  include Hello::AccessModel
+  include Hello::Access
 end
 
 

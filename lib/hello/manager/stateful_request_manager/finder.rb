@@ -17,7 +17,7 @@ module Hello
 
           gather_valid_strings
           ensure_consistency_accross_models_and_session
-          
+
           return @models
         end
 
@@ -40,7 +40,7 @@ module Hello
           # optimize this process since each string starts with the user_id,
           # check StatelessRequestManager for example
 
-          @models = Access.where(token: strings)
+          @models = ::Access.where(token: strings)
         end
 
         def gather_valid_strings
@@ -55,6 +55,6 @@ module Hello
         end
 
       end
-    end    
+    end
   end
 end
