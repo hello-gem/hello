@@ -1,5 +1,5 @@
 module Hello
-  module PasswordCredentialModel
+  module PasswordCredential
     extend ActiveSupport::Concern
 
 

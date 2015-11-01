@@ -1,31 +1,23 @@
 require_relative "model/user"
-
 require_relative "model/access"
+require_relative "model/credential"
+require_relative "model/email_credential"
+require_relative "model/password_credential"
+
+# class User must be declared in the app so as to avoid auto load intermittent issues
 
 class Access < ActiveRecord::Base
   include Hello::Access
 end
 
-
-
-require_relative "model/credential_model"
-
 class Credential < ActiveRecord::Base
-  include Hello::CredentialModel
+  include Hello::Credential
 end
-
-
-
-require_relative "model/email_credential_model"
 
 class EmailCredential < Credential
-  include Hello::EmailCredentialModel
+  include Hello::EmailCredential
 end
-
-
-require_relative "model/password_credential_model"
 
 class PasswordCredential < Credential
-  include Hello::PasswordCredentialModel
+  include Hello::PasswordCredential
 end
-

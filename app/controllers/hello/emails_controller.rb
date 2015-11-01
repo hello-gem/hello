@@ -11,9 +11,9 @@ module Hello
     sudo_mode
 
     helper_method :credentials
-    
+
     before_actions do
-      only(:index)  { @credential = EmailCredential.new }
+      only(:index)  { @credential = ::EmailCredential.new }
       only(:create) { @credential = current_user.email_credentials.build(email_credential_params) }
       only(:destroy, :deliver)  { @credential = current_user.email_credentials.find(params[:id]) }
     end

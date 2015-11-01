@@ -1,5 +1,5 @@
 module Hello
-  module EmailCredentialModel
+  module EmailCredential
     extend ActiveSupport::Concern
 
 

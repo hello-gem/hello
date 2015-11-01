@@ -22,7 +22,7 @@ module Hello
 
       def hello_apply_config!
         Hello.configuration.tap do |c|
-          PasswordCredential.hello_apply_config!
+          ::PasswordCredential.hello_apply_config!
           validates_format_of :username, with: c.username_regex
           validates_length_of :username, in:   c.username_length
         end
