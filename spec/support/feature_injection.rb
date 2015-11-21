@@ -8,6 +8,16 @@ module Bdd
   class FeatureInjection
     include Singleton
 
+    def capability(s, *metadata, &example_group_block)
+      data = get_data(*metadata, &example_group_block)
+      s_vision = format('Vision', data['vision'])
+      RSpec::describe(s_vision, *metadata) do
+        goal data['goal'] do
+          capability s, type: :feature, &example_group_block
+        end
+      end
+    end
+
     def uic(s, *metadata, &example_group_block)
       data = get_data(*metadata, &example_group_block)
       s_vision = format('Vision', data['vision'])
@@ -43,6 +53,8 @@ module Bdd
         r = p.join('bdd.yml')
         data.reverse_merge!(YAML.load_file(r)) if r.exist?
         p = p.parent
+        xxx = p.join('support.rb')
+        xxx.exist? and load(xxx)
       end
       data
     end
@@ -80,11 +92,15 @@ module Bdd
       end
 
       def api(s, *args, &b)
-        context(::RSpec.bdd.format("Feature/API", s), *args, &b)
+        context(::RSpec.bdd.format("Interface", s), *args, &b)
       end
 
       def uic(s, *args, &b)
-        context(::RSpec.bdd.format("Feature/UI Component", s), *args, &b)
+        context(::RSpec.bdd.format("Component", s), *args, &b)
+      end
+
+      def role(s, *args, &b)
+        context(::RSpec.bdd.format("Role", s), *args, &b)
       end
 
       def story(s, *args, &b)
