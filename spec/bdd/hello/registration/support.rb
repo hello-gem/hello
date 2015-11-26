@@ -8,3 +8,10 @@ def fill_in_registration_form
     fill_in 'sign_up_city',     with: 'OMG! I can customize Hello!'
   end
 end
+
+def fill_in_login_form(username, password='1234')
+  within("form#new_sign_in") do
+    fill_in 'sign_in_login',    with: username
+    fill_in 'sign_in_password', with: password
+  end
+end

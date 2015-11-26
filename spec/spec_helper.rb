@@ -68,5 +68,7 @@ RSpec.configure do |config|
   config.include(EmailSpec::Matchers)
 
   config.before(:each) { I18n.locale = :en }
+
+  config.before(:each, type: :request) { host! "api.example.com" }
 end
 

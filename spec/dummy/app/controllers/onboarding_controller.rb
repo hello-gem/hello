@@ -1,27 +1,34 @@
 class OnboardingController < ApplicationController
 
   dont_kick :onboarding
-  
+
   def index
   end
-  
+
   def continue
     respond_to do |format|
-
-
-      if params[:agree]
-        current_user.update! role: "user"
-        #
-        format.html { redirect_to hello.current_user_path, notice: "Welcome!" }
+      if update(params[:role])
+        format.html { redirect_to root_path, notice: "Welcome!" }
         format.json { render json: {user: current_user.to_json_web_api}, status: :ok }
       else
-        @show_agree_error = true
-        #
         format.html { render action: 'index' }
-        format.json { render json: {errors: "must agree to terms"}, status: :unprocessable_entity }
+        format.json { render json: {errors: "invalid role supplied"}, status: :unprocessable_entity }
       end
+    end
+  end
 
+  private
 
+  def update(role)
+    case role
+    when "user"
+      current_user.update! role: "user"
+      return true
+    when "webmaster"
+      current_user.update! role: "webmaster"
+      return true
+    else
+      return false
     end
   end
 

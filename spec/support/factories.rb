@@ -24,7 +24,7 @@ FactoryGirl.define do
       username 'webmaster'
     end
 
-    factory :onboarding do
+    factory :user_onboarding do
       name 'Onboarding'
       role 'onboarding'
       username 'onboarding'
