@@ -22,12 +22,21 @@ FactoryGirl.define do
       name 'Admin'
       role 'webmaster'
       username 'webmaster'
+      factory :user_webmaster do
+        name 'Webmaster'
+      end
     end
 
     factory :user_onboarding do
       name 'Onboarding'
       role 'onboarding'
       username 'onboarding'
+    end
+
+    factory :user_user do
+      name 'User'
+      role 'user'
+      username 'user'
     end
   end
 
