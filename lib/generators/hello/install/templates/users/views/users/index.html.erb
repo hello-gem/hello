@@ -1,5 +1,9 @@
 <h1>Listing Users</h1>
 
+<% if current_user && current_user.webmaster? %>
+  <p><%= link_to "View User List as a Webmaster", list_users_path %></p>
+<% end %>
+
 <table class="table table-condensed">
   <thead>
     <tr>

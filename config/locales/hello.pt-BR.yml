@@ -60,10 +60,6 @@ pt-BR:
       deactivate:
         success: "Sua conta foi desativada com sucesso"
         alert: "Cancelar sua conta pode causar erros de navegação para outros usuários. Por favor, entre em contato conosco para removermos manualmente sua conta."
-      impersonate:
-        success: "Você está logado como %{name}"
-      impersonate_back:
-        success: "Você está logado com seu usuário"
       update_field:
         success: "Seu %{field} foi atualizado com sucesso"
         alert: "1 erro foi encontrado ao atualizar seu %{field}"

@@ -60,10 +60,6 @@ es:
       deactivate:
         success: "Has desactivado tu cuenta satisfactoriamente"
         alert: "Cancelando tu cuenta haría que otros usuario experimenten errores tratando de usar nuestro sitio. Por favor pongase en contacto con nosotros para cancelarla manualmente"
-      impersonate:
-        success: "Ahora eres %{name}"
-      impersonate_back:
-        success: "Eres tu nuevamente"
       update_field:
         success: "Tu %{field} ha sido actualizado satisfactoriamente"
         alert: "1 error ocurrió mientras actualizabamos %{field}"

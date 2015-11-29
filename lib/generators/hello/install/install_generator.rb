@@ -51,7 +51,16 @@ class Hello::InstallGenerator < Rails::Generators::Base
   end
 
   def generate_profile
-    my_route "resources :users, only: [:index, :show]"
+    my_route %{
+  resources :users, only: [:index, :show] do
+    collection do
+      get 'list'
+    end
+    member do
+      post 'impersonate'
+    end
+  end
+}
     directory "users/controllers", "app/controllers"
     directory "users/views", "app/views"
   end

@@ -1,28 +1,34 @@
-<h1>Listing Users</h1>
-
-<% if current_user && current_user.webmaster? %>
-  <p><%= link_to "View User List as a Webmaster", list_users_path %></p>
-<% end %>
+<h1>Listing Users (<%= @count %>)</h1>
 
 <table class="table table-condensed">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Username</th>
       <th>Name</th>
       <th>Role</th>
       <th>Locale</th>
       <th>Time zone</th>
+      <th>Credentials</th>
+      <th>Accesses</th>
+        <!-- actions -->
+      <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td>#<%= user.id %></td>
         <td><%= link_to user.username, user %></td>
         <td><%= user.name %></td>
         <td><%= user.role %></td>
         <td><%= user.locale %></td>
         <td><%= user.time_zone %></td>
+        <td><%= user.credentials_count %></td>
+        <td><%= user.accesses_count %></td>
+        <!-- actions -->
+        <td><%= button_to "Impersonate!", impersonate_user_path(user) if current_user != user %></td>
       </tr>
     <% end %>
   </tbody>

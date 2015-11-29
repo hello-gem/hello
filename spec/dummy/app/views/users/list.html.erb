@@ -1,10 +1,9 @@
-<%= render "hello/webmaster/dashboard" %>
-
-<h1>Listing Users</h1>
+<h1>Listing Users (<%= @count %>)</h1>
 
 <table class="table table-condensed">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Username</th>
       <th>Name</th>
       <th>Role</th>
@@ -20,6 +19,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td>#<%= user.id %></td>
         <td><%= link_to user.username, user %></td>
         <td><%= user.name %></td>
         <td><%= user.role %></td>
@@ -28,7 +28,7 @@
         <td><%= user.credentials_count %></td>
         <td><%= user.accesses_count %></td>
         <!-- actions -->
-        <td><%= button_to "Impersonate!", hello.impersonate_webmaster_user_path(user.id) unless current_user == user %></td>
+        <td><%= button_to "Impersonate!", impersonate_user_path(user) if current_user != user %></td>
       </tr>
     <% end %>
   </tbody>
