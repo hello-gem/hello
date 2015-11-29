@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  sudo_mode only: [:list, :impersonate]
   dont_kick :webmaster, only: [:list, :impersonate]
   before_action :find_user, only: [:show, :impersonate]
 

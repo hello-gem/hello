@@ -6,8 +6,8 @@ module Hello
         extend ActiveSupport::Concern
 
         module ClassMethods
-          def sudo_mode
-            before_action(:sudo_mode)
+          def sudo_mode(options={})
+            before_action(options) { sudo_mode }
           end
         end
 
