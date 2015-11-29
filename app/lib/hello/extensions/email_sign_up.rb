@@ -4,21 +4,6 @@ module Hello
   module Extensions
     module EmailSignUp
 
-      def fields
-        %w(name username time_zone locale)
-      end
-
-      def defaults
-        {
-          locale:    I18n.locale.to_s,
-          time_zone: Time.zone.name
-        }
-      end
-
-      def starting_role
-        'onboarding'
-      end
-
       def success
         deliver_welcome_email
 

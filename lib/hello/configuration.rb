@@ -28,9 +28,6 @@ module Hello
       # Account Management
       CurrentUsersController.include   ex.update_profile
       CancelAccountController.include  ex.cancel_account
-
-      # Internals
-      SignUpEntity::Mod.include        ex.email_sign_up
     end
   end
 

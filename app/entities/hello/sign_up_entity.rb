@@ -1,14 +1,9 @@
 module Hello
   class SignUpEntity < AbstractEntity
 
-    # Used for configuration only
-    class Mod
-    end
-
     attr_reader :email_credential, :password_credential, :user
 
     def initialize
-      @config = get_config
       generate_accessors
       write_defaults
     end
@@ -32,26 +27,17 @@ module Hello
 
         # initialize helpers
 
-        def get_config
-          x = Mod.new
-          {
-            user_fields:   x.fields.map(&:to_s),
-            defaults:      x.defaults.stringify_keys,
-            starting_role: x.starting_role,
-          }
-        end
-
         def generate_accessors
           self.class.send :attr_accessor, *all_fields
         end
 
             def all_fields
-              @config[:user_fields] + %w(email password)
+              user_fields + %w(email password)
             end
 
         def write_defaults
           # defaults.each { |k, v| instance_variable_set(:"@#{k}", v) }
-          @config[:defaults].each { |k, v| send("#{k}=", v) }
+          defaults.each { |k, v| send("#{k}=", v) }
         end
 
         # save helpers
@@ -93,13 +79,28 @@ module Hello
                   hash.each { |k,v| v.each { |v1| errors.add(k, v1) } }
                 end
 
-        # returns {name: "...", city: "..."}
-        def user_attributes
-          r = {}
-          @config[:user_fields].each { |k| r[k.to_s] = instance_variable_get(:"@#{k}") }
-          r['role'] = @config[:starting_role]
-          r
-        end
+    # returns {name: "...", city: "..."}
+    def user_attributes
+      r = {}
+      user_fields.each { |k| r[k.to_s] = instance_variable_get(:"@#{k}") }
+      r['role'] = starting_role
+      r
+    end
+
+    def starting_role
+      Hello.configuration.email_sign_up_role
+    end
+
+    def user_fields
+      Hello.configuration.email_sign_up_fields.map(&:to_s)
+    end
+
+    def defaults
+      {
+        locale:    I18n.locale.to_s,
+        time_zone: Time.zone.name
+      }
+    end
 
   end
 end

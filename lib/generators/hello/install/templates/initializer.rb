@@ -6,9 +6,9 @@ Hello.configure do |config|
   config.username_length = 4..32
   config.username_regex  = /\A[a-z0-9_-]+\z/i
 
-
-
   # User Registration
+  config.email_sign_up_role          = 'onboarding'
+  config.email_sign_up_fields        = %w(name username time_zone locale)
   config.extensions.email_sign_up    = Hello::Extensions::EmailSignUp
   # User Authentication
   config.extensions.email_sign_in    = Hello::Extensions::EmailSignIn
