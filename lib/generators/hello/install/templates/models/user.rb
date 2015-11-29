@@ -43,4 +43,19 @@ class User < ActiveRecord::Base
     %w(webmaster).include? role
   end
 
+  # hello account management
+
+  def cancel_account
+    result = true
+    transaction do
+      begin
+        destroy!
+      rescue ActiveRecord::RecordNotDestroyed => invalid
+        result = false
+        raise ActiveRecord::Rollback
+      end
+    end
+    return result
+  end
+
 end

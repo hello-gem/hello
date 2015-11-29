@@ -81,7 +81,7 @@ RSpec.bdd.capability "I can Cancel my Account" do
             end
 
             Then "I should be back on the Cancel Account page" do
-              expect_to_be_on '/hello/deactivation'
+              expect_to_be_on '/hello/cancel_account'
             end
 
             Then "I should see an error message" do

@@ -1,5 +1,5 @@
 module Hello
-  class DeactivateEntity < AbstractEntity
+  class CancelAccountEntity < AbstractEntity
 
     def info_message
       t("info")

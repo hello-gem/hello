@@ -57,7 +57,7 @@ pt-BR:
         error:
           one: "1 erro foi encontrado na atualização do perfil"
           other: "%{count} erros foram encontrados na atualização do perfil"
-      deactivate:
+      cancel_account:
         success: "Sua conta foi desativada com sucesso"
         alert: "Cancelar sua conta pode causar erros de navegação para outros usuários. Por favor, entre em contato conosco para removermos manualmente sua conta."
       update_field:

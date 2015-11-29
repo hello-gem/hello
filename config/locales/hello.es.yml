@@ -57,7 +57,7 @@ es:
         error:
           one: "1 error ocurrió mientras actualizabamos tu perfil"
           other: "%{count} errores ocurrieron mientras actualizabamos tu perfil"
-      deactivate:
+      cancel_account:
         success: "Has desactivado tu cuenta satisfactoriamente"
         alert: "Cancelando tu cuenta haría que otros usuario experimenten errores tratando de usar nuestro sitio. Por favor pongase en contacto con nosotros para cancelarla manualmente"
       update_field:

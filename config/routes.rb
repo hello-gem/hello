@@ -41,8 +41,8 @@ Hello::Engine.routes.draw do
   patch 'sudo_mode'        => 'sudo_mode#authenticate'
   get   'sudo_mode/expire' => 'sudo_mode#expire'
 
-  get  'deactivation' => 'deactivation#index'
-  post 'deactivation' => 'deactivation#deactivate'
+  get  'cancel_account' => 'cancel_account#index'
+  post 'cancel_account' => 'cancel_account#cancel'
 
 
   #

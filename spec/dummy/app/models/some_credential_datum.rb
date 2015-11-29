@@ -1,4 +1,4 @@
-# this model was created with the objective of testing account deactivation
+# this model was created with the objective of testing account cancel
 class SomeCredentialDatum < ActiveRecord::Base
   belongs_to :credential
 

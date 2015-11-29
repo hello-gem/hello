@@ -55,7 +55,7 @@ en:
         error:
           one: "1 error was found while updating your profile"
           other: "%{count} errors were found while updating your profile"
-      deactivate:
+      cancel_account:
         success: "You have deactivated your account successfully"
         alert: "Terminating your account would cause other users to experience errors while using our website. Please contact any of our staff members and ask to have your account removed manually."
       update_field:
