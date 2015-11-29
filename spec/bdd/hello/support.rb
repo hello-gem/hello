@@ -17,7 +17,8 @@ def fill_in_login_form(username, password='1234')
 end
 
 def sign_in_as_an_onboarding
-  create(:user_onboarding)
+  u = create(:user_onboarding)
+  create(:email_credential, user: u, email: "#{u.username}@example.com")
   visit '/hello/sign_in'
   fill_in_login_form('onboarding')
   click_button 'Sign In'
@@ -26,7 +27,8 @@ def sign_in_as_an_onboarding
 end
 
 def sign_in_as_a_user
-  create(:user_user)
+  u = create(:user_user)
+  create(:email_credential, user: u, email: "#{u.username}@example.com")
   visit '/hello/sign_in'
   fill_in_login_form('user')
   click_button 'Sign In'
@@ -35,7 +37,8 @@ def sign_in_as_a_user
 end
 
 def sign_in_as_a_webmaster
-  create(:user_webmaster)
+  u = create(:user_webmaster)
+  create(:email_credential, user: u, email: "#{u.username}@example.com")
   visit '/hello/sign_in'
   fill_in_login_form('webmaster')
   click_button 'Sign In'
