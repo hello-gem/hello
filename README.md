@@ -15,13 +15,11 @@ Please take a look at our [issues](https://github.com/hello-gem/hello/issues), a
 
 ## Tested With
 
-| Ruby Versions | Rails Versions      |
-| ------------- |---------------------|
-| Ruby 2.0.*    | Rails 4.1.*         |
-| Ruby 2.1.*    | Rails 4.2.*         |
-| Ruby 2.2.*    | Rails 5 beta (soon) |
-| JRuby (soon)  |  |
-| Rubinius (soon) |  |
+| Ruby Versions       | Rails Versions |
+| -------------       |----------------|
+| Ruby 2.2.2          | Rails 4.2.*    |
+| JRuby (submit a PR) | Rails 5 beta   |
+| RBX (submit a PR)   |                |
 
 
 ## Running Tests
