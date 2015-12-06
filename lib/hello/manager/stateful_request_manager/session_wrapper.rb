@@ -3,8 +3,6 @@ module Hello
     class StatefulRequestManager < RequestManager
       class SessionWrapper
 
-        attr_reader :manager
-
         def initialize(manager)
           @manager = manager
         end
@@ -15,7 +13,7 @@ module Hello
 
         def session_tokens=(v)
           session['tokens']=v
-          manager.clear_cache
+          @manager.clear_cache
         end
 
         def session_token
@@ -24,11 +22,11 @@ module Hello
 
         def session_token=(v)
           session['token']=v
-          manager.clear_cache
+          @manager.clear_cache
         end
 
         def session
-          manager.request.session
+          @manager.request.session
         end
 
       end

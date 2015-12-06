@@ -8,7 +8,7 @@ RSpec.bdd.uic "Sensitive Restriction" do
         given_I_have_signed_in
 
         click_link "Settings"
-        click_link "Sessions"
+        click_link "Devices"
 
         expect(page).to have_content "Confirm Password to Continue"
         expect(current_path).to eq hello.accesses_path

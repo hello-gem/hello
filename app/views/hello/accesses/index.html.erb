@@ -17,25 +17,26 @@
 
 
     <% @accesses.each_with_index do |access, i| %>
+      <% is_current_access?(access).tap do |is_current_access| %>
 
-      <tr class="<%= 'success' if is_current_access? access %>">
-        <td>Device #<%= i+1 %></td>
-        <td><%= access.full_device_name %></td>
-        <td><%= access.ip %></td>
-        <td>
-          <% if is_current_access? access %>
-            [this device]
-          <% else %>
-            <%= button_to 'Unlink',
-                          access,
-                          method: :delete,
-                          class: 'btn btn-danger',
-                          data: { confirm: 'Are you sure?' } %>
-          <% end %>
-        </td>
-      </tr>
+        <tr class="<%= 'success' if is_current_access %>">
+          <td>Device #<%= i+1 %></td>
+          <td><%= access.full_device_name %></td>
+          <td><%= access.ip %></td>
+          <td>
+            <% if is_current_access %>
+              [this device]
+            <% else %>
+              <%= button_to 'Unlink',
+                            access,
+                            method: :delete,
+                            class: 'btn btn-danger',
+                            data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </td>
+        </tr>
 
-
+      <% end %>
     <% end %>
 
 

@@ -16,36 +16,33 @@ def fill_in_login_form(username, password='1234')
   end
 end
 
+def sign_in_with(login, password='1234')
+  visit '/hello/sign_in'
+  fill_in_login_form(login, password)
+  click_button 'Sign In'
+  __fetch_current_access
+end
+
 def sign_in_as_an_onboarding
   u = create(:user_onboarding)
   create(:email_credential, user: u, email: "#{u.username}@example.com")
-  visit '/hello/sign_in'
-  fill_in_login_form('onboarding')
-  click_button 'Sign In'
-  __fetch_current_access
+  sign_in_with(u.username)
   expect(current_user.role).to eq('onboarding')
 end
 
 def sign_in_as_a_user
   u = create(:user_user)
   create(:email_credential, user: u, email: "#{u.username}@example.com")
-  visit '/hello/sign_in'
-  fill_in_login_form('user')
-  click_button 'Sign In'
-  __fetch_current_access
+  sign_in_with(u.username)
   expect(current_user.role).to eq('user')
 end
 
 def sign_in_as_a_webmaster
   u = create(:user_webmaster)
   create(:email_credential, user: u, email: "#{u.username}@example.com")
-  visit '/hello/sign_in'
-  fill_in_login_form('webmaster')
-  click_button 'Sign In'
-  __fetch_current_access
+  sign_in_with(u.username)
   expect(current_user.role).to eq('webmaster')
 end
-
 
 def sign_in_as_a(role)
   case role.to_sym
@@ -55,5 +52,10 @@ def sign_in_as_a(role)
   when :webmaster  then sign_in_as_a_webmaster
   else raise("Role #{role} is unknown")
   end
+end
+
+def visit_path_after(path, delay)
+  current_access.update expires_at: (current_access.expires_at - delay + 1.second)
+  visit path
 end
 
