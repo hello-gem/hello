@@ -7,7 +7,14 @@ module Hello
 
     before_actions do
       only(:index) { @accesses = current_accesses }
-      only(:show, :destroy) { @access = find_access || raise(ActiveRecord::RecordNotFound) }
+      only(:show, :destroy) do
+        unless @access = find_access
+          respond_to do |format|
+            format.html { redirect_to hello.sessions_path, notice: 'Your Session Was Expired!' }
+            format.json { head :reset_content }
+          end
+        end
+      end
     end
 
     # GET /hello/sessions
