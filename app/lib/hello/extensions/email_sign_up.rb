@@ -31,13 +31,13 @@ module Hello
       end
 
       def deliver_welcome_email
-        Hello::RegistrationMailer.welcome(@sign_up.email_credential, @sign_up.password).deliver
+        Hello::Mailer.welcome(@sign_up.email_credential, @sign_up.password).deliver
       end
 
       def deliver_confirmation_email
         token = @sign_up.email_credential.reset_verifying_token!
         url   = hello.confirm_email_url(@sign_up.email_credential, token)
-        Hello::RegistrationMailer.confirm_email(@sign_up.email_credential, url).deliver
+        Hello::Mailer.confirm_email(@sign_up.email_credential, url).deliver
       end
 
     end

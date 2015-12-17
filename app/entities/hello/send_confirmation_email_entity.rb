@@ -12,7 +12,7 @@ module Hello
       token = email_credential.reset_verifying_token!
       check_token!(token)
       url   = controller.confirm_email_url(email_credential, token)
-      mail  = Hello::RegistrationMailer.confirm_email(email_credential, url)
+      mail  = Hello::Mailer.confirm_email(email_credential, url)
       mail.deliver
     end
 

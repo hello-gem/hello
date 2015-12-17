@@ -5,7 +5,7 @@ en:
     others:
       locale: "English"
 
-    registration_mailer:
+    mailer:
       welcome:
         subject: "Welcome to our website"
       confirm_email:

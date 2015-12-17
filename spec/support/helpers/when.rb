@@ -19,9 +19,9 @@ end
 
 def when_sign_up_as_an_onboarding(options={})
   # if options[:expect_welcome_mailer] === true
-  #   Hello::RegistrationMailer.should_receive(:welcome).and_return(double("mailer", deliver: true))
+  #   Hello::Mailer.should_receive(:welcome).and_return(double("mailer", deliver: true))
   # elsif options[:expect_welcome_mailer] === false
-  #   Hello::RegistrationMailer.should_not_receive(:welcome)
+  #   Hello::Mailer.should_not_receive(:welcome)
   # end
 
   # visit hello.root_path
@@ -38,7 +38,7 @@ def when_sign_up_as_an_onboarding(options={})
   if options[:expect_success] === true
     expect(current_path).to eq('/onboarding')
   end
-  
+
 end
 
 def when_sign_in_with_standard_data(options={})

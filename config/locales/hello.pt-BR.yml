@@ -5,7 +5,7 @@ pt-BR:
     others:
       locale: "Português (Brasil)"
 
-    registration_mailer:
+    mailer:
       welcome:
         subject: "Bem vindo ao nosso site"
       confirm_email:

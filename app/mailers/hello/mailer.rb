@@ -1,5 +1,5 @@
 module Hello
-  class RegistrationMailer < ActionMailer::Base
+  class Mailer < ActionMailer::Base
     default from: Hello.configuration.mailer_sender
 
     def welcome(email_credential, password)
