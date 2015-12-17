@@ -31,7 +31,7 @@ module Hello
       end
 
       def current_user
-        current_access && current_access.user
+        current_access and current_access.user
       end
 
       def current_accesses
@@ -57,11 +57,12 @@ module Hello
         ::Access.create!(attrs)
       end
 
-      def sign_out!(access=nil)
-        access ||= current_access
+      def sign_out!(access = current_access)
         access and access.destroy!
         clear_cache
       end
+
+
 
       # protected
 

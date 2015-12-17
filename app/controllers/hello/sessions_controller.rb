@@ -7,7 +7,7 @@ module Hello
 
     before_actions do
       only(:index) { @accesses = current_accesses }
-      only(:show, :destroy) { @access = current_accesses.select { |at| at.id.to_s == params[:id] }.first }
+      only(:show, :destroy) { @access = find_access || raise(ActiveRecord::RecordNotFound) }
     end
 
     # GET /hello/sessions
@@ -41,7 +41,6 @@ module Hello
     # get /hello/sign_out
     def sign_out
       sign_out!
-      self.session_token = session_tokens.first
 
       respond_to do |format|
         format.html { redirect_to '/', notice: t('hello.entities.sign_out.success') }
@@ -51,8 +50,8 @@ module Hello
 
     private
 
-    def sign_out_message
-
+    def find_access
+      current_accesses.select { |at| at.id.to_s == params[:id] }.first
     end
 
   end

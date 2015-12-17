@@ -36,8 +36,13 @@ module Hello
 
       # delete
 
-      def sign_out!(*args)
-        super(*args)
+      def sign_out!(access = current_access)
+        if is_current_access?(access)
+          self.session_token = session_tokens.first
+        end
+
+        super(access)
+
         refresh_session_tokens
       end
 
