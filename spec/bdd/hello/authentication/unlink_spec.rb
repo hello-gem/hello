@@ -31,7 +31,7 @@ RSpec.bdd.capability 'I can Unlink' do
 
           Given 'I should have 2 accesses in the database but only see 1 unlink button' do
             expect(Access.where(user_id: current_user.id).count).to eq(2)
-            page.should have_button('Unlink', count: 1)
+            expect(page).to have_button('Unlink', count: 1)
           end
 
           When 'I attempt to unlink the second device' do
