@@ -14,7 +14,6 @@ Hello.configure do |config|
   config.extensions.email_sign_in    = Hello::Extensions::EmailSignIn
   config.extensions.forgot_password  = Hello::Extensions::ForgotPassword
   config.extensions.reset_password   = Hello::Extensions::ResetPassword
-  config.extensions.sign_out         = Hello::Extensions::SignOut
   config.extensions.encrypt_password = Hello::Extensions::EncryptPassword
   # Account Management
   config.extensions.update_profile   = Hello::Extensions::UpdateProfile

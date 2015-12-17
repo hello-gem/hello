@@ -17,13 +17,13 @@ RSpec.bdd.uic "Forget Account Button" do
       end
 
       Then "I should see a confirmation message" do
-        expect_flash_notice "Signed Out Successfully!"
+        expect_flash_notice 'Forgotten'
       end
 
       then_I_expect_to_be_signed_out
 
       Then "I should be on the accounts page" do
-        expect_to_be_on '/hello/switch_users'
+        expect_to_be_on '/hello/sessions'
       end
 
       Then "my access token should be removed from the database" do
@@ -48,13 +48,13 @@ RSpec.bdd.uic "Forget Account Button" do
       end
 
       Then "I should see a confirmation message" do
-        expect_flash_notice "Signed Out Successfully!"
+        expect_flash_notice 'Forgotten'
       end
 
       then_I_expect_to_be_signed_out
 
       Then "I should be on the accounts page" do
-        expect_to_be_on '/hello/switch_users'
+        expect_to_be_on '/hello/sessions'
       end
 
       Then "my access token should be removed from the database" do

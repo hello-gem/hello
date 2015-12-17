@@ -16,6 +16,15 @@ es:
     entities:
       sign_out:
         success: "Sesión finalizada!"
+      unlink_access:
+        success: "Dispositivo ha sido desconectado satisfactoriamente de tu cuenta"
+        alert: "Hubo un error al desconectar este dispositivo"
+      session_switch:
+        # TODO: to Spanish
+        success: "Switched Accounts Successfully!"
+      session_forget:
+        # TODO: to Spanish
+        success: "Forgotten"
       sign_up:
         success: "Tu cuenta ha sido creada correctamente"
         error:
@@ -44,9 +53,6 @@ es:
       confirm_email:
         success: "%{email} ha sido confirmado satisfactoriamente."
         alert: "Este enlace ha expirado, por favor pide un nuevo enlace"
-      unlink_access:
-        success: "Dispositivo ha sido desconectado satisfactoriamente de tu cuenta"
-        alert: "Hubo un error al desconectar este dispositivo"
       sudo_mode_authentication:
         success: "Ahora sabemos que realmente eres tu. No preguntaremos tu contraseña nuevamente por 60 minutos"
         alert: "Contraseña Incorrecta"

@@ -16,6 +16,13 @@ en:
     entities:
       sign_out:
         success: "You have signed out!"
+      unlink_access:
+        success: "Device has been unlinked from your account"
+        alert: "There was an error while unlinking this device"
+      session_switch:
+        success: "Switched Accounts Successfully!"
+      session_forget:
+        success: "Forgotten"
       sign_up:
         success: "You have signed up successfully"
         error:
@@ -42,9 +49,6 @@ en:
       confirm_email:
         success: "%{email} has been confirmed successfully."
         alert: "This link has expired, please ask for a new link"
-      unlink_access:
-        success: "Device has been unlinked from your account"
-        alert: "There was an error while unlinking this device"
       sudo_mode_authentication:
         success: "Now we know it's really you. We won't be asking your password again for 60 minutes"
         alert: "Incorrect Password"

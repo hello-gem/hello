@@ -24,7 +24,6 @@ module Hello
       EmailSignInController.include    ex.email_sign_in
       ForgotPasswordController.include ex.forgot_password
       ResetPasswordController.include  ex.reset_password
-      SignOutController.include        ex.sign_out
       # Account Management
       CurrentUsersController.include   ex.update_profile
       CancelAccountController.include  ex.cancel_account

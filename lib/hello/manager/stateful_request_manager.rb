@@ -10,6 +10,7 @@ module Hello
 
       delegate  :session_token,  :session_token=,
                 :session_tokens, :session_tokens=,
+                :refresh_session_tokens,
                 to: :@session_wrapper
 
       # read
@@ -35,10 +36,9 @@ module Hello
 
       # delete
 
-      def sign_out!
-        super
-        self.session_tokens = ::Access.where(token: session_tokens).pluck(:token)
-        self.session_token  = session_tokens.first
+      def sign_out!(*args)
+        super(*args)
+        refresh_session_tokens
       end
 
     end

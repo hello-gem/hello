@@ -16,6 +16,15 @@ pt-BR:
     entities:
       sign_out:
         success: "Você saiu do sistema!"
+      unlink_access:
+        success: "Dispositivo foi desconectado com sucesso da sua conta"
+        alert: "Houve um erro ao desconectar esse dispositivo"
+      session_switch:
+        # TODO: to Portuguese
+        success: "Switched Accounts Successfully!"
+      session_forget:
+        # TODO: to Portuguese
+        success: "Forgotten"
       sign_up:
         success: "Você se cadastrou com sucesso"
         error:
@@ -44,9 +53,6 @@ pt-BR:
       confirm_email:
         success: "%{email} foi confirmado com sucesso."
         alert: "O link expirou, por favor solicite um novo email de confirmação"
-      unlink_access:
-        success: "Dispositivo foi desconectado com sucesso da sua conta"
-        alert: "Houve um erro ao desconectar esse dispositivo"
       sudo_mode_authentication:
         success: "Agora temos certeza que é você. Não perguntaremos sua senha novamente nos próximos 60 minutos"
         alert: "Senha incorreta"

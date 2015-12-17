@@ -57,8 +57,10 @@ module Hello
         ::Access.create!(attrs)
       end
 
-      def sign_out!
-        current_access && current_access.destroy!
+      def sign_out!(access=nil)
+        access ||= current_access
+        access and access.destroy!
+        clear_cache
       end
 
       # protected

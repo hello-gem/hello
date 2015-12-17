@@ -25,6 +25,10 @@ module Hello
           @manager.clear_cache
         end
 
+        def refresh_session_tokens
+          self.session_tokens = ::Access.where(token: session_tokens).pluck(:token)
+        end
+
         def session
           @manager.request.session
         end
