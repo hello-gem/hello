@@ -42,7 +42,7 @@ module Hello
       def reset_token_and_deliver_email!
         p      = @user.main_password_credential
         token  = p.reset_verifying_token!
-        url    = hello.reset_password_path(p.id, @user.id, token)
+        url    = hello.reset_password_url(p.id, @user.id, token)
         @user.email_credentials.each do |email_credential|
           Hello::Mailer.forgot_password(email_credential, url).deliver
         end

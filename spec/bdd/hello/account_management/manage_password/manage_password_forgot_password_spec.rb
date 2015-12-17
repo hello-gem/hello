@@ -25,7 +25,7 @@ RSpec.bdd.uic "Forgot Password" do
 
 
       Then "and I should receive an email with a password reset URL" do
-        regexp = Regexp.new(/hello\/passwords\/(\d*)\/reset\/(\d*)\/\w*/)
+        regexp = Regexp.new(/example.com\/hello\/passwords\/(\d*)\/reset\/(\d*)\/\w*/)
         expect(open_last_email.to_s).to match regexp
         # TODO: test this for a valid route
       end
