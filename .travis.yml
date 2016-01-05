@@ -6,11 +6,11 @@ sudo: false
 matrix:
   include:
     # latest Ruby, latest Rails
-    - rvm: 2.2.2
+    - rvm: 2.3.0
       gemfile: gemfiles/rails-4-2-stable.gemfile
 
     # latest Ruby, next Rails
-    - rvm: 2.2.2
+    - rvm: 2.3.0
       gemfile: gemfiles/rails-master.gemfile
 cache:
   - bundler
