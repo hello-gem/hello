@@ -70,7 +70,7 @@ module Hello
             def redirect_to_sign_in
               respond_to do |format|
                 format.html do
-                  session[:url] = url_for(params.merge only_path: true)
+                  hello_keep_current_url_on_session!
                   redirect_to hello.sign_in_path
                 end
                 format.json do
