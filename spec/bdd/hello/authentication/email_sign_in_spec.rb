@@ -104,7 +104,7 @@ RSpec.bdd.capability 'I can Sign In With Email' do
             end # scenario
 
             Then 'I should see a confirmation message' do
-              expect_error_message '1 error was found while trying to sign in'
+              expect_to_see 'found while trying to sign in'
             end
 
             Then 'I should be on the sign in page' do
@@ -242,7 +242,8 @@ RSpec.bdd.capability 'I can Sign In With Email' do
 
         Then 'I should see errors' do
           expect(json_response).to eq({
-            'login'=>['was not found']
+            "login"=>["can't be blank"],
+            "password"=>["can't be blank"]
           })
         end
 
