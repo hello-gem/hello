@@ -8,19 +8,19 @@ class User < ActiveRecord::Base
   # hello authorization
 
   def guest?
-    %w(guest).include? role
+    %w(guest).include?(role)
   end
 
   def onboarding?
-    %w(onboarding).include? role
+    %w(onboarding).include?(role)
   end
 
   def user?
-    %w(user webmaster).include? role
+    %w(user webmaster).include?(role)
   end
 
   def webmaster?
-    %w(webmaster).include? role
+    %w(webmaster).include?(role)
   end
 
   # hello account management
