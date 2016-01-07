@@ -19,8 +19,8 @@ class User < ActiveRecord::Base
     username
   end
 
-  def to_json_web_api
-    attributes.reject { |k, v| k.include?("password") }
+  def as_json_web_api
+    attributes
   end
 
 

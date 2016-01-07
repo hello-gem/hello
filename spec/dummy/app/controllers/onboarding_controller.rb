@@ -9,7 +9,7 @@ class OnboardingController < ApplicationController
     respond_to do |format|
       if update(params[:role])
         format.html { redirect_to root_path, notice: "Welcome!" }
-        format.json { render json: {user: current_user.to_json_web_api}, status: :ok }
+        format.json { render json: {user: current_user.as_json_web_api}, status: :ok }
       else
         format.html { render action: 'index' }
         format.json { render json: {errors: "invalid role supplied"}, status: :unprocessable_entity }

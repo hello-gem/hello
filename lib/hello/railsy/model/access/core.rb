@@ -34,9 +34,9 @@ module Hello
       #
       # JSON
       #
-      def to_json_web_api
+      def as_json_web_api
         hash = attributes.slice(*%w[expires_at token user_id])
-        hash.merge!({user: user.to_json_web_api})
+        hash.merge!({user: user.as_json_web_api})
       end
 
 

@@ -21,8 +21,8 @@ module Hello
 
       # NOTE:
       # dup your changes on lib/generators/hello/install/templates/user.rb
-      def to_json_web_api
-        attributes.reject { |k, v| k.include?("password") }
+      def as_json_web_api
+        attributes
       end
 
       def destroy

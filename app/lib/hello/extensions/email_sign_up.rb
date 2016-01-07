@@ -13,7 +13,7 @@ module Hello
 
         respond_to do |format|
           format.html { redirect_to '/onboarding' }
-          format.json { render json: access_token.to_json_web_api, status: :created }
+          format.json { render json: access_token.as_json_web_api, status: :created }
         end
       end
 

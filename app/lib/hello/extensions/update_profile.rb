@@ -7,7 +7,7 @@ module Hello
       def success
         respond_to do |format|
           format.html { redirect_to hello.current_user_path }
-          format.json { render json: @user.to_json_web_api, status: :ok }
+          format.json { render json: @user.as_json_web_api, status: :ok }
         end
       end
 
