@@ -159,7 +159,7 @@ RSpec.bdd.capability "I can Sign Up With Email" do
         Then "I should see errors" do
           expect(json_response).to eq({
             "email"=>["can't be blank", "does not appear to be a valid e-mail address"],
-            "password"=>["can't be blank", "is too short (minimum is 4 characters)"],
+            "password"=>["can't be blank"],
             "name"=>["can't be blank"],
             "city"=>["can't be blank"]
           })
