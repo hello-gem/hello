@@ -91,7 +91,7 @@ RSpec.bdd.capability 'I can Manage Sessions' do
             end
 
             Then "I should see a validation errors" do
-              expect_error_message "6 errors were found while trying to sign up"
+              expect_error_message "errors were found while trying to sign up"
             end
 
             Then 'I should be signed in with 1 session' do

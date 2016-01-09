@@ -24,7 +24,7 @@ RSpec.bdd.uic "Password Page" do
 
     scenario "Valid" do
       When "I submit a new valid password" do
-        fill_in 'password_credential_password', with: (@new_password = 'new_password')
+        fill_in 'password_credential_password', with: (@new_password = 'newpassword')
         click_button 'Update'
       end
 

@@ -17,7 +17,7 @@ describe PasswordCredential do
 
       it "presence" do
         subject.valid?
-        expect(subject.errors[:password]).to include "can't be blank"
+        expect(subject.errors[:password]).to eq ["can't be blank"]
       end
 
       it "length" do
@@ -36,13 +36,49 @@ describe PasswordCredential do
 
       it "spaced" do
         subject.password = "   123   4   "
-        expect(subject.password_is?('1234')).to eq(true)
+        expect(subject.password_is?('1234')).to eq(false)
       end
 
       it "cased" do
         subject.password = "Abcd"
         expect(subject.password_is?('Abcd')).to eq(true)
         expect(subject.password_is?('abcd')).to eq(false)
+      end
+
+      describe "format" do
+
+        describe "acceptable" do
+
+          it('can have only letters') { @string = 'abcdef' }
+
+          it('can have only numbers') { @string = '123456' }
+
+          it('can start with letter') { @string = 'a12345' }
+
+          it('can start with number') { @string = '1abcde' }
+
+          after do
+            subject.password = @string
+            subject.valid?
+            expect(subject.errors[:password]).to eq([])
+          end
+
+        end
+
+        describe "not acceptable" do
+
+          it('cannot have spaces')  { @string = 'abc 123' }
+
+          it('cannot have symbols') { @string = 'abc!123' }
+
+          after do
+            subject.password = @string
+            subject.valid?
+            expect(subject.errors[:password]).to eq(["is invalid"])
+          end
+
+        end
+
       end
 
     end

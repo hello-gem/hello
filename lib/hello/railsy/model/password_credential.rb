@@ -9,16 +9,7 @@ module Hello
       # validates_presence_of :digest
 
       # before_destroy :cannot_destroy_last_password_credential
-    end
-
-    module ClassMethods
-
-      def hello_apply_config!
-        Hello.configuration.tap do |c|
-          validates_length_of :password, in: c.password_length, if: :digest_changed?
-        end
-      end
-
+      validate :hello_validations
     end
 
     def password=(value)
@@ -26,7 +17,6 @@ module Hello
       if value.blank?
         self.digest = @password = nil
       end
-      value = value.to_s.gsub(' ', '')
       @password = value
 
       self.digest = password_encryption_extension.encrypt(value)
@@ -42,6 +32,19 @@ module Hello
 
 
     private
+
+    def hello_validations
+      return true if not digest_changed?
+
+      return false if errors[:password].any?
+      c = Hello.configuration
+
+      validates_length_of :password, in: c.password_length
+      return false if errors[:password].any?
+
+      validates_format_of :password, with: c.password_regex
+      return false if errors[:password].any?
+    end
 
     # # TODO: code for multiple passwords
     # def cannot_destroy_last_password_credential
