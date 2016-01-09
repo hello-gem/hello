@@ -1,0 +1,14 @@
+AllCops:
+  Include:
+    - '**/Rakefile'
+  Exclude:
+    - 'spec/bdd/**/*'
+
+Metrics/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Style/TrivialAccessors:
+  Enabled: false
