@@ -11,6 +11,5 @@ module Hello
         access.update! sudo_expires_at: sudo_expires_at
       end
     end
-
   end
 end

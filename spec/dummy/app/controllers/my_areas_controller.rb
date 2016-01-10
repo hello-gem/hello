@@ -1,12 +1,10 @@
 class MyAreasController < ApplicationController
-
   #
   # KEEP ONE
   #
-  dont_kick :guest,  only: :guest_page
+  dont_kick :guest, only: :guest_page
   dont_kick :onboarding, only: :onboarding_page
   dont_kick :webmaster, only: :webmaster_page
-
 
   #
   # KICK ONE
@@ -14,20 +12,10 @@ class MyAreasController < ApplicationController
   kick :webmaster, only: :non_webmaster_page
   kick :guest,  only: :authenticated_page
 
-
-
   #
   # USER AREA
   #
   kick :guest, :onboarding, only: :user_page
-
-
-
-
-
-
-
-
 
   def guest_page
     yes
@@ -53,12 +41,9 @@ class MyAreasController < ApplicationController
     yes
   end
 
-
-
   private
 
   def yes
-    render text: "yes!"
+    render text: 'yes!'
   end
-
 end

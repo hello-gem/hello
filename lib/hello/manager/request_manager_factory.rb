@@ -1,7 +1,6 @@
 module Hello
   module Manager
     class RequestManagerFactory
-      
       def initialize(request)
         @request = request
       end
@@ -25,11 +24,11 @@ module Hello
       end
 
       def has_host_api?
-        @request.host.starts_with?("api.")
+        @request.host.starts_with?('api.')
       end
 
       def has_url_api?
-        @request.fullpath.starts_with?("/api/")
+        @request.fullpath.starts_with?('/api/')
       end
     end
   end

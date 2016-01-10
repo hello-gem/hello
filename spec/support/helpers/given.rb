@@ -25,7 +25,7 @@ end
 
 def given_I_have_an_email_credential_and_forgot_my_password
   credential = given_I_have_an_email_credential
-  return unencrypted_token = credential.user.password_credential.reset_verifying_token!
+  unencrypted_token = credential.user.password_credential.reset_verifying_token!
 end
 
 def given_I_am_logged_in_with_a_classic_credential
@@ -44,6 +44,5 @@ def given_I_am_logged_in_with_two_accounts
   given_I_have_a_webmaster_password_credential
   when_sign_in_with_webmaster_data
   then_I_expect_to_be_signed_in_with_role('webmaster')
-  expect_to_see "dummy-accounts-2"
+  expect_to_see 'dummy-accounts-2'
 end
-

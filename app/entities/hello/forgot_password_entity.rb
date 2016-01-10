@@ -1,51 +1,45 @@
 module Hello
   class ForgotPasswordEntity < AbstractEntity
-
     attr_accessor :login
     attr_reader :user
 
-    def initialize(attrs=nil)
+    def initialize(attrs = nil)
       if attrs
-        @login      = attrs[:login]
+        @login = attrs[:login]
         @user = find_user
       end
     end
 
     def reset
       add_errors_for_login_not_found and return false if user.nil?
-      return true
+      true
     end
 
     def email?
       login.to_s.include? '@'
     end
 
-
-    def success_message(extra={})
+    def success_message(_extra = {})
       super(login: @login)
     end
 
-
-
-
     private
 
-        # initialize helpers
+    # initialize helpers
 
-        def find_user
-          if email?
-            credential = EmailCredential.find_by_email(login)
-            credential.user
-          else
-            ::User.where(username: login).first
-          end
-        end
+    def find_user
+      if email?
+        credential = EmailCredential.find_by_email(login)
+        credential.user
+      else
+        ::User.where(username: login).first
+      end
+    end
 
-        # reset helpers
+    # reset helpers
 
-        def add_errors_for_login_not_found
-          errors.add(:login, "was not found")
-        end
-
+    def add_errors_for_login_not_found
+      errors.add(:login, 'was not found')
+    end
   end
 end

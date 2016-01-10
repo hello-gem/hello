@@ -1,6 +1,5 @@
 module Hello
   class ForgotPasswordController < ApplicationController
-
     dont_kick :guest
 
     before_action { @sender = Hello.configuration.mailer_sender }
@@ -21,6 +20,5 @@ module Hello
         failure
       end
     end
-
   end
 end

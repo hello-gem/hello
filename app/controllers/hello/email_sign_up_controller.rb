@@ -1,6 +1,5 @@
 module Hello
   class EmailSignUpController < ApplicationController
-
     dont_kick_people
 
     before_action do
@@ -25,6 +24,5 @@ module Hello
         failure
       end
     end
-
   end
 end

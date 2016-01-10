@@ -3,7 +3,6 @@ module Hello
     module Core
       extend ActiveSupport::Concern
 
-
       def full_device_name
         Hello::DeviceName.instance.parse(user_agent_string)
       end
@@ -16,8 +15,6 @@ module Hello
         end
       end
 
-
-
       included do
         belongs_to :user, counter_cache: true
 
@@ -29,16 +26,13 @@ module Hello
         end
       end
 
-
-
       #
       # JSON
       #
       def as_json_web_api
-        hash = attributes.slice(*%w[expires_at token user_id])
-        hash.merge!({user: user.as_json_web_api})
+        hash = attributes.slice(*%w(expires_at token user_id))
+        hash.merge!({ user: user.as_json_web_api })
       end
-
 
       module ClassMethods
         def destroy_all_expired
@@ -50,8 +44,6 @@ module Hello
           @@destroy_all_expired ||= destroy_all_expired
         end
       end
-
-
     end
   end
 end

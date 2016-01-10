@@ -3,7 +3,6 @@
 module Hello
   module Extensions
     module EncryptPassword
-
       def self.encrypt(plain_text)
         BCrypt::Password.create(plain_text)
       end
@@ -13,7 +12,6 @@ module Hello
       rescue BCrypt::Errors::InvalidHash
         false
       end
-
     end
   end
 end

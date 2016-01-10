@@ -3,29 +3,24 @@
 #
 
 class Hello::ApplicationController < ApplicationController
-
   rescue_from Hello::JsonNotSupported do |exception|
     render json: _json_data_for_exception(exception), status: :bad_request
   end
 
   rescue_from ActionController::ParameterMissing do |exception|
     respond_to do |format|
-      format.html { raise exception }
+      format.html { fail exception }
       format.json { render json: _json_data_for_exception(exception), status: :bad_request } # 400
     end
   end
 
-
-
   def success
-    raise NotImplementedError
+    fail NotImplementedError
   end
 
   def failure
-    raise NotImplementedError
+    fail NotImplementedError
   end
-
-
 
   private
 
@@ -41,5 +36,4 @@ class Hello::ApplicationController < ApplicationController
       }
     }
   end
-
 end

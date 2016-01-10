@@ -1,18 +1,18 @@
-require_relative "manager"
+require_relative 'manager'
 
 module Hello
   class Engine < Rails::Engine
     isolate_namespace Hello
 
-    initializer "hello.filter" do |app|
+    initializer 'hello.filter' do |app|
       app.config.filter_parameters += [:password, :token]
     end
 
-    initializer "hello.add_middleware" do |app|
+    initializer 'hello.add_middleware' do |app|
       app.config.app_middleware.use Hello::Manager::Middleware
     end
 
-    initializer "hello.load_config" do |app|
+    initializer 'hello.load_config' do |app|
       app.config.autoload_paths += %W(#{Engine.root}/lib)
       app.config.watchable_dirs["#{Engine.root}/lib"] = [:rb]
     end
@@ -27,6 +27,5 @@ module Hello
       g.assets false
       g.helper false
     end
-
   end
 end

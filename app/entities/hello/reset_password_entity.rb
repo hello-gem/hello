@@ -1,6 +1,5 @@
 module Hello
   class ResetPasswordEntity < AbstractEntity
-
     attr_reader :password_credential
 
     def initialize(password_credential)
@@ -25,8 +24,7 @@ module Hello
 
     def merge_errors_to_self
       hash = @password_credential.errors.to_hash
-      hash.each { |k,v| v.each { |v1| errors.add(k, v1) } }
+      hash.each { |k, v| v.each { |v1| errors.add(k, v1) } }
     end
-
   end
 end

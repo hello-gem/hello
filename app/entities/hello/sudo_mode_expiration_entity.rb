@@ -1,6 +1,5 @@
 module Hello
   class SudoModeExpirationEntity < AbstractEntity
-
     attr_reader :access
 
     def initialize(access)

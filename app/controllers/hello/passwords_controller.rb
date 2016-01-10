@@ -1,12 +1,10 @@
 module Hello
   class PasswordsController < ApplicationController
-
-
     kick :guest, :onboarding
     sudo_mode
 
     before_action do
-      @password_credential = current_user.password_credential || raise(ActiveRecord::NotFound)
+      @password_credential = current_user.password_credential || fail(ActiveRecord::NotFound)
       @entity = UpdateMyUserEntity.new(@password_credential)
     end
 
@@ -18,12 +16,10 @@ module Hello
       end
     end
 
-
-
     # GET /hello/passwords/1
     def show
       respond_to do |format|
-        format.html {  }
+        format.html {}
         format.json { head :no_content }
       end
     end
@@ -47,13 +43,10 @@ module Hello
       end
     end
 
-
-
     private
 
     def password_credential_params
       params.require(:password_credential)
     end
-
   end
 end

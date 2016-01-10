@@ -3,7 +3,6 @@
 module Hello
   module Extensions
     module UpdateProfile
-
       def success
         respond_to do |format|
           format.html { redirect_to hello.current_user_path }
@@ -17,7 +16,6 @@ module Hello
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
-
     end
   end
 end

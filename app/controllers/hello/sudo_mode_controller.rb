@@ -1,4 +1,4 @@
-require_dependency "hello/application_controller"
+require_dependency 'hello/application_controller'
 
 #
 # IT IS RECOMMENDED THAT YOU DO NOT OVERRIDE THIS FILE IN YOUR APP
@@ -6,9 +6,8 @@ require_dependency "hello/application_controller"
 
 module Hello
   class SudoModeController < ApplicationController
-
     kick :guest, :onboarding
-    
+
     # GET /hello/sudo_mode
     def form
     end
@@ -40,6 +39,5 @@ module Hello
     def password_param
       params.require(:user)[:password]
     end
-
   end
 end

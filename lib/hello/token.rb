@@ -1,7 +1,7 @@
 module Hello
   module Token
     # probability = 1 / ((8*2) ** (8*2))
-    def self.single(complexity=8)
+    def self.single(complexity = 8)
       SecureRandom.hex(complexity)
     end
 

@@ -5,8 +5,8 @@ class CreateAccesses < ActiveRecord::Migration
       t.string :user_agent_string
       t.string :token
       t.string :ip
-      t.datetime :expires_at,      default:  DateTime.new(2000, 1,1)
-      t.datetime :sudo_expires_at, default:  DateTime.new(2000, 1,1)
+      t.datetime :expires_at,      default:  DateTime.new(2000, 1, 1)
+      t.datetime :sudo_expires_at, default:  DateTime.new(2000, 1, 1)
 
       t.timestamps
       t.index :token

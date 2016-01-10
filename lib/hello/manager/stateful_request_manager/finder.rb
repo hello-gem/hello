@@ -2,7 +2,6 @@ module Hello
   module Manager
     class StatefulRequestManager < RequestManager
       class Finder
-
         def initialize(manager)
           @manager = manager
         end
@@ -18,7 +17,7 @@ module Hello
           gather_valid_strings
           ensure_consistency_accross_models_and_session
 
-          return @models
+          @models
         end
 
         private
@@ -53,7 +52,6 @@ module Hello
             @models = @models.select { |a| @valid_strings.include?(a.token) }
           end
         end
-
       end
     end
   end

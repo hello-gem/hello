@@ -1,4 +1,4 @@
-require_relative "credential/core"
+require_relative 'credential/core'
 
 module Hello
   module Credential
@@ -6,13 +6,12 @@ module Hello
 
     included do
       unless self < ActiveRecord::Base
-        msg = "Temporarily only supporting Rails and ActiveRecord, come make us a Pull Request"
+        msg = 'Temporarily only supporting Rails and ActiveRecord, come make us a Pull Request'
         puts msg.yellow
-        raise NotImplementedError.new(msg)
+        fail NotImplementedError.new(msg)
       end
 
       include Core
     end
-
   end
 end

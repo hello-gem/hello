@@ -1,7 +1,7 @@
-require_relative "manager/middleware"
-require_relative "manager/request_manager"
-require_relative "manager/request_manager_factory"
-require_relative "manager/stateless_request_manager"
-require_relative "manager/stateful_request_manager"
-require_relative "manager/stateful_request_manager/finder"
-require_relative "manager/stateful_request_manager/session_wrapper"
+require_relative 'manager/middleware'
+require_relative 'manager/request_manager'
+require_relative 'manager/request_manager_factory'
+require_relative 'manager/stateless_request_manager'
+require_relative 'manager/stateful_request_manager'
+require_relative 'manager/stateful_request_manager/finder'
+require_relative 'manager/stateful_request_manager/session_wrapper'

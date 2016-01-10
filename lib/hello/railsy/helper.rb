@@ -1,15 +1,13 @@
 module Hello
   module Railsy
     module Helper
-
       def human_current_locale
-        t("hello.others.locale")
+        t('hello.others.locale')
       end
 
       def current_locale
-        session["locale"]
+        session['locale']
       end
-
     end
   end
 end

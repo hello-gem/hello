@@ -1,18 +1,17 @@
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "sprockets/railtie"
+require 'active_record/railtie'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'sprockets/railtie'
 # require "rails/test_unit/railtie"
-
 
 require 'rspec/core'
 Bundler.require(*Rails.groups)
-require "hello"
+require 'hello'
 
-Dir[File.join(File.expand_path('../../', __FILE__), "app/models/**/*.rb")].each { |f| require f }
+Dir[File.join(File.expand_path('../../', __FILE__), 'app/models/**/*.rb')].each { |f| require f }
 
 module Dummy
   class Application < Rails::Application
@@ -37,4 +36,3 @@ module Dummy
     end
   end
 end
-

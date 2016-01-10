@@ -1,6 +1,5 @@
 module Hello
   class ResetPasswordController < ApplicationController
-
     sign_out!
 
     before_action do
@@ -9,8 +8,8 @@ module Hello
       # find
       @user = ::User.find(params[:user_id])
       @password_credential = @user.password_credentials.find(params[:id])
-      if not @password_credential.verifying_token_is?(params[:token])
-        raise ActiveRecord::RecordNotFound
+      unless @password_credential.verifying_token_is?(params[:token])
+        fail ActiveRecord::RecordNotFound
       end
       # entity
       @reset_password = ResetPasswordEntity.new(@password_credential)
@@ -35,6 +34,5 @@ module Hello
       flash[:alert] = ResetPasswordEntity.new(nil).alert_message
       redirect_to forgot_passwords_path
     end
-
   end
 end

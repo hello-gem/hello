@@ -3,13 +3,12 @@
 module Hello
   module Extensions
     module ForgotPassword
-
       def success
         reset_token_and_deliver_email! if should_reset_verifying_token?
 
         respond_to do |format|
           format.html { render_success }
-          format.json { render json: {sent: true}, status: :created }
+          format.json { render json: { sent: true }, status: :created }
         end
       end
 
@@ -25,8 +24,6 @@ module Hello
         end
       end
 
-
-
       private
 
       def render_success
@@ -36,8 +33,6 @@ module Hello
       def render_form
         render 'index'
       end
-
-
 
       def reset_token_and_deliver_email!
         p      = @user.main_password_credential
@@ -54,10 +49,9 @@ module Hello
         # past_or_never?(@credential.password_token_digested_at, 7.days.ago)
       end
 
-          # def past_or_never?(time1, time2)
-          #   time1.blank? || (time1 < time2)
-          # end
-
+      # def past_or_never?(time1, time2)
+      #   time1.blank? || (time1 < time2)
+      # end
     end
   end
 end

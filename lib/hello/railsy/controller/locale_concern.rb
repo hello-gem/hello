@@ -2,7 +2,6 @@ module Hello
   module Railsy
     module Controller
       module LocaleConcern
-
         extend ActiveSupport::Concern
 
         module ClassMethods
@@ -13,12 +12,12 @@ module Hello
         end
 
         def available_locales_with_names
-          Hello.all_locale_names.select { |k,v| available_locales.include? k }
+          Hello.all_locale_names.select { |k, _v| available_locales.include? k }
         end
 
         def hello_locale_select_options
           # [['English', 'en']]
-          available_locales_with_names.map { |k,v| [v, k] }
+          available_locales_with_names.map { |k, v| [v, k] }
         end
 
         def set_locale(locale)
@@ -38,14 +37,13 @@ module Hello
 
         private
 
-        def use_locale(locale=nil)
+        def use_locale(locale = nil)
           locale ||= current_user && current_user.locale
           locale ||= session['locale']
           locale ||= recommended_locale.to_s
 
           I18n.locale = session['locale'] = locale
         end
-
       end
     end
   end

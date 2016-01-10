@@ -35,13 +35,11 @@ class User < ActiveRecord::Base
         raise ActiveRecord::Rollback
       end
     end
-    return result
+    result
   end
 
   # dummy custom
 
   validates_presence_of :city
   has_many :addresses, dependent: :restrict_with_error
-
-
 end

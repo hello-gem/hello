@@ -1,7 +1,6 @@
 module Hello
   module Manager
     class RequestManager
-
       class << self
         def create(request)
           RequestManagerFactory.new(request).create
@@ -16,8 +15,6 @@ module Hello
         @current_access = @current_accesses = nil
       end
 
-
-
       def signed_in?
         !!current_user
       end
@@ -31,20 +28,18 @@ module Hello
       end
 
       def current_user
-        current_access and current_access.user
+        current_access && current_access.user
       end
 
       def current_accesses
-        raise NotImplementedError
+        fail NotImplementedError
       end
 
       def current_access
-        raise NotImplementedError
+        fail NotImplementedError
       end
 
-
-
-      def sign_in!(user, expires_at=nil, sudo_expires_at=nil)
+      def sign_in!(user, expires_at = nil, sudo_expires_at = nil)
         expires_at ||= 30.minutes.from_now
 
         attrs = {
@@ -58,30 +53,27 @@ module Hello
       end
 
       def sign_out!(access = current_access)
-        access and access.destroy!
+        access && access.destroy!
         clear_cache
       end
 
-
-
       # protected
 
-          def user_agent
-            request.user_agent || "blank_user_agent"
-          end
+      def user_agent
+        request.user_agent || 'blank_user_agent'
+      end
 
-          def remote_ip
-            request.remote_ip
-          end
+      def remote_ip
+        request.remote_ip
+      end
 
-          def request
-            @request
-          end
+      def request
+        @request
+      end
 
-          def env
-            request.env
-          end
-
+      def env
+        request.env
+      end
     end
   end
 end

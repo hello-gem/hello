@@ -1,4 +1,4 @@
-require_dependency "hello/application_controller"
+require_dependency 'hello/application_controller'
 
 #
 # IT IS RECOMMENDED THAT YOU DO NOT OVERRIDE THIS FILE IN YOUR APP
@@ -6,7 +6,6 @@ require_dependency "hello/application_controller"
 
 module Hello
   class EmailsController < ApplicationController
-
     kick :guest, :onboarding
     sudo_mode
 
@@ -15,7 +14,7 @@ module Hello
     before_actions do
       only(:index)  { @credential = ::EmailCredential.new }
       only(:create) { @credential = current_user.email_credentials.build(email_credential_params) }
-      only(:destroy, :deliver)  { @credential = current_user.email_credentials.find(params[:id]) }
+      only(:destroy, :deliver) { @credential = current_user.email_credentials.find(params[:id]) }
     end
 
     # GET /hello/emails
@@ -25,7 +24,7 @@ module Hello
     # POST /hello/emails
     def create
       if @credential.save
-        redirect_to hello.emails_path, notice: "Your email was successfully added."
+        redirect_to hello.emails_path, notice: 'Your email was successfully added.'
       else
         flash.now[:alert] = @credential.errors.full_messages.first
         render action: :index
@@ -35,7 +34,7 @@ module Hello
     # DELETE /hello/emails/1
     def destroy
       if @credential.destroy
-        redirect_to hello.emails_path, notice: "Your email was successfully removed."
+        redirect_to hello.emails_path, notice: 'Your email was successfully removed.'
       else
         flash.now[:alert] = @credential.errors.full_messages.first
         render action: :index
@@ -50,21 +49,16 @@ module Hello
       redirect_to hello.emails_path
     end
 
-
-
-
     private
 
-      # Only allow a trusted parameter "white list" through.
-      def email_credential_params
-        params.require(:email_credential).permit(:email)
-      end
+    # Only allow a trusted parameter "white list" through.
+    def email_credential_params
+      params.require(:email_credential).permit(:email)
+    end
 
-      def credentials
-        # TODO: this is necessary to hide a temporary bug, must solve this later
-        current_user.credentials.where(type: "EmailCredential")
-      end
-
+    def credentials
+      # TODO: this is necessary to hide a temporary bug, must solve this later
+      current_user.credentials.where(type: 'EmailCredential')
+    end
   end
-
 end

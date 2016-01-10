@@ -1,6 +1,5 @@
 module Hello
   class UpdateLocaleEntity < AbstractEntity
-
     def initialize(locale)
       @locale = locale
     end
@@ -9,7 +8,7 @@ module Hello
       locale_if_available || Hello.default_locale
     end
 
-    def success_message(extra={})
+    def success_message(_extra = {})
       super(locale_name: I18n.t('hello.others.locale'))
     end
 
@@ -18,6 +17,5 @@ module Hello
     def locale_if_available
       ([@locale] & Hello.available_locales).first
     end
-
   end
 end

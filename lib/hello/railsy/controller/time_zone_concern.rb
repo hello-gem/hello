@@ -2,7 +2,6 @@ module Hello
   module Railsy
     module Controller
       module TimeZoneConcern
-
         extend ActiveSupport::Concern
 
         # module ClassMethods
@@ -14,12 +13,11 @@ module Hello
 
         private
 
-          def user_time_zone(&block)
-            Thread.current["Hello.destroying_user"] = nil
-            Time.use_zone(current_user.time_zone, &block)
-            Thread.current["Hello.destroying_user"] = nil
-          end
-
+        def user_time_zone(&block)
+          Thread.current['Hello.destroying_user'] = nil
+          Time.use_zone(current_user.time_zone, &block)
+          Thread.current['Hello.destroying_user'] = nil
+        end
       end
     end
   end

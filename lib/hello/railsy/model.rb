@@ -1,8 +1,8 @@
-require_relative "model/user"
-require_relative "model/access"
-require_relative "model/credential"
-require_relative "model/email_credential"
-require_relative "model/password_credential"
+require_relative 'model/user'
+require_relative 'model/access'
+require_relative 'model/credential'
+require_relative 'model/email_credential'
+require_relative 'model/password_credential'
 
 # class User must be declared in the app so as to avoid auto load intermittent issues
 

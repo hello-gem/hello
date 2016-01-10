@@ -2,16 +2,13 @@ module Hello
   module Railsy
     module Controller
       module SudoModeConcern
-
         extend ActiveSupport::Concern
 
         module ClassMethods
-          def sudo_mode(options={})
+          def sudo_mode(options = {})
             before_action(options) { sudo_mode }
           end
         end
-
-
 
         included do
           helper_method :sudo_mode?
@@ -29,11 +26,10 @@ module Hello
           render_sudo_mode unless sudo_mode?
         end
 
-            def render_sudo_mode
-              hello_keep_current_url_on_session!
-              render '/hello/sudo_mode/form'
-            end
-
+        def render_sudo_mode
+          hello_keep_current_url_on_session!
+          render '/hello/sudo_mode/form'
+        end
       end
     end
   end
