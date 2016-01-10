@@ -1,8 +1,7 @@
-require_dependency "hello/application_controller"
+require_dependency 'hello/application_controller'
 
 module Hello
   class SessionsController < ApplicationController
-
     dont_kick_people
 
     before_actions do
@@ -58,8 +57,7 @@ module Hello
     private
 
     def find_access
-      current_accesses.select { |at| at.id.to_s == params[:id] }.first
+      current_accesses.find { |at| at.id.to_s == params[:id] }
     end
-
   end
 end

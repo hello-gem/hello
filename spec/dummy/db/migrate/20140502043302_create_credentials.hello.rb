@@ -9,7 +9,7 @@ class CreateCredentials < ActiveRecord::Migration
       t.string :digest
 
       t.datetime :confirmed_at
-      t.string   :verifying_token_digest
+      t.string :verifying_token_digest
       t.datetime :verifying_token_digested_at
 
       t.timestamps

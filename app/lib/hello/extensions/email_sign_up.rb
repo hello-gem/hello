@@ -3,7 +3,6 @@
 module Hello
   module Extensions
     module EmailSignUp
-
       def success
         deliver_welcome_email
 
@@ -39,7 +38,6 @@ module Hello
         url   = hello.confirm_email_url(@sign_up.email_credential, token)
         Hello::Mailer.confirm_email(@sign_up.email_credential, url).deliver
       end
-
     end
   end
 end

@@ -1,6 +1,5 @@
 module Hello
   class ConfirmEmailEntity < AbstractEntity
-
     include ActionView::Helpers::DateHelper
 
     attr_reader :credential
@@ -11,15 +10,13 @@ module Hello
 
     def validate_token(unencrypted_token)
       # puts "validate_token('#{unencrypted_token}')".blue
-      return false if not found_credential?
+      return false unless found_credential?
       return true  if credential.verifying_token_is?(unencrypted_token)
       @credential = nil
     end
 
     def confirm_with_token(token)
-      if validate_token(token)
-        confirm_email! and return true
-      end
+      confirm_email! and return true if validate_token(token)
     end
 
     def confirm_email!
@@ -33,6 +30,5 @@ module Hello
     def success_message
       super(email: credential.email)
     end
-
   end
 end

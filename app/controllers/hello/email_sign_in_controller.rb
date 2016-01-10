@@ -1,6 +1,5 @@
 module Hello
   class EmailSignInController < ApplicationController
-
     kick :guest, only: [:authenticated]
 
     before_actions do
@@ -26,6 +25,5 @@ module Hello
     def sign_in_params
       params.require(:sign_in)
     end
-
   end
 end

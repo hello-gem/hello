@@ -22,6 +22,5 @@ module Hello
 
       mail to: email_credential.email
     end
-
   end
 end

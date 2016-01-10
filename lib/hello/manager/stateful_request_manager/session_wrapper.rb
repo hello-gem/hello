@@ -2,7 +2,6 @@ module Hello
   module Manager
     class StatefulRequestManager < RequestManager
       class SessionWrapper
-
         def initialize(manager)
           @manager = manager
         end
@@ -12,7 +11,7 @@ module Hello
         end
 
         def session_tokens=(v)
-          session['tokens']=v
+          session['tokens'] = v
           @manager.clear_cache
         end
 
@@ -21,7 +20,7 @@ module Hello
         end
 
         def session_token=(v)
-          session['token']=v
+          session['token'] = v
           @manager.clear_cache
         end
 
@@ -32,7 +31,6 @@ module Hello
         def session
           @manager.request.session
         end
-
       end
     end
   end

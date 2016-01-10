@@ -1,8 +1,7 @@
-require_dependency "hello/application_controller"
+require_dependency 'hello/application_controller'
 
 module Hello
   class ConfirmEmailsController < ApplicationController
-
     dont_kick_people
 
     before_actions do
@@ -37,6 +36,5 @@ module Hello
       # if before you were a user1, you will be redirected as a user2, but the following request will be as a user1 again
       access_token = sign_in!(@credential.user, 1.hour.from_now)
     end
-
   end
 end

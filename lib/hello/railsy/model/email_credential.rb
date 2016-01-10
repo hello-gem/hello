@@ -2,11 +2,10 @@ module Hello
   module EmailCredential
     extend ActiveSupport::Concern
 
-
     included do
-      validates_presence_of     :email
+      validates_presence_of :email
       validates_email_format_of :email
-      validates_uniqueness_of   :email
+      validates_uniqueness_of :email
 
       before_destroy :cannot_destroy_last_email_credential
     end
@@ -19,7 +18,7 @@ module Hello
     #
 
     def email=(v)
-      super(v.to_s.downcase.gsub(' ', ''))
+      super(v.to_s.downcase.delete(' '))
     end
 
     #
@@ -46,14 +45,13 @@ module Hello
 
     def cannot_destroy_last_email_credential
       return if hello_is_user_being_destroyed?
-      return if not is_last_email_credential?
-      errors[:base] << "must have at least one credential"
+      return unless is_last_email_credential?
+      errors[:base] << 'must have at least one credential'
       false
     end
 
     def is_last_email_credential?
       user.email_credentials.count == 1
     end
-
   end
 end

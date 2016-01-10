@@ -1,5 +1,4 @@
 Hello.configure do |config|
-
   config.mailer_sender = 'hello@example.com'
 
   config.username_regex  = /\A[a-z0-9_-]+\z/i
@@ -20,5 +19,4 @@ Hello.configure do |config|
   # Account Management
   config.extensions.update_profile   = Hello::Extensions::UpdateProfile
   config.extensions.cancel_account   = Hello::Extensions::CancelAccount
-
 end

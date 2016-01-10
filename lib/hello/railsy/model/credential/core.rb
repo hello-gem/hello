@@ -11,7 +11,6 @@ module Hello
         validates_inclusion_of :type, in: %w(EmailCredential PasswordCredential)
       end
 
-
       module ClassMethods
       end
 
@@ -23,9 +22,6 @@ module Hello
         errors.messages.values.flatten.first if errors.any?
       end
 
-
-
-
       # verifying token
 
       def verifying_token_is?(unencrypted_token)
@@ -36,21 +32,18 @@ module Hello
       def reset_verifying_token!
         uuid, digest = Token.pair
         update!(verifying_token_digest: digest, verifying_token_digested_at: 1.second.ago)
-        return uuid
+        uuid
       end
 
       def invalidate_verifying_token!
         update(verifying_token_digest: nil, verifying_token_digested_at: nil)
       end
 
-
-
       private
 
       def hello_is_user_being_destroyed?
-        !!Thread.current["Hello.destroying_user"]
+        !!Thread.current['Hello.destroying_user']
       end
-
     end
   end
 end

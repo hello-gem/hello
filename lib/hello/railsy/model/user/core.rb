@@ -6,7 +6,7 @@ module Hello
       included do
         has_many :credentials,       dependent: :destroy
         has_many :email_credentials, dependent: :destroy
-        has_one  :password_credential, dependent: :destroy
+        has_one :password_credential, dependent: :destroy
         has_many :password_credentials, dependent: :destroy
         has_many :accesses, dependent: :destroy
 
@@ -32,7 +32,7 @@ module Hello
         # therefore, an instance variable used as a flag will not work for Rails 4.0
         # It will however, work for Rails 4.1 and 4.2
         # @hello_is_this_being_destroyed = true
-        Thread.current["Hello.destroying_user"] = true
+        Thread.current['Hello.destroying_user'] = true
         super
       end
 
@@ -40,15 +40,13 @@ module Hello
       #   !!@hello_is_this_being_destroyed
       # end
 
-
       def password_is?(plain_text_password)
         password_credential.password_is?(plain_text_password)
       end
 
       def role_is?(role)
-        self.send("#{role}?")
+        send("#{role}?")
       end
-
     end
   end
 end

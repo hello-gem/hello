@@ -1,9 +1,7 @@
 module Hello
   class CancelAccountEntity < AbstractEntity
-
     def info_message
-      t("info")
+      t('info')
     end
-
   end
 end

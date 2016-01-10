@@ -1,6 +1,6 @@
 
-I18n.exception_handler = lambda do |exception, locale, key, options|
+I18n.exception_handler = lambda do |_exception, locale, key, _options|
   if key.to_s != 'i18n.plural.rule'
-    raise "missing translation: #{locale} - #{key}"
+    fail "missing translation: #{locale} - #{key}"
   end
 end

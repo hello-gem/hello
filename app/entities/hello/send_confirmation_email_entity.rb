@@ -1,6 +1,5 @@
 module Hello
   class SendConfirmationEmailEntity < AbstractEntity
-
     attr_reader :controller, :email_credential
 
     def initialize(controller, email_credential)
@@ -16,15 +15,14 @@ module Hello
       mail.deliver
     end
 
-    def success_message(extra={})
+    def success_message(_extra = {})
       super(email: email_credential.email)
     end
 
     private
 
     def check_token!(unencrypted_token)
-      raise "no match" unless email_credential.verifying_token_is?(unencrypted_token)
+      fail 'no match' unless email_credential.verifying_token_is?(unencrypted_token)
     end
-
   end
 end

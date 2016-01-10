@@ -3,7 +3,6 @@
 module Hello
   module Extensions
     module EmailSignIn
-
       def success
         access_token = sign_in!(@sign_in.user, expires_at)
 
@@ -20,8 +19,6 @@ module Hello
         end
       end
 
-
-
       def expires_at
         if params[:keep_me]
           30.days.from_now
@@ -29,8 +26,6 @@ module Hello
           30.minutes.from_now
         end
       end
-
-
     end
   end
 end

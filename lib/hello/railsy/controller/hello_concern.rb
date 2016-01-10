@@ -5,7 +5,7 @@ module Hello
         extend ActiveSupport::Concern
 
         module ClassMethods
-          def sign_out!(options={})
+          def sign_out!(options = {})
             before_action(options) { sign_out! }
           end
         end
@@ -17,28 +17,26 @@ module Hello
                         :signed_in?,
                         :is_current_access?
 
-          delegate  :sign_in!,
-                    :sign_out!,
-                    :signed_in?,
+          delegate :sign_in!,
+                   :sign_out!,
+                   :signed_in?,
 
-                    :current_user,
-                    :is_current_user?,
+                   :current_user,
+                   :is_current_user?,
 
-                    :current_access,
-                    :current_accesses,
-                    :is_current_access?,
+                   :current_access,
+                   :current_accesses,
+                   :is_current_access?,
 
-                    :session_token=,
-                    :session_tokens,
+                   :session_token=,
+                   :session_tokens,
 
-                    to: :hello_manager
-
+                   to: :hello_manager
         end
 
         def hello_manager
           env['hello'] ||= Hello::Manager::RequestManager.create(request)
         end
-
       end
     end
   end

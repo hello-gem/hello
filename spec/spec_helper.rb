@@ -1,14 +1,11 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-require "codeclimate-test-reporter"
+require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
+SPEC_ROOT = File.dirname(__FILE__)
 
-
-SPEC_ROOT=File.dirname(__FILE__)
-
-require File.expand_path("../dummy/config/environment.rb",  __FILE__)
-
+require File.expand_path('../dummy/config/environment.rb', __FILE__)
 
 ActiveSupport::Deprecation.silenced = true
 
@@ -20,36 +17,27 @@ require 'faker'
 
 require 'rspec/rails'
 require 'capybara/rails'
-require "email_spec"
+require 'email_spec'
 require 'bdd'
-
 
 # https://github.com/bmabey/email-spec#rspec
 # https://github.com/bmabey/email-spec#rspec-1
 
 BCrypt::Engine.cost = 1
 
-
 Rails.backtrace_cleaner.remove_silencers!
 
 # Load support files
-Dir[File.join(SPEC_ROOT, "support/**/*.rb")].each { |f| require f }
-
-
-
+Dir[File.join(SPEC_ROOT, 'support/**/*.rb')].each { |f| require f }
 
 #
 # Multiple Gemfiles
 #
 puts "Testing against version #{Rails::VERSION::STRING}".magenta
 # database: ":memory:"
-puts "creating sqlite in memory database"
+puts 'creating sqlite in memory database'
 ActiveRecord::Schema.verbose = false
 load "#{Rails.root}/db/schema.rb"
-
-
-
-
 
 RSpec.configure do |config|
   config.mock_with :rspec
@@ -69,6 +57,5 @@ RSpec.configure do |config|
 
   config.before(:each) { I18n.locale = :en }
 
-  config.before(:each, type: :request) { host! "api.example.com" }
+  config.before(:each, type: :request) { host! 'api.example.com' }
 end
-

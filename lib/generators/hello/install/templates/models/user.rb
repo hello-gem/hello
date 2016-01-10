@@ -11,10 +11,6 @@ class User < ActiveRecord::Base
   # has_many :things_to_nulify,   dependent: :nullify
   # has_many :things_to_restrict, dependent: :restrict_with_error
 
-
-
-
-
   def to_param
     username
   end
@@ -22,8 +18,6 @@ class User < ActiveRecord::Base
   def as_json_web_api
     attributes
   end
-
-
 
   # hello authorization
 
@@ -55,7 +49,6 @@ class User < ActiveRecord::Base
         raise ActiveRecord::Rollback
       end
     end
-    return result
+    result
   end
-
 end

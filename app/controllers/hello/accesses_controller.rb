@@ -1,4 +1,4 @@
-require_dependency "hello/application_controller"
+require_dependency 'hello/application_controller'
 
 #
 # IT IS RECOMMENDED THAT YOU DO NOT OVERRIDE THIS FILE IN YOUR APP
@@ -6,13 +6,12 @@ require_dependency "hello/application_controller"
 
 module Hello
   class AccessesController < ApplicationController
-    
     kick :guest, :onboarding
-    
+
     before_actions do
       all            { sudo_mode }
       only(:index)   { @accesses = current_user.accesses }
-      only(:destroy) { @access  = current_user.accesses.find(params[:id]) }
+      only(:destroy) { @access = current_user.accesses.find(params[:id]) }
     end
 
     # GET /hello/accesses
@@ -29,6 +28,5 @@ module Hello
       end
       redirect_to hello.accesses_url
     end
-
   end
 end

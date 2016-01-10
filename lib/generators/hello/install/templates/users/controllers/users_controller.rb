@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   sudo_mode only: [:list, :impersonate]
   dont_kick :webmaster, only: [:list, :impersonate]
   before_action :find_user, only: [:show, :impersonate]
@@ -34,5 +33,4 @@ class UsersController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     redirect_to User.find_by_id!(params[:id]) # forces redirect to path with username if used id on URL
   end
-
 end

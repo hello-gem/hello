@@ -2,7 +2,6 @@ module Hello
   module Railsy
     module Controller
       module AliveConcern
-
         extend ActiveSupport::Concern
 
         module ClassMethods
@@ -23,11 +22,10 @@ module Hello
           logger.info "  #{'Hello Session'.bold.light_blue} expires in #{expires_in}"
         end
 
-            # TODO: find a better way
-            def periodically_destroy_expired_accesses_from_database
-              ::Access.cached_destroy_all_expired
-            end
-
+        # TODO: find a better way
+        def periodically_destroy_expired_accesses_from_database
+          ::Access.cached_destroy_all_expired
+        end
       end
     end
   end

@@ -14,4 +14,3 @@ end
 def current_user
   current_access.user
 end
-

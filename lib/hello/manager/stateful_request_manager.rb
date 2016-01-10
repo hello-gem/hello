@@ -1,17 +1,16 @@
 module Hello
   module Manager
     class StatefulRequestManager < RequestManager
-
       def initialize(*args)
         super(*args)
         @finder          = Finder.new(self)
         @session_wrapper = SessionWrapper.new(self)
       end
 
-      delegate  :session_token,  :session_token=,
-                :session_tokens, :session_tokens=,
-                :refresh_session_tokens,
-                to: :@session_wrapper
+      delegate :session_token,  :session_token=,
+               :session_tokens, :session_tokens=,
+               :refresh_session_tokens,
+               to: :@session_wrapper
 
       # read
 
@@ -19,9 +18,7 @@ module Hello
 
       def current_access
         if session_token.presence
-          @current_access ||= current_accesses.select { |a| a.token == session_token }.first
-        else
-          nil
+          @current_access ||= current_accesses.find { |a| a.token == session_token }
         end
       end
 
@@ -30,22 +27,19 @@ module Hello
       def sign_in!(*args)
         super(*args).tap do |access|
           self.session_token = access.token
-          self.session_tokens << access.token
+          session_tokens << access.token
         end
       end
 
       # delete
 
       def sign_out!(access = current_access)
-        if is_current_access?(access)
-          self.session_token = session_tokens.first
-        end
+        self.session_token = session_tokens.first if is_current_access?(access)
 
         super(access)
 
         refresh_session_tokens
       end
-
     end
   end
 end

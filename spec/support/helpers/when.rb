@@ -1,23 +1,22 @@
 
-def when_I_ask_to_reset_my_password(custom_login=nil)
+def when_I_ask_to_reset_my_password(custom_login = nil)
   visit hello.root_path
-  click_link "Forgot"
-  within("form") do
+  click_link 'Forgot'
+  within('form') do
     fill_in 'forgot_password_login', with: (custom_login || 'foobar')
     click_button 'Continue'
   end
 end
 
-def when_sign_up_with_standard_data(options={})
+def when_sign_up_with_standard_data(_options = {})
   when_sign_up_as_an_onboarding(expect_success: true)
 
-  click_button "Continue"
+  click_button 'Continue'
   # expect(current_path).to eq root_path
   expect(current_path).to eq '/hello/user' # because there is no root path in this app
 end
 
-
-def when_sign_up_as_an_onboarding(options={})
+def when_sign_up_as_an_onboarding(options = {})
   # if options[:expect_welcome_mailer] === true
   #   Hello::Mailer.should_receive(:welcome).and_return(double("mailer", deliver: true))
   # elsif options[:expect_welcome_mailer] === false
@@ -26,7 +25,7 @@ def when_sign_up_as_an_onboarding(options={})
 
   # visit hello.root_path
   visit hello.sign_up_path
-  within("form#new_sign_up") do
+  within('form#new_sign_up') do
     fill_in 'sign_up_name',     with: 'James Pinto'
     fill_in 'sign_up_email',    with: 'foo@bar.com'
     fill_in 'sign_up_username', with: 'foobar'
@@ -35,13 +34,10 @@ def when_sign_up_as_an_onboarding(options={})
     click_button 'Sign Up'
   end
 
-  if options[:expect_success] === true
-    expect(current_path).to eq('/onboarding')
-  end
-
+  expect(current_path).to eq('/onboarding') if options[:expect_success] === true
 end
 
-def when_sign_in_with_standard_data(options={})
+def when_sign_in_with_standard_data(options = {})
   when_sign_in('foobar', (options[:password] || '1234'), options)
 end
 
@@ -49,10 +45,10 @@ def when_sign_in_with_webmaster_data
   when_sign_in('webmaster', '1234')
 end
 
-def when_sign_in(login, password, options={})
+def when_sign_in(login, password, options = {})
   # visit hello.root_path
   visit hello.sign_in_path
-  within("form#new_sign_in") do
+  within('form#new_sign_in') do
     fill_in 'sign_in_login',    with: login
     fill_in 'sign_in_password', with: password
     check 'keep_me' if options[:keep_me]
@@ -61,16 +57,15 @@ def when_sign_in(login, password, options={})
   __fetch_current_access
 end
 
-
 def when_I_sign_out
   click_link 'Sign Out'
   __fetch_current_access
 end
 
-def when_I_confirm_my_user_password(custom_password=nil, expect_to_be_valid=true)
+def when_I_confirm_my_user_password(custom_password = nil, expect_to_be_valid = true)
   # expect(current_path).to eq '/hello/sudo'
-  expect_to_see "Confirm Password to Continue"
-  within("form") do
+  expect_to_see 'Confirm Password to Continue'
+  within('form') do
     fill_in 'user_password', with: (custom_password || '1234')
     click_button 'Confirm Password'
   end
@@ -79,7 +74,7 @@ def when_I_confirm_my_user_password(custom_password=nil, expect_to_be_valid=true
   end
 end
 
-def when_I_confirm_sudo_mode(custom_password=nil)
+def when_I_confirm_sudo_mode(custom_password = nil)
   when_I_confirm_my_user_password(custom_password)
 end
 
@@ -100,14 +95,12 @@ def sign_up_as_a_webmaster
   current_user.update! role: 'webmaster'
 end
 
-
 def sign_up_as_a(role)
   case role.to_sym
-  when :guest  # nothing to do
+  when :guest # nothing to do
   when :onboarding then sign_up_as_an_onboarding
-  when :user   then sign_up_as_a_user
-  when :webmaster  then sign_up_as_a_webmaster
-  else raise("Role #{role} is unknown")
+  when :user then sign_up_as_a_user
+  when :webmaster then sign_up_as_a_webmaster
+  else fail("Role #{role} is unknown")
   end
 end
-

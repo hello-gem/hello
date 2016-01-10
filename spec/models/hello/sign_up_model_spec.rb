@@ -32,7 +32,7 @@
 #     #   end
 
 #     #   describe "password" do
-        
+
 #     #     it "presence" do
 #     #       @sign_up.valid?
 #     #       @sign_up.errors[:password].should include "can't be blank"
@@ -51,13 +51,13 @@
 #     #       @sign_up.valid?
 #     #       @sign_up.errors[:password].should == ["pick a longer password"]
 #     #     end
-        
+
 #     #   end
 #     end
 
 #     it "saves" do
 #       pending "creates user"
-      
+
 #     end
 
 #   end

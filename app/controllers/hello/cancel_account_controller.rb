@@ -1,6 +1,5 @@
 module Hello
   class CancelAccountController < ApplicationController
-
     dont_kick :user
     sudo_mode
 
@@ -20,6 +19,5 @@ module Hello
         failure
       end
     end
-
   end
 end
