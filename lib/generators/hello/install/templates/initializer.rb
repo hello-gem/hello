@@ -4,6 +4,7 @@ Hello.configure do |config|
   config.username_regex  = /\A[a-z0-9_-]+\z/i
   config.username_length = 4..32
 
+  config.password_presence = true
   config.password_regex  = /\A[a-z0-9]+\z/i
   config.password_length = 4..200
 

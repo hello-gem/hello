@@ -17,7 +17,7 @@ module Hello
 
     # POST /hello/sign_up
     def create
-      if @sign_up.save(params.require(:sign_up))
+      if @sign_up.register(params.require(:sign_up))
         flash[:notice] = @sign_up.success_message
         success
       else

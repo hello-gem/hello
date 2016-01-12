@@ -93,7 +93,9 @@ They are simple to customize, just open them.
 
 ```ruby
 class User < ActiveRecord::Base
-  validates_presence_of :username
+  def user?
+    %w(user webmaster).include?(role)
+  end
 end
 
 module Hello

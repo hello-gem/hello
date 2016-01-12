@@ -7,8 +7,8 @@ module Hello
       write_defaults
     end
 
-    def save(attrs)
-      write_attrs(attrs)
+    def register(attrs)
+      write_attrs(attrs.with_indifferent_access)
       create_models
     end
 
@@ -24,59 +24,86 @@ module Hello
 
     private
 
-    # initialize helpers
+        # initialize helpers
 
-    def generate_accessors
-      self.class.send :attr_accessor, *all_fields
-    end
+        def generate_accessors
+          self.class.send :attr_accessor, *all_fields
+        end
 
-    def all_fields
-      user_fields + %w(email password)
-    end
+            def all_fields
+              user_fields + %w(email password)
+            end
 
-    def write_defaults
-      # defaults.each { |k, v| instance_variable_set(:"@#{k}", v) }
-      defaults.each { |k, v| send("#{k}=", v) }
-    end
+        def write_defaults
+          # defaults.each { |k, v| instance_variable_set(:"@#{k}", v) }
+          defaults.each { |k, v| send("#{k}=", v) }
+        end
 
-    # save helpers
+        # save helpers
 
-    def write_attrs(attrs)
-      # attrs.slice(*all_fields).each { |k, v| instance_variable_set(:"@#{k}", v) if v }
-      attrs.slice(*all_fields).each { |k, v| send("#{k}=", v) if v }
-    end
+        def write_attrs(attrs)
+          # attrs.slice(*all_fields).each { |k, v| instance_variable_set(:"@#{k}", v) if v }
+          attrs.slice(*all_fields).each { |k, v| send("#{k}=", v) if v }
+        end
 
-    # NOTE:
-    # All validations are delegated to the models
-    def create_models
-      build_models
-      if invalidate_models
-        merge_model_errors
-        return false
-      end
-      @user.save!
-      @email_credential.save!
-      @password_credential.save!
-    end
+        # NOTE:
+        # All validations are delegated to the models
+        def create_models
+          validate_presences
+          return false if errors.any?
 
-    def build_models
-      @user                = ::User.new(user_attributes)
-      @email_credential    = ::EmailCredential.new user: @user, email:    email
-      @password_credential = ::PasswordCredential.new user: @user, password: password
-    end
+          build_and_validate_models
+          return false if errors.any?
 
-    def invalidate_models
-      # run all model validations without skipping
-      a = email_credential.invalid?
-      b = password_credential.invalid?
-      c = user.invalid?
-      a || b || c
-    end
+          save_models!
+          true
+        end
 
-    def merge_model_errors
-      hash = email_credential.errors.to_hash.merge(user.errors).merge(password_credential.errors)
-      hash.each { |k, v| v.each { |v1| errors.add(k, v1) } }
-    end
+            def validate_presences
+              validates_presence_of :email
+              validates_presence_of :username
+
+              if validates_presence_of_password?
+                validates_presence_of :password
+              end
+
+              ::User.validators.each do |validator|
+                if validator.is_a?(ActiveRecord::Validations::PresenceValidator)
+                  options = validator.options.dup
+                  options[:attributes] = validator.attributes
+                  validates_with(validator.class, options)
+                end
+              end
+            end
+
+            def build_and_validate_models
+              @user = ::User.new(user_attributes)
+              @email_credential    = ::EmailCredential.new    user: @user, email:    email
+              @password_credential = ::PasswordCredential.new user: @user, password: password
+
+              if not validates_presence_of_password?
+                if password.blank?
+                  password_credential.set_generated_password
+                end
+              end
+
+              merge_errors_for(user)
+              merge_errors_for(email_credential)
+              merge_errors_for(password_credential)
+            end
+
+                def merge_errors_for(model)
+                  model.valid?
+                  model.errors.each do |k, v|
+                    errors.add(k, v)
+                  end
+                end
+
+            def save_models!
+              user.save!
+              email_credential.save!
+              password_credential.save!
+            end
 
     # returns {name: "...", city: "..."}
     def user_attributes
@@ -100,5 +127,17 @@ module Hello
         time_zone: Time.zone.name
       }
     end
+
+    # config helpers
+
+    def validates_presence_of_password?
+      Hello.configuration.password_presence
+    end
+
+    # just because!
+
+    def self._reflect_on_association(*args)
+    end
+
   end
 end
