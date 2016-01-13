@@ -4,46 +4,38 @@ module Hello
       extend ActiveSupport::Concern
 
       included do
-        before_validation :ensure_username_if_blank_allowed_on_create, on: :create
-
+        validates_presence_of   :username
         validates_uniqueness_of :username
 
-        validate :hello_validations
+        validate :hello_validations_username
       end
 
       def username=(v)
         super(v.to_s.downcase.remove(' '))
       end
 
+      def set_generated_username
+        loop do
+          self.username = _make_up_new_username
+          break if _username_unique?
+        end
+      end
+
       private
 
-      def hello_validations
+      def hello_validations_username
         c = Hello.configuration
         validates_format_of :username, with: c.username_regex
         validates_length_of :username, in:   c.username_length
       end
 
-      def ensure_username_if_blank_allowed_on_create
-        return true if username.present?              # skip if username has been set
-        return true if username_presence_is_required? # skip if username presence is required
-
-        loop do
-          self.username = make_up_new_username
-          break unless username_used_by_another?(username)
-        end
+      def _make_up_new_username
+        Token.single(16)
       end
 
-          def make_up_new_username
-            Token.single(16)
-          end
-
-          def username_used_by_another?(a_username)
-            self.class.where(username: a_username).where.not(id: id).exists?
-          end
-
-          def username_presence_is_required?
-            _validators[:username].map(&:class).include? ActiveRecord::Validations::PresenceValidator
-          end
+      def _username_unique?
+        not self.class.unscoped.where(username: username).where.not(id: id).exists?
+      end
 
 
 

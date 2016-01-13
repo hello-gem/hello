@@ -34,7 +34,21 @@ module Hello
           reload_initializer!
         end
 
+        # helpers
 
+        def self.it_registers
+          it("registers") { expect(::User.count).to eq(1) }
+        end
+
+        def self.it_does_not_register
+          it("does not register") { expect(::User.count).to eq(0) }
+        end
+
+        def self.it_does_not_have_errors
+          it("does not have errors") { expect(@errors).to eq([]) }
+        end
+
+        #
 
         describe "email" do
 
@@ -61,40 +75,82 @@ module Hello
 
           describe "valid" do
             let(:value) { "foo@bar.com" }
-            it("does not have errors") { expect(@errors).to eq([]) }
+            it_does_not_have_errors
           end # describe
 
-        end # describe
+        end # describe email
 
         describe "username" do
 
-          before do
-            perform
-          end
-
           let(:field) { :username }
 
-          describe "ignored" do
-            let(:value) { nil }
-            it("has errors") { expect(@errors).to eq(["can't be blank"]) }
-          end # describe
+          describe "config.username_presence = true" do
 
-          describe "blank" do
-            let(:value) { '' }
-            it("has errors") { expect(@errors).to eq(["can't be blank"]) }
-          end # describe
+            before do
+              Hello.configure { |config| config.username_presence = true }
+              perform
+            end
 
-          describe "invalid" do
-            let(:value) { "foobar!" }
-            it("has errors") { expect(@errors).to eq(["is invalid"]) }
-          end # describe
+            describe "ignored" do
+              let(:value) { nil }
+              it("has errors") { expect(@errors).to eq(["can't be blank"]) }
+              it_does_not_register
+            end # describe
 
-          describe "valid" do
-            let(:value) { "foobar" }
-            it("does not have errors") { expect(@errors).to eq([]) }
-          end # describe
+            describe "blank" do
+              let(:value) { '' }
+              it("has errors") { expect(@errors).to eq(["can't be blank"]) }
+              it_does_not_register
+            end # describe
 
-        end # describe
+            describe "invalid" do
+              let(:value) { "foobar!" }
+              it("has errors") { expect(@errors).to eq(["is invalid"]) }
+              it_does_not_register
+            end # describe
+
+            describe "valid" do
+              let(:value) { "foobar" }
+              it_does_not_have_errors
+              it_registers
+            end # describe
+
+          end # describe config
+
+          describe "config.username_presence = false" do
+
+            before do
+              Hello.configure { |config| config.username_presence = false }
+              perform
+            end
+
+            describe "ignored" do
+              let(:value) { nil }
+              it_does_not_have_errors
+              it_registers
+            end # describe
+
+            describe "blank" do
+              let(:value) { '' }
+              it_does_not_have_errors
+              it_registers
+            end # describe
+
+            describe "invalid" do
+              let(:value) { "foobar!" }
+              it("has errors") { expect(@errors).to eq(["is invalid"]) }
+              it_does_not_register
+            end # describe
+
+            describe "valid" do
+              let(:value) { "foobar" }
+              it_does_not_have_errors
+              it_registers
+            end # describe
+
+          end # describe config
+
+        end # describe username
 
         describe "password" do
 
@@ -110,28 +166,28 @@ module Hello
             describe "ignored" do
               let(:value) { nil }
               it("has errors") { expect(@errors).to eq(["can't be blank"]) }
-              it("does not register") { expect(::User.count).to eq(0) }
+              it_does_not_register
             end # describe
 
             describe "blank" do
               let(:value) { '' }
               it("has errors") { expect(@errors).to eq(["can't be blank"]) }
-              it("does not register") { expect(::User.count).to eq(0) }
+              it_does_not_register
             end # describe
 
             describe "invalid" do
               let(:value) { "foo bar" }
               it("has errors") { expect(@errors).to eq(["is invalid"]) }
-              it("does not register") { expect(::User.count).to eq(0) }
+              it_does_not_register
             end # describe
 
             describe "valid" do
               let(:value) { "foobar" }
-              it("does not have errors") { expect(@errors).to eq([]) }
-              it("registers") { expect(::User.count).to eq(1) }
+              it_does_not_have_errors
+              it_registers
             end # describe
 
-          end # describe
+          end # describe config
 
           describe "config.password_presence = false" do
 
@@ -142,35 +198,35 @@ module Hello
 
             describe "ignored" do
               let(:value) { nil }
-              it("does not have errors") { expect(@errors).to eq([]) }
-              it("registers") { expect(::User.count).to eq(1) }
+              it_does_not_have_errors
+              it_registers
             end # describe
 
             describe "blank" do
               let(:value) { '' }
-              it("does not have errors") { expect(@errors).to eq([]) }
-              it("registers") { expect(::User.count).to eq(1) }
+              it_does_not_have_errors
+              it_registers
             end # describe
 
             describe "invalid" do
               let(:value) { "foo bar" }
               it("has errors") { expect(@errors).to eq(["is invalid"]) }
-              it("does not register") { expect(::User.count).to eq(0) }
+              it_does_not_register
             end # describe
 
             describe "valid" do
               let(:value) { "foobar" }
-              it("does not have errors") { expect(@errors).to eq([]) }
-              it("registers") { expect(::User.count).to eq(1) }
+              it_does_not_have_errors
+              it_registers
             end # describe
 
-          end # describe
+          end # describe config
 
-        end # describe
+        end # describe password
 
-      end # describe
+      end # describe by field
 
-    end # describe
+    end # describe .register
 
-  end # describe
-end # module
+  end # describe SignUpEntity
+end # module Hello

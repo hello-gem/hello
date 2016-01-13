@@ -20,7 +20,7 @@ describe User do
   end
 
   describe "validations" do
-    it "presence of name" do
+    it "validations" do
       @user.valid?
       # city is only here because we need to test code customization, and this is how we are currently testing it
       expect(@user.errors.messages).to eq(
@@ -29,7 +29,7 @@ describe User do
         :locale=>["can't be blank", "is not included in the list"],
         :time_zone=>["can't be blank", "is not included in the list"],
         :city=>["can't be blank"],
-        # :username=>["is invalid", "minimum of 4 characters", "can't be blank"]
+        :username=>["can't be blank", "is invalid", "is too short (minimum is 4 characters)"]
       }
       )
     end
@@ -90,37 +90,14 @@ describe User do
 
     end
 
-    describe "private .username_used_by_another?" do
-      it "works" do
-        i1 = create(:user)
-        i2 = build(:user, username: '')
-        is_used_by_another = i2.send(:username_used_by_another?, i1.username)
-        expect(is_used_by_another).to eq(true)
-      end
-    end
-
-    describe "private .make_up_new_username" do
+    describe "private ._make_up_new_username" do
 
       let(:model) { build(:user, username: '') }
 
-      it "gets ignored due to PresenceValidator" do
-        model._validators[:username] << ActiveRecord::Validations::PresenceValidator.new({attributes: [:username]})
-        expect(model).not_to receive(:make_up_new_username)
-        model.valid?
-        expect(model.username).to eq('')
-        model._validators[:username].delete_if { |v| v.is_a? ActiveRecord::Validations::PresenceValidator }
-      end
-
       it "works when called" do
-        a_username = model.send(:make_up_new_username)
+        a_username = model.send(:_make_up_new_username)
         expect(a_username.length).to eq(32)
         expect(model.username).to eq('')
-      end
-
-      it "gets invoked when no PresenceValidator" do
-        expect(model).to receive(:make_up_new_username).and_return("rails-rocks")
-        model.valid?
-        expect(model.username).to eq("rails-rocks")
       end
 
     end

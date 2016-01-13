@@ -61,7 +61,10 @@ module Hello
 
             def validate_presences
               validates_presence_of :email
-              validates_presence_of :username
+
+              if validates_presence_of_username?
+                validates_presence_of :username
+              end
 
               if validates_presence_of_password?
                 validates_presence_of :password
@@ -69,9 +72,11 @@ module Hello
 
               ::User.validators.each do |validator|
                 if validator.is_a?(ActiveRecord::Validations::PresenceValidator)
-                  options = validator.options.dup
-                  options[:attributes] = validator.attributes
-                  validates_with(validator.class, options)
+                  if validator.attributes.first.to_sym != :username
+                    options = validator.options.dup
+                    options[:attributes] = validator.attributes
+                    validates_with(validator.class, options)
+                  end
                 end
               end
             end
@@ -80,6 +85,12 @@ module Hello
               @user = ::User.new(user_attributes)
               @email_credential    = ::EmailCredential.new    user: @user, email:    email
               @password_credential = ::PasswordCredential.new user: @user, password: password
+
+              if not validates_presence_of_username?
+                if username.blank?
+                  user.set_generated_username
+                end
+              end
 
               if not validates_presence_of_password?
                 if password.blank?
@@ -129,6 +140,10 @@ module Hello
     end
 
     # config helpers
+
+    def validates_presence_of_username?
+      Hello.configuration.username_presence
+    end
 
     def validates_presence_of_password?
       Hello.configuration.password_presence
