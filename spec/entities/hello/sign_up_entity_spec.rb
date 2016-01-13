@@ -52,31 +52,73 @@ module Hello
 
         describe "email" do
 
-          before do
-            perform
-          end
-
           let(:field) { :email }
 
-          describe "ignored" do
-            let(:value) { nil }
-            it("has errors") { expect(@errors).to eq(["can't be blank"]) }
-          end # describe
+          describe "config.email_presence = true" do
 
-          describe "blank" do
-            let(:value) { '' }
-            it("has errors") { expect(@errors).to eq(["can't be blank"]) }
-          end # describe
+            before do
+              Hello.configure { |config| config.email_presence = true }
+              perform
+            end
 
-          describe "invalid" do
-            let(:value) { "foo" }
-            it("has errors") { expect(@errors).to eq(["does not appear to be a valid e-mail address"]) }
-          end # describe
+            describe "ignored" do
+              let(:value) { nil }
+              it("has errors") { expect(@errors).to eq(["can't be blank"]) }
+              it_does_not_register
+            end # describe
 
-          describe "valid" do
-            let(:value) { "foo@bar.com" }
-            it_does_not_have_errors
-          end # describe
+            describe "blank" do
+              let(:value) { '' }
+              it("has errors") { expect(@errors).to eq(["can't be blank"]) }
+              it_does_not_register
+            end # describe
+
+            describe "invalid" do
+              let(:value) { "foo" }
+              it("has errors") { expect(@errors).to eq(["does not appear to be a valid e-mail address"]) }
+              it_does_not_register
+            end # describe
+
+            describe "valid" do
+              let(:value) { "foo@bar.com" }
+              it_does_not_have_errors
+              it_registers
+            end # describe
+
+          end # describe configure
+
+          describe "config.email_presence = false" do
+
+            before do
+              Hello.configure { |config| config.email_presence = false }
+              perform
+            end
+
+            describe "ignored" do
+              let(:value) { nil }
+              it_does_not_have_errors
+              it_registers
+            end # describe
+
+            describe "blank" do
+              let(:value) { '' }
+              it_does_not_have_errors
+              it_registers
+            end # describe
+
+            describe "invalid" do
+              let(:value) { "foo" }
+              it("has errors") { expect(@errors).to eq(["does not appear to be a valid e-mail address"]) }
+              it_does_not_register
+            end # describe
+
+            describe "valid" do
+              let(:value) { "foo@bar.com" }
+              it_does_not_have_errors
+              it_registers
+            end # describe
+
+          end # describe configure
 
         end # describe email
 

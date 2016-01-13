@@ -60,7 +60,9 @@ module Hello
         end
 
             def validate_presences
-              validates_presence_of :email
+              if validates_presence_of_email?
+                validates_presence_of :email
+              end
 
               if validates_presence_of_username?
                 validates_presence_of :username
@@ -82,24 +84,24 @@ module Hello
             end
 
             def build_and_validate_models
+              # user & username
               @user = ::User.new(user_attributes)
-              @email_credential    = ::EmailCredential.new    user: @user, email:    email
-              @password_credential = ::PasswordCredential.new user: @user, password: password
-
-              if not validates_presence_of_username?
-                if username.blank?
-                  user.set_generated_username
-                end
+              if username.blank? && !validates_presence_of_username?
+                user.set_generated_username
               end
-
-              if not validates_presence_of_password?
-                if password.blank?
-                  password_credential.set_generated_password
-                end
-              end
-
               merge_errors_for(user)
-              merge_errors_for(email_credential)
+
+              # email_credential & email
+              if email.present? || validates_presence_of_email?
+                @email_credential = ::EmailCredential.new user: @user, email: email
+                merge_errors_for(email_credential)
+              end
+
+              # password_credential & password
+              @password_credential = ::PasswordCredential.new user: @user, password: password
+              if password.blank? && !validates_presence_of_password?
+                password_credential.set_generated_password
+              end
               merge_errors_for(password_credential)
             end
 
@@ -112,7 +114,7 @@ module Hello
 
             def save_models!
               user.save!
-              email_credential.save!
+              email_credential && email_credential.save!
               password_credential.save!
             end
 
@@ -140,6 +142,10 @@ module Hello
     end
 
     # config helpers
+
+    def validates_presence_of_email?
+      Hello.configuration.email_presence
+    end
 
     def validates_presence_of_username?
       Hello.configuration.username_presence

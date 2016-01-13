@@ -1,6 +1,8 @@
 Hello.configure do |config|
   config.mailer_sender = 'hello@example.com'
 
+  config.email_presence = true
+
   config.username_presence = true
   config.username_regex  = /\A[a-z0-9_-]+\z/i
   config.username_length = 4..32
