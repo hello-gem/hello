@@ -61,7 +61,7 @@ RSpec.bdd.uic "Emails Page" do
       _when_I_submit "a malformed", "a@a"
 
       Then "I should see an alert message" do
-        expect_flash_alert "Email does not appear to be a valid e-mail address"
+        expect_flash_alert "Email is too short (minimum is 4 characters)"
       end
     end
 

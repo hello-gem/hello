@@ -2,6 +2,8 @@ Hello.configure do |config|
   config.mailer_sender = 'hello@example.com'
 
   config.email_presence = true
+  config.email_regex  = /\A[A-Z0-9._-]+@[A-Z0-9.-]+\.[A-Z0-9.-]+\z/i
+  config.email_length = 4..250
 
   config.username_presence = true
   config.username_regex  = /\A[a-z0-9_-]+\z/i
@@ -9,7 +11,7 @@ Hello.configure do |config|
 
   config.password_presence = true
   config.password_regex  = /\A[a-z0-9]+\z/i
-  config.password_length = 4..200
+  config.password_length = 4..250
 
   # User Registration
   config.email_sign_up_role          = 'onboarding'

@@ -44,6 +44,14 @@ module Hello
           it("does not register") { expect(::User.count).to eq(0) }
         end
 
+        def self.it_is_invalid
+          it("has errors") { expect(@errors).to eq(["is invalid"]) }
+        end
+
+        def self.it_cant_be_blank
+          it("has errors") { expect(@errors).to eq(["can't be blank"]) }
+        end
+
         def self.it_does_not_have_errors
           it("does not have errors") { expect(@errors).to eq([]) }
         end
@@ -63,19 +71,19 @@ module Hello
 
             describe "ignored" do
               let(:value) { nil }
-              it("has errors") { expect(@errors).to eq(["can't be blank"]) }
+              it_cant_be_blank
               it_does_not_register
             end # describe
 
             describe "blank" do
               let(:value) { '' }
-              it("has errors") { expect(@errors).to eq(["can't be blank"]) }
+              it_cant_be_blank
               it_does_not_register
             end # describe
 
             describe "invalid" do
-              let(:value) { "foo" }
-              it("has errors") { expect(@errors).to eq(["does not appear to be a valid e-mail address"]) }
+              let(:value) { "foobar" }
+              it_is_invalid
               it_does_not_register
             end # describe
 
@@ -85,7 +93,7 @@ module Hello
               it_registers
             end # describe
 
-          end # describe configure
+          end # describe config
 
           describe "config.email_presence = false" do
 
@@ -107,8 +115,8 @@ module Hello
             end # describe
 
             describe "invalid" do
-              let(:value) { "foo" }
-              it("has errors") { expect(@errors).to eq(["does not appear to be a valid e-mail address"]) }
+              let(:value) { "foobar" }
+              it_is_invalid
               it_does_not_register
             end # describe
 
@@ -118,7 +126,7 @@ module Hello
               it_registers
             end # describe
 
-          end # describe configure
+          end # describe config
 
         end # describe email
 
@@ -135,19 +143,19 @@ module Hello
 
             describe "ignored" do
               let(:value) { nil }
-              it("has errors") { expect(@errors).to eq(["can't be blank"]) }
+              it_cant_be_blank
               it_does_not_register
             end # describe
 
             describe "blank" do
               let(:value) { '' }
-              it("has errors") { expect(@errors).to eq(["can't be blank"]) }
+              it_cant_be_blank
               it_does_not_register
             end # describe
 
             describe "invalid" do
               let(:value) { "foobar!" }
-              it("has errors") { expect(@errors).to eq(["is invalid"]) }
+              it_is_invalid
               it_does_not_register
             end # describe
 
@@ -180,7 +188,7 @@ module Hello
 
             describe "invalid" do
               let(:value) { "foobar!" }
-              it("has errors") { expect(@errors).to eq(["is invalid"]) }
+              it_is_invalid
               it_does_not_register
             end # describe
 
@@ -207,19 +215,19 @@ module Hello
 
             describe "ignored" do
               let(:value) { nil }
-              it("has errors") { expect(@errors).to eq(["can't be blank"]) }
+              it_cant_be_blank
               it_does_not_register
             end # describe
 
             describe "blank" do
               let(:value) { '' }
-              it("has errors") { expect(@errors).to eq(["can't be blank"]) }
+              it_cant_be_blank
               it_does_not_register
             end # describe
 
             describe "invalid" do
               let(:value) { "foo bar" }
-              it("has errors") { expect(@errors).to eq(["is invalid"]) }
+              it_is_invalid
               it_does_not_register
             end # describe
 
@@ -252,7 +260,7 @@ module Hello
 
             describe "invalid" do
               let(:value) { "foo bar" }
-              it("has errors") { expect(@errors).to eq(["is invalid"]) }
+              it_is_invalid
               it_does_not_register
             end # describe
 
