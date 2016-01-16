@@ -31,8 +31,7 @@ module Hello
     end
 
     def set_generated_password
-      self.password= "changeme123"
-      # (32..126).to_a.map(&:chr)
+      self.password = Token.single(4) # 8 chars
     end
 
 

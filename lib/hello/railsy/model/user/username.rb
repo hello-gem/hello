@@ -30,7 +30,7 @@ module Hello
       end
 
       def _make_up_new_username
-        Token.single(16)
+        Token.single(16) # 16 chars
       end
 
       def _username_unique?
