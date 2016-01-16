@@ -2,7 +2,6 @@ module Hello
   module PasswordCredential
     extend ActiveSupport::Concern
 
-
     included do
       attr_reader :password
       validates_presence_of :password, on: :create
@@ -14,9 +13,7 @@ module Hello
 
     def password=(value)
       # puts "password=('#{value}')".blue
-      if value.blank?
-        self.digest = @password = nil
-      end
+      self.digest = @password = nil if value.blank?
       @password = value
 
       self.digest = password_encryption_extension.encrypt(value)
@@ -34,11 +31,10 @@ module Hello
       self.password = Token.single(4) # 8 chars
     end
 
-
     private
 
     def hello_validations
-      return true if not digest_changed?
+      return true unless digest_changed?
 
       return false if errors[:password].any?
       c = Hello.configuration
@@ -61,8 +57,5 @@ module Hello
     # def is_last_password_credential?
     #   user.password_credentials.count == 1
     # end
-
-
-
   end
 end

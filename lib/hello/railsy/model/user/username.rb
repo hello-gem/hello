@@ -34,13 +34,8 @@ module Hello
       end
 
       def _username_unique?
-        not self.class.unscoped.where(username: username).where.not(id: id).exists?
+        !self.class.unscoped.where(username: username).where.not(id: id).exists?
       end
-
-
-
-
-
 
       # def username_suggestions
       #   email1 = email.to_s.split('@').first
@@ -48,7 +43,6 @@ module Hello
       #   ideas = [name1, email1].flatten
       #   [ideas.sample, rand(999)].join.parameterize
       # end
-
     end
   end
 end

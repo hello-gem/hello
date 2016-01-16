@@ -5,12 +5,12 @@ Hello::Engine.routes.draw do
   # EMAIL
   #
 
-  get 'sign_up'         => 'email_sign_up#index'
-  post 'sign_up'         => 'email_sign_up#create'
+  get 'sign_up' => 'email_sign_up#index'
+  post 'sign_up' => 'email_sign_up#create'
   get 'sign_up/widget'  => 'email_sign_up#widget'
 
   get 'sign_in'         => 'email_sign_in#index'
-  post 'sign_in'         => 'email_sign_in#authenticate'
+  post 'sign_in' => 'email_sign_in#authenticate'
 
   resources :emails, only: [:index, :create, :destroy] do
     member do
@@ -27,8 +27,8 @@ Hello::Engine.routes.draw do
   #
   resource :current_user, only: [:show, :update]
 
-  get 'sudo_mode'        => 'sudo_mode#form'
-  patch 'sudo_mode'        => 'sudo_mode#authenticate'
+  get 'sudo_mode' => 'sudo_mode#form'
+  patch 'sudo_mode' => 'sudo_mode#authenticate'
   get 'sudo_mode/expire' => 'sudo_mode#expire'
 
   get 'cancel_account' => 'cancel_account#index'

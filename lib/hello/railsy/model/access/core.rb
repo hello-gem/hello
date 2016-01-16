@@ -11,7 +11,7 @@ module Hello
         if expires_at.future?
           token
         else
-          destroy and return nil
+          destroy && (return nil)
         end
       end
 

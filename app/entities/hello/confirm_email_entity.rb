@@ -16,7 +16,7 @@ module Hello
     end
 
     def confirm_with_token(token)
-      confirm_email! and return true if validate_token(token)
+      confirm_email! && (return true) if validate_token(token)
     end
 
     def confirm_email!

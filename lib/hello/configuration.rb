@@ -1,5 +1,4 @@
 module Hello
-
   # invoked from config/initializers/hello.rb
   def self.configure
     yield(configuration)
@@ -25,5 +24,4 @@ module Hello
       CancelAccountController.include  ex.cancel_account
     end
   end
-
 end

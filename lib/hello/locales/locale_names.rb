@@ -228,7 +228,7 @@ module Hello
     'zh-TW'  => 'Chinese (T)',
     'zu'     => 'Zulu',
     'zu-ZA'  => 'Zulu (South Africa)'
-  }
+  }.freeze
 
   def self.all_locale_names
     ALL_LOCALE_NAMES

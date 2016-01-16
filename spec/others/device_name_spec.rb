@@ -137,13 +137,13 @@ module Hello
       end
 
       describe 'Amazon Kindle' do
-        it "Android 4 (Kindle Fire HDX 7\" WiFi) - Android 4" do
+        it 'Android 4 (Kindle Fire HDX 7" WiFi) - Android 4' do
           expect_device_name 'Mozilla/5.0 (Linux; U; Android 4.2.2; en-us; KFTHWI Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30',
-                             "Android 4 (Kindle Fire HDX 7\" WiFi) - Android 4"
+                             'Android 4 (Kindle Fire HDX 7" WiFi) - Android 4'
         end
-        it "Android 4 (Kindle Fire HDX 7\" WiFi) - Chrome 34" do
+        it 'Android 4 (Kindle Fire HDX 7" WiFi) - Chrome 34' do
           expect_device_name 'Mozilla/5.0 (Linux; Android 4.2.2; KFTHWI Build/JDQ39) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.62 Safari/537.36',
-                             "Android 4 (Kindle Fire HDX 7\" WiFi) - Chrome 34"
+                             'Android 4 (Kindle Fire HDX 7" WiFi) - Chrome 34'
         end
       end
 

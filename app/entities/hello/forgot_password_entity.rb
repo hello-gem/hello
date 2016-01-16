@@ -11,7 +11,7 @@ module Hello
     end
 
     def reset
-      add_errors_for_login_not_found and return false if user.nil?
+      add_errors_for_login_not_found && (return false) if user.nil?
       true
     end
 

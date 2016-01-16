@@ -1,6 +1,7 @@
 
-USER_TEST_EMAIL    = 'foo@bar.com'
-USER_TEST_USERNAME = 'foobar'
+# frozen_string_literal: true
+USER_TEST_EMAIL    = 'foo@bar.com'.freeze
+USER_TEST_USERNAME = 'foobar'.freeze
 
 def given_I_have_a_classic_access_token
   user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, city: 'Brasilia')
