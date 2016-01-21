@@ -1,5 +1,8 @@
 module Hello
   class EmailSignUpController < ApplicationController
+    include Hello::Concerns::EmailSignUpOnSuccess
+    include Hello::Concerns::EmailSignUpOnFailure
+
     dont_kick_people
 
     before_action do
@@ -19,9 +22,9 @@ module Hello
     def create
       if @sign_up.register(params.require(:sign_up))
         flash[:notice] = @sign_up.success_message
-        success
+        on_success
       else
-        failure
+        on_failure
       end
     end
   end

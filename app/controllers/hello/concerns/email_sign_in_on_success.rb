@@ -1,9 +1,8 @@
-# Learn more at config/initializers/hello.rb
-#
 module Hello
-  module Extensions
-    module EmailSignIn
-      def success
+  module Concerns
+    module EmailSignInOnSuccess
+
+      def on_success
         access_token = sign_in!(@sign_in.user, expires_at)
 
         respond_to do |format|
@@ -12,12 +11,7 @@ module Hello
         end
       end
 
-      def failure
-        respond_to do |format|
-          format.html { render action: 'index' }
-          format.json { render json: @sign_in.errors, status: :unprocessable_entity }
-        end
-      end
+      private
 
       def expires_at
         if params[:keep_me]
@@ -26,6 +20,7 @@ module Hello
           30.minutes.from_now
         end
       end
+
     end
   end
 end

@@ -41,8 +41,6 @@ And then execute:
 bundle install
 bundle exec rails generate hello:install
 bundle exec rake db:migrate
-bundle exec rails generate hello:extensions # optional
-bundle exec rails generate hello:views   # optional
 ```
 
 ## Customizing - behavior and views
@@ -53,12 +51,17 @@ They are simple to customize, just open them.
 
     ├── app/
     │   ├── controllers/
+    │   │   ├── hello/
+    │   │   │   └── concerns/
+    │   │   │       └── [...optional...]
     │   │   ├── onboarding_controller.rb
     │   │   └── users_controller.rb
+    │   │
     │   ├── models/
     │   │   ├── credential.rb
     │   │   ├── active_session.rb
     │   │   └── user.rb
+    │   │
     │   ├── views/
     │   │   ├── hello/
     │   │   │   └── [...optional...]
@@ -69,13 +72,11 @@ They are simple to customize, just open them.
     │   │   └── users/
     │   │       ├── index.html.erb
     │   │       └── show.html.erb
-    │   └── lib/
-    │       └── hello/
-    │           └── extensions/
-    │               └── [...optional...]
+    │   │
     ├── config/
     │   └── initializers
     │       └── hello.rb
+    │
     └── db/
         └── migrate/
             ├── 1_create_credentials.hello.rb
@@ -99,17 +100,13 @@ class User < ActiveRecord::Base
 end
 
 module Hello
-  module Extensions
-    module EmailSignUp
+  module Concerns
+    module EmailSignUpOnSuccess
 
-      def success
+      def on_success
         deliver_welcome_email
         deliver_confirmation_email
         redirect_to root_path
-      end
-
-      def failure
-        render action: 'index'
       end
 
     end

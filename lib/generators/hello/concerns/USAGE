@@ -2,7 +2,7 @@ Description:
     Explain the generator
 
 Example:
-    rails generate hello:extensions
+    rails generate hello:concerns
 
     This will create:
         what/will/it/create

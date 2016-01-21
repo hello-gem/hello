@@ -1,5 +1,8 @@
 module Hello
   class CurrentUsersController < ApplicationController
+    include Hello::Concerns::UpdateProfileOnSuccess
+    include Hello::Concerns::UpdateProfileOnFailure
+
     kick :guest, :onboarding
 
     before_action do
@@ -19,9 +22,9 @@ module Hello
       if @user_entity.update(user_params)
         use_locale
         flash[:notice] = @user_entity.success_message
-        success
+        on_success
       else
-        failure
+        on_failure
       end
     end
 

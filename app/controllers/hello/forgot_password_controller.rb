@@ -1,5 +1,8 @@
 module Hello
   class ForgotPasswordController < ApplicationController
+    include Hello::Concerns::ForgotPasswordOnSuccess
+    include Hello::Concerns::ForgotPasswordOnFailure
+
     dont_kick :guest
 
     before_action { @sender = Hello.configuration.mailer_sender }
@@ -15,9 +18,9 @@ module Hello
       @user = @forgot_password.user
 
       if @forgot_password.reset
-        success
+        on_success
       else
-        failure
+        on_failure
       end
     end
   end

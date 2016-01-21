@@ -14,14 +14,6 @@ class Hello::ApplicationController < ApplicationController
     end
   end
 
-  def success
-    fail NotImplementedError
-  end
-
-  def failure
-    fail NotImplementedError
-  end
-
   private
 
   # Don't override this at home, kids

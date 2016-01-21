@@ -1,26 +1,13 @@
-# Learn more at config/initializers/hello.rb
-#
 module Hello
-  module Extensions
-    module ForgotPassword
-      def success
+  module Concerns
+    module ForgotPasswordOnSuccess
+
+      def on_success
         reset_token_and_deliver_email! if should_reset_verifying_token?
 
         respond_to do |format|
           format.html { render_success }
           format.json { render json: { sent: true }, status: :created }
-        end
-      end
-
-      def failure
-        # SUGGESTION: register failed attempt
-
-        respond_to do |format|
-          format.html { render_form }
-          format.json { render json: @forgot_password.errors, status: :unprocessable_entity }
-          # # To falsy show that the email was sent, please use the code below instead
-          # format.html { redirect_to hello.password_remembered_path }
-          # format.json { render json: {sent: true}, status: :created }
         end
       end
 
@@ -52,6 +39,7 @@ module Hello
       # def past_or_never?(time1, time2)
       #   time1.blank? || (time1 < time2)
       # end
+
     end
   end
 end

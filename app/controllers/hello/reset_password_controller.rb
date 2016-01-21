@@ -1,5 +1,8 @@
 module Hello
   class ResetPasswordController < ApplicationController
+    include Hello::Concerns::ResetPasswordOnSuccess
+    include Hello::Concerns::ResetPasswordOnFailure
+
     sign_out!
 
     before_action do
@@ -24,9 +27,9 @@ module Hello
       new_password = params.require(:reset_password)[:password]
       if @reset_password.update_password(new_password)
         flash[:notice] = @reset_password.success_message
-        success
+        on_success
       else
-        failure
+        on_failure
       end
     end
 

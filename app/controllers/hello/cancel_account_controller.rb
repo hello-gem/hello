@@ -1,5 +1,8 @@
 module Hello
   class CancelAccountController < ApplicationController
+    include Hello::Concerns::CancelAccountOnSuccess
+    include Hello::Concerns::CancelAccountOnFailure
+
     dont_kick :user
     sudo_mode
 
@@ -13,10 +16,10 @@ module Hello
 
       if current_user.cancel_account
         flash[:notice] = @cancel_account.success_message
-        success
+        on_success
       else
         flash.now[:alert] = @cancel_account.alert_message
-        failure
+        on_failure
       end
     end
   end

@@ -1,9 +1,8 @@
-# Learn more at config/initializers/hello.rb
-#
 module Hello
-  module Extensions
-    module EmailSignUp
-      def success
+  module Concerns
+    module EmailSignUpOnSuccess
+
+      def on_success
         deliver_welcome_email
 
         deliver_confirmation_email
@@ -13,13 +12,6 @@ module Hello
         respond_to do |format|
           format.html { redirect_to '/onboarding' }
           format.json { render json: access_token.as_json_web_api, status: :created }
-        end
-      end
-
-      def failure
-        respond_to do |format|
-          format.html { render action: 'index' }
-          format.json { render json: @sign_up.errors, status: :unprocessable_entity }
         end
       end
 
@@ -38,6 +30,7 @@ module Hello
         url   = hello.confirm_email_url(@sign_up.email_credential, token)
         Hello::Mailer.confirm_email(@sign_up.email_credential, url).deliver
       end
+
     end
   end
 end
