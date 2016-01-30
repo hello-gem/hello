@@ -16,5 +16,6 @@ Hello.configure do |config|
   # User Registration
   config.email_sign_up_role          = 'onboarding'
   config.email_sign_up_fields        = %w(name username time_zone locale city)
-  config.extensions.encrypt_password = Hello::Extensions::EncryptPassword
+
+  config.encryptor = Hello::Encryption::Encryptor.new
 end

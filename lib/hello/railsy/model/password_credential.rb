@@ -16,15 +16,15 @@ module Hello
       self.digest = @password = nil if value.blank?
       @password = value
 
-      self.digest = password_encryption_extension.encrypt(value)
+      self.digest = encryptor.encrypt(value)
     end
 
     def password_is?(plain_text_password)
-      password_encryption_extension.check(self, plain_text_password)
+      encryptor.match(plain_text_password, digest)
     end
 
-    def password_encryption_extension
-      Hello.configuration.extensions.encrypt_password
+    def encryptor
+      Hello.configuration.encryptor
     end
 
     def set_generated_password
