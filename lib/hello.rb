@@ -11,7 +11,6 @@ require_relative 'hello/engine'
 require_relative 'hello/configuration'
 
 require_relative 'hello/encryption'
-require_relative 'hello/token'
 require_relative 'hello/errors'
 require_relative 'hello/locales'
 require_relative 'hello/device_name'

@@ -27,8 +27,12 @@ module Hello
       Hello.configuration.encryptor
     end
 
+    def tokenizer
+      Hello.configuration.tokenizer
+    end
+
     def set_generated_password
-      self.password = Token.single(4) # 8 chars
+      self.password = tokenizer.single(4) # 8 chars
     end
 
     private

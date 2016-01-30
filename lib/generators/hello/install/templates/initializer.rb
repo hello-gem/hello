@@ -18,4 +18,5 @@ Hello.configure do |config|
   config.email_sign_up_fields        = %w(name username time_zone locale)
 
   config.encryptor = Hello::Encryption::Encryptor.new
+  config.tokenizer = Hello::Encryption::Tokenizer.new
 end
