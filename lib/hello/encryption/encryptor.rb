@@ -2,7 +2,7 @@ module Hello
   module Encryption
     class Encryptor
       def encrypt(string)
-        BCrypt::Password.create(string)
+        BCrypt::Password.create(string).to_s
       end
 
       def match(string, digest)
