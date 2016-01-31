@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
 
   s.test_files = Dir["spec/**/*"]
 
-  s.add_runtime_dependency "validates_email_format_of"
   s.add_runtime_dependency "before_actions"
   s.add_runtime_dependency "colorize"
   s.add_runtime_dependency "user_agent_parser"
@@ -34,6 +33,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'codeclimate-test-reporter'
   s.add_development_dependency 'bdd'
   s.add_development_dependency 'bcrypt', '~> 3.1'
+  s.add_development_dependency 'rubocop'
 
   # save_and_open_page
   s.add_development_dependency 'launchy'
