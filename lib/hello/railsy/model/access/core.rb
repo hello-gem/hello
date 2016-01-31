@@ -22,7 +22,7 @@ module Hello
         validates_uniqueness_of :token
 
         before_validation on: :create do
-          self.token = "#{user_id}-#{Hello.configuration.tokenizer.single(16)}"
+          self.token = "#{user_id}-#{Hello.configuration.simple_encryptor.single(16)}"
         end
       end
 

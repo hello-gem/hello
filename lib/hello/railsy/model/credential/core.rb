@@ -25,12 +25,12 @@ module Hello
       # verifying token
 
       def verifying_token_is?(unencrypted_token)
-        digest = tokenizer.encrypt(unencrypted_token)
+        digest = simple_encryptor.encrypt(unencrypted_token)
         verifying_token_digest == digest
       end
 
       def reset_verifying_token!
-        uuid, digest = tokenizer.pair
+        uuid, digest = simple_encryptor.pair
         update!(verifying_token_digest: digest, verifying_token_digested_at: 1.second.ago)
         uuid
       end
@@ -45,8 +45,8 @@ module Hello
         !!Thread.current['Hello.destroying_user']
       end
 
-      def tokenizer
-        Hello.configuration.tokenizer
+      def simple_encryptor
+        Hello.configuration.simple_encryptor
       end
     end
   end

@@ -16,23 +16,23 @@ module Hello
       self.digest = @password = nil if value.blank?
       @password = value
 
-      self.digest = encryptor.encrypt(value)
+      self.digest = complex_encryptor.encrypt(value)
     end
 
     def password_is?(plain_text_password)
-      encryptor.match(plain_text_password, digest)
+      complex_encryptor.match(plain_text_password, digest)
     end
 
-    def encryptor
-      Hello.configuration.encryptor
+    def complex_encryptor
+      Hello.configuration.complex_encryptor
     end
 
-    def tokenizer
-      Hello.configuration.tokenizer
+    def simple_encryptor
+      Hello.configuration.simple_encryptor
     end
 
     def set_generated_password
-      self.password = tokenizer.single(4) # 8 chars
+      self.password = simple_encryptor.single(4) # 8 chars
     end
 
     private

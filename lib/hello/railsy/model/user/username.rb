@@ -30,7 +30,7 @@ module Hello
       end
 
       def _make_up_new_username
-        Hello.configuration.tokenizer.single(16) # 16 chars
+        Hello.configuration.simple_encryptor.single(16) # 16 chars
       end
 
       def _username_unique?

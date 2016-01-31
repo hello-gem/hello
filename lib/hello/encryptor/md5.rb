@@ -1,13 +1,13 @@
 module Hello
-  module Encryption
-    class Tokenizer
+  module Encryptor
+    class MD5
       # probability = 1 / ((8*2) ** (8*2))
       def single(complexity = 8)
         SecureRandom.hex(complexity)
       end
 
-      def pair
-        s = single
+      def pair(complexity = 8)
+        s = single(complexity)
         [s, encrypt(s)]
       end
 

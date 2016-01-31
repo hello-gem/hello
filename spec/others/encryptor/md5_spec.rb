@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Hello::Encryption::Tokenizer do
+describe Hello::Encryptor::MD5 do
 
   describe '#encrypt' do
     it('does not work with nil') { expect { subject.encrypt(nil).length }.to raise_error(TypeError) }

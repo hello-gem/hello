@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Hello::Encryption::Encryptor do
+describe Hello::Encryptor::BCrypt do
 
   describe '#encrypt' do
     def use_bcrypt
-      start_with('$2a$04$')
+      start_with('$2a$')
     end
 
     it('works with nil')   { expect(subject.encrypt(nil)).to   use_bcrypt }

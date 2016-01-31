@@ -17,6 +17,8 @@ Hello.configure do |config|
   config.email_sign_up_role          = 'onboarding'
   config.email_sign_up_fields        = %w(name username time_zone locale city)
 
-  config.encryptor = Hello::Encryption::Encryptor.new
-  config.tokenizer = Hello::Encryption::Tokenizer.new
+  config.simple_encryptor  = Hello::Encryptor::MD5.new
+  config.complex_encryptor = Hello::Encryptor::BCrypt.new
 end
+
+BCrypt::Engine.cost = Rails.env.test? ? 1 : 10

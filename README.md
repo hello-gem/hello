@@ -33,6 +33,7 @@ Add this line to your application's Gemfile:
 
 ```ruby
 gem 'hello', github: 'hello-gem/hello' # latest from github while this gem is in rapid development
+gem 'bcrypt', '~> 3.1' # bcrypt is highly recommended
 ```
 
 And then execute:

@@ -23,8 +23,6 @@ require 'bdd'
 # https://github.com/bmabey/email-spec#rspec
 # https://github.com/bmabey/email-spec#rspec-1
 
-BCrypt::Engine.cost = 1
-
 Rails.backtrace_cleaner.remove_silencers!
 
 # Load support files
