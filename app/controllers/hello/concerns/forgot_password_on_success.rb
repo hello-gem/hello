@@ -25,8 +25,8 @@ module Hello
         p      = @user.main_password_credential
         token  = p.reset_verifying_token!
         url    = hello.reset_password_url(p.id, @user.id, token)
-        @user.email_credentials.each do |email_credential|
-          Hello::Mailer.forgot_password(email_credential, url).deliver
+        @user.email_credentials.map(&:email).each do |email|
+          Mailer.forgot_password(email, @user, url).deliver
         end
       end
 

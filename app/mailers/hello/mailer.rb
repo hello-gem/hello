@@ -2,25 +2,25 @@ module Hello
   class Mailer < ActionMailer::Base
     default from: Hello.configuration.mailer_sender
 
-    def welcome(email_credential, password)
-      @user     = email_credential.user
+    def welcome(email, user, password)
+      @user     = user
       @password = password
 
-      mail to: email_credential.email
+      mail to: email
     end
 
-    def confirm_email(email_credential, url)
-      @user = email_credential.user
+    def confirm_email(email, user, url)
+      @user = user
       @url  = url
 
-      mail to: email_credential.email
+      mail to: email
     end
 
-    def forgot_password(email_credential, url)
-      @user = email_credential.user
+    def forgot_password(email, user, url)
+      @user = user
       @url  = url
 
-      mail to: email_credential.email
+      mail to: email
     end
   end
 end
