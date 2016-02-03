@@ -1,8 +1,10 @@
 module Hello
   module Encryptor
     class BCrypt < MD5
-      def initialize
+      def initialize(cost=nil)
         require 'bcrypt'
+        cost ||= Rails.env.test? ? 1 : 10
+        ::BCrypt::Engine.cost = cost
       rescue LoadError
         s = "your Gemfile needs: gem 'bcrypt'"
         puts [s.red, s.yellow, s.green]

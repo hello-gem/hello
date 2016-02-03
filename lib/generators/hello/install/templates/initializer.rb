@@ -20,5 +20,3 @@ Hello.configure do |config|
   config.simple_encryptor  = Hello::Encryptor::MD5.new
   config.complex_encryptor = Hello::Encryptor::BCrypt.new
 end
-
-BCrypt::Engine.cost = Rails.env.test? ? 1 : 10
