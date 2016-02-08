@@ -8,15 +8,15 @@ module Hello
         end
 
         def available_locales
-          Hello.available_locales
+          Hello.configuration.locales
         end
 
         def available_locales_with_names
           Hello.all_locale_names.select { |k, _v| available_locales.include? k }
         end
 
+        # [['English', 'en']]
         def hello_locale_select_options
-          # [['English', 'en']]
           available_locales_with_names.map { |k, v| [v, k] }
         end
 
@@ -26,7 +26,7 @@ module Hello
         end
 
         def recommended_locale
-          x = http_accept_language.compatible_language_from(Hello.available_locales)
+          x = http_accept_language.compatible_language_from(available_locales)
           x || Hello.default_locale
         end
 

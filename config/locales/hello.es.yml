@@ -2,8 +2,7 @@
 
 es:
   hello:
-    others:
-      locale: "Español"
+    locale_name: "Español"
 
     mailer:
       welcome:

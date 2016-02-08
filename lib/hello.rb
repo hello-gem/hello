@@ -1,3 +1,7 @@
+module Hello
+  ROOT = Pathname(File.dirname(__FILE__)).join('..')
+end
+
 require 'colorize'
 require 'before_actions'
 require 'user_agent_parser'

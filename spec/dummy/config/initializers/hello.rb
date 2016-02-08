@@ -19,4 +19,7 @@ Hello.configure do |config|
 
   config.simple_encryptor  = Hello::Encryptor::MD5.new
   config.complex_encryptor = Hello::Encryptor::BCrypt.new
+
+  config.locales = %w(en es pt-BR)
+
 end

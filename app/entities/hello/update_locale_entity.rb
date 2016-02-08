@@ -9,13 +9,21 @@ module Hello
     end
 
     def success_message(_extra = {})
-      super(locale_name: I18n.t('hello.others.locale'))
+      super(locale_name: current_locale_name)
     end
 
     private
 
     def locale_if_available
-      ([@locale] & Hello.available_locales).first
+      ([@locale] & locales).first
+    end
+
+    def locales
+      Hello.configuration.locales
+    end
+
+    def current_locale_name
+      I18n.t('hello.locale_name')
     end
   end
 end

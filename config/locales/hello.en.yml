@@ -2,8 +2,7 @@
 
 en:
   hello:
-    others:
-      locale: "English"
+    locale_name: "English"
 
     mailer:
       welcome:

@@ -2,8 +2,7 @@
 
 pt-BR:
   hello:
-    others:
-      locale: "Português (Brasil)"
+    locale_name: "Português (Brasil)"
 
     mailer:
       welcome:

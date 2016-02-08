@@ -163,6 +163,17 @@ Want to see it in action?
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+## Contributing With Translations
+
+Link to [Translation files](https://github.com/hello-gem/hello/blob/master/config/locales/hello.en.yml)
+
+1. change the initializer `config.locales = %w(en es pt-BR <NL>)`
+1.1. dummy initializer `spec/dummy/config/initializers/hello.rb`
+1.2. initializer template `lib/generators/hello/install/templates/initializer.rb`
+2. create and modify the locale file `config/locales/hello.<NEW_LANGUAGE>.yml`
+3. ensure consistency with this test `bundle exec rspec spec others/localization_consistency_spec.rb`
+4. Thank You! Submit your Pull Request `:)`
+
 ## Versioning
 
 __Hello__ uses [Semantic Versioning 2.0.0](http://semver.org)

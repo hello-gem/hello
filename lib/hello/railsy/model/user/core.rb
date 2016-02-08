@@ -11,8 +11,7 @@ module Hello
         has_many :accesses, dependent: :destroy
 
         validates_presence_of :name, :locale, :time_zone
-        validates_inclusion_of :locale,    in: Hello.available_locales
-        validates_inclusion_of :time_zone, in: Hello.available_time_zones
+        validate :hello_validations_core
       end
 
       def main_password_credential
@@ -46,6 +45,13 @@ module Hello
 
       def role_is?(role)
         send("#{role}?")
+      end
+
+      private
+
+      def hello_validations_core
+        validates_inclusion_of :locale,    in: Hello.configuration.locales
+        validates_inclusion_of :time_zone, in: Hello.available_time_zones
       end
     end
   end
