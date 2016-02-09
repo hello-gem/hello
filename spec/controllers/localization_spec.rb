@@ -39,8 +39,8 @@ module Hello
           'ru'                      => 'en',
           'sk'                      => 'en',
           'vi'                      => 'en',
-          'zh'                      => 'en',
-          'zh-CN'                   => 'en'
+          'zh'                      => 'zh-CN',
+          'zh-CN'                   => 'zh-CN'
         }
 
         hash.each do |value, expected|
