@@ -1,6 +1,6 @@
 # https://github.com/hello-gem/hello
 
-zh:
+zh-CN:
   hello:
     locale_name: "中文-简体"
 
