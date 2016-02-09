@@ -40,7 +40,12 @@ module Hello
           'sk'                      => 'en',
           'vi'                      => 'en',
           'zh'                      => 'zh-CN',
-          'zh-CN'                   => 'zh-CN'
+          'zh-CN'                   => 'zh-CN',
+          'zh-HK'                   => 'zh-CN',
+          'zh-MO'                   => 'zh-CN',
+          'zh-SG'                   => 'zh-CN',
+          'zh-TW'                   => 'zh-CN',
+          'zh-YUE'                  => 'zh-CN',
         }
 
         hash.each do |value, expected|
