@@ -1,0 +1,68 @@
+# https://github.com/hello-gem/hello
+
+zh-TW:
+  hello:
+    locale_name: "中文-繁體"
+
+    mailer:
+      welcome:
+        subject: "歡迎訪問！"
+      confirm_email:
+        subject: "請登錄郵箱，確認郵件。"
+      forgot_password:
+        subject: "重新設置密碼。"
+
+    entities:
+      sign_out:
+        success: "您已經成功退出!"
+      unlink_access:
+        success: "斷開連接成功。"
+        alert: "斷開連接發生異常錯誤。"
+      session_switch:
+        success: "你已成功的切換賬號!"
+      session_forget:
+        success: "忘記密碼？"
+      sign_up:
+        success: "你賬號已經註冊成功了！"
+        error:
+          one: "當你註冊的時候，我們發現了 1 個錯誤!"
+          other: "當你註冊的時候，我們發現了 %{count} 個錯誤!"
+      sign_in:
+        success: "你已成功登錄！"
+        error:
+          one: "當你登錄的時候，我們發現了 1 個錯誤！"
+          other: "當你登錄的時候，我們發現了 %{count} 個錯誤！"
+      forgot_password:
+        success: "我們已經成功的發送了： <strong>\"%{login}\"</strong> 重新設置密碼的郵件!"
+        error:
+          one: "驗證時發現 1 個錯誤！"
+          other: "驗證時發現 %{count} 個錯誤！"
+      reset_password:
+        success: "你的密碼已經重設成功。"
+        alert: "這個鏈接已經失效，請重新嘗試。"
+        error:
+          one: "當你重設密碼的時候，我們發現了 1 個錯誤!"
+          other: "當你重設密碼的時候，我們發現了 %{count} 個錯誤!"
+      send_confirmation_email:
+        success: "一封帶有確認鏈接的郵件已經發送至您的郵箱：%{email}，請檢查郵箱（包括垃圾郵箱），並點擊該鏈接激活您的賬號！"
+      confirm_email:
+        success: "%{email} 確認成功。"
+        alert: "郵件確認已過期，請重新註冊。"
+      sudo_mode_authentication:
+        success: "個人信息驗證成功！ 在 60 分鐘內， 你不會被重新驗證身份！"
+        alert: "密碼錯誤！"
+      sudo_mode_expiration:
+        success: "如果有異常登錄，我們會要求你重新輸入密碼！"
+      update_my_user:
+        success: "你的個人信息更新成功！"
+        error:
+          one: "當你更新個人信息的時候，我們發現了 1 個錯誤!"
+          other: "當你更新個人信息的時候，我們發現了 %{count} 個錯誤!"
+      cancel_account:
+        success: "你的賬號已被註銷。"
+        alert: "終止你的賬號會對別的用戶產生異常情況，請聯系管理員！"
+      update_field:
+        success: " %{field} 更新成功"
+        alert: "我們發現了 1 個錯誤，在更新 %{field} 的時候！"
+      update_locale:
+        success: "切換語言成功。 '%{locale_name}'"
