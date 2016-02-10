@@ -19,11 +19,9 @@ pt-BR:
         success: "Dispositivo foi desconectado com sucesso da sua conta"
         alert: "Houve um erro ao desconectar esse dispositivo"
       session_switch:
-        # TODO: to Portuguese
-        success: "Switched Accounts Successfully!"
+        success: "Contas alteradas com sucesso!"
       session_forget:
-        # TODO: to Portuguese
-        success: "Forgotten"
+        success: "Sessão esquecida"
       sign_up:
         success: "Você se cadastrou com sucesso"
         error:
@@ -35,9 +33,7 @@ pt-BR:
           one: "1 erro foi encontrado em seu login"
           other: "%{count} erros foram  encontrados em seu login"
       forgot_password:
-        # TODO: adapt locale to Portuguese
-        # success: "Enviamos para seu email instruções para gerar uma nova senha"
-        success: "To get back into your account, follow the instructions we've sent to your <strong>\"%{login}\"</strong> email address."
+        success: "Para retornar a sua conta, siga as instruções que enviamos para seu email: <strong>\"%{login}\"</strong>."
         error:
           one: "1 erro foi encontrado"
           other: "%{count} erros foram encontrados"
