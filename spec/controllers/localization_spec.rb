@@ -33,7 +33,7 @@ module Hello
           'ko'                      => 'en',
           'nb-NO'                   => 'en',
           'nl'                      => 'en',
-          'pl'                      => 'en',
+          'pl'                      => 'pl',
           'pt'                      => 'pt-BR',
           'pt-BR'                   => 'pt-BR',
           'ru'                      => 'en',
