@@ -170,8 +170,8 @@ Link to [Translation files](https://github.com/hello-gem/hello/blob/master/confi
 Link to [Our Locale Contributors](https://github.com/hello-gem/hello/blob/master/LOCALES.md)
 
 1. change the initializer `config.locales = %w(en es pt-BR <NL>)`
-1.1. dummy initializer `spec/dummy/config/initializers/hello.rb`
-1.2. initializer template `lib/generators/hello/install/templates/initializer.rb`
+  1. dummy initializer `spec/dummy/config/initializers/hello.rb`
+  2. initializer template `lib/generators/hello/install/templates/initializer.rb`
 2. create and modify the locale file `config/locales/hello.<NEW_LANGUAGE>.yml`
 3. ensure consistency with this test `bundle exec rspec spec others/localization_consistency_spec.rb`
 4. Thank You! Submit your Pull Request `:)`
@@ -206,4 +206,3 @@ Look for these terms in the source code
   2. Test this method: Hello::Railsy::Controller::AccessRestrictionConcern::ClassMethods#restrict_if_role_is
 
   3. Generate Access Token Feature
-
