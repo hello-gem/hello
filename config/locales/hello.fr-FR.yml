@@ -1,0 +1,68 @@
+# https://github.com/hello-gem/hello
+
+fr-FR:
+  hello:
+    locale_name: "Français"
+
+    mailer:
+      welcome:
+        subject: "Bienvenue sur notre site"
+      confirm_email:
+        subject: "Confirmez cette adresse email"
+      forgot_password:
+        subject: "Instructions de réinitialisation de mot de passe"
+
+    entities:
+      sign_out:
+        success: "Vous vous êtes déconnecté !"
+      unlink_access:
+        success: "La liaison avec votre appareil a été retirée"
+        alert: "Une erreur s'est produite lors de la tentative de suppression du lien avec votre appareil"
+      session_switch:
+        success: "Permutation de compte effectuée!"
+      session_forget:
+        success: "Oublié"
+      sign_up:
+        success: "Votre inscription s'est déroulée avec succès"
+        error:
+          one: "1 erreur a été rencontrée lors de votre inscription"
+          other: "%{count} erreurs ont été rencontrées lors de votre inscription"
+      sign_in:
+        success: "Vous êtes maintenant connecté"
+        error:
+          one: "1 erreur a été rencontrée lors de votre connexion"
+          other: "%{count} erreurs ont été rencontrées lors de votre connexion"
+      forgot_password:
+        success: "Pour accéder à nouveau à votre compte, merci de suivre les instructions qui vous ont été envoyées sur votre adresse <strong>\"%{login}\"</strong>."
+        error:
+          one: "1 erreur a été rencontrée lors de la recherche de votre compte"
+          other: "%{count} erreurs on été rencontrées lors de la recherche de votre compte"
+      reset_password:
+        success: "Vous avez réinitialisé votre mot de passe!"
+        alert: "Ce lien est périmé, merci de faire une nouvelle demande de lien"
+        error:
+          one: "1 erreur a été rencontrée lors de la réinitialisation de votre mot de passe"
+          other: "%{count} erreurs ont été rencontrées lors de la réinitialisation de votre mot de passe"
+      send_confirmation_email:
+        success: "Nous venons d'envoyer un email à l'adresse %{email}"
+      confirm_email:
+        success: "%{email} a été confirmé avec succès."
+        alert: "Ce lien a expiré, merci de faire une nouvelle demande de lien"
+      sudo_mode_authentication:
+        success: "Nous connaissons désormais votre identité. Nous ne vous demanderons plus de mot passe pendant les 60 prochaines minutes"
+        alert: "Mot de passe incorrect"
+      sudo_mode_expiration:
+        success: "Veuillez saisir votre mot de passe pour ouvrir cet accès sensible"
+      update_my_user:
+        success: "Votre profil a été mis à jour avec succès"
+        error:
+          one: "1 erreur a été rencontrée lors de la mise à jour de votre profil"
+          other: "%{count} erreurs ont été rencontrées lors de la mise à jour de votre profil"
+      cancel_account:
+        success: "Vous avez désactivé votre compte avec succès"
+        alert: "Supprimer définitivement votre compte peut entrainer des problèmes pour les autres utilisateurs. Veuillez contacter notre équipe afin de procéder à sa suppression manuelle."
+      update_field:
+        success: "Votre %{field} a bien été mis à jour"
+        alert: "1 erreur a été rencontrée lors de la mise à jour de votre %{field}"
+      update_locale:
+        success: "Votre langue favorite a bien été appliquée. '%{locale_name}'"
