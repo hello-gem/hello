@@ -19,8 +19,9 @@ module Hello
 
     # GET /hello/switch_users/1
     def show
+      entity = SwitchUserEntity.new
       self.session_token = @access.token
-      redirect_to hello.switch_users_path, notice: 'Switched Accounts Successfully!'
+      redirect_to hello.switch_users_path, notice: entity.success_message
     end
 
     # DELETE /hello/switch_users/1
