@@ -1,0 +1,68 @@
+﻿# https://github.com/hello-gem/hello
+
+pl:
+  hello:
+    locale_name: "Polski"
+
+    mailer:
+      welcome:
+        subject: "Witamy na naszej stronie"
+      confirm_email:
+        subject: "Potwierdź e-mail"
+      forgot_password:
+        subject: "Instrukcje resetowania hasła"
+
+    entities:
+      sign_out:
+        success: "Wylogowano!"
+      unlink_access:
+        success: "Odłączono urządzenie od twojego konta"
+        alert: "Nie udało się odłączyć urządzenia"
+      session_switch:
+        success: "Pomyślnie przełączono konta!"
+      session_forget:
+        success: "Zapomniana"
+      sign_up:
+        success: "Rejestracja przebiegła pomyślnie"
+        error:
+          one: "1 błąd podczas próby rejestracji konta"
+          other: "%{count} błędy podczas próby rejestracji konta"
+      sign_in:
+        success: "Pomyślne logowanie"
+        error:
+          one: "1 błąd podczas próby logowania"
+          other: "%{count} błędy podczas próby logowania"
+      forgot_password:
+        success: "Aby odzyskać konto wykonaj instrukcje z e-maila wysłanego na adres <strong>\"%{login}\"</strong>."
+        error:
+          one: "1 błąd podczas próby odnalezienia danych logowania"
+          other: "%{count} błędy podczas próby odnalezienia danych logowania"
+      reset_password:
+        success: "Hasło zostało zresetowane"
+        alert: "Link przedawniony, poproś o nowy link"
+        error:
+          one: "1 błąd podczas próby resetowania hasła"
+          other: "%{count} błędy podczas próby resetowania hasła"
+      send_confirmation_email:
+        success: "Wysłaliśmy e-mail potwierdzający na adres %{email}"
+      confirm_email:
+        success: "%{email} potwierdzony."
+        alert: "Link przedawniony, poproś o nowy link"
+      sudo_mode_authentication:
+        success: "Teraz wiemy że to na pewno Ty, nie będziemy ponownie pytać o hasło przez 60 minut"
+        alert: "Niepoprawne hasło"
+      sudo_mode_expiration:
+        success: "Podaj ponownie hasło aby uzyskać dostęp do ważnych informacji"
+      update_my_user:
+        success: "Profil zaktualizowany"
+        error:
+          one: "1 błąd podczas próby aktualizacji profilu"
+          other: "%{count} błędy podczas próby aktualizacji profilu"
+      cancel_account:
+        success: "Konto usunięte"
+        alert: "Usunięcie Twojego konta może zakłócić działanie strony dla innych użytkowników, skontaktuj się z obsługą w celu ręcznego usunięcia konta."
+      update_field:
+        success: "%{field} zaktualizowane"
+        alert: "błąd w trakcie próby aktualizacji %{field}"
+      update_locale:
+        success: "Zmieniono język. '%{locale_name}'"
