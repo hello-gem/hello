@@ -1,6 +1,6 @@
 # https://github.com/hello-gem/hello
 
-fr-FR:
+fr:
   hello:
     locale_name: "Français"
 
