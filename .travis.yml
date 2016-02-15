@@ -8,7 +8,8 @@ matrix:
     # latest Ruby, latest Rails
     - rvm: 2.3.0
       gemfile: gemfiles/rails-4-2-stable.gemfile
-
+  allow_failures:
+    # allowed to fail because of a temporary chan
     # latest Ruby, next Rails
     - rvm: 2.3.0
       gemfile: gemfiles/rails-master.gemfile
