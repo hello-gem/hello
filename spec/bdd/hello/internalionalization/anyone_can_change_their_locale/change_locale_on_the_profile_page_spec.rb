@@ -28,7 +28,7 @@ RSpec.bdd.uic "On The Profile Page" do
       _when_I_update_my_locale_to('Spanish')
 
       Then "I expect to a confirmation message in 'es'" do
-        expect_flash_notice "Has actualizado tu perfil satisfactoriamente"
+        expect_flash_notice "Su perfil ha sido actualizado exitosamente"
       end
 
       _then_the_browser_locale_should_be('es')
