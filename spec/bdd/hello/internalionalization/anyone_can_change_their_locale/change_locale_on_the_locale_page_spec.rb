@@ -60,7 +60,7 @@ RSpec.bdd.uic "On The Sign In Form" do
       end
 
       Then "I expect to a confirmation message in 'es'" do
-        expect_flash_notice "Tu idioma ha sido configurado satisfactoriamente. 'Español'"
+        expect_flash_notice "Su idioma ha sido configurado exitosamente. 'Español'"
       end
 
       _then_the_browser_locale_should_be('es')

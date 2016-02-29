@@ -10,63 +10,59 @@ es:
       confirm_email:
         subject: "Confirmación de correo"
       forgot_password:
-        subject: "Instrucciones de recuperación de contraseña"
+        subject: "Instrucciones para recuperación de contraseña"
 
     entities:
       sign_out:
         success: "Sesión finalizada!"
       unlink_access:
-        success: "Dispositivo ha sido desconectado satisfactoriamente de tu cuenta"
+        success: "Dispositivo desconectado exitosamente de su cuenta"
         alert: "Hubo un error al desconectar este dispositivo"
       session_switch:
-        # TODO: to Spanish
-        success: "Switched Accounts Successfully!"
+        success: "Ha cambiado de cuentas exitosamente!"
       session_forget:
-        # TODO: to Spanish
-        success: "Forgotten"
+        success: "Olvidó su contraseña"
       sign_up:
-        success: "Tu cuenta ha sido creada correctamente"
+        success: "Su cuenta ha sido creada correctamente"
         error:
-          one: "1 error ocurrió tratando de crear tu cuenta"
-          other: "%{count} errores ocurrieron tratando de crear tu cuenta"
+          one: "Ha ocurrido un error intentando crear tu cuenta"
+          other: "Han ocurrido %{count} errores intentando crear tu cuenta"
       sign_in:
         success: "Sesión iniciada correctamente"
         error:
-          one: "1 error ocurrió tratando de inciar sesión"
-          other: "%{count} errores ocurrieron tratando de iniciar sesión"
+          one: "Ha ocurrido un error intentando iniciar sesión"
+          other: "Han ocurrido %{count} errores intentando iniciar sesión"
       forgot_password:
-        # TODO: adapt locale to Spanish
-        # success: "Hemos enviado un correo con instrucciones de como resetar tu contraseña"
-        success: "To get back into your account, follow the instructions we've sent to your <strong>\"%{login}\"</strong> email address."
+        success: "Hemos enviado un correo con instrucciones de como reestablecer tu contraseña a la dirección <strong>\"%{login}\"</strong>"
         error:
-          one: "1 error ocurrió tratando de encontrar tus credenciales"
-          other: "%{count} errores ocurrieron tratando de encontrar tus credenciales"
+          one: "Ha ocurrido un error intentado encontrar sus credenciales"
+          other: "Han ocurrido %{count} errores intentando encontrar sus credenciales"
       reset_password:
-        success: "Has reseteado tu contraseña satisfactoriamente"
-        alert: "Este enlace ha expirado, por favor pide un nuevo enlace"
+        success: "Su contraseña ha sido restablecida exitosamente"
+        alert: "Este enlace ha expirado, solicite uno nuevo por favor"
         error:
-          one: "1 error ocurrió mientras reseteabamos tu contraseña"
-          other: "%{count} errores ocurrieron mientras reseteabamos tu contraseña"
+          one: "Ha ocurrido un error mientras reestablecíamos su contraseña"
+          other: "Han ocurrido %{count} errores mientras reestablecíamos su contraseña"
       send_confirmation_email:
-        success: "Hemos enviado un correo de confirmación a %{email}"
+        success: "Se ha enviado un correo de confirmación a %{email}"
       confirm_email:
-        success: "%{email} ha sido confirmado satisfactoriamente."
-        alert: "Este enlace ha expirado, por favor pide un nuevo enlace"
+        success: "La dirección de correo electrónico %{email} ha sido confirmada exitosamente"
+        alert: "Este enlace ha expirado, solicite uno nuevo por favor."
       sudo_mode_authentication:
-        success: "Ahora sabemos que realmente eres tu. No preguntaremos tu contraseña nuevamente por 60 minutos"
+        success: "Hemos confirmado que realmente eres usted, su contraseña no será solicitada nuevamente en los próximos 60 minutos"
         alert: "Contraseña Incorrecta"
       sudo_mode_expiration:
-        success: "Pediremos tu contraseña por seguridad"
+        success: "Solicitamos su contraseña por seguridad"
       update_my_user:
-        success: "Has actualizado tu perfil satisfactoriamente"
+        success: "Su perfil ha sido actualizado exitosamente"
         error:
-          one: "1 error ocurrió mientras actualizabamos tu perfil"
-          other: "%{count} errores ocurrieron mientras actualizabamos tu perfil"
+          one: "Ha ocurrido un error mientras actualizábamos tu perfil"
+          other: "%{count} errores ocurrieron mientras actualizábamos tu perfil"
       cancel_account:
-        success: "Has desactivado tu cuenta satisfactoriamente"
-        alert: "Cancelando tu cuenta haría que otros usuario experimenten errores tratando de usar nuestro sitio. Por favor pongase en contacto con nosotros para cancelarla manualmente"
+        success: "Su cuenta ha sido desactivada exitosamente"
+        alert: "Cancelar tu cuenta pudiera provocar que otros usuario experimenten errores usando nuestro sitio. Por favor, ponte en contacto con nosotros para cancelarla manualmente"
       update_field:
-        success: "Tu %{field} ha sido actualizado satisfactoriamente"
-        alert: "1 error ocurrió mientras actualizabamos %{field}"
+        success: "Su %{field} ha sido actualizado exitosamente"
+        alert: "Ha ocurrido un error mientras actualizábamos %{field}"
       update_locale:
-        success: "Tu idioma ha sido configurado satisfactoriamente. '%{locale_name}'"
+        success: "Su idioma ha sido configurado exitosamente. '%{locale_name}'"
