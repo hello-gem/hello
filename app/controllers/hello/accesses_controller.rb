@@ -16,6 +16,7 @@ module Hello
 
     # GET /hello/accesses
     def index
+      render 'hello/management/accesses/index'
     end
 
     # DELETE /hello/accesses/1
