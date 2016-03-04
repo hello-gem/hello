@@ -17,7 +17,7 @@ module Hello
     def authenticate
       entity = SudoModeAuthenticationEntity.new(current_access)
 
-      if entity.authenticate!(password_param, 60.minutes.from_now)
+      if entity.authenticate!(password_param)
         path_to_go = session[:url] || root_path
         flash[:notice] = entity.success_message
         redirect_to path_to_go

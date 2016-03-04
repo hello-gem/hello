@@ -6,10 +6,16 @@ module Hello
       @access = access
     end
 
-    def authenticate!(password, sudo_expires_at)
+    def authenticate!(password)
       if access.user.password_is?(password)
-        access.update! sudo_expires_at: sudo_expires_at
+        access.update!(sudo_expires_at: sudo_expires_at)
       end
+    end
+
+    private
+
+    def sudo_expires_at
+      Hello.configuration.sudo_expires_in.from_now
     end
   end
 end

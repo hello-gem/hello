@@ -22,4 +22,6 @@ Hello.configure do |config|
 
   config.locales = %w(en es fr pl pt-BR zh-CN)
 
+  config.sudo_expires_in = 10.minutes
+
 end
