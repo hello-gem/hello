@@ -11,11 +11,12 @@ module Hello
 
     # GET /hello/sign_up
     def index
+      render_classic_sign_up
     end
 
     # GET /hello/sign_up/widget
     def widget
-      render layout: false
+      render 'hello/registration/classic_sign_up/widget', layout: false
     end
 
     # POST /hello/sign_up
@@ -26,6 +27,10 @@ module Hello
       else
         on_failure
       end
+    end
+
+    def render_classic_sign_up
+      render 'hello/registration/classic_sign_up/index'
     end
   end
 end
