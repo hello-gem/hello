@@ -3,7 +3,7 @@ module Hello
     module UpdateProfileOnFailure
 
       def on_failure
-        render action: 'show'
+        render_edit_profile
       end
 
     end

@@ -8,6 +8,7 @@ module Hello
 
     # GET /hello/cancel_account
     def index
+      render_cancel_account
     end
 
     # POST /hello/cancel_account
@@ -21,6 +22,12 @@ module Hello
         flash.now[:alert] = @cancel_account.alert_message
         on_failure
       end
+    end
+
+    private
+
+    def render_cancel_account
+      render 'hello/management/profile/cancel'
     end
   end
 end

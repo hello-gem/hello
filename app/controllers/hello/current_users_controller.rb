@@ -12,7 +12,7 @@ module Hello
     # GET /hello/user
     def show
       respond_to do |format|
-        format.html {}
+        format.html { render_edit_profile }
         format.json { render json: @user.as_json_web_api, status: :ok }
       end
     end
@@ -32,6 +32,10 @@ module Hello
 
     def user_params
       params.require(:user)
+    end
+
+    def render_edit_profile
+      render 'hello/management/profile/edit'
     end
   end
 end
