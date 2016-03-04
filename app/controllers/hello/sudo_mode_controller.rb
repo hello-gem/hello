@@ -10,6 +10,7 @@ module Hello
 
     # GET /hello/sudo_mode
     def form
+      render_sudo_mode_form
     end
 
     # PATCH /hello/sudo_mode
@@ -22,7 +23,7 @@ module Hello
         redirect_to path_to_go
       else
         flash.now[:alert] = entity.alert_message
-        render :form
+        render_sudo_mode_form
       end
     end
 

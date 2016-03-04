@@ -11,6 +11,7 @@ module Hello
 
     # GET /hello/sign_in
     def index
+      render_classic_sign_in
     end
 
     # POST /hello/sign_in
@@ -27,6 +28,10 @@ module Hello
 
     def sign_in_params
       params.require(:sign_in)
+    end
+
+    def render_classic_sign_in
+      render 'hello/authentication/classic_sign_in/index'
     end
   end
 end

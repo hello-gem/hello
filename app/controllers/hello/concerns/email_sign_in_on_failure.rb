@@ -4,7 +4,7 @@ module Hello
 
       def on_failure
         respond_to do |format|
-          format.html { render action: 'index' }
+          format.html { render_classic_sign_in }
           format.json { render json: @sign_in.errors, status: :unprocessable_entity }
         end
       end

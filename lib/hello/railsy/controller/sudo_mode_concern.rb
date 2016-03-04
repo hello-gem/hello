@@ -28,7 +28,11 @@ module Hello
 
         def render_sudo_mode
           hello_keep_current_url_on_session!
-          render '/hello/sudo_mode/form'
+          render_sudo_mode_form
+        end
+
+        def render_sudo_mode_form
+          render 'hello/authentication/sudo_mode/form'
         end
       end
     end

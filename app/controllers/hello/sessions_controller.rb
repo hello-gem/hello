@@ -18,10 +18,12 @@ module Hello
 
     # GET /hello/sessions
     def index
+      render_list
     end
 
     # GET /hello/sessions/new
     def new
+      render_new
     end
 
     # GET /hello/sessions/1
@@ -58,6 +60,14 @@ module Hello
 
     def find_access
       current_accesses.find { |at| at.id.to_s == params[:id] }
+    end
+
+    def render_list
+      render 'hello/authentication/sessions/index'
+    end
+
+    def render_new
+      render 'hello/authentication/sessions/new'
     end
   end
 end
