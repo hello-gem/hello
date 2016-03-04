@@ -120,6 +120,32 @@ RSpec.bdd.capability 'I can Sign Out' do
 
       end # feature
 
+      feature 'Unlinked', type: :feature do
+
+        scenario 'One Access' do
+
+          Given 'I should be signed in' do
+            visit '/'
+            then_I_expect_to_be_signed_in
+          end
+
+          When 'I get unlinked' do
+            Access.destroy_all
+            visit hello.current_user_path
+          end
+
+          Then 'I should be signed out' do
+            then_I_expect_to_be_signed_out
+          end
+
+          Then 'I should be sent to the sign in page' do
+            expect_to_be_on hello.sign_in_path
+          end
+
+        end # scenario
+
+      end # feature
+
     end # context
 
     api 'API', type: :request do
