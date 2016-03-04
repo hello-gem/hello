@@ -6,7 +6,7 @@
     <li><%= link_to "My Profile", current_user %></li>
     <li><%= link_to "Settings", hello.current_user_path %></li>
     <li><%= link_to "Switch Accounts", hello.sessions_path %></li>
-    <li><%= link_to "Sign Out", hello.sign_out_path %></li>
+    <li><%= link_to "Sign Out", hello.sign_out_path, method: :delete %></li>
   <% else %>
     <li><%= link_to "Sign Up", hello.sign_up_path %></li>
     <li><%= link_to "Sign In", hello.sign_in_path %></li>

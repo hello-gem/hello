@@ -15,7 +15,7 @@ Hello::Engine.routes.draw do
 
   resources :sessions, only: [:index, :new, :show, :destroy]
 
-  get 'sign_out' => 'sessions#sign_out'
+  delete 'sign_out' => 'sessions#sign_out'
 
   get 'sign_in'         => 'email_sign_in#index'
   post 'sign_in' => 'email_sign_in#authenticate'
