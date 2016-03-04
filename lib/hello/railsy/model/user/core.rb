@@ -10,7 +10,7 @@ module Hello
         has_many :password_credentials, dependent: :destroy
         has_many :accesses, dependent: :destroy
 
-        validates_presence_of :name, :locale, :time_zone
+        validates_presence_of :locale, :time_zone
         validate :hello_validations_core
       end
 

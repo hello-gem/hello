@@ -13,7 +13,7 @@ Hello.configure do |config|
   config.password_regex  = /\A[a-z0-9]+\z/i
   config.password_length = 4..250
 
-  config.classic_sign_up_fields = %w(name username time_zone locale city)
+  config.classic_sign_up_fields = %w(username time_zone locale name city)
 
   config.simple_encryptor  = Hello::Encryptor::MD5.new
   config.complex_encryptor = Hello::Encryptor::BCrypt.new

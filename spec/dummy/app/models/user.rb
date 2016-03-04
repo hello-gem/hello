@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include Hello::User
 
+  validates_presence_of :name
+
   def to_param
     username
   end

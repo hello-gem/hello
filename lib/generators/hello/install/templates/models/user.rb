@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   # has_many :things_to_nulify,   dependent: :nullify
   # has_many :things_to_restrict, dependent: :restrict_with_error
 
+  validates_presence_of :name
+
   def to_param
     username
   end
