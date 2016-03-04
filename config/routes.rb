@@ -18,7 +18,7 @@ Hello::Engine.routes.draw do
       get 'confirm/:token' => 'confirm_emails#confirm', as: 'confirm'
     end
     collection do
-      get 'expired_token' => 'confirm_emails#expired_token'
+      get 'expired_confirmation_token' => 'confirm_emails#expired_confirmation_token'
     end
   end
 

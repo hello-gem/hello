@@ -19,12 +19,13 @@ module Hello
         redirect_to emails_path
       else
         flash[:alert] = entity.alert_message
-        redirect_to expired_token_emails_path
+        redirect_to expired_confirmation_token_emails_path
       end
     end
 
-    # GET /hello/emails/1/expired_token
-    def expired_token
+    # GET /hello/emails/expired_confirmation_token
+    def expired_confirmation_token
+      render 'hello/management/email_credentials/expired_confirmation_token'
     end
 
     private

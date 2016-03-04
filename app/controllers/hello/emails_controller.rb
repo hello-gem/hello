@@ -19,6 +19,7 @@ module Hello
 
     # GET /hello/emails
     def index
+      render_list
     end
 
     # POST /hello/emails
@@ -27,7 +28,7 @@ module Hello
         redirect_to hello.emails_path, notice: 'Your email was successfully added.'
       else
         flash.now[:alert] = @credential.errors.full_messages.first
-        render action: :index
+        render_list
       end
     end
 
@@ -37,7 +38,7 @@ module Hello
         redirect_to hello.emails_path, notice: 'Your email was successfully removed.'
       else
         flash.now[:alert] = @credential.errors.full_messages.first
-        render action: :index
+        render_list
       end
     end
 
@@ -59,6 +60,10 @@ module Hello
     def credentials
       # TODO: this is necessary to hide a temporary bug, must solve this later
       current_user.credentials.where(type: 'EmailCredential')
+    end
+
+    def render_list
+      render 'hello/management/email_credentials/index'
     end
   end
 end

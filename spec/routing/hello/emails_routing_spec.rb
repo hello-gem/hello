@@ -30,7 +30,7 @@ module Hello
       end
 
       it 'routes to #expired_token' do
-        expect(get: '/emails/expired_token').to route_to('hello/confirm_emails#expired_token')
+        expect(get: '/emails/expired_confirmation_token').to route_to('hello/confirm_emails#expired_confirmation_token')
       end
     end
   end
