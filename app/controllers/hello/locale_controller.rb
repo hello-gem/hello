@@ -7,7 +7,7 @@ module Hello
     # GET /hello/locale
     def index
       respond_to do |format|
-        format.html {}
+        format.html { render 'hello/internationalization/locale/index' }
         format.json { render json: { locales: available_locales_with_names } }
       end
     end
