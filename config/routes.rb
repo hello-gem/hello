@@ -34,10 +34,6 @@ Hello::Engine.routes.draw do
   get 'cancel_account' => 'cancel_account#index'
   post 'cancel_account' => 'cancel_account#cancel'
 
-  #
-  # PASSWORD MANAGEMENT
-  #
-
   resources :passwords, only: [:index, :show, :update] do
     collection do
       get 'forgot' => 'forgot_password#index'

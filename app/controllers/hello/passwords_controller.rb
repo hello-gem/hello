@@ -19,7 +19,7 @@ module Hello
     # GET /hello/passwords/1
     def show
       respond_to do |format|
-        format.html {}
+        format.html { render_password_view }
         format.json { head :no_content }
       end
     end
@@ -37,7 +37,7 @@ module Hello
         end
       else
         respond_to do |format|
-          format.html { render :show }
+          format.html { render_password_view }
           format.json { render json: @password_credential.errors, status: :unprocessable_entity }
         end
       end
@@ -47,6 +47,10 @@ module Hello
 
     def password_credential_params
       params.require(:password_credential)
+    end
+
+    def render_password_view
+      render 'hello/management/password_credentials/show'
     end
   end
 end

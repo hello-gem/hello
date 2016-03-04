@@ -3,7 +3,7 @@ module Hello
     module ResetPasswordOnFailure
 
       def on_failure
-        render action: 'index'
+        render_reset_form
       end
 
     end

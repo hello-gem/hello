@@ -10,6 +10,7 @@ module Hello
     # GET /hello/passwords/forgot
     def index
       @entity = @forgot_password = ForgotPasswordEntity.new
+      render 'hello/management/password_credentials/forgot'
     end
 
     # POST /hello/passwords/forgot
@@ -23,5 +24,16 @@ module Hello
         on_failure
       end
     end
+
+    private
+
+    def render_success
+      render 'hello/management/password_credentials/forgot_success'
+    end
+
+    def render_form
+      render 'hello/management/password_credentials/forgot'
+    end
+
   end
 end

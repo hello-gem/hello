@@ -18,8 +18,9 @@ module Hello
       @reset_password = ResetPasswordEntity.new(@password_credential)
     end
 
-    # # GET /passwords/:id/reset/:user_id/:token
+    # GET /passwords/:id/reset/:user_id/:token
     def index
+      render_reset_form
     end
 
     # POST /passwords/:id/reset/:user_id/:token
@@ -36,6 +37,12 @@ module Hello
     rescue_from ActiveRecord::RecordNotFound do
       flash[:alert] = ResetPasswordEntity.new(nil).alert_message
       redirect_to forgot_passwords_path
+    end
+
+    private
+
+    def render_reset_form
+      render 'hello/management/password_credentials/reset'
     end
   end
 end

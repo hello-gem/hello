@@ -13,14 +13,6 @@ module Hello
 
       private
 
-      def render_success
-        render 'forgot'
-      end
-
-      def render_form
-        render 'index'
-      end
-
       def reset_token_and_deliver_email!
         p      = @user.main_password_credential
         token  = p.reset_verifying_token!
