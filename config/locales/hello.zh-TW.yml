@@ -22,12 +22,12 @@ zh-TW:
         success: "你已成功的切換賬號!"
       session_forget:
         success: "忘記密碼？"
-      sign_up:
+      classic_sign_up:
         success: "你賬號已經註冊成功了！"
         error:
           one: "當你註冊的時候，我們發現了 1 個錯誤!"
           other: "當你註冊的時候，我們發現了 %{count} 個錯誤!"
-      sign_in:
+      classic_sign_in:
         success: "你已成功登錄！"
         error:
           one: "當你登錄的時候，我們發現了 1 個錯誤！"

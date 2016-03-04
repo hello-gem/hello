@@ -1,12 +1,12 @@
 module Hello
-  class EmailSignInController < ApplicationController
-    include Hello::Concerns::EmailSignInOnSuccess
-    include Hello::Concerns::EmailSignInOnFailure
+  class ClassicSignInController < ApplicationController
+    include Hello::Concerns::ClassicSignInOnSuccess
+    include Hello::Concerns::ClassicSignInOnFailure
 
     kick :guest, only: [:authenticated]
 
     before_actions do
-      only(:index, :authenticate) { @entity = @sign_in = SignInEntity.new }
+      only(:index, :authenticate) { @entity = @sign_in = ClassicSignInEntity.new }
     end
 
     # GET /hello/sign_in

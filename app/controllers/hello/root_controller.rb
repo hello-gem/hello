@@ -10,8 +10,8 @@ module Hello
 
     # GET /hello
     def index
-      @sign_up = SignUpEntity.new
-      @sign_in = SignInEntity.new
+      @sign_up = ClassicSignUpEntity.new
+      @sign_in = ClassicSignInEntity.new
     end
   end
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Hello
-  describe SignUpEntity do
+  describe ClassicSignUpEntity do
     describe '.register(email:string, username:string, password:string)' do
       let(:valid_attrs) { { city: 'Brasilia', name: 'James Pinto', email: 'foo@bar.com', username: 'foobar', password: 'foobar' } }
 
@@ -254,5 +254,5 @@ module Hello
         end # describe password
       end # describe by field
     end # describe .register
-  end # describe SignUpEntity
+  end # describe ClassicSignUpEntity
 end # module Hello

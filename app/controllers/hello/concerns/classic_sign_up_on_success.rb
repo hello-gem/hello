@@ -1,6 +1,6 @@
 module Hello
   module Concerns
-    module EmailSignUpOnSuccess
+    module ClassicSignUpOnSuccess
 
       def on_success
         deliver_welcome_email

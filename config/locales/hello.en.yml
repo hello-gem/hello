@@ -22,12 +22,12 @@ en:
         success: "Switched Accounts Successfully!"
       session_forget:
         success: "Forgotten"
-      sign_up:
+      classic_sign_up:
         success: "You have signed up successfully"
         error:
           one: "1 error was found while trying to sign up"
           other: "%{count} errors were found while trying to sign up"
-      sign_in:
+      classic_sign_in:
         success: "You have signed in successfully"
         error:
           one: "1 error was found while trying to sign in"

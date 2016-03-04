@@ -5,19 +5,19 @@ module Hello
     routes { Hello::Engine.routes }
 
     it 'routes to #index' do
-      expect(get('/sign_up')).to route_to('hello/email_sign_up#index')
+      expect(get('/sign_up')).to route_to('hello/classic_sign_up#index')
     end
 
     it 'routes to #create' do
-      expect(post('/sign_up')).to route_to('hello/email_sign_up#create')
+      expect(post('/sign_up')).to route_to('hello/classic_sign_up#create')
     end
 
     it 'routes to #index' do
-      expect(get('/sign_in')).to route_to('hello/email_sign_in#index')
+      expect(get('/sign_in')).to route_to('hello/classic_sign_in#index')
     end
 
     it 'routes to #authenticate' do
-      expect(post('/sign_in')).to route_to('hello/email_sign_in#authenticate')
+      expect(post('/sign_in')).to route_to('hello/classic_sign_in#authenticate')
     end
   end
 end

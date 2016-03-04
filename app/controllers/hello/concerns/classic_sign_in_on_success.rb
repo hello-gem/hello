@@ -1,6 +1,6 @@
 module Hello
   module Concerns
-    module EmailSignInOnSuccess
+    module ClassicSignInOnSuccess
 
       def on_success
         access_token = sign_in!(@sign_in.user, expires_at)

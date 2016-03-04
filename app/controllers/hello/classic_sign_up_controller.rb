@@ -1,12 +1,12 @@
 module Hello
-  class EmailSignUpController < ApplicationController
-    include Hello::Concerns::EmailSignUpOnSuccess
-    include Hello::Concerns::EmailSignUpOnFailure
+  class ClassicSignUpController < ApplicationController
+    include Hello::Concerns::ClassicSignUpOnSuccess
+    include Hello::Concerns::ClassicSignUpOnFailure
 
     dont_kick_people
 
     before_action do
-      @entity = @sign_up = SignUpEntity.new
+      @entity = @sign_up = ClassicSignUpEntity.new
     end
 
     # GET /hello/sign_up

@@ -1,6 +1,6 @@
 module Hello
   module Concerns
-    module EmailSignInOnFailure
+    module ClassicSignInOnFailure
 
       def on_failure
         respond_to do |format|

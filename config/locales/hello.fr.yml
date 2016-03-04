@@ -22,12 +22,12 @@ fr:
         success: "Permutation de compte effectuée !"
       session_forget:
         success: "Oublié"
-      sign_up:
+      classic_sign_up:
         success: "Votre inscription s'est déroulée avec succès"
         error:
           one: "1 erreur a été rencontrée lors de votre inscription"
           other: "%{count} erreurs ont été rencontrées lors de votre inscription"
-      sign_in:
+      classic_sign_in:
         success: "Vous êtes maintenant connecté"
         error:
           one: "1 erreur a été rencontrée lors de votre connexion"

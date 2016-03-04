@@ -1,5 +1,5 @@
 module Hello
-  class SignInEntity < AbstractEntity
+  class ClassicSignInEntity < AbstractEntity
     attr_accessor :login, :password
 
     def authenticate(login, password)

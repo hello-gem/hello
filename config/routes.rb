@@ -5,9 +5,9 @@ Hello::Engine.routes.draw do
   # REGISTRATION
   #
 
-  get 'sign_up' => 'email_sign_up#index'
-  post 'sign_up' => 'email_sign_up#create'
-  get 'sign_up/widget'  => 'email_sign_up#widget'
+  get 'sign_up' => 'classic_sign_up#index'
+  post 'sign_up' => 'classic_sign_up#create'
+  get 'sign_up/widget'  => 'classic_sign_up#widget'
 
   #
   # AUTHENTICATION
@@ -17,8 +17,8 @@ Hello::Engine.routes.draw do
 
   delete 'sign_out' => 'sessions#sign_out'
 
-  get 'sign_in'         => 'email_sign_in#index'
-  post 'sign_in' => 'email_sign_in#authenticate'
+  get 'sign_in'         => 'classic_sign_in#index'
+  post 'sign_in' => 'classic_sign_in#authenticate'
 
   get 'sudo_mode' => 'sudo_mode#form'
   patch 'sudo_mode' => 'sudo_mode#authenticate'

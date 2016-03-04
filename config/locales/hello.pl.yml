@@ -22,12 +22,12 @@ pl:
         success: "Pomyślnie przełączono konta!"
       session_forget:
         success: "Zapomniana"
-      sign_up:
+      classic_sign_up:
         success: "Rejestracja przebiegła pomyślnie"
         error:
           one: "1 błąd podczas próby rejestracji konta"
           other: "%{count} błędy podczas próby rejestracji konta"
-      sign_in:
+      classic_sign_in:
         success: "Pomyślne logowanie"
         error:
           one: "1 błąd podczas próby logowania"

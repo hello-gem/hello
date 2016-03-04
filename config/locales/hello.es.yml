@@ -22,12 +22,12 @@ es:
         success: "Ha cambiado de cuentas exitosamente!"
       session_forget:
         success: "Olvidó su contraseña"
-      sign_up:
+      classic_sign_up:
         success: "Su cuenta ha sido creada correctamente"
         error:
           one: "Ha ocurrido un error intentando crear tu cuenta"
           other: "Han ocurrido %{count} errores intentando crear tu cuenta"
-      sign_in:
+      classic_sign_in:
         success: "Sesión iniciada correctamente"
         error:
           one: "Ha ocurrido un error intentando iniciar sesión"

@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def impersonate
     sign_in!(@user, 60.minutes.from_now, 60.minutes.from_now)
 
-    redirect_to root_path, notice: t('hello.entities.sign_in.success')
+    redirect_to root_path, notice: t('hello.entities.classic_sign_in.success')
   end
 
   private

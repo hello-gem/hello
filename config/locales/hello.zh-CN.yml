@@ -22,12 +22,12 @@ zh-CN:
         success: "你已成功的切换账号!"
       session_forget:
         success: "忘记密码？"
-      sign_up:
+      classic_sign_up:
         success: "你账号已经注册成功了！"
         error:
           one: "当你注册的时候，我们发现了 1 个错误!"
           other: "当你注册的时候，我们发现了 %{count} 个错误!"
-      sign_in:
+      classic_sign_in:
         success: "你已成功登录！"
         error:
           one: "当你登录的时候，我们发现了 1 个错误"

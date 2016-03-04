@@ -22,12 +22,12 @@ pt-BR:
         success: "Contas alteradas com sucesso!"
       session_forget:
         success: "Sessão esquecida"
-      sign_up:
+      classic_sign_up:
         success: "Você se cadastrou com sucesso"
         error:
           one: "1 erro foi encontrado em seu cadastro"
           other: "%{count} erros foram encontrados em seu cadastro"
-      sign_in:
+      classic_sign_in:
         success: "Você acessou o sistema com sucesso"
         error:
           one: "1 erro foi encontrado em seu login"

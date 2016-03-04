@@ -1,5 +1,5 @@
 module Hello
-  class SignUpEntity < AbstractEntity
+  class ClassicSignUpEntity < AbstractEntity
     attr_reader :email_credential, :password_credential, :user
 
     def initialize
@@ -119,11 +119,11 @@ module Hello
     end
 
     def starting_role
-      Hello.configuration.email_sign_up_role
+      'onboarding'
     end
 
     def user_fields
-      Hello.configuration.email_sign_up_fields.map(&:to_s)
+      Hello.configuration.classic_sign_up_fields.map(&:to_s)
     end
 
     def defaults
