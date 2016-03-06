@@ -1,5 +1,7 @@
 <h1>Listing Users (<%= @count %>)</h1>
 
+<%= link_to('New User as a Webmaster', new_user_path) %>
+
 <table class="table table-condensed">
   <thead>
     <tr>
@@ -11,7 +13,7 @@
       <th>Time zone</th>
       <th>Credentials</th>
       <th>Accesses</th>
-        <!-- actions -->
+      <!-- actions -->
       <th colspan="1"></th>
     </tr>
   </thead>

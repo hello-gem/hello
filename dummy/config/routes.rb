@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'onboarding' => 'onboarding#index'
   post 'onboarding' => 'onboarding#continue'
 
-  resources :users, only: [:index, :show] do
+  resources :users, only: [:index, :show, :new, :create] do
     collection do
       get 'list'
     end

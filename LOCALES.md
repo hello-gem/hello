@@ -2,8 +2,23 @@
 
 Special Thanks to our locale contributors :)
 
+## Available
 
-TODO: make this list prettier when we have 20+ languages
+| Locale  | Author |
+|---|---|
+| en |  |
+| es | YYY |
+| fr | arnaud |
+| pl | @mpapis |
+| pt-BR | YYY |
+| zh-CN | David |
+| zh-TW | David |
+
+
+
+
+
+## Needing
 
 | Locale  | Author |
 |---|---|
@@ -22,14 +37,11 @@ TODO: make this list prettier when we have 20+ languages
 | de-AT |  |
 | de-CH |  |
 | el |  |
-| en |  |
 | eo |  |
-| es |  |
 | et |  |
 | eu |  |
 | fa |  |
 | fi |  |
-| fr |  |
 | fr-CA |  |
 | fr-CH |  |
 | gl |  |
@@ -63,7 +75,6 @@ TODO: make this list prettier when we have 20+ languages
 | pa |  |
 | pl |  |
 | pt |  |
-| pt-BR |  |
 | rm |  |
 | ro |  |
 | ru |  |
@@ -83,9 +94,7 @@ TODO: make this list prettier when we have 20+ languages
 | uz |  |
 | vi |  |
 | wo |  |
-| zh-CN |  |
 | zh-HK |  |
-| zh-TW |  |
 | zh-YUE |  |
 
 -------

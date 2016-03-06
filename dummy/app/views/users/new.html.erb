@@ -1,0 +1,62 @@
+<%= form_for @user, as: :user, url: users_path, html: {class: "form-horizontal", role: "form"} do |f| %>
+
+  <!-- Errors -->
+  <% if @user.errors.any? %>
+    <%= render '/hello/shared/errors', business: @user %>
+  <% end %>
+
+  <div class="form-group">
+    <%= label_tag :role, nil, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= text_field_tag :role, @starting_role, class: "form-control", placeholder: "Role" %>
+    </div>
+  </div>
+
+  <%= f.text_field :city, class: "form-control", placeholder: "City" %>
+
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :username, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :username, class: "form-control", placeholder: "Username" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :password, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :locale, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.select :locale, hello_locale_select_options, {}, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :time_zone, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.time_zone_select :time_zone, nil, {}, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-4">
+      <%= f.submit "Create User", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

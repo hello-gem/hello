@@ -57,7 +57,7 @@ class Hello::InstallGenerator < Rails::Generators::Base
 
   def generate_profile
     my_route %(
-  resources :users, only: [:index, :show] do
+  resources :users, only: [:index, :show, :new, :create] do
     collection do
       get 'list'
     end
