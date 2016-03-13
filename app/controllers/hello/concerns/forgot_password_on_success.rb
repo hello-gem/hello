@@ -3,7 +3,7 @@ module Hello
     module ForgotPasswordOnSuccess
 
       def on_success
-        reset_token_and_deliver_email! if should_reset_verifying_token?
+        reset_token_and_deliver_emails!
 
         respond_to do |format|
           format.html { render_success }
@@ -13,24 +13,23 @@ module Hello
 
       private
 
-      def reset_token_and_deliver_email!
-        p      = @user.main_password_credential
-        token  = p.reset_verifying_token!
-        url    = hello.reset_password_url(p.id, @user.id, token)
-        @user.email_credentials.map(&:email).each do |email|
+      def reset_token_and_deliver_emails!
+        url = get_reset_password_url
+
+        emails.each do |email|
           Mailer.forgot_password(email, @user, url).deliver
         end
       end
 
-      def should_reset_verifying_token?
-        true
-        # SUGGESTION: Don't let users request a new password more than once a week
-        # past_or_never?(@credential.password_token_digested_at, 7.days.ago)
+      def emails
+        @user.email_credentials.map(&:email)
       end
 
-      # def past_or_never?(time1, time2)
-      #   time1.blank? || (time1 < time2)
-      # end
+      def get_reset_password_url
+        p      = @user.main_password_credential
+        token  = p.reset_verifying_token!
+        hello.reset_password_url(p.id, @user.id, token)
+      end
 
     end
   end
