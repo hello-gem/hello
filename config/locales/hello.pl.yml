@@ -53,7 +53,7 @@ pl:
         alert: "Niepoprawne hasło"
       sudo_mode_expiration:
         success: "Podaj ponownie hasło aby uzyskać dostęp do ważnych informacji"
-      update_my_user:
+      current_user:
         success: "Profil zaktualizowany"
         error:
           one: "1 błąd podczas próby aktualizacji profilu"
