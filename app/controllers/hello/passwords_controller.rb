@@ -5,7 +5,7 @@ module Hello
 
     before_action do
       @password_credential = current_user.password_credential || fail(ActiveRecord::NotFound)
-      @entity = UpdateMyUserEntity.new(@password_credential)
+      @entity = CurrentUserEntity.new(@password_credential)
     end
 
     # GET /hello/passwords

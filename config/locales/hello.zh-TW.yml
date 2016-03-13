@@ -53,7 +53,7 @@ zh-TW:
         alert: "密碼錯誤！"
       sudo_mode_expiration:
         success: "如果有異常登錄，我們會要求你重新輸入密碼！"
-      update_my_user:
+      current_user:
         success: "你的個人信息更新成功！"
         error:
           one: "當你更新個人信息的時候，我們發現了 1 個錯誤!"
