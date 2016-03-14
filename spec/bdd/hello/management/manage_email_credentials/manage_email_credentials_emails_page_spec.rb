@@ -126,7 +126,7 @@ RSpec.bdd.uic "Emails Page" do
       end
 
       Then "nor in the database" do
-        expect(Credential.pluck(:email)).not_to include @new_email
+        expect(EmailCredential.pluck(:email)).not_to include @new_email
       end
     end
   end
