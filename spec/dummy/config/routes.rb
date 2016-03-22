@@ -22,5 +22,5 @@ Rails.application.routes.draw do
 
   root to: 'root#index'
   mount Hello::Engine => '/hello'
-  get '/hello/sign_out' => 'sessions#sign_out'
+  get '/hello/sign_out' => 'hello/sessions#sign_out'
 end
