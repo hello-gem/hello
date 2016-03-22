@@ -10,16 +10,28 @@ RSpec.bdd.uic "Forgot Password" do
 
 
 
-    scenario "Credentials Found" do
-      When "I submit a valid email" do
-        when_I_ask_to_reset_my_password
+    context "Credentials Found" do
+
+      scenario 'Username' do
+        When "I submit a valid username" do
+          when_I_ask_to_reset_my_password
+        end
+
+        Then "I should see a confirmation message" do
+          expect_to_see "To get back into your account, follow the instructions we've sent to your \"foobar\" email address."
+          expect(current_path).to eq hello.forgot_passwords_path
+        end
       end
 
+      scenario 'Email' do
+        When "I submit a valid email" do
+          when_I_ask_to_reset_my_password('foo@bar.com')
+        end
 
-
-      Then "I should see a confirmation message" do
-        expect_to_see "To get back into your account, follow the instructions we've sent to your \"foobar\" email address."
-        expect(current_path).to eq hello.forgot_passwords_path
+        Then "I should see a confirmation message" do
+          expect_to_see "To get back into your account, follow the instructions we've sent to your \"foo@bar.com\" email address."
+          expect(current_path).to eq hello.forgot_passwords_path
+        end
       end
 
 

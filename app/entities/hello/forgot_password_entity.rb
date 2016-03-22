@@ -29,7 +29,7 @@ module Hello
 
     def find_user
       if email?
-        credential = EmailCredential.find_by_email(login)
+        credential = ::EmailCredential.find_by_email(login)
         credential.user
       else
         ::User.where(username: login).first
