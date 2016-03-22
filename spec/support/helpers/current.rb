@@ -8,7 +8,7 @@ def current_access
 end
 
 def last_credential
-  Credential.last
+  EmailCredential.last
 end
 
 def current_user

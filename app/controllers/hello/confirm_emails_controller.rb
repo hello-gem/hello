@@ -6,7 +6,7 @@ module Hello
 
     before_actions do
       all { sign_out! }
-      only(:confirm) { @credential = ::Credential.where(id: params[:id]).first }
+      only(:confirm) { @email_credential = ::EmailCredential.where(id: params[:id]).first }
     end
 
     # GET /hello/emails/1/confirm/:token
