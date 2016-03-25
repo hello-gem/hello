@@ -20,7 +20,7 @@ class Hello::InstallGenerator < Rails::Generators::Base
 
   def append_to_the_routes
     my_route 'mount Hello::Engine => "/hello"'
-    my_route "get '/hello/sign_out' => 'hello/sessions#sign_out'"
+    my_route "get '/hello/sign_out' => 'hello/authentication/sessions#sign_out'"
   end
 
   def create_the_migrations

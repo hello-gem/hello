@@ -211,7 +211,7 @@ RSpec.describe 'Hello Gem', type: :controller do
         end
       end
 
-      describe Hello::CurrentUsersController do
+      describe Hello::Management::CurrentUsersController do
         via_session_feature
 
         via_headers_feature

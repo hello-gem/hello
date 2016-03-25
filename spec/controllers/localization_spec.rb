@@ -8,7 +8,7 @@ module Hello
     # I can see the website
     # So I don't face missing translation issues
 
-    describe LocaleController do
+    describe Internationalization::LocaleController do
       describe 'Browser locale or default' do
         hash = {
           nil                       => 'en',

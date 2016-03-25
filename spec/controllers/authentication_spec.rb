@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Hello
+module Hello::Management
   describe 'Authentication' do
     routes { Hello::Engine.routes }
 
