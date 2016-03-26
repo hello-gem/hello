@@ -53,7 +53,7 @@ en:
         alert: "Incorrect Password"
       sudo_mode_expiration:
         success: "We will now ask your password for sensitive access"
-      current_user:
+      profile:
         success: "You have updated your profile successfully"
         error:
           one: "1 error was found while updating your profile"

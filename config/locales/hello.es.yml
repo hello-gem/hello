@@ -53,7 +53,7 @@ es:
         alert: "Contraseña Incorrecta"
       sudo_mode_expiration:
         success: "Solicitamos su contraseña por seguridad"
-      current_user:
+      profile:
         success: "Su perfil ha sido actualizado exitosamente"
         error:
           one: "Ha ocurrido un error mientras actualizábamos tu perfil"

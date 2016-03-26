@@ -31,7 +31,7 @@ Hello::Engine.routes.draw do
   scope module: 'management' do
     resources :accesses, only: [:index, :destroy]
 
-    resource :current_user, only: [:show, :update]
+    resource :profile, only: [:show, :update]
 
     get 'cancel_account' => 'cancel_account#index'
     post 'cancel_account' => 'cancel_account#cancel'

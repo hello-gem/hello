@@ -1,13 +1,13 @@
 module Hello
   module Management
-    class CurrentUsersController < ApplicationController
+    class ProfilesController < ApplicationController
       include Hello::Concerns::UpdateProfileOnSuccess
       include Hello::Concerns::UpdateProfileOnFailure
 
       kick :guest, :onboarding
 
       before_action do
-        @user_entity = CurrentUserEntity.new(@user = current_user)
+        @user_entity = ProfileEntity.new(@user = current_user)
       end
 
       # GET /hello/user

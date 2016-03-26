@@ -131,7 +131,7 @@ RSpec.bdd.capability 'I can Sign Out' do
 
           When 'I get unlinked' do
             Access.destroy_all
-            visit hello.current_user_path
+            visit hello.profile_path
           end
 
           Then 'I should be signed out' do

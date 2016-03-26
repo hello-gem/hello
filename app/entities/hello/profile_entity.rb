@@ -1,5 +1,5 @@
 module Hello
-  class CurrentUserEntity < AbstractEntity
+  class ProfileEntity < AbstractEntity
     def initialize(user)
       @user = user
       self.class.send :attr_accessor, *permitted_column_names

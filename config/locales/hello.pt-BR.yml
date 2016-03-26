@@ -53,7 +53,7 @@ pt-BR:
         alert: "Senha incorreta"
       sudo_mode_expiration:
         success: "Estamos perguntando sua senha para sua segurança"
-      current_user:
+      profile:
         success: "Você atualizou seu perfil com sucesso"
         error:
           one: "1 erro foi encontrado na atualização do perfil"

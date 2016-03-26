@@ -1,16 +1,16 @@
 require 'spec_helper'
 
 module Hello
-  describe Management::CurrentUsersController do
+  describe Management::ProfilesController do
     describe 'routing' do
       routes { Hello::Engine.routes }
 
       it 'routes to #show' do
-        expect(get('/current_user')).to route_to('hello/management/current_users#show')
+        expect(get('/profile')).to route_to('hello/management/profiles#show')
       end
 
       it 'routes to #update' do
-        expect(patch('/current_user')).to route_to('hello/management/current_users#update')
+        expect(patch('/profile')).to route_to('hello/management/profiles#update')
       end
     end
   end
