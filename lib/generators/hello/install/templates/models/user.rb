@@ -1,3 +1,6 @@
+# Everything you need to know about customizing Hello
+#
+# https://github.com/hello-gem/hello/tree/master/FAQ/HOW-TO
 class User < ActiveRecord::Base
   include Hello::User
 
@@ -14,24 +17,6 @@ class User < ActiveRecord::Base
 
   def as_json_web_api
     attributes
-  end
-
-  # hello authorization
-
-  def guest?
-    %w(guest).include?(role)
-  end
-
-  def onboarding?
-    %w(onboarding).include?(role)
-  end
-
-  def user?
-    %w(user webmaster).include?(role)
-  end
-
-  def webmaster?
-    %w(webmaster).include?(role)
   end
 
   # hello account management

@@ -47,6 +47,22 @@ module Hello
         send("#{role}?")
       end
 
+      def guest?
+        %w(guest).include?(role)
+      end
+
+      def onboarding?
+        %w(onboarding).include?(role)
+      end
+
+      def user?
+        %w(user webmaster).include?(role)
+      end
+
+      def webmaster?
+        %w(webmaster).include?(role)
+      end
+
       private
 
       def hello_validations_core
