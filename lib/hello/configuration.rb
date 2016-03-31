@@ -6,7 +6,7 @@ module Hello
 
   # invoked internally
   def self.configuration
-    @configuration ||= Rails.configuration.hello
+    Rails.configuration.hello ||= ActiveSupport::OrderedOptions.new
   end
 
 end

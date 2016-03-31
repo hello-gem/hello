@@ -4,6 +4,8 @@ module Hello
   class Engine < Rails::Engine
     isolate_namespace Hello
 
+    config.hello = nil
+
     initializer 'hello.filter' do |app|
       app.config.filter_parameters += [:password, :token]
     end
@@ -16,9 +18,6 @@ module Hello
       app.config.autoload_paths += %W(#{Engine.root}/lib)
       app.config.watchable_dirs["#{Engine.root}/lib"] = [:rb]
     end
-
-    config.hello            = ActiveSupport::OrderedOptions.new
-    config.hello.extensions = ActiveSupport::OrderedOptions.new
 
     config.generators do |g|
       g.test_framework :rspec, view_specs: false,
