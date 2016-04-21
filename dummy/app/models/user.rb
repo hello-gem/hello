@@ -1,5 +1,4 @@
-class User < ActiveRecord::Base
-  include Hello::User
+class User < Hello::RailsActiveRecord::User
 
   validates_presence_of :name
 

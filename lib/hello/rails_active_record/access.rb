@@ -1,7 +1,20 @@
 module Hello
-  module Access
-    module Core
-      extend ActiveSupport::Concern
+  module RailsActiveRecord
+    class Access < ::ActiveRecord::Base
+      self.table_name = 'accesses'
+
+      # ASSOCIATIONS
+      belongs_to :user, counter_cache: true, class_name: '::User'
+
+      # VALIDATIONS
+      validates_presence_of :user, :expires_at, :user_agent_string, :token
+      validates_uniqueness_of :token
+
+      before_validation on: :create do
+        self.token = "#{user_id}-#{Hello.configuration.simple_encryptor.single(16)}"
+      end
+
+      # CUSTOM METHODS
 
       def full_device_name
         Hello::DeviceName.instance.parse(user_agent_string)
@@ -15,26 +28,12 @@ module Hello
         end
       end
 
-      included do
-        belongs_to :user, counter_cache: true
-
-        validates_presence_of :user, :expires_at, :user_agent_string, :token
-        validates_uniqueness_of :token
-
-        before_validation on: :create do
-          self.token = "#{user_id}-#{Hello.configuration.simple_encryptor.single(16)}"
-        end
-      end
-
-      #
-      # JSON
-      #
       def as_json_web_api
         hash = attributes.slice(*%w(expires_at token user_id))
         hash.merge!({ user: user.as_json_web_api })
       end
 
-      module ClassMethods
+      class << self
         def destroy_all_expired
           where('expires_at < ?', Time.now).destroy_all
           true

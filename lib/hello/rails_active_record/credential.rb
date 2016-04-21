@@ -1,18 +1,16 @@
 module Hello
-  module Credential
-    module Core
-      extend ActiveSupport::Concern
+  module RailsActiveRecord
+    class Credential < ::ActiveRecord::Base
+      self.table_name = 'credentials'
 
-      included do
-        belongs_to :user, counter_cache: true
-        validates_presence_of :user
+      # ASSOCIATIONS
+      belongs_to :user, counter_cache: true, class_name: '::User'
 
-        validates_presence_of :type
-        validates_inclusion_of :type, in: %w(EmailCredential PasswordCredential)
-      end
+      # VALIDATIONS
+      validates_presence_of :user, :type
+      validates_inclusion_of :type, in: %w(EmailCredential PasswordCredential)
 
-      module ClassMethods
-      end
+      # CUSTOM METHODS
 
       # def is_email?
       #   is_a?(EmailCredential)
