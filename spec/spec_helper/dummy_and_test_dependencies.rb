@@ -1,4 +1,4 @@
-require SPEC_ROOT.join('dummy/config/environment.rb')
+require DUMMY_ROOT.join('config/environment.rb')
 
 require 'factory_girl_rails'
 require 'faker'
