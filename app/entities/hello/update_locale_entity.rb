@@ -5,7 +5,7 @@ module Hello
     end
 
     def locale
-      locale_if_available || Hello.default_locale
+      locale_if_available || I18n.default_locale
     end
 
     def success_message(_extra = {})

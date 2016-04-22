@@ -27,7 +27,7 @@ module Hello
 
         def recommended_locale
           x = http_accept_language.compatible_language_from(available_locales)
-          x || Hello.default_locale
+          x || I18n.default_locale
         end
 
         included do
