@@ -30,9 +30,17 @@ module Hello
           x || I18n.default_locale
         end
 
+        def human_current_locale
+          t('hello.locale_name')
+        end
+
+        def current_locale
+          session['locale']
+        end
+
         included do
           before_action :use_locale
-          helper_method :available_locales, :available_locales_with_names, :hello_locale_select_options
+          helper_method :available_locales, :available_locales_with_names, :hello_locale_select_options, :human_current_locale, :current_locale
         end
 
         private
