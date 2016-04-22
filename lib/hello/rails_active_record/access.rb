@@ -17,7 +17,7 @@ module Hello
       # CUSTOM METHODS
 
       def full_device_name
-        Hello::DeviceName.instance.parse(user_agent_string)
+        Hello::Utils::DeviceName.instance.parse(user_agent_string)
       end
 
       def active_token_or_destroy

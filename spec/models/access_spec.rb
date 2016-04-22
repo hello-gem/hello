@@ -11,7 +11,7 @@ describe Access do
   describe 'methods' do
     it '#full_device_name' do
       # Mock
-      expect(Hello::DeviceName.instance).to receive(:parse)
+      expect(Hello::Utils::DeviceName.instance).to receive(:parse)
       # When
       subject.full_device_name
     end

@@ -9,7 +9,7 @@ require 'spec_helper'
 # http://www.useragentstring.com/pages/Chrome/
 # http://www.webapps-online.com/online-tools/user-agent-strings
 
-module Hello
+module Hello::Utils
   describe DeviceName do
     def expect_device_name(original, expected)
       expect(DeviceName.instance.parse(original)).to eq(expected)

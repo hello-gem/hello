@@ -1,4 +1,4 @@
-module Hello
+module Hello::Utils
   class DeviceName
     # https://github.com/toolmantim/user_agent_parser
     # Instantiate the parser on load as it's quite expensive
