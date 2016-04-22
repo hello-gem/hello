@@ -18,7 +18,8 @@ Hello.configure do |config|
   config.simple_encryptor  = Hello::Encryptor::MD5.new
   config.complex_encryptor = Hello::Encryptor::BCrypt.new
 
-  config.locales = %w(en es fr pl pt-BR zh-CN)
+  config.locales    = %w(en es fr pl pt-BR zh-CN)
+  config.time_zones = ActiveSupport::TimeZone.send(:zones_map).values.map(&:name)
 
   config.sudo_expires_in = 10.minutes
 

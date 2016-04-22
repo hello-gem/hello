@@ -72,7 +72,7 @@ module Hello
         c = Hello.configuration
 
         validates_inclusion_of :locale,    in:   c.locales
-        validates_inclusion_of :time_zone, in:   Hello.available_time_zones
+        validates_inclusion_of :time_zone, in:   c.time_zones
         validates_format_of    :username,  with: c.username_regex
         validates_length_of    :username,  in:   c.username_length
       end
