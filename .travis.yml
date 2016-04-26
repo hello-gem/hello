@@ -2,17 +2,15 @@
 # http://docs.travis-ci.com/user/build-configuration/
 language: ruby
 sudo: false
+rvm: 2.3.0
 
 matrix:
   include:
-    # latest Ruby, latest Rails
-    - rvm: 2.3.0
-      gemfile: gemfiles/rails-4-2-stable.gemfile
+    - gemfile: gemfiles/rails-4-2-stable.gemfile
+    - gemfile: gemfiles/rails-master.gemfile
   allow_failures:
-    # allowed to fail because of a temporary chan
-    # latest Ruby, next Rails
-    - rvm: 2.3.0
-      gemfile: gemfiles/rails-master.gemfile
+    # allowed to fail because of a temporary change
+    - gemfile: gemfiles/rails-master.gemfile
 cache:
   - bundler
   - apt
