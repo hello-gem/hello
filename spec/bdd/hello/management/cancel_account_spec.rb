@@ -49,9 +49,9 @@ RSpec.bdd.capability "I can Cancel my Account" do
               end
 
               Then "and my data should be removed from the database" do
-                expect(User.count).to        eq(0)
-                expect(Credential.count).to  eq(0)
-                expect(Access.count).to      eq(0)
+                expect(User.count).to            eq(0)
+                expect(Credential.count).to      eq(0)
+                expect(Access.count).to          eq(0)
               end
 
             end # scenario
@@ -72,7 +72,7 @@ RSpec.bdd.capability "I can Cancel my Account" do
 
             scenario "User has dependent grandchildren" do
               But "User has dependent grandchildren" do
-                Credential.last.some_credential_data.create! text: "foo"
+                EmailCredential.last.some_credential_data.create! text: "foo"
               end
 
               When 'I attempt to cancel my account' do
