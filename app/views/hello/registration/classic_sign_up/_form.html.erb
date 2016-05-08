@@ -1,80 +1,86 @@
-<%= form_for @sign_up, as: :sign_up, url: sign_up_path, html: {class: "form-horizontal", role: "form"} do |f| %>
+<% if x = classic_sign_up_disabled %>
+  <h2>Email Registration is temporarily disabled.</h2>
+  <p>Reason: <%= x[:reason] %></p>
+  <p>Until: <%= x[:until] %></p>
+<% else %>
+  <%= form_for @sign_up, as: :sign_up, url: sign_up_path, html: {class: "form-horizontal", role: "form"} do |f| %>
 
-  <!-- Errors -->
-  <% if @sign_up.errors.any? %>
-    <%= render '/hello/shared/errors', active_model: @sign_up %>
+    <!-- Errors -->
+    <% if @sign_up.errors.any? %>
+      <%= render '/hello/shared/errors', active_model: @sign_up %>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :name, class: "col-sm-4 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :email, class: "col-sm-4 control-label" %>
+      <div class="col-sm-4">
+        <p>
+          <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+        </p>
+
+        <% if @sign_up.email_taken? %>
+          <blockquote style="border-color: #a94442">
+            <p class="text-danger">This email address has already been registered.</p>
+            <p><%= link_to "Log in", hello.sign_in_path %> instead.</p>
+            <footer>
+              <%= link_to "I forgot my password", hello.forgot_passwords_path %>.
+            </footer>
+          </blockquote>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :username, class: "col-sm-4 control-label" %>
+      <div class="col-sm-4">
+        <p>
+          <%= f.text_field :username, class: "form-control", placeholder: "Username" %>
+        </p>
+
+        <% if @sign_up.username_taken? %>
+          <blockquote style="border-color: #a94442">
+            <p class="text-danger">This username has already been registered.</p>
+            <p><%= link_to "Log in", hello.sign_in_path %> instead.</p>
+            <footer>
+              <%= link_to "I forgot my password", hello.forgot_passwords_path %>.
+            </footer>
+          </blockquote>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, class: "col-sm-4 control-label" %>
+      <div class="col-sm-4">
+        <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+      </div>
+    </div>
+
+    <% if false %>
+    <!--
+    <div class="form-group">
+      <%= f.label :locale, class: "col-sm-4 control-label" %>
+      <div class="col-sm-4">
+        <%= f.select :locale, hello_locale_select_options, {}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :time_zone, class: "col-sm-4 control-label" %>
+      <div class="col-sm-4">
+        <%= f.time_zone_select :time_zone, nil, {}, class: "form-control" %>
+      </div>
+    </div>
+    -->
+    <% end %>
+
+    <div class="form-group">
+      <div class="col-sm-offset-4 col-sm-4">
+        <%= f.submit "Sign Up", class: "btn btn-primary" %>
+      </div>
+    </div>
   <% end %>
-
-  <div class="form-group">
-    <%= f.label :name, class: "col-sm-4 control-label" %>
-    <div class="col-sm-4">
-      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :email, class: "col-sm-4 control-label" %>
-    <div class="col-sm-4">
-      <p>
-        <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
-      </p>
-
-      <% if @sign_up.email_taken? %>
-        <blockquote style="border-color: #a94442">
-          <p class="text-danger">This email address has already been registered.</p>
-          <p><%= link_to "Log in", hello.sign_in_path %> instead.</p>
-          <footer>
-            <%= link_to "I forgot my password", hello.forgot_passwords_path %>.
-          </footer>
-        </blockquote>
-      <% end %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :username, class: "col-sm-4 control-label" %>
-    <div class="col-sm-4">
-      <p>
-        <%= f.text_field :username, class: "form-control", placeholder: "Username" %>
-      </p>
-
-      <% if @sign_up.username_taken? %>
-        <blockquote style="border-color: #a94442">
-          <p class="text-danger">This username has already been registered.</p>
-          <p><%= link_to "Log in", hello.sign_in_path %> instead.</p>
-          <footer>
-            <%= link_to "I forgot my password", hello.forgot_passwords_path %>.
-          </footer>
-        </blockquote>
-      <% end %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :password, class: "col-sm-4 control-label" %>
-    <div class="col-sm-4">
-      <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
-    </div>
-  </div>
-
-  <% if false %>
-  <!--
-  <div class="form-group">
-    <%= f.label :locale, class: "col-sm-4 control-label" %>
-    <div class="col-sm-4">
-      <%= f.select :locale, hello_locale_select_options, {}, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :time_zone, class: "col-sm-4 control-label" %>
-    <div class="col-sm-4">
-      <%= f.time_zone_select :time_zone, nil, {}, class: "form-control" %>
-    </div>
-  </div>
-  -->
-  <% end %>
-
-  <div class="form-group">
-    <div class="col-sm-offset-4 col-sm-4">
-      <%= f.submit "Sign Up", class: "btn btn-primary" %>
-    </div>
-  </div>
 <% end %>
