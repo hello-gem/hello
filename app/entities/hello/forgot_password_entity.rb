@@ -11,8 +11,12 @@ module Hello
     end
 
     def reset
-      add_errors_for_login_not_found && (return false) if user.nil?
-      true
+      if user.present?
+        true
+      else
+        errors.add(:login, 'was not found')
+        false
+      end
     end
 
     def email?
@@ -34,12 +38,6 @@ module Hello
       else
         ::User.where(username: login).first
       end
-    end
-
-    # reset helpers
-
-    def add_errors_for_login_not_found
-      errors.add(:login, 'was not found')
     end
   end
 end
