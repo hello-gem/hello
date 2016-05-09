@@ -1,16 +1,18 @@
 # http://lint.travis-ci.org/
 # http://docs.travis-ci.com/user/build-configuration/
+# rvm list known
 language: ruby
 sudo: false
-rvm: 2.3.0
+rvm:
+  - 2.3.0
+  - ruby-head
+  # - jruby-head
+  # - rbx-head
 
-matrix:
-  include:
-    - gemfile: gemfiles/rails-4-2-stable.gemfile
-    - gemfile: gemfiles/rails-master.gemfile
-  allow_failures:
-    # allowed to fail because of a temporary change
-    - gemfile: gemfiles/rails-master.gemfile
+gemfile:
+  - gemfiles/rails-4-2-stable.gemfile
+  - gemfiles/rails-master.gemfile
+
 cache:
   - bundler
   - apt

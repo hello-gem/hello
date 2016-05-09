@@ -17,9 +17,10 @@ Please take a look at our [issues](https://github.com/hello-gem/hello/issues), a
 
 | Ruby Versions       | Rails Versions |
 | -------------       |----------------|
-| Ruby 2.2.2          | Rails 4.2.*    |
-| JRuby (submit a PR) | Rails 5 beta   |
-| RBX (submit a PR)   |                |
+| Ruby 2.3            | Rails 4.2 |
+| Ruby 2.4            | Rails 5 |
+| JRuby (PR wanted)   | |
+| RBX (PR wanted)     | |
 
 
 ## Running Tests
