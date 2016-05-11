@@ -1,0 +1,12 @@
+Description:
+  This generators copy available locales.
+
+Example:
+    rails generate hello:locales en
+
+    This will create:
+        config/locales/hello.en.yml
+
+    rails generate hello:locales
+
+    Shows detailed help
