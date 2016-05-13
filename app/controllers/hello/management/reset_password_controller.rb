@@ -15,8 +15,8 @@ module Hello
         unless @password_credential.verifying_token_is?(params[:token])
           fail ActiveRecord::RecordNotFound
         end
-        # entity
-        @reset_password = ResetPasswordEntity.new(@password_credential)
+        # business
+        @reset_password = Business::Management::ResetPassword.new(@password_credential)
       end
 
       # GET /passwords/:id/reset/:user_id/:token
@@ -36,7 +36,7 @@ module Hello
       end
 
       rescue_from ActiveRecord::RecordNotFound do
-        flash[:alert] = ResetPasswordEntity.new(nil).alert_message
+        flash[:alert] = Business::Management::ResetPassword.new(nil).alert_message
         redirect_to forgot_passwords_path
       end
 

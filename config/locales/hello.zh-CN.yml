@@ -12,57 +12,60 @@ zh-CN:
       forgot_password:
         subject: "重新设置密码。"
 
-    entities:
-      sign_out:
-        success: "您已经成功退出!"
-      unlink_access:
-        success: "断开连接成功。"
-        alert: "断开连接发生异常错误。"
-      session_switch:
-        success: "你已成功的切换账号!"
-      session_forget:
-        success: "忘记密码？"
-      classic_sign_up:
-        success: "你账号已经注册成功了！"
-        error:
-          one: "当你注册的时候，我们发现了 1 个错误!"
-          other: "当你注册的时候，我们发现了 %{count} 个错误!"
-      classic_sign_in:
-        success: "你已成功登录！"
-        error:
-          one: "当你登录的时候，我们发现了 1 个错误"
-          other: "当你登录的时候，我们发现了 %{count} 个错误"
-      forgot_password:
-        success: "我们已经成功的发送了： <strong>\"%{login}\"</strong> 重新设置密码的邮件!"
-        error:
-          one: "验证时发现 1 个错误！"
-          other: "验证时发现 %{count} 个错误！"
-      reset_password:
-        success: "你的密码已经重设成功。"
-        alert: "这个链接已经失效，请重新尝试。"
-        error:
-          one: "当你重设密码的时候，我们发现了 1 个错误!"
-          other: "当你重设密码的时候，我们发现了 %{count} 个错误!"
-      send_confirmation_email:
-        success: "一封带有确认链接的邮件已经发送至您的邮箱：%{email}，请检查邮箱（包括垃圾邮箱），并点击该链接激活您的账号"
-      confirm_email:
-        success: "%{email} 确认成功。"
-        alert: "邮件确认已过期，请重新注册。"
-      sudo_mode_authentication:
-        success: "个人信息验证成功！ 在 60 分钟内， 你不会被重新验证身份！"
-        alert: "密码错误！"
-      sudo_mode_expiration:
-        success: "如果有异常登录，我们会要求你重新输入密码！"
-      profile:
-        success: "你的个人信息更新成功！"
-        error:
-          one: "当你更新个人信息的时候，我们发现了 1 个错误!"
-          other: "当你更新个人信息的时候，我们发现了 %{count} 个错误!"
-      cancel_account:
-        success: "你的账号已被注销。"
-        alert: "终止你的账号会对别的用户产生异常情况，请联系管理员！"
-      update_field:
-        success: " %{field} 更新成功"
-        alert: "我们发现了 1 个错误，在更新 %{field} 的时候！"
-      update_locale:
-        success: "切换语言成功。 '%{locale_name}'"
+    business:
+      registration:
+        sign_up:
+          success: "你账号已经注册成功了！"
+          error:
+            one: "当你注册的时候，我们发现了 1 个错误!"
+            other: "当你注册的时候，我们发现了 %{count} 个错误!"
+      internationalization:
+        update_locale:
+          success: "切换语言成功。 '%{locale_name}'"
+      authentication:
+        sign_in:
+          success: "你已成功登录！"
+          error:
+            one: "当你登录的时候，我们发现了 1 个错误"
+            other: "当你登录的时候，我们发现了 %{count} 个错误"
+        sign_out:
+          success: "您已经成功退出!"
+        sudo_mode_authentication:
+          success: "个人信息验证成功！ 在 60 分钟内， 你不会被重新验证身份！"
+          alert: "密码错误！"
+        sudo_mode_expiration:
+          success: "如果有异常登录，我们会要求你重新输入密码！"
+      management:
+        add_email:
+          # TODO: missing translation
+          success: "%{email} was successfully added"
+        remove_email:
+          # TODO: missing translation
+          success: "%{email} was successfully removed"
+        unlink_access:
+          success: "断开连接成功。"
+          alert: "断开连接发生异常错误。"
+        forgot_password:
+          success: "我们已经成功的发送了： <strong>\"%{login}\"</strong> 重新设置密码的邮件!"
+          error:
+            one: "验证时发现 1 个错误！"
+            other: "验证时发现 %{count} 个错误！"
+        reset_password:
+          success: "你的密码已经重设成功。"
+          alert: "这个链接已经失效，请重新尝试。"
+          error:
+            one: "当你重设密码的时候，我们发现了 1 个错误!"
+            other: "当你重设密码的时候，我们发现了 %{count} 个错误!"
+        send_confirmation_email:
+          success: "一封带有确认链接的邮件已经发送至您的邮箱：%{email}，请检查邮箱（包括垃圾邮箱），并点击该链接激活您的账号"
+        confirm_email:
+          success: "%{email} 确认成功。"
+          alert: "邮件确认已过期，请重新注册。"
+        cancel_account:
+          success: "你的账号已被注销。"
+          alert: "终止你的账号会对别的用户产生异常情况，请联系管理员！"
+        update_profile:
+          success: "你的个人信息更新成功！"
+          error:
+            one: "当你更新个人信息的时候，我们发现了 1 个错误!"
+            other: "当你更新个人信息的时候，我们发现了 %{count} 个错误!"

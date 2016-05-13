@@ -25,29 +25,31 @@ module Hello
 
       # POST /hello/emails
       def create
+        business = Business::Management::AddEmail.new(@credential)
         if @credential.save
-          redirect_to hello.emails_path, notice: 'Your email was successfully added.'
+          redirect_to hello.emails_path, notice: business.success_message
         else
-          flash.now[:alert] = @credential.errors.full_messages.first
+          flash.now[:alert] = business.error_message
           render_list
         end
       end
 
       # DELETE /hello/emails/1
       def destroy
+        business = Business::Management::RemoveEmail.new(@credential)
         if @credential.destroy
-          redirect_to hello.emails_path, notice: 'Your email was successfully removed.'
+          redirect_to hello.emails_path, notice: business.success_message
         else
-          flash.now[:alert] = @credential.errors.full_messages.first
+          flash.now[:alert] = business.error_message
           render_list
         end
       end
 
       # POST /hello/emails/1/deliver
       def deliver
-        entity = SendConfirmationEmailEntity.new(self, @credential)
-        entity.deliver
-        flash[:notice] = entity.success_message
+        business = Business::Management::SendConfirmationEmail.new(self, @credential)
+        business.deliver
+        flash[:notice] = business.success_message
         redirect_to hello.emails_path
       end
 

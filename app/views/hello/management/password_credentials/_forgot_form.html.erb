@@ -2,7 +2,7 @@
 
   <!-- Errors -->
   <% if @forgot_password.errors.any? %>
-    <%= render '/hello/shared/errors', active_model: @forgot_password %>
+    <%= render '/hello/shared/errors', business: @forgot_password %>
   <% end %>
 
   <div class="form-group">

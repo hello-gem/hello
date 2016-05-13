@@ -6,7 +6,7 @@ module Hello
 
       before_action do
         @password_credential = current_user.password_credential || fail(ActiveRecord::NotFound)
-        @entity = ProfileEntity.new(@password_credential)
+        @update_profile = Business::Management::UpdateProfile.new(@password_credential)
       end
 
       # GET /hello/passwords
@@ -31,9 +31,8 @@ module Hello
         # @password_credential.password_confirmation = password_credential_params[:password_confirmation] if password_credential_params[:password_confirmation]
 
         if @password_credential.save
-          flash[:notice] = @entity.success_message
           respond_to do |format|
-            format.html { redirect_to hello.password_path(@password_credential.id) }
+            format.html { redirect_to hello.password_path(@password_credential), notice: @update_profile.success_message }
             format.json { head :no_content }
           end
         else

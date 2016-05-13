@@ -22,11 +22,11 @@ module Hello
 
       # DELETE /hello/accesses/1
       def destroy
-        entity = UnlinkAccessEntity.new
+        business = Business::Management::UnlinkAccess.new
         if @access.destroy
-          flash[:notice] = entity.success_message
+          flash[:notice] = business.success_message
         else
-          flash[:alert]  = entity.alert_message
+          flash[:alert]  = business.alert_message
         end
         redirect_to hello.accesses_url
       end

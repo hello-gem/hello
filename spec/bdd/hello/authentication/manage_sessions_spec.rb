@@ -166,7 +166,7 @@ RSpec.bdd.capability 'I can Manage Sessions' do
               end
 
               Then 'I should see a confirmation message' do
-                expect_flash_notice 'Switched Accounts Successfully!'
+                expect_flash_notice 'You have signed in successfully'
               end
 
               Then 'I should be signed in as my first account now' do
@@ -186,7 +186,7 @@ RSpec.bdd.capability 'I can Manage Sessions' do
               end
 
               Then 'I should see an expiration message' do
-                expect_flash_notice 'Your Session Was Expired!'
+                expect_flash_notice 'You have signed out!'
               end
 
               Then 'I should be signed in as my first account now' do
@@ -229,7 +229,7 @@ RSpec.bdd.capability 'I can Manage Sessions' do
               end
 
               Then "I should see a confirmation message" do
-                expect_flash_notice 'Forgotten'
+                expect_flash_notice 'You have signed out!'
               end
 
               Then 'I should be signed in with 0 sessions' do
@@ -260,7 +260,7 @@ RSpec.bdd.capability 'I can Manage Sessions' do
               end
 
               Then "I should see a confirmation message" do
-                expect_flash_notice 'Forgotten'
+                expect_flash_notice 'You have signed out!'
               end
 
               Then 'I should be signed in with 1 session' do

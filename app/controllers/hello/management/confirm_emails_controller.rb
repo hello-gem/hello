@@ -12,14 +12,14 @@ module Hello
 
       # GET /hello/emails/1/confirm/:token
       def confirm
-        entity = ConfirmEmailEntity.new(@credential)
+        business = Business::Management::ConfirmEmail.new(@credential)
 
-        if entity.confirm_with_token(params[:token])
+        if business.confirm_with_token(params[:token])
           _sign_in
-          flash[:notice] = entity.success_message
+          flash[:notice] = business.success_message
           redirect_to emails_path
         else
-          flash[:alert] = entity.alert_message
+          flash[:alert] = business.alert_message
           redirect_to expired_confirmation_token_emails_path
         end
       end
