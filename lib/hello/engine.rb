@@ -1,5 +1,3 @@
-require_relative 'manager'
-
 module Hello
   class Engine < Rails::Engine
     isolate_namespace Hello
@@ -11,12 +9,7 @@ module Hello
     end
 
     initializer 'hello.add_middleware' do |app|
-      app.config.app_middleware.use Hello::Manager::Middleware
-    end
-
-    initializer 'hello.load_config' do |app|
-      app.config.autoload_paths += %W(#{Engine.root}/lib)
-      app.config.watchable_dirs["#{Engine.root}/lib"] = [:rb]
+      app.config.app_middleware.use Hello::Middleware
     end
 
     config.generators do |g|

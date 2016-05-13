@@ -11,8 +11,6 @@ require 'rspec/core'
 Bundler.require(*Rails.groups)
 require 'hello'
 
-Dir[File.join(File.expand_path('../../', __FILE__), 'app/models/**/*.rb')].each { |f| require f }
-
 module Dummy
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

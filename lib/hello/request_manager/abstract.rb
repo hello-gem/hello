@@ -1,12 +1,6 @@
 module Hello
-  module Manager
-    class RequestManager
-      class << self
-        def create(request)
-          RequestManagerFactory.new(request).create
-        end
-      end
-
+  module RequestManager
+    class Abstract
       def initialize(request)
         @request = request
       end

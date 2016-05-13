@@ -1,6 +1,7 @@
 module Hello
-  module Manager
-    class RequestManagerFactory
+  module RequestManager
+    class Factory
+
       def initialize(request)
         @request = request
       end
@@ -12,11 +13,7 @@ module Hello
       private
 
       def klass
-        if is_stateless?
-          StatelessRequestManager
-        else
-          StatefulRequestManager
-        end
+        is_stateless? ? Stateless : Stateful
       end
 
       def is_stateless?

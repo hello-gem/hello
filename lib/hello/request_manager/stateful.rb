@@ -1,6 +1,10 @@
 module Hello
-  module Manager
-    class StatefulRequestManager < RequestManager
+  module RequestManager
+    class Stateful < Abstract
+
+      autoload :Finder, 'hello/request_manager/stateful/finder'
+      autoload :SessionWrapper, 'hello/request_manager/stateful/session_wrapper'
+
       def initialize(*args)
         super(*args)
         @finder          = Finder.new(self)

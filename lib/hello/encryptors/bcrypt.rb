@@ -1,5 +1,5 @@
 module Hello
-  module Encryptor
+  module Encryptors
     class BCrypt < MD5
       def initialize(cost=nil)
         require 'bcrypt'
