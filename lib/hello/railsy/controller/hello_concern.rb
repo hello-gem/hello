@@ -11,7 +11,8 @@ module Hello
         end
 
         included do
-          helper_method :current_user,
+          helper_method :classic_sign_up_disabled,
+                        :current_user,
                         :current_accesses,
                         :current_access,
                         :signed_in?,
@@ -36,6 +37,10 @@ module Hello
 
         def hello_manager
           env['hello'] ||= Hello::Manager::RequestManager.create(request)
+        end
+
+        def classic_sign_up_disabled
+          Hello.configuration.classic_sign_up_disabled || action_name=='disabled'
         end
       end
     end

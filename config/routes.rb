@@ -8,6 +8,7 @@ Hello::Engine.routes.draw do
     get 'sign_up' => 'classic_sign_up#index'
     post 'sign_up' => 'classic_sign_up#create'
     get 'sign_up/widget' => 'classic_sign_up#widget'
+    match 'sign_up/disabled' => 'classic_sign_up#disabled', via: [:get, :post]
   end
 
   #
