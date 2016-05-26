@@ -10,6 +10,7 @@ require 'sprockets/railtie'
 require 'rspec/core'
 Bundler.require(*Rails.groups)
 require 'hello-rails'
+require 'omniauth-facebook'
 
 module Dummy
   class Application < Rails::Application

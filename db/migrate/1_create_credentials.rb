@@ -4,6 +4,7 @@ class CreateCredentials < ActiveRecord::Migration
       t.references :user, index: true
       t.string :type
 
+      t.string :uid
       t.string :email
       t.string :digest
 

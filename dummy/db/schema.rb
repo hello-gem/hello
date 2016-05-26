@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140920192959) do
   create_table "credentials", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "type"
+    t.string   "uid"
     t.string   "email"
     t.string   "digest"
     t.datetime "confirmed_at"

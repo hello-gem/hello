@@ -1,0 +1,29 @@
+
+
+# {"uid" => "12345", "info" => {"email" => "aaaa@test.com", name: "Nome"}}
+
+input: usuario_logado, fb_id, email
+
+
+1. ja_estou_logado (sudo_mode!):
+  1.1. facebook_ja_cadastrado_no_BD?:
+    1.1.1. comigo?:
+      1 sucesso! nada!
+    1.1.2. nao:
+      fracasso! "este facebook ja foi associado a outro usuario"
+  1.2. nao:
+    2 sucesso! associar!
+2. nao_estou_logado:
+  2.1. facebook_ja_cadastrado_no_BD?:
+    3 sucesso! login!
+  2.2. nao:
+    2.2.1. email_ja_cadastrado_no_BD?:
+      fracasso! demontrar_formas_que_essa_pessoa_pode_se_logar
+    2.2.2. nao:
+      4 sucesso! cadastrar!
+
+
+
+
+
+

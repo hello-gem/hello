@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+
+  get  'oauth2/' => 'oauth2#index'
+  get  'auth/facebook/callback' => 'oauth2#facebook'
+  post 'auth/facebook/callback' => 'oauth2#facebook'
+
+
+
+
   get 'middleware/bad_kitty', constraints: -> (request) { request.env['hello'].signed_in? }
 
   get 'my_areas/guest_page'

@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bdd', '~> 0.1'
   s.add_development_dependency 'bcrypt', '~> 3.1'
   s.add_development_dependency 'rubocop', '~> 0'
+  s.add_development_dependency 'omniauth-facebook'
 
   # save_and_open_page
   s.add_development_dependency 'launchy', '~> 2.4'

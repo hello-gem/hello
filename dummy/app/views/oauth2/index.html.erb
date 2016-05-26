@@ -1,0 +1,25 @@
+<div class="row">
+
+<%= render '/hello/shared/settings' %>
+
+  <div class="col-sm-3-offset col-md-2-offset col-sm-9 col-md-10">
+
+  <h1>Adicione uma rede social</h1>
+
+    <table>
+      <tr>
+        <td>
+          <%= render 'facebook' %>
+        </td>
+      </tr>
+      <tr>
+        <% current_user && current_user.facebook_credentials.each do |credential| %>
+        <td>
+          <%= credential.uid %>
+          <%= image_tag("http://graph.facebook.com/#{credential.uid}/picture?type=square") %>
+        </td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+</div>
