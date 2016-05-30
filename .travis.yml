@@ -5,7 +5,7 @@ language: ruby
 sudo: false
 rvm:
   - 2.3.0
-  - ruby-head
+  # - ruby-head
   # - jruby-head
   # - rbx-head
 
