@@ -16,11 +16,11 @@ Hello.configure do |config|
   config.classic_sign_up_disabled = false # {reason: "standard maintenance", until: "3PM"}
   config.classic_sign_up_fields = %w(username time_zone locale name city)
 
-  config.simple_encryptor  = Hello::Encryptor::MD5.new
-  config.complex_encryptor = Hello::Encryptor::BCrypt.new
+  config.simple_encryptor  = Hello::Encryptors::MD5.new
+  config.complex_encryptor = Hello::Encryptors::BCrypt.new
 
   config.locales    = %w(en es fr pl pt-BR zh-CN)
-  config.time_zones = ActiveSupport::TimeZone.send(:zones_map).values.map(&:name)
+  config.time_zones = Hello::TimeZones.all
 
   config.sudo_expires_in = 10.minutes
 

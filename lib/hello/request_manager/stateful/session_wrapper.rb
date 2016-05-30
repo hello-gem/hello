@@ -1,6 +1,6 @@
 module Hello
-  module Manager
-    class StatefulRequestManager < RequestManager
+  module RequestManager
+    class Stateful < Abstract
       class SessionWrapper
         def initialize(manager)
           @manager = manager

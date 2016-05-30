@@ -9,7 +9,7 @@ module Hello
       def index
         respond_to do |format|
           format.html { render 'hello/internationalization/locale/index' }
-          format.json { render json: { locales: available_locales_with_names } }
+          format.json { render json: { locales: view_context.available_locales_with_names } }
         end
       end
 
@@ -17,11 +17,12 @@ module Hello
       def update
         entity = UpdateLocaleEntity.new(params['locale'])
 
-        set_locale(entity.locale)
+        current_user && current_user.update!(locale: entity.locale)
+        use_locale(entity.locale)
 
         respond_to do |format|
           format.html { redirect_to :back, notice: entity.success_message }
-          format.json { fail JsonNotSupported }
+          format.json { fail Hello::Errors::JsonNotSupported }
         end
       end
     end

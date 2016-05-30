@@ -1,5 +1,5 @@
 module Hello
-  module Encryptor
+  module Encryptors
     class MD5
       # probability = 1 / ((8*2) ** (8*2))
       def single(complexity = 8)

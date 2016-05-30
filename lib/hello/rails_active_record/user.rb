@@ -59,6 +59,11 @@ module Hello
         send("#{role}?")
       end
 
+      def in_any_role?(roles)
+        roles.each { |r| role_is?(r) and return true }
+        false
+      end
+
       def set_generated_username
         loop do
           self.username = _make_up_new_username

@@ -49,7 +49,7 @@ module Hello
         end
       end
 
-      available_locales = Dir[Hello::ROOT.join('config', 'locales', '**', '*.yml')].map { |s| s.split('.')[-2] }
+      available_locales = Dir[Hello.root.join('config', 'locales', '**', '*.yml')].map { |s| s.split('.')[-2] }
 
       available_locales.each do |locale|
         describe "#{locale} consistency" do

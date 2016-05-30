@@ -1,7 +1,7 @@
 require 'hello'
 
 class Hello::LocalesGenerator < Rails::Generators::Base
-  source_root Hello::ROOT
+  source_root Hello.root
 
   argument :selected_locales, type: :array, default: [], banner: 'lang1 [lang2] [lang3]'
 
@@ -59,6 +59,6 @@ class Hello::LocalesGenerator < Rails::Generators::Base
   end
 
   def available_locales
-    Dir[Hello::ROOT.join('config', 'locales', '**', '*.yml')].map { |s| s.split('.')[-2] }
+    Dir[Hello.root.join('config', 'locales', '**', '*.yml')].map { |s| s.split('.')[-2] }
   end
 end

@@ -16,6 +16,10 @@ module Hello
 
       # CUSTOM METHODS
 
+      def keep_alive!
+        renew! if expiring?
+      end
+
       def full_device_name
         Hello::Utils::DeviceName.instance.parse(user_agent_string)
       end
@@ -31,6 +35,16 @@ module Hello
       def as_json_web_api
         hash = attributes.slice(*%w(expires_at token user_id))
         hash.merge!({ user: user.as_json_web_api })
+      end
+
+      private
+
+      def expiring?
+        expires_at < 20.minutes.from_now
+      end
+
+      def renew!
+        update_attributes!(expires_at: 30.minutes.from_now)
       end
 
       class << self

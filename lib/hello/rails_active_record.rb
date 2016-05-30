@@ -1,18 +1,10 @@
 # Cannot be named ActiveRecord or will compete with ::ActiveRecord
-module Hello::RailsActiveRecord
+module Hello
+  module RailsActiveRecord
+    autoload :User,               'hello/rails_active_record/user'
+    autoload :Credential,         'hello/rails_active_record/credential'
+    autoload :EmailCredential,    'hello/rails_active_record/email_credential'
+    autoload :PasswordCredential, 'hello/rails_active_record/password_credential'
+    autoload :Access,             'hello/rails_active_record/access'
+  end
 end
-
-require_relative 'rails_active_record/user'
-User = Class.new(Hello::RailsActiveRecord::User)
-
-require_relative 'rails_active_record/access'
-Access = Class.new(Hello::RailsActiveRecord::Access)
-
-require_relative 'rails_active_record/credential'
-Credential = Class.new(Hello::RailsActiveRecord::Credential)
-
-require_relative 'rails_active_record/email_credential'
-EmailCredential = Class.new(Hello::RailsActiveRecord::EmailCredential)
-
-require_relative 'rails_active_record/password_credential'
-PasswordCredential = Class.new(Hello::RailsActiveRecord::PasswordCredential)

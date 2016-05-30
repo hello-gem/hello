@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Hello::Encryptor::BCrypt do
+describe Hello::Encryptors::BCrypt do
 
   describe '#encrypt' do
     def use_bcrypt

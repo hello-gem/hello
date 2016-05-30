@@ -1,6 +1,6 @@
 module Hello
-  module Manager
-    class StatelessRequestManager < RequestManager
+  module RequestManager
+    class Stateless < Abstract
       def current_accesses
         []
       end
