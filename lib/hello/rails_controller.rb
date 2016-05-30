@@ -73,7 +73,7 @@ module Hello
     end
 
     def render_sudo_mode_form
-      render 'hello/authentication/sudo_mode/form'
+      render 'hello/authentication/sudo_mode'
     end
 
 

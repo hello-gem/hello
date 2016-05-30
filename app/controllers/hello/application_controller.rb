@@ -1,7 +1,3 @@
-#
-# IT IS RECOMMENDED THAT YOU DO NOT OVERRIDE THIS FILE IN YOUR APP
-#
-
 class Hello::ApplicationController < ApplicationController
   rescue_from Hello::Errors::JsonNotSupported do |exception|
     render json: _json_data_for_exception(exception), status: :bad_request

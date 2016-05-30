@@ -9,7 +9,7 @@ module Hello
         end
 
         def expire!
-          access.update! sudo_expires_at: 1.second.ago
+          access.sudo_expire!
         end
       end
     end

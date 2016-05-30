@@ -12,6 +12,14 @@ module Hello
       it 'routes to #update' do
         expect(patch('/profile')).to route_to('hello/management/profiles#update')
       end
+
+      it 'routes to #cancel' do
+        expect(get('/profile/cancel')).to route_to('hello/management/profiles#cancel')
+      end
+
+      it 'routes to #destroy' do
+        expect(delete('/profile')).to route_to('hello/management/profiles#destroy')
+      end
     end
   end
 end

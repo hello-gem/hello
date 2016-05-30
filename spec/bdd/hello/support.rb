@@ -20,6 +20,7 @@ def sign_in_with(login, password='1234')
   visit '/hello/sign_in'
   fill_in_login_form(login, password)
   click_button 'Sign In'
+  click_link 'expire'
   __fetch_current_access
 end
 

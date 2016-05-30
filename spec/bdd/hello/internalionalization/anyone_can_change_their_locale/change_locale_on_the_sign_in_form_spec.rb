@@ -15,7 +15,7 @@ RSpec.bdd.uic "On The Sign In Form" do
       When "I sign in to a 'pt-BR' user" do
         user = given_I_have_an_email_credential.user
         user.update! locale: 'pt-BR'
-        when_sign_in_with_standard_data
+        when_sign_in_with_standard_data(skip_expire: true)
       end
 
       Then "I expect to a confirmation message in 'en'" do

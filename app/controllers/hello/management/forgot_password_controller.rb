@@ -1,8 +1,8 @@
 module Hello
   module Management
+    # you really should be overriding concerns instead of this file
     class ForgotPasswordController < ApplicationController
-      include Hello::Concerns::ForgotPasswordOnSuccess
-      include Hello::Concerns::ForgotPasswordOnFailure
+      include Hello::Concerns::Management::ForgotPassword
 
       dont_kick :guest
 

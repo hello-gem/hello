@@ -1,5 +1,3 @@
-require_dependency 'hello/application_controller'
-
 module Hello
   module Management
     class ConfirmEmailsController < ApplicationController
@@ -17,7 +15,7 @@ module Hello
         if business.confirm_with_token(params[:token])
           _sign_in
           flash[:notice] = business.success_message
-          redirect_to emails_path
+          redirect_to profile_path
         else
           flash[:alert] = business.alert_message
           redirect_to expired_confirmation_token_emails_path

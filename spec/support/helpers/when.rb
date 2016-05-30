@@ -35,6 +35,7 @@ def when_sign_up_as_an_onboarding(options = {})
   end
 
   expect(current_path).to eq('/onboarding') if options[:expect_success] === true
+  click_link 'expire' unless options[:skip_expire]
 end
 
 def when_sign_in_with_standard_data(options = {})
@@ -54,6 +55,7 @@ def when_sign_in(login, password, options = {})
     check 'keep_me' if options[:keep_me]
     click_button 'Sign In'
   end
+  click_link 'expire' unless options[:skip_expire]
   __fetch_current_access
 end
 

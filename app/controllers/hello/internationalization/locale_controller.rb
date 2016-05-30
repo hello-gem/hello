@@ -1,5 +1,3 @@
-require_dependency 'hello/application_controller'
-
 module Hello
   module Internationalization
     class LocaleController < ApplicationController
@@ -8,7 +6,7 @@ module Hello
       # GET /hello/locale
       def index
         respond_to do |format|
-          format.html { render 'hello/internationalization/locale/index' }
+          format.html { render 'hello/internationalization/locales' }
           format.json { render json: { locales: view_context.available_locales_with_names } }
         end
       end

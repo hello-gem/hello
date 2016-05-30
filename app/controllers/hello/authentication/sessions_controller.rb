@@ -1,5 +1,3 @@
-require_dependency 'hello/application_controller'
-
 module Hello
   module Authentication
     class SessionsController < ApplicationController
@@ -72,11 +70,11 @@ module Hello
       end
 
       def render_list
-        render 'hello/authentication/sessions/index'
+        render 'hello/authentication/sessions'
       end
 
       def render_new
-        render 'hello/authentication/sessions/new'
+        render 'hello/authentication/new_session'
       end
     end
   end

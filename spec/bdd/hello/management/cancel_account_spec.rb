@@ -92,7 +92,7 @@ RSpec.bdd.capability "I can Cancel my Account" do
 
 
             Then "I should be back on the Cancel Account page" do
-              expect_to_be_on '/hello/cancel_account'
+              expect_to_see 'Are you sure you want to cancel your account?'
             end
 
             Then "I should see an error message" do
@@ -103,7 +103,7 @@ RSpec.bdd.capability "I can Cancel my Account" do
               then_I_expect_to_be_signed_in
             end
 
-            Then "and my data should be removed from the database" do
+            Then "and my data should not be removed from the database" do
               expect(User.count).to               eq(1)
               expect(EmailCredential.count).to    eq(1)
               expect(PasswordCredential.count).to eq(1)

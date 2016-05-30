@@ -1,9 +1,3 @@
-require_dependency 'hello/application_controller'
-
-#
-# IT IS RECOMMENDED THAT YOU DO NOT OVERRIDE THIS FILE IN YOUR APP
-#
-
 module Hello
   module Management
     class AccessesController < ApplicationController
@@ -17,7 +11,7 @@ module Hello
 
       # GET /hello/accesses
       def index
-        render 'hello/management/accesses/index'
+        render 'hello/management/accesses'
       end
 
       # DELETE /hello/accesses/1

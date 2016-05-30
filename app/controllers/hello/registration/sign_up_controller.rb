@@ -1,8 +1,8 @@
 module Hello
   module Registration
-    class ClassicSignUpController < ApplicationController
-      include Hello::Concerns::ClassicSignUpOnSuccess
-      include Hello::Concerns::ClassicSignUpOnFailure
+    # you really should be overriding concerns instead of this file
+    class SignUpController < ApplicationController
+      include Hello::Concerns::Registration::SignUp
 
       dont_kick_people
 
@@ -12,12 +12,12 @@ module Hello
 
       # GET /hello/sign_up
       def index
-        render_classic_sign_up
+        render_sign_up
       end
 
       # GET /hello/sign_up/widget
       def widget
-        render 'hello/registration/classic_sign_up/widget', layout: false
+        render 'hello/registration/sign_up_widget', layout: false
       end
 
       # POST /hello/sign_up
@@ -31,13 +31,13 @@ module Hello
 
       # GET /hello/sign_up/disabled
       def disabled
-        render_classic_sign_up
+        render_sign_up
       end
 
       protected
 
-      def render_classic_sign_up
-        render 'hello/registration/classic_sign_up/index'
+      def render_sign_up
+        render 'hello/registration/sign_up'
       end
 
       def _create_enabled

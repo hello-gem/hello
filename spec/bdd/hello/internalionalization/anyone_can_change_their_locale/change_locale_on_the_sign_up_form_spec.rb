@@ -14,7 +14,7 @@ RSpec.bdd.uic "On The Sign Up Form" do
       end
 
       When "I sign up" do
-        when_sign_up_as_an_onboarding(expect_welcome_mailer: true)
+        when_sign_up_as_an_onboarding(skip_expire: true, expect_welcome_mailer: true)
       end
 
       Then "I expect to a confirmation message in 'pt-BR'" do

@@ -37,6 +37,10 @@ module Hello
         hash.merge!({ user: user.as_json_web_api })
       end
 
+      def sudo_expire!
+        update! sudo_expires_at: 1.second.ago
+      end
+
       private
 
       def expiring?

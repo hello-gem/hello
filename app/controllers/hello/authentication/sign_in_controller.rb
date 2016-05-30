@@ -1,8 +1,8 @@
 module Hello
   module Authentication
-    class ClassicSignInController < ApplicationController
-      include Hello::Concerns::ClassicSignInOnSuccess
-      include Hello::Concerns::ClassicSignInOnFailure
+    # you really should be overriding concerns instead of this file
+    class SignInController < ApplicationController
+      include Hello::Concerns::Authentication::SignIn
 
       kick :guest, only: [:authenticated]
 
@@ -12,7 +12,7 @@ module Hello
 
       # GET /hello/sign_in
       def index
-        render_classic_sign_in
+        render_sign_in
       end
 
       # POST /hello/sign_in
@@ -31,8 +31,8 @@ module Hello
         params.require(:sign_in)
       end
 
-      def render_classic_sign_in
-        render 'hello/authentication/classic_sign_in/index'
+      def render_sign_in
+        render 'hello/authentication/sign_in'
       end
     end
   end

@@ -5,10 +5,10 @@ Hello::Engine.routes.draw do
   # REGISTRATION
   #
   scope module: 'registration' do
-    get 'sign_up' => 'classic_sign_up#index'
-    post 'sign_up' => 'classic_sign_up#create'
-    get 'sign_up/widget' => 'classic_sign_up#widget'
-    match 'sign_up/disabled' => 'classic_sign_up#disabled', via: [:get, :post]
+    get 'sign_up' => 'sign_up#index'
+    post 'sign_up' => 'sign_up#create'
+    get 'sign_up/widget' => 'sign_up#widget'
+    match 'sign_up/disabled' => 'sign_up#disabled', via: [:get, :post]
   end
 
   #
@@ -18,8 +18,8 @@ Hello::Engine.routes.draw do
     resources :sessions, only: [:index, :new, :show, :destroy]
     delete 'sign_out' => 'sessions#sign_out'
 
-    get  'sign_in' => 'classic_sign_in#index'
-    post 'sign_in' => 'classic_sign_in#authenticate'
+    get  'sign_in' => 'sign_in#index'
+    post 'sign_in' => 'sign_in#authenticate'
 
     get 'sudo_mode' => 'sudo_mode#form'
     patch 'sudo_mode' => 'sudo_mode#authenticate'
@@ -32,10 +32,11 @@ Hello::Engine.routes.draw do
   scope module: 'management' do
     resources :accesses, only: [:index, :destroy]
 
-    resource :profile, only: [:show, :update]
-
-    get 'cancel_account' => 'cancel_account#index'
-    post 'cancel_account' => 'cancel_account#cancel'
+    resource :profile, only: [:show, :update, :destroy] do
+      member do
+        get :cancel
+      end
+    end
 
     resources :emails, only: [:index, :create, :destroy] do
       member do
