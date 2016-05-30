@@ -5,7 +5,7 @@ require 'faker'
 require 'rspec/rails'
 require 'capybara/rails'
 require 'email_spec'
-require 'bdd'
+require 'bdd/rspec'
 
 # silencers
 Rails.backtrace_cleaner.remove_silencers!

@@ -1,4 +1,7 @@
 RSpec.configure do |config|
+  config.color = true
+  config.default_formatter = Bdd::RSpec::Formatter
+
   config.mock_with :rspec
   config.use_transactional_fixtures = true
   config.infer_base_class_for_anonymous_controllers = false
