@@ -7,7 +7,7 @@ module Hello
       kick :guest, only: [:authenticated]
 
       before_actions do
-        only(:index, :authenticate) { @entity = @sign_in = ClassicSignInEntity.new }
+        only(:index, :authenticate) { @sign_in = Hello::Business::Authentication::SignIn.new }
       end
 
       # GET /hello/sign_in

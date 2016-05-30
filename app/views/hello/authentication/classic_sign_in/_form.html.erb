@@ -2,7 +2,7 @@
 
   <!-- Errors -->
   <% if @sign_in.errors.any? %>
-    <%= render '/hello/shared/errors', active_model: @sign_in %>
+    <%= render '/hello/shared/errors', business: @sign_in %>
   <% end %>
 
   <div class="form-group">

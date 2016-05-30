@@ -1,11 +1,11 @@
-<% if active_model.errors.any? %>
-    <div id="error_explanation">
-      <h2 class="errors"><%= active_model.error_message %></h2>
+<% if business.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="errors"><%= business.error_message %></h2>
 
-      <ul>
-      <% active_model.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <ul>
+    <% business.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

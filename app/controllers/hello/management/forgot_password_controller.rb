@@ -10,13 +10,13 @@ module Hello
 
       # GET /hello/passwords/forgot
       def index
-        @entity = @forgot_password = ForgotPasswordEntity.new
+        @forgot_password = Business::Management::ForgotPassword.new
         render 'hello/management/password_credentials/forgot'
       end
 
       # POST /hello/passwords/forgot
       def forgot
-        @entity = @forgot_password = ForgotPasswordEntity.new(params.require(:forgot_password))
+        @forgot_password = Business::Management::ForgotPassword.new(params.require(:forgot_password))
         @user = @forgot_password.user
 
         if @forgot_password.reset

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Hello
-  describe ClassicSignInEntity do
+  describe Business::Authentication::SignIn do
     describe '.authenticate(string, string)' do
       describe 'original state' do
         it('no errors')           { expect(subject.errors.messages).to eq({}) }

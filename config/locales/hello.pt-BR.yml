@@ -12,57 +12,60 @@ pt-BR:
       forgot_password:
         subject: "Instruções para gerar nova senha"
 
-    entities:
-      sign_out:
-        success: "Você saiu do sistema!"
-      unlink_access:
-        success: "Dispositivo foi desconectado com sucesso da sua conta"
-        alert: "Houve um erro ao desconectar esse dispositivo"
-      session_switch:
-        success: "Contas alteradas com sucesso!"
-      session_forget:
-        success: "Sessão esquecida"
-      classic_sign_up:
-        success: "Você se cadastrou com sucesso"
-        error:
-          one: "1 erro foi encontrado em seu cadastro"
-          other: "%{count} erros foram encontrados em seu cadastro"
-      classic_sign_in:
-        success: "Você acessou o sistema com sucesso"
-        error:
-          one: "1 erro foi encontrado em seu login"
-          other: "%{count} erros foram  encontrados em seu login"
-      forgot_password:
-        success: "Para retornar a sua conta, siga as instruções que enviamos para seu email: <strong>\"%{login}\"</strong>."
-        error:
-          one: "1 erro foi encontrado"
-          other: "%{count} erros foram encontrados"
-      reset_password:
-        success: "Você gerou uma nova senha com sucesso"
-        alert: "O link expirou, por favor solicite um novo email de recuperação de senha"
-        error:
-          one: "1 erro foi encontrado na sua recuperação de senha"
-          other: "%{count} erros foram encontrados na sua recuperação de senha"
-      send_confirmation_email:
-        success: "Enviamos um email de confirmação para %{email}"
-      confirm_email:
-        success: "%{email} foi confirmado com sucesso."
-        alert: "O link expirou, por favor solicite um novo email de confirmação"
-      sudo_mode_authentication:
-        success: "Agora temos certeza que é você. Não perguntaremos sua senha novamente nos próximos 60 minutos"
-        alert: "Senha incorreta"
-      sudo_mode_expiration:
-        success: "Estamos perguntando sua senha para sua segurança"
-      profile:
-        success: "Você atualizou seu perfil com sucesso"
-        error:
-          one: "1 erro foi encontrado na atualização do perfil"
-          other: "%{count} erros foram encontrados na atualização do perfil"
-      cancel_account:
-        success: "Sua conta foi desativada com sucesso"
-        alert: "Cancelar sua conta pode causar erros de navegação para outros usuários. Por favor, entre em contato conosco para removermos manualmente sua conta."
-      update_field:
-        success: "Seu %{field} foi atualizado com sucesso"
-        alert: "1 erro foi encontrado ao atualizar seu %{field}"
-      update_locale:
-        success: "Seu idioma foi atualizado com sucesso. '%{locale_name}'"
+    business:
+      registration:
+        sign_up:
+          success: "Você se cadastrou com sucesso"
+          error:
+            one: "1 erro foi encontrado em seu cadastro"
+            other: "%{count} erros foram encontrados em seu cadastro"
+      internationalization:
+        update_locale:
+          success: "Seu idioma foi atualizado com sucesso. '%{locale_name}'"
+      authentication:
+        sign_in:
+          success: "Você acessou o sistema com sucesso"
+          error:
+            one: "1 erro foi encontrado em seu login"
+            other: "%{count} erros foram  encontrados em seu login"
+        sign_out:
+          success: "Você saiu do sistema!"
+        sudo_mode_authentication:
+          success: "Agora temos certeza que é você. Não perguntaremos sua senha novamente nos próximos 60 minutos"
+          alert: "Senha incorreta"
+        sudo_mode_expiration:
+          success: "Estamos perguntando sua senha para sua segurança"
+      management:
+        add_email:
+          # TODO: missing translation
+          success: "%{email} was successfully added"
+        remove_email:
+          # TODO: missing translation
+          success: "%{email} was successfully removed"
+        unlink_access:
+          success: "Dispositivo foi desconectado com sucesso da sua conta"
+          alert: "Houve um erro ao desconectar esse dispositivo"
+        forgot_password:
+          success: "Para retornar a sua conta, siga as instruções que enviamos para seu email: <strong>\"%{login}\"</strong>."
+          error:
+            one: "1 erro foi encontrado"
+            other: "%{count} erros foram encontrados"
+        reset_password:
+          success: "Você gerou uma nova senha com sucesso"
+          alert: "O link expirou, por favor solicite um novo email de recuperação de senha"
+          error:
+            one: "1 erro foi encontrado na sua recuperação de senha"
+            other: "%{count} erros foram encontrados na sua recuperação de senha"
+        send_confirmation_email:
+          success: "Enviamos um email de confirmação para %{email}"
+        confirm_email:
+          success: "%{email} foi confirmado com sucesso."
+          alert: "O link expirou, por favor solicite um novo email de confirmação"
+        cancel_account:
+          success: "Sua conta foi desativada com sucesso"
+          alert: "Cancelar sua conta pode causar erros de navegação para outros usuários. Por favor, entre em contato conosco para removermos manualmente sua conta."
+        update_profile:
+          success: "Você atualizou seu perfil com sucesso"
+          error:
+            one: "1 erro foi encontrado na atualização do perfil"
+            other: "%{count} erros foram encontrados na atualização do perfil"

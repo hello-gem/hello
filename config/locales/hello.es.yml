@@ -12,57 +12,60 @@ es:
       forgot_password:
         subject: "Instrucciones para recuperación de contraseña"
 
-    entities:
-      sign_out:
-        success: "Sesión finalizada!"
-      unlink_access:
-        success: "Dispositivo desconectado exitosamente de su cuenta"
-        alert: "Hubo un error al desconectar este dispositivo"
-      session_switch:
-        success: "Ha cambiado de cuentas exitosamente!"
-      session_forget:
-        success: "Olvidó su contraseña"
-      classic_sign_up:
-        success: "Su cuenta ha sido creada correctamente"
-        error:
-          one: "Ha ocurrido un error intentando crear tu cuenta"
-          other: "Han ocurrido %{count} errores intentando crear tu cuenta"
-      classic_sign_in:
-        success: "Sesión iniciada correctamente"
-        error:
-          one: "Ha ocurrido un error intentando iniciar sesión"
-          other: "Han ocurrido %{count} errores intentando iniciar sesión"
-      forgot_password:
-        success: "Hemos enviado un correo con instrucciones de como reestablecer tu contraseña a la dirección <strong>\"%{login}\"</strong>"
-        error:
-          one: "Ha ocurrido un error intentado encontrar sus credenciales"
-          other: "Han ocurrido %{count} errores intentando encontrar sus credenciales"
-      reset_password:
-        success: "Su contraseña ha sido restablecida exitosamente"
-        alert: "Este enlace ha expirado, solicite uno nuevo por favor"
-        error:
-          one: "Ha ocurrido un error mientras reestablecíamos su contraseña"
-          other: "Han ocurrido %{count} errores mientras reestablecíamos su contraseña"
-      send_confirmation_email:
-        success: "Se ha enviado un correo de confirmación a %{email}"
-      confirm_email:
-        success: "La dirección de correo electrónico %{email} ha sido confirmada exitosamente"
-        alert: "Este enlace ha expirado, solicite uno nuevo por favor."
-      sudo_mode_authentication:
-        success: "Hemos confirmado que realmente eres usted, su contraseña no será solicitada nuevamente en los próximos 60 minutos"
-        alert: "Contraseña Incorrecta"
-      sudo_mode_expiration:
-        success: "Solicitamos su contraseña por seguridad"
-      profile:
-        success: "Su perfil ha sido actualizado exitosamente"
-        error:
-          one: "Ha ocurrido un error mientras actualizábamos tu perfil"
-          other: "%{count} errores ocurrieron mientras actualizábamos tu perfil"
-      cancel_account:
-        success: "Su cuenta ha sido desactivada exitosamente"
-        alert: "Cancelar tu cuenta pudiera provocar que otros usuario experimenten errores usando nuestro sitio. Por favor, ponte en contacto con nosotros para cancelarla manualmente"
-      update_field:
-        success: "Su %{field} ha sido actualizado exitosamente"
-        alert: "Ha ocurrido un error mientras actualizábamos %{field}"
-      update_locale:
-        success: "Su idioma ha sido configurado exitosamente. '%{locale_name}'"
+    business:
+      registration:
+        sign_up:
+          success: "Su cuenta ha sido creada correctamente"
+          error:
+            one: "Ha ocurrido un error intentando crear tu cuenta"
+            other: "Han ocurrido %{count} errores intentando crear tu cuenta"
+      internationalization:
+        update_locale:
+          success: "Su idioma ha sido configurado exitosamente. '%{locale_name}'"
+      authentication:
+        sign_in:
+          success: "Sesión iniciada correctamente"
+          error:
+            one: "Ha ocurrido un error intentando iniciar sesión"
+            other: "Han ocurrido %{count} errores intentando iniciar sesión"
+        sign_out:
+          success: "Sesión finalizada!"
+        sudo_mode_authentication:
+          success: "Hemos confirmado que realmente eres usted, su contraseña no será solicitada nuevamente en los próximos 60 minutos"
+          alert: "Contraseña Incorrecta"
+        sudo_mode_expiration:
+          success: "Solicitamos su contraseña por seguridad"
+      management:
+        add_email:
+          # TODO: missing translation
+          success: "%{email} was successfully added"
+        remove_email:
+          # TODO: missing translation
+          success: "%{email} was successfully removed"
+        unlink_access:
+          success: "Dispositivo desconectado exitosamente de su cuenta"
+          alert: "Hubo un error al desconectar este dispositivo"
+        forgot_password:
+          success: "Hemos enviado un correo con instrucciones de como reestablecer tu contraseña a la dirección <strong>\"%{login}\"</strong>"
+          error:
+            one: "Ha ocurrido un error intentado encontrar sus credenciales"
+            other: "Han ocurrido %{count} errores intentando encontrar sus credenciales"
+        reset_password:
+          success: "Su contraseña ha sido restablecida exitosamente"
+          alert: "Este enlace ha expirado, solicite uno nuevo por favor"
+          error:
+            one: "Ha ocurrido un error mientras reestablecíamos su contraseña"
+            other: "Han ocurrido %{count} errores mientras reestablecíamos su contraseña"
+        send_confirmation_email:
+          success: "Se ha enviado un correo de confirmación a %{email}"
+        confirm_email:
+          success: "La dirección de correo electrónico %{email} ha sido confirmada exitosamente"
+          alert: "Este enlace ha expirado, solicite uno nuevo por favor."
+        cancel_account:
+          success: "Su cuenta ha sido desactivada exitosamente"
+          alert: "Cancelar tu cuenta pudiera provocar que otros usuario experimenten errores usando nuestro sitio. Por favor, ponte en contacto con nosotros para cancelarla manualmente"
+        update_profile:
+          success: "Su perfil ha sido actualizado exitosamente"
+          error:
+            one: "Ha ocurrido un error mientras actualizábamos tu perfil"
+            other: "%{count} errores ocurrieron mientras actualizábamos tu perfil"

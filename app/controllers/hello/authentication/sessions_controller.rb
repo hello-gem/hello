@@ -7,14 +7,7 @@ module Hello
 
       before_actions do
         only(:index) { @accesses = current_accesses }
-        only(:show, :destroy) do
-          unless @access = find_access
-            respond_to do |format|
-              format.html { redirect_to hello.sessions_path, notice: 'Your Session Was Expired!' }
-              format.json { head :reset_content }
-            end
-          end
-        end
+        only(:show, :destroy) { @access = find_access! }
       end
 
       # GET /hello/sessions
@@ -31,8 +24,10 @@ module Hello
       def show
         self.session_token = @access.token
 
+        business = Hello::Business::Authentication::SignIn.new
+
         respond_to do |format|
-          format.html { redirect_to hello.sessions_path, notice: t('hello.entities.session_switch.success') }
+          format.html { redirect_to hello.sessions_path, notice: business.success_message }
           format.json { head :reset_content }
         end
       end
@@ -41,8 +36,10 @@ module Hello
       def destroy
         sign_out!(@access)
 
+        business = Hello::Business::Authentication::SignOut.new
+
         respond_to do |format|
-          format.html { redirect_to hello.sessions_path, notice: t('hello.entities.session_forget.success') }
+          format.html { redirect_to hello.sessions_path, notice: business.success_message }
           format.json { head :reset_content }
         end
       end
@@ -51,16 +48,27 @@ module Hello
       def sign_out
         sign_out!
 
+        business = Hello::Business::Authentication::SignOut.new
+
         respond_to do |format|
-          format.html { redirect_to '/', notice: t('hello.entities.sign_out.success') }
+          format.html { redirect_to '/', notice: business.success_message }
           format.json { head :reset_content }
         end
       end
 
       private
 
-      def find_access
-        current_accesses.find { |at| at.id.to_s == params[:id] }
+      def find_access!
+        current_accesses.find { |at| at.id.to_s == params[:id] } || access_not_found!
+      end
+
+      def access_not_found!
+        # we can re use the sign out message here
+        business = Hello::Business::Authentication::SignOut.new
+        respond_to do |format|
+          format.html { redirect_to hello.sessions_path, notice: business.success_message }
+          format.json { head :reset_content }
+        end
       end
 
       def render_list

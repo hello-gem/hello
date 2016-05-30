@@ -7,7 +7,7 @@ module Hello
       dont_kick_people
 
       before_action do
-        @entity = @sign_up = ClassicSignUpEntity.new
+        @sign_up = Hello::Business::Registration::SignUp.new
       end
 
       # GET /hello/sign_up

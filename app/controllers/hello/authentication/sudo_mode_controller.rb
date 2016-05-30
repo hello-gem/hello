@@ -16,23 +16,23 @@ module Hello
 
       # PATCH /hello/sudo_mode
       def authenticate
-        entity = SudoModeAuthenticationEntity.new(current_access)
+        business = Business::Authentication::SudoModeAuthentication.new(current_access)
 
-        if entity.authenticate!(password_param)
+        if business.authenticate!(password_param)
           path_to_go = session[:url] || root_path
-          flash[:notice] = entity.success_message
+          flash[:notice] = business.success_message
           redirect_to path_to_go
         else
-          flash.now[:alert] = entity.alert_message
+          flash.now[:alert] = business.alert_message
           render_sudo_mode_form
         end
       end
 
       # GET /hello/sudo_mode/expire
       def expire
-        entity = SudoModeExpirationEntity.new(current_access)
-        entity.expire!
-        flash[:notice] = entity.success_message
+        business = Business::Authentication::SudoModeExpiration.new(current_access)
+        business.expire!
+        flash[:notice] = business.success_message
         redirect_to '/'
       end
 

@@ -12,57 +12,58 @@ en:
       forgot_password:
         subject: "Reset Password Instructions"
 
-    entities:
-      sign_out:
-        success: "You have signed out!"
-      unlink_access:
-        success: "Device has been unlinked from your account"
-        alert: "There was an error while unlinking this device"
-      session_switch:
-        success: "Switched Accounts Successfully!"
-      session_forget:
-        success: "Forgotten"
-      classic_sign_up:
-        success: "You have signed up successfully"
-        error:
-          one: "1 error was found while trying to sign up"
-          other: "%{count} errors were found while trying to sign up"
-      classic_sign_in:
-        success: "You have signed in successfully"
-        error:
-          one: "1 error was found while trying to sign in"
-          other: "%{count} errors were found while trying to sign in"
-      forgot_password:
-        success: "To get back into your account, follow the instructions we've sent to your <strong>\"%{login}\"</strong> email address."
-        error:
-          one: "1 error was found while locating your credentials"
-          other: "%{count} errors were found while locating your credentials"
-      reset_password:
-        success: "You have reset your password successfully"
-        alert: "This link has expired, please ask for a new link"
-        error:
-          one: "1 error was found while resetting your password"
-          other: "%{count} errors were found while resetting your password"
-      send_confirmation_email:
-        success: "We have sent a confirmation email to %{email}"
-      confirm_email:
-        success: "%{email} has been confirmed successfully."
-        alert: "This link has expired, please ask for a new link"
-      sudo_mode_authentication:
-        success: "Now we know it's really you. We won't be asking your password again for 60 minutes"
-        alert: "Incorrect Password"
-      sudo_mode_expiration:
-        success: "We will now ask your password for sensitive access"
-      profile:
-        success: "You have updated your profile successfully"
-        error:
-          one: "1 error was found while updating your profile"
-          other: "%{count} errors were found while updating your profile"
-      cancel_account:
-        success: "You have deactivated your account successfully"
-        alert: "Terminating your account would cause other users to experience errors while using our website. Please contact any of our staff members and ask to have your account removed manually."
-      update_field:
-        success: "Your %{field} was successfully updated"
-        alert: "1 error was found while updating your %{field}"
-      update_locale:
-        success: "Your current language has been applied successfully. '%{locale_name}'"
+    business:
+      registration:
+        sign_up:
+          success: "You have signed up successfully"
+          error:
+            one: "1 error was found while trying to sign up"
+            other: "%{count} errors were found while trying to sign up"
+      internationalization:
+        update_locale:
+          success: "Your current language has been applied successfully. '%{locale_name}'"
+      authentication:
+        sign_in:
+          success: "You have signed in successfully"
+          error:
+            one: "1 error was found while trying to sign in"
+            other: "%{count} errors were found while trying to sign in"
+        sign_out:
+          success: "You have signed out!"
+        sudo_mode_authentication:
+          success: "Now we know it's really you. We won't be asking your password again for 60 minutes"
+          alert: "Incorrect Password"
+        sudo_mode_expiration:
+          success: "We will now ask your password for sensitive access"
+      management:
+        add_email:
+          success: "%{email} was successfully added"
+        remove_email:
+          success: "%{email} was successfully removed"
+        unlink_access:
+          success: "Device has been unlinked from your account"
+          alert: "There was an error while unlinking this device"
+        forgot_password:
+          success: "To get back into your account, follow the instructions we've sent to your <strong>\"%{login}\"</strong> email address."
+          error:
+            one: "1 error was found while locating your credentials"
+            other: "%{count} errors were found while locating your credentials"
+        reset_password:
+          success: "You have reset your password successfully"
+          alert: "This link has expired, please ask for a new link"
+          error:
+            one: "1 error was found while resetting your password"
+            other: "%{count} errors were found while resetting your password"
+        send_confirmation_email:
+          success: "We have sent a confirmation email to %{email}"
+        confirm_email:
+          success: "%{email} has been confirmed successfully."
+          alert: "This link has expired, please ask for a new link"
+        cancel_account:
+          success: "You have deactivated your account successfully"
+          alert: "Terminating your account would cause other users to experience errors while using our website. Please contact any of our staff members and ask to have your account removed manually."
+        update_profile:
+          success: "You have updated your profile successfully"
+          error:
+            one: "1 error was found while updating your profile"
+            other: "%{count} errors were found while updating your profile"

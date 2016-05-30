@@ -13,6 +13,7 @@ module Hello
     puts "#{s1} #{s2.yellow}"
   end
 
+  autoload :Business,          'hello/business'
   autoload :TimeZones,         'hello/time_zones'
   autoload :Encryptors,        'hello/encryptors'
   autoload :RailsActiveRecord, 'hello/rails_active_record'

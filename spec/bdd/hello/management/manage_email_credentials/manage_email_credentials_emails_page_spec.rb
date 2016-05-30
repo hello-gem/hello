@@ -34,7 +34,7 @@ RSpec.bdd.uic "Emails Page" do
       _when_I_submit "a valid", "newemail@provider.com"
 
       Then "I should see a confirmation message" do
-        expect_flash_notice "Your email was successfully added."
+        expect_flash_notice "newemail@provider.com was successfully added"
       end
 
       Then "and I should see the newly included unconfirmed email on the list" do
@@ -118,11 +118,13 @@ RSpec.bdd.uic "Emails Page" do
       end
 
       Then "I should see a confirmation message" do
-        expect_flash_notice "Your email was successfully removed."
+        expect_flash_notice "newemail@provider.com was successfully removed"
       end
 
       Then "and I should no longer see that email on the list" do
-        expect_not_to_see @new_email
+        within all("table tr")[1] do
+          expect_not_to_see @new_email
+        end
       end
 
       Then "nor in the database" do
@@ -140,7 +142,7 @@ RSpec.bdd.uic "Emails Page" do
 
     scenario "Success" do
 
-      expect_any_instance_of(Hello::SendConfirmationEmailEntity).to receive(:deliver).and_call_original
+      expect_any_instance_of(Hello::Business::Management::SendConfirmationEmail).to receive(:deliver).and_call_original
 
       When "I click the confirm button" do
         click_button "Confirm"

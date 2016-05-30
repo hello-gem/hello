@@ -2,7 +2,7 @@
 
   <!-- Errors -->
   <% if @reset_password.errors.any? %>
-    <%= render '/hello/shared/errors', active_model: @reset_password %>
+    <%= render '/hello/shared/errors', business: @reset_password %>
   <% end %>
 
   <% @user.email_credentials.map(&:email).each do |email| %>

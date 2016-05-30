@@ -7,7 +7,8 @@ module Hello
       kick :guest, :onboarding
 
       before_action do
-        @user_entity = ProfileEntity.new(@user = current_user)
+        @user = current_user
+        @user_business = Business::Management::UpdateProfile.new(@user)
       end
 
       # GET /hello/user
@@ -20,9 +21,9 @@ module Hello
 
       # PATCH /hello/user
       def update
-        if @user_entity.update(user_params)
+        if @user_business.update(user_params)
           use_locale(current_user.locale)
-          flash[:notice] = @user_entity.success_message
+          flash[:notice] = @user_business.success_message
           on_success
         else
           on_failure

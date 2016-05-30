@@ -15,13 +15,13 @@ module Hello
 
       # POST /hello/locale
       def update
-        entity = UpdateLocaleEntity.new(params['locale'])
+        business = Business::Internationalization::UpdateLocale.new(params['locale'])
 
-        current_user && current_user.update!(locale: entity.locale)
-        use_locale(entity.locale)
+        current_user && current_user.update!(locale: business.locale)
+        use_locale(business.locale)
 
         respond_to do |format|
-          format.html { redirect_to :back, notice: entity.success_message }
+          format.html { redirect_to :back, notice: business.success_message }
           format.json { fail Hello::Errors::JsonNotSupported }
         end
       end

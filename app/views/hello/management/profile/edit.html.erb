@@ -5,7 +5,7 @@
 <div class="col-sm-3-offset col-md-2-offset col-sm-9 col-md-10">
 
 <%= form_for @user, url: profile_path, html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= render '/hello/shared/errors', active_model: @user_entity %>
+  <%= render '/hello/shared/errors', business: @user_business %>
 
   <% current_user.email_credentials.each do |credential| %>
   <div class="form-group">

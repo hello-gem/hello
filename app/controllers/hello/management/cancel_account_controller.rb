@@ -14,9 +14,9 @@ module Hello
 
       # POST /hello/cancel_account
       def cancel
-        @cancel_account = CancelAccountEntity.new
+        @cancel_account = Business::Management::CancelAccount.new(current_user)
 
-        if current_user.cancel_account
+        if @cancel_account.cancel_account
           flash[:notice] = @cancel_account.success_message
           on_success
         else
