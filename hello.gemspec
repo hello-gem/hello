@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "user_agent_parser"
   s.add_runtime_dependency "http_accept_language"
   s.add_runtime_dependency "rails-i18n"
-  s.add_runtime_dependency "nav_lynx", '1.1.1' # built on Sep 2, 2014 | added on Feb 18, 2015
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'rspec-rails'

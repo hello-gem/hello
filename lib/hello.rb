@@ -29,7 +29,6 @@ end
 if defined? Rails
   require 'before_actions'
   require 'http_accept_language'
-  require 'nav_lynx'
   require 'rails-i18n'
 
   ActionView::Base.include Hello::RailsHelper

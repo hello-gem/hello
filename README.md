@@ -35,6 +35,7 @@ Add this line to your application's Gemfile:
 ```ruby
 gem 'hello', github: 'hello-gem/hello' # latest from github while this gem is in rapid development
 gem 'bcrypt', '~> 3.1' # bcrypt is highly recommended
+gem 'nav_lynx' # nav_lynx is optional, add it if you are using hello for the first time
 ```
 
 And then execute:

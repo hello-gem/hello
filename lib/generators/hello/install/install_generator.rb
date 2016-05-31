@@ -10,6 +10,10 @@ class Hello::InstallGenerator < Rails::Generators::Base
   rescue Errno::ENOENT
   end
 
+  def generate_helper
+    copy_file 'hello_helper.rb', 'app/helpers/hello_helper.rb'
+  end
+
   # a root route is needed
   # we were previously redirecting to /hello which caused a redirection loop bug
   def generate_root
