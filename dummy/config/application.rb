@@ -9,7 +9,7 @@ require 'sprockets/railtie'
 
 require 'rspec/core'
 Bundler.require(*Rails.groups)
-require 'hello'
+require 'hello-rails'
 
 module Dummy
   class Application < Rails::Application

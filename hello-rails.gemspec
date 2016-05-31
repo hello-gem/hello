@@ -5,7 +5,7 @@ require "hello/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "hello"
+  s.name        = "hello-rails"
   s.version     = Hello::VERSION
   s.authors     = ["James Pinto", "Michal Papis"]
   s.email       = ["thejamespinto@gmail.com", "mpapis@gmail.com"]
