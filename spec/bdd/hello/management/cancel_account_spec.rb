@@ -80,6 +80,17 @@ RSpec.bdd.capability "I can Cancel my Account" do
               end
             end
 
+            scenario "Some other reason" do
+              But "an exception" do
+                expect_any_instance_of(::User).to receive(:destroy!).and_raise(ActiveRecord::RecordNotDestroyed.new("mock!", ::User.new))
+              end
+
+              When 'I attempt to cancel my account' do
+                click_button 'Cancel'
+              end
+            end
+
+
             Then "I should be back on the Cancel Account page" do
               expect_to_be_on '/hello/cancel_account'
             end

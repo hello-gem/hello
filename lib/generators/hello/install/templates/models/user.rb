@@ -28,18 +28,11 @@ class User < Hello::RailsActiveRecord::User
     %w(webmaster).include?(role)
   end
 
-  # hello account management
+  # hello management
 
   def cancel_account
-    result = true
-    transaction do
-      begin
-        destroy!
-      rescue ActiveRecord::RecordNotDestroyed => invalid
-        result = false
-        raise ActiveRecord::Rollback
-      end
-    end
-    result
+    destroy!
+  rescue ActiveRecord::RecordNotDestroyed => invalid
+    false
   end
 end
