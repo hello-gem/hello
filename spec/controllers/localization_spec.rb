@@ -14,7 +14,6 @@ module Hello
           nil                       => 'en',
           'en-US,en;q=0.8,pt;q=0.6' => 'en',
           'en-US;q=0.8,pt;q=0.6'    => 'en',
-          'en-US;q=0.8,pt;q=0.6'    => 'en',
           'en'                      => 'en',
           'de-AT'                   => 'en',
           'de-CH'                   => 'en',
