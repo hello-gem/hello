@@ -48,7 +48,7 @@ class Hello::InstallGenerator < Rails::Generators::Base
   end
 
   def create_models
-    copy_file 'models/user.rb', 'app/models/user.rb'
+    directory 'models', 'app/models'
   end
 
   def generate_profile
