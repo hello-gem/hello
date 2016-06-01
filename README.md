@@ -1,7 +1,7 @@
 # Hello
 
 A Rails Engine.<br>
-Provides set of valuable features for Registration, Authentication, Management and Internationalization.
+Provides a set of valuable features for Registration, Authentication, Management and Internationalization.
 
 
 
