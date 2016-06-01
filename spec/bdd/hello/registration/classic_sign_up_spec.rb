@@ -27,21 +27,6 @@ RSpec.bdd.capability "I can Sign Up With Email" do
 
       end # uic
 
-      uic "Dual Form", type: :feature do
-        scenario "-" do
-          When "I visit the hello page" do
-            visit "/hello"
-          end
-
-          Then 'I should be on the disabled page' do
-            expect_to_see('disabled')
-            expect_to_see('Reason: standard maintenance')
-            expect_to_see('Until: 3PM')
-          end
-        end # scenario
-
-      end # uic
-
       uic "Widget", type: :feature do
         scenario "-" do
           When "I visit the sign up widget" do
@@ -120,37 +105,6 @@ RSpec.bdd.capability "I can Sign Up With Email" do
             expect(PasswordCredential.count).to eq(1)
             expect(Access.count).to eq(1)
           end
-        end # scenario
-
-        scenario "Empty Form" do
-          When "I sign up with an empty form" do
-            click_button 'Sign Up'
-          end
-
-          Then "I should see an error message" do
-            expect_error_message "errors were found while trying to sign up"
-          end
-
-          Then "I should be on the sign up page" do
-            expect_to_be_on hello.sign_up_path
-          end
-
-          Then "Database now has 0 User, 0 Email, 0 Password, 0 Access" do
-            expect(User.count).to eq(0)
-            expect(EmailCredential.count).to eq(0)
-            expect(PasswordCredential.count).to eq(0)
-            expect(Access.count).to eq(0)
-          end
-        end # scenario
-      end # uic
-
-      uic "Dual Form", type: :feature do
-        Given "I am on the hello page" do
-          visit "/hello"
-        end
-
-        scenario "Valid Form" do
-          skip
         end # scenario
 
         scenario "Empty Form" do

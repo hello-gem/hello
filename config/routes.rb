@@ -1,5 +1,5 @@
 Hello::Engine.routes.draw do
-  root 'root#index'
+  # root 'management/profiles#show'
 
   #
   # REGISTRATION
@@ -32,6 +32,7 @@ Hello::Engine.routes.draw do
   scope module: 'management' do
     resources :accesses, only: [:index, :destroy]
 
+    root 'profiles#show'
     resource :profile, only: [:show, :update, :destroy] do
       member do
         get :cancel
