@@ -12,28 +12,29 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/hello-gem/hello"
   s.summary     = "A Configurable Rails Authentication Engine"
   s.description = "Provides a set of valuable features for Registration, Authentication, Management and Internationalization."
+  s.license     = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   s.test_files = Dir["spec/**/*"]
 
-  s.add_runtime_dependency "before_actions"
-  s.add_runtime_dependency "colorize"
-  s.add_runtime_dependency "user_agent_parser"
-  s.add_runtime_dependency "http_accept_language"
-  s.add_runtime_dependency "rails-i18n"
+  s.add_runtime_dependency "before_actions", '~> 0'
+  s.add_runtime_dependency "colorize", '~> 0'
+  s.add_runtime_dependency "user_agent_parser", '~> 0'
+  s.add_runtime_dependency "http_accept_language", '~> 0'
+  s.add_runtime_dependency "rails-i18n", '~> 0'
 
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'capybara'
-  s.add_development_dependency 'email_spec'
-  s.add_development_dependency 'factory_girl_rails'
-  s.add_development_dependency 'faker'
-  s.add_development_dependency 'codeclimate-test-reporter'
-  s.add_development_dependency 'bdd'
+  s.add_development_dependency "sqlite3", '~> 0'
+  s.add_development_dependency 'rspec-rails', '~> 0'
+  s.add_development_dependency 'capybara', '~> 0'
+  s.add_development_dependency 'email_spec', '~> 0'
+  s.add_development_dependency 'factory_girl_rails', '~> 0'
+  s.add_development_dependency 'faker', '~> 0'
+  s.add_development_dependency 'codeclimate-test-reporter', '~> 0'
+  s.add_development_dependency 'bdd', '~> 0'
   s.add_development_dependency 'bcrypt', '~> 3.1'
-  s.add_development_dependency 'rubocop'
+  s.add_development_dependency 'rubocop', '~> 0'
 
   # save_and_open_page
-  s.add_development_dependency 'launchy'
+  s.add_development_dependency 'launchy', '~> 0'
 end
