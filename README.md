@@ -1,90 +1,60 @@
 # Hello
 
-Enjoyable Rails Authentication.
+A Rails Engine.<br>
+Provides set of valuable features for Registration, Authentication, Management and Internationalization.
 
-__We are very excited and looking forwards to our release of version 0.1.0__
 
-Please take a look at our [issues](https://github.com/hello-gem/hello/issues), all help is appreciated.
+
+
+
+## Tested With The Latest
+
+| <image width=16 src='https://www.ruby-lang.org/images/header-ruby-logo.png'> Ruby 2.3.0 | <image width=16 src='https://www.ruby-lang.org/images/header-ruby-logo.png'> Ruby 2.4.0-dev | <image width=16 src='https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Ruby_on_Rails.svg/16px-Ruby_on_Rails.svg.png'> Rails 4.2.6 | <image width=16 src='https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Ruby_on_Rails.svg/16px-Ruby_on_Rails.svg.png'> Rails 5.0.0-dev |
+| :--- | :--- | :--- | :--- |
+
 
 
 
 
 ## Status
 
-[![Build Status](https://api.travis-ci.org/hello-gem/hello.svg?branch=master)](https://travis-ci.org/hello-gem/hello) [![Code Climate](https://codeclimate.com/github/hello-gem/hello.svg)](https://codeclimate.com/github/hello-gem/hello) [![Code Climate](https://codeclimate.com/github/hello-gem/hello/coverage.svg)](https://codeclimate.com/github/hello-gem/hello) [![Dependency Status](https://gemnasium.com/hello-gem/hello.svg)](https://gemnasium.com/hello-gem/hello) [![Inline docs](http://inch-ci.org/github/hello-gem/hello.svg?branch=master)](http://inch-ci.org/github/hello-gem/hello)
-
-## Tested With
-
-| Ruby Versions       | Rails Versions |
-| -------------       |----------------|
-| Ruby 2.3            | Rails 4.2 |
-| Ruby 2.4            | Rails 5 |
-| JRuby (PR wanted)   | |
-| RBX (PR wanted)     | |
+| Is It Working? | Is It Tested? | Code Quality |
+|:---|:---|:---|
+| [![Master Build Status](https://api.travis-ci.org/hello-gem/hello.svg?branch=master)](https://travis-ci.org/hello-gem/hello) | [![Code Climate](https://codeclimate.com/github/hello-gem/hello/coverage.svg)](https://codeclimate.com/github/hello-gem/hello) | [![Code Climate](https://codeclimate.com/github/hello-gem/hello.svg)](https://codeclimate.com/github/hello-gem/hello) |
+| **# of Downloads** | **Maintainance Status** | **Get Involved!** |
+| [![Downloads](http://img.shields.io/gem/dt/hello.svg)](https://rubygems.org/gems/hello) | [![Dependency Status](https://gemnasium.com/badges/github.com/hello-gem/hello.svg)](https://gemnasium.com/github.com/hello-gem/hello) | [![GitHub Issues](https://img.shields.io/github/issues/hello-gem/hello.svg)](https://github.com/hello-gem/hello/issues) |
 
 
-## Running Tests
 
-Please read [Running Tests](https://github.com/hello-gem/hello/blob/master/gemfiles)
+
 
 
 ## Install
 
-Add this line to your application's Gemfile:
-
 ```ruby
+Gemfile
+
 gem 'hello', github: 'hello-gem/hello' # latest from github while this gem is in rapid development
 gem 'bcrypt', '~> 3.1' # bcrypt is highly recommended
 gem 'nav_lynx' # nav_lynx is optional, add it if you are using hello for the first time
 ```
 
-And then execute:
+```shell
+Terminal
 
-```bash
 bundle install
 bundle exec rails generate hello:install
 bundle exec rake db:migrate
 ```
 
-## Customizing - behavior and views
 
-These files are generated when you install this gem.
 
-They are simple to customize, just open them.
 
-    ├── app/
-    │   ├── controllers/
-    │   │   ├── hello/
-    │   │   │   └── concerns/
-    │   │   │       └── [...optional...]
-    │   │   ├── onboarding_controller.rb
-    │   │   └── users_controller.rb
-    │   │
-    │   ├── models/
-    │   │   ├── credential.rb
-    │   │   ├── active_session.rb
-    │   │   └── user.rb
-    │   │
-    │   ├── views/
-    │   │   ├── hello/
-    │   │   │   └── [...optional...]
-    │   │   ├── layouts/
-    │   │   │   └── application.html.erb
-    │   │   ├── onboarding/
-    │   │   │   └── index.html.erb
-    │   │   └── users/
-    │   │       ├── index.html.erb
-    │   │       └── show.html.erb
-    │   │
-    ├── config/
-    │   └── initializers
-    │       └── hello.rb
-    │
-    └── db/
-        └── migrate/
-            ├── 1_create_credentials.hello.rb
-            ├── 2_create_accesses.hello.rb
-            └── 3_create_users.hello.rb
+
+## How To
+
+* Please read [Customizing](https://github.com/hello-gem/hello/blob/master/CUSTOMIZING.md)
+* Chat: [Gitter chat](https://gitter.im/hello-gem/hello)
 
 
 
@@ -92,53 +62,17 @@ They are simple to customize, just open them.
 
 
 
+## Contributing
 
-## Customizing
-
-```ruby
-class User < ActiveRecord::Base
-  def user?
-    %w(user webmaster).include?(role)
-  end
-end
-
-module Hello
-  module Concerns
-    module EmailSignUpOnSuccess
-
-      def on_success
-        deliver_welcome_email
-        deliver_confirmation_email
-        redirect_to root_path
-      end
-
-    end
-  end
-end
-```
-
-
-## Demo
-
-Want to see it in action?
-
-* Visit https://bit.ly/hellogem
-* Sources at https://github.com/hello-gem/hello_demo
+* Please read [Running Tests](https://github.com/hello-gem/hello/blob/master/gemfiles) and  [Contributing](https://github.com/hello-gem/hello/blob/master/CONTRIBUTING.md)
 
 
 
-## References
 
-* Home page: https://github.com/hello-gem/hello
-* API Doc: https://github.com/hello-gem/hello
-* Version: https://github.com/hello-gem/hello
-* Trello Board: https://trello.com/b/WwNptyVM/hello-gem
 
-## Support
+## Versions
 
-* Bugs/Issues: https://github.com/hello-gem/hello/issues
-* Support: http://stackoverflow.com/questions/tagged/hello
-* Support/Chat: [![Gitter chat](https://badges.gitter.im/hello-gem/hello.png)](https://gitter.im/hello-gem/hello)
+[Semantic Versioning 2.0.0](http://semver.org)
 
 
 
@@ -157,55 +91,7 @@ Want to see it in action?
 
 
 
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
-## Contributing With Translations
-
-Link to [Translation files](https://github.com/hello-gem/hello/blob/master/config/locales/hello.en.yml)
-
-Link to [Our Locale Contributors](https://github.com/hello-gem/hello/blob/master/LOCALES.md)
-
-1. change the initializer `config.locales = %w(en es pt-BR <NL>)`
-  1. dummy initializer `spec/dummy/config/initializers/hello.rb`
-  2. initializer template `lib/generators/hello/install/templates/initializer.rb`
-2. update locale test in `spec/controllers/localization_spec.rb`
-3. create and modify the locale file `config/locales/hello.<NEW_LANGUAGE>.yml`
-4. ensure consistency with this test `bundle exec rspec spec/others/localization_consistency_spec.rb spec/controllers/localization_spec.rb`
-5. Thank You! Submit your Pull Request `:)`
-
-
-
-
-
-## Versioning
-
-__Hello__ uses [Semantic Versioning 2.0.0](http://semver.org)
 
 ## Copyright
 
-Copyright 2013-2014 James Pinto – Released under [MIT License](http://www.opensource.org/licenses/MIT)
-
-
-## Additional
-
-Look for these terms in the source code
-
-"TODO", "KNOWNBUG"
-
-## Known bugs
-
-  1. (Rails 4.0 only) Top Feature Set: Current User Feature Set: Settings Feature: Cancel Account Invalid Scenarios Validation: has_many restrict_with_error Scenario 2: User has dependent grandchildren
-
-## To Do
-
-  1. One translation missing: config/locales/*.yml
-
-  2. Test this method: Hello::Railsy::Controller::AccessRestrictionConcern::ClassMethods#restrict_if_role_is
-
-  3. Generate Access Token Feature
+Copyright 2013-2016 James Pinto – Released under [MIT License](http://www.opensource.org/licenses/MIT)
