@@ -9,7 +9,7 @@ RSpec.bdd.uic "Profile Page" do
       Given "I am on the Profile Management Page" do
         given_I_have_signed_in
         click_link "Settings"
-        expect(current_path).to eq hello.profile_path
+        expect(current_path).to eq hello_path
       end
     end
   end

@@ -5,6 +5,10 @@ module Hello
     describe 'routing' do
       routes { Hello::Engine.routes }
 
+      it 'routes to #show too' do
+        expect(get('/')).to route_to('hello/management/profiles#show')
+      end
+
       it 'routes to #show' do
         expect(get('/profile')).to route_to('hello/management/profiles#show')
       end
