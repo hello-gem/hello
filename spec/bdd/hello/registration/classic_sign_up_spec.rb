@@ -6,9 +6,9 @@ RSpec.bdd.capability "I can Sign Up With Email" do
     Given "I am a Guest" do
     end
 
-    describe 'config.classic_sign_up_disabled = hash' do
+    describe 'config.sign_up_disabled = hash' do
       Given 'Classic Sign Up is disabled' do
-        expect(Hello.configuration).to receive(:classic_sign_up_disabled).at_least(:once).and_return({reason: "standard maintenance", until: "3PM"})
+        expect(Hello.configuration).to receive(:sign_up_disabled).at_least(:once).and_return({reason: "standard maintenance", until: "3PM"})
       end
 
       uic "Single Form", type: :feature do
@@ -78,7 +78,7 @@ RSpec.bdd.capability "I can Sign Up With Email" do
       end # api
     end
 
-    describe 'config.classic_sign_up_disabled = false' do
+    describe 'config.sign_up_disabled = false' do
       uic "Single Form", type: :feature do
         Given "I am on the sign up page" do
           visit "/hello/sign_up"

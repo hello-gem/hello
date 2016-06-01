@@ -22,7 +22,7 @@ module Hello
 
       # POST /hello/sign_up
       def create
-        if classic_sign_up_disabled
+        if sign_up_disabled
           _create_disabled
         else
           _create_enabled
@@ -51,8 +51,8 @@ module Hello
 
       def _create_disabled
         @sign_up.errors[:base] << "Email Registration is temporarily disabled"
-        if classic_sign_up_disabled.is_a?(Hash)
-          classic_sign_up_disabled.each do |k, v|
+        if sign_up_disabled.is_a?(Hash)
+          sign_up_disabled.each do |k, v|
             @sign_up.errors[k] << Array(v).flatten
           end
         end

@@ -31,7 +31,7 @@ module Hello
     included do
       around_action :hello_around_action
 
-      helper_method :classic_sign_up_disabled,
+      helper_method :sign_up_disabled,
                     :current_user, :current_accesses, :current_access,
                     :signed_in?, :is_current_access?, :sudo_mode?
 
@@ -51,8 +51,8 @@ module Hello
 
 
 
-    def classic_sign_up_disabled
-      Hello.configuration.classic_sign_up_disabled || action_name=='disabled'
+    def sign_up_disabled
+      Hello.configuration.sign_up_disabled || action_name=='disabled'
     end
 
     def hello_store_url_on_session!

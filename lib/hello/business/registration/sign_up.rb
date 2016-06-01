@@ -125,7 +125,7 @@ module Hello
         end
 
         def user_fields
-          Hello.configuration.classic_sign_up_fields.map(&:to_s)
+          Hello.configuration.sign_up_fields.map(&:to_s)
         end
 
         def defaults
