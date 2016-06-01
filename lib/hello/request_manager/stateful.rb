@@ -16,6 +16,10 @@ module Hello
                :refresh_session_tokens,
                to: :@session_wrapper
 
+      def stateful?
+        true
+      end
+
       # read
 
       delegate :current_accesses, to: :@finder

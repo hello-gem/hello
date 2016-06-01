@@ -56,7 +56,9 @@ module Hello
     end
 
     def hello_store_url_on_session!
-      session[:url] = url_for(params.permit!.merge(only_path: true))
+      if hello_manager.stateful?
+        session[:url] = url_for(params.permit!.merge(only_path: true))
+      end
     end
 
 

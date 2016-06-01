@@ -33,6 +33,10 @@ module Hello
         fail NotImplementedError
       end
 
+      def stateful?
+        fail NotImplementedError
+      end
+
       def sign_in!(user, expires_at = nil, sudo_expires_at = nil)
         expires_at ||= 30.minutes.from_now
 
