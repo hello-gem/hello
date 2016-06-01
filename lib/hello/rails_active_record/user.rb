@@ -45,10 +45,8 @@ module Hello
 
       # CUSTOM METHODS
 
-      # NOTE:
-      # dup your changes on lib/generators/hello/install/templates/user.rb
       def as_json_web_api
-        attributes
+        as_json
       end
 
       def password_is?(plain_text_password)

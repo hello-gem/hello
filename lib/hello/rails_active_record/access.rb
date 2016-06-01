@@ -33,8 +33,7 @@ module Hello
       end
 
       def as_json_web_api
-        hash = attributes.slice(*%w(expires_at token user_id))
-        hash.merge!({ user: user.as_json_web_api })
+        as_json.slice(*%w(expires_at token user_id)).merge({ user: user.as_json_web_api })
       end
 
       def sudo_expire!

@@ -1,5 +1,9 @@
 class User < Hello::RailsActiveRecord::User
-  include HelloMixin
+  include Authorization
+
+  def to_param
+    username
+  end
 
   validates_presence_of :name
   validates_presence_of :city

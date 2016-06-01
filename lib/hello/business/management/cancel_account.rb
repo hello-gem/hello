@@ -8,7 +8,9 @@ module Hello
         end
 
         def cancel_account
-          @user.cancel_account
+          @user.destroy!
+        rescue ActiveRecord::RecordNotDestroyed => invalid
+          false
         end
 
         def info_message

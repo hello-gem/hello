@@ -1,14 +1,5 @@
 class User < Hello::RailsActiveRecord::User
-  module HelloMixin
-    def to_param
-      username
-    end
-
-    def as_json_web_api
-      attributes
-    end
-
-    # authorization
+  module Authorization
 
     def guest?
       %w(guest).include?(role)
@@ -26,12 +17,5 @@ class User < Hello::RailsActiveRecord::User
       %w(webmaster).include?(role)
     end
 
-    # management
-
-    def cancel_account
-      destroy!
-    rescue ActiveRecord::RecordNotDestroyed => invalid
-      false
-    end
   end
 end
