@@ -47,11 +47,11 @@ module Hello
       end
 
       def complex_encryptor
-        Hello.configuration.complex_encryptor
+        Hello::Encryptors::Complex.instance
       end
 
       def simple_encryptor
-        Hello.configuration.simple_encryptor
+        Hello::Encryptors::Simple.instance
       end
 
       # # TODO: code for multiple passwords

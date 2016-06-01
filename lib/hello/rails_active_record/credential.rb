@@ -44,7 +44,7 @@ module Hello
       end
 
       def simple_encryptor
-        Hello.configuration.simple_encryptor
+        Hello::Encryptors::Simple.instance
       end
     end
   end

@@ -83,7 +83,7 @@ module Hello
       end
 
       def _make_up_new_username
-        Hello.configuration.simple_encryptor.single(16) # 16 chars
+        Hello::Encryptors::Simple.instance.single(16) # 16 chars
       end
 
       def _username_unique?

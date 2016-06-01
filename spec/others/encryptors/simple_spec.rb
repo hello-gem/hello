@@ -1,6 +1,7 @@
 require 'spec_helper'
 
-describe Hello::Encryptors::MD5 do
+describe Hello::Encryptors::Simple do
+  subject { described_class.instance }
 
   describe '#encrypt' do
     it('does not work with nil') { expect { subject.encrypt(nil).length }.to raise_error(TypeError) }

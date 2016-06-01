@@ -1,6 +1,7 @@
 require 'spec_helper'
 
-describe Hello::Encryptors::BCrypt do
+describe Hello::Encryptors::Complex do
+  subject { described_class.instance }
 
   describe '#encrypt' do
     def use_bcrypt

@@ -16,9 +16,6 @@ Hello.configure do |config|
   config.sign_up_disabled = false # {reason: "standard maintenance", until: "3PM"}
   config.sign_up_fields = %w(username time_zone locale name)
 
-  config.simple_encryptor  = Hello::Encryptors::MD5.new
-  config.complex_encryptor = Hello::Encryptors::BCrypt.new
-
   config.locales    = %w(en es fr pl pt-BR zh-CN)
   config.time_zones = Hello::TimeZones.all
 

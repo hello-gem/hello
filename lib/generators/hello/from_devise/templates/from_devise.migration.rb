@@ -16,7 +16,7 @@ class FromDevise < ActiveRecord::Migration
     User.find_each do |user|
       puts "starting User ##{user.id} #{user.email}"
       username = extract_username(user)
-      credential_fields = { email: user.email, username: username, password: Hello.configuration.simple_encryptor.single }
+      credential_fields = { email: user.email, username: username, password: Hello::Encryptors::Simple.instance.single }
       user.email_credentials.create!(credential_fields)
     end
     puts "after Credential.count (#{Credential.count.to_s.green})"

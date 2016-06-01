@@ -1,6 +1,6 @@
 module Hello
   module Encryptors
-    autoload :MD5, 'hello/encryptors/md5'
-    autoload :BCrypt, 'hello/encryptors/bcrypt'
+    autoload :Simple, 'hello/encryptors/simple'
+    autoload :Complex, 'hello/encryptors/complex'
   end
 end

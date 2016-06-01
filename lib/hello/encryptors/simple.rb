@@ -1,6 +1,10 @@
+require 'singleton'
+
 module Hello
   module Encryptors
-    class MD5
+    class Simple
+      include Singleton
+
       # probability = 1 / ((8*2) ** (8*2))
       def single(complexity = 8)
         SecureRandom.hex(complexity)
