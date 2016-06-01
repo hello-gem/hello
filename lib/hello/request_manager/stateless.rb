@@ -17,6 +17,10 @@ module Hello
         end
       end
 
+      def stateful?
+        false
+      end
+
       private
 
       def param
