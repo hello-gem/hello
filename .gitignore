@@ -9,3 +9,5 @@ dummy/.sass-cache
 coverage/
 Gemfile.lock
 gemfiles/*.lock
+ignore/
+*.gem
