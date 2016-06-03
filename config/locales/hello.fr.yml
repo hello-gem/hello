@@ -37,11 +37,9 @@ fr:
           success: "Veuillez saisir votre mot de passe pour ouvrir cet accès sensible"
       management:
         add_email:
-          # TODO: missing translation
-          success: "%{email} was successfully added"
+          success: "%{email} a bien été rajouté"
         remove_email:
-          # TODO: missing translation
-          success: "%{email} was successfully removed"
+          success: "%{email} a bien été supprimé"
         unlink_access:
           success: "La liaison avec votre appareil a été retirée"
           alert: "Une erreur s'est produite lors de la tentative de suppression du lien avec votre appareil"
