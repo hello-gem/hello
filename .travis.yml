@@ -13,6 +13,11 @@ gemfile:
   - gemfiles/rails-4-2-stable.gemfile
   - gemfiles/rails-master.gemfile
 
+matrix:
+  fast_finish: true
+  allow_failures:
+    - gemfile: gemfiles/rails-master.gemfile
+
 cache:
   - bundler
   - apt
