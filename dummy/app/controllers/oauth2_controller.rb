@@ -10,30 +10,40 @@ class Oauth2Controller < ApplicationController
   def facebook
     business = FacebookBusiness.new(current_user, hash[:uid], info[:email])
 
-    if business.magic
-      case business.status
-      when :sign_in
-        sign_in!(business.user, 24.hours, 10.minutes)
-      when :sign_up
-        business.sign_up!(hash)
-        sign_in!(business.user, 24.hours, 10.minutes)
-      # when :linked, :nothing
-      #   nothing to do
-      end
-      render json: {}, status: :created
-    else
-      # case business.status
-      #   wip
-      # when :uid_found
-      #   wip
-      # when :email_found
-      #   wip
-      # end
-      render json: business.errors, status: :unprocessable_entity
+    case business.magic
+    when :sign_in
+      sign_in!(business.user, 24.hours, 10.minutes)
+      render_created
+
+    when :sign_up
+      business.sign_up!(hash)
+      sign_in!(business.user, 24.hours, 10.minutes)
+      render_created
+
+    when :linked, :nothing
+      # nothing to do
+      render_created
+
+    when :uid_found
+      # wip
+      render_errors(business.errors)
+
+    when :email_found
+      # wip
+      render_errors(business.errors)
+
     end
   end
 
   private
+
+  def render_created
+    render json: {}, status: :created
+  end
+
+  def render_errors(errors)
+    render json: errors, status: :unprocessable_entity
+  end
 
   def hash
     request.env['omniauth.auth']
