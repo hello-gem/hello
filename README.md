@@ -9,7 +9,7 @@ Provides a set of valuable features for Registration, Authentication, Management
 
 ## Tested With The Latest
 
-| <image width=16 src='https://www.ruby-lang.org/images/header-ruby-logo.png'> Ruby 2.3.0 | <image width=16 src='https://www.ruby-lang.org/images/header-ruby-logo.png'> Ruby 2.4.0-dev | <image width=16 src='https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Ruby_on_Rails.svg/16px-Ruby_on_Rails.svg.png'> Rails 4.2.6 | <image width=16 src='https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Ruby_on_Rails.svg/16px-Ruby_on_Rails.svg.png'> Rails 5.0.0-dev |
+| <image width=16 src='https://www.ruby-lang.org/images/header-ruby-logo.png'> Ruby 2.3 | <image width=16 src='https://www.ruby-lang.org/images/header-ruby-logo.png'> Ruby 2.4.0-dev | <image width=16 src='https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Ruby_on_Rails.svg/16px-Ruby_on_Rails.svg.png'> Rails 4.2 | <image width=16 src='https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Ruby_on_Rails.svg/16px-Ruby_on_Rails.svg.png'> Rails 5.0 |
 | :--- | :--- | :--- | :--- |
 
 
