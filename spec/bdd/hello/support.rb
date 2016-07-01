@@ -26,21 +26,18 @@ end
 
 def sign_in_as_an_onboarding
   u = create(:user_onboarding)
-  create(:email_credential, user: u, email: "#{u.username}@example.com")
   sign_in_with(u.username)
   expect(current_user.role).to eq('onboarding')
 end
 
 def sign_in_as_a_user
   u = create(:user_user)
-  create(:email_credential, user: u, email: "#{u.username}@example.com")
   sign_in_with(u.username)
   expect(current_user.role).to eq('user')
 end
 
 def sign_in_as_a_webmaster
   u = create(:user_webmaster)
-  create(:email_credential, user: u, email: "#{u.username}@example.com")
   sign_in_with(u.username)
   expect(current_user.role).to eq('webmaster')
 end

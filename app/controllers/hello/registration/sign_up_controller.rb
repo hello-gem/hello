@@ -41,7 +41,7 @@ module Hello
       end
 
       def _create_enabled
-        if @sign_up.register(params.require(:sign_up))
+        if @sign_up.register(sign_up_params)
           flash[:notice] = @sign_up.success_message
           on_success
         else
@@ -57,6 +57,14 @@ module Hello
           end
         end
         on_failure
+      end
+
+      def sign_up_params
+        params.require(:sign_up).permit(sign_up_params_permitted)
+      end
+
+      def sign_up_params_permitted
+        Hello.configuration.sign_up_fields.map(&:to_s)
       end
     end
   end

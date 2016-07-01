@@ -3,8 +3,7 @@ require 'spec_helper'
 describe EmailCredential do
   example 'Validations' do
     subject.valid?
-    expect(subject.errors.messages).to eq(user: ["can't be blank"],
-                                          email: ["can't be blank"])
+    expect(subject.errors.messages).to eq(email: ["can't be blank"])
   end
 
   context 'Fields' do

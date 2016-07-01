@@ -41,13 +41,17 @@ module Hello
         end
 
         def deliver_confirmation_email
-          token = @sign_up.email_credential.reset_verifying_token!
-          url   = hello.confirm_email_url(@sign_up.email_credential, token)
+          token = email_credential.reset_verifying_token!
+          url   = hello.confirm_email_url(email_credential, token)
           Mailer.confirm_email(email, user, url).deliver
         end
 
         def email
-          @sign_up.email_credential.email
+          email_credential.email
+        end
+
+        def email_credential
+          @sign_up.email_credentials.first
         end
 
         def user

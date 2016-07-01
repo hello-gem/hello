@@ -89,11 +89,11 @@ RSpec.bdd.uic "Emails Page" do
       end
 
       When "I attempt to remove that email" do
-        click_on "Remove"
+        click_nth_button("Remove", 0)
       end
 
       Then "I should see an alert message" do
-        expect_flash_alert "must have at least one credential"
+        expect_flash_alert "Email credentials is too short (minimum is 1 character)"
       end
 
       Then "and I should still see that email on the list" do
@@ -114,21 +114,21 @@ RSpec.bdd.uic "Emails Page" do
       end
 
       When "I attempt to remove that email" do
-        click_nth_button("Remove", 1)
+        click_nth_button("Remove", 0)
       end
 
       Then "I should see a confirmation message" do
-        expect_flash_notice "newemail@provider.com was successfully removed"
+        expect_flash_notice "foo@bar.com was successfully removed"
       end
 
-      Then "and I should no longer see that email on the list" do
+      Then "and I should no longer see the old email on the list" do
         within all("table tr")[1] do
           expect_not_to_see @new_email
         end
       end
 
       Then "nor in the database" do
-        expect(EmailCredential.pluck(:email)).not_to include @new_email
+        expect(EmailCredential.pluck(:email)).not_to include 'foo@bar.com'
       end
     end
   end
@@ -221,7 +221,7 @@ RSpec.bdd.uic "Emails Page" do
 
     def _when_visit_valid
       When "I visit a valid token URL" do
-        @credential = create(:email_credential)
+        @credential = create(:user).email_credentials.first
         token       = @credential.reset_verifying_token!
         visit the_url(@credential.id, token)
       end

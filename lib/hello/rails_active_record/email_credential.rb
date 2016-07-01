@@ -3,10 +3,9 @@ module Hello
     class EmailCredential < ::Credential
 
       # VALIDATIONS
-      before_destroy :cannot_destroy_last_email_credential
-
-      validate :hello_validations
       validates_uniqueness_of :email
+      validates_presence_of :email
+      validate :hello_validations, if: :email?
 
       # SETTERS
       def email=(v)
@@ -34,27 +33,14 @@ module Hello
       private
 
       def hello_validations
-        validates_presence_of :email
-        return false if errors[:email].any?
+        return if errors.has_key?(:email)
 
         c = Hello.configuration
         validates_length_of :email, in: c.email_length
-        return false if errors[:email].any?
-
         validates_format_of :email, with: c.email_regex
-        return false if errors[:email].any?
       end
 
-      def cannot_destroy_last_email_credential
-        return if hello_is_user_being_destroyed?
-        return unless is_last_email_credential?
-        errors[:base] << 'must have at least one credential'
-        false
-      end
 
-      def is_last_email_credential?
-        user.email_credentials.count == 1
-      end
     end
   end
 end

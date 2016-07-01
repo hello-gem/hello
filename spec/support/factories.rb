@@ -1,41 +1,38 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
-# https://github.com/thoughtbot/factory_girl/blob/webmaster/GETTING_STARTED.md
+# https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md
 
 # https://github.com/stympy/faker#usage
 
 FactoryGirl.define do
+
   factory :user do
     name { Faker::Name.name }
     city { Faker::Address.city } # for dummy's customized sign up
     locale 'en'
     time_zone Time.zone.name
     role 'user'
-
     username { Faker::Internet.user_name(name, %w(-_)) }
+    email { "#{username}@provider.com" }
+    password '1234'
 
-    # TODO: improve this
-    after(:build)  { |user| build(:password_credential,  user: user) }
-    after(:create) { |user| create(:password_credential, user: user) }
+    trait :without_credentials do
+      email nil
+      password nil
+    end
 
-    factory :webmaster_user do
-      name 'Admin'
+    factory :user_webmaster do
+      name 'Webmaster'
       role 'webmaster'
-      username 'webmaster'
-      factory :user_webmaster do
-        name 'Webmaster'
-      end
     end
 
     factory :user_onboarding do
       name 'Onboarding'
       role 'onboarding'
-      username 'onboarding'
     end
 
     factory :user_user do
       name 'User'
       role 'user'
-      username 'user'
     end
   end
 

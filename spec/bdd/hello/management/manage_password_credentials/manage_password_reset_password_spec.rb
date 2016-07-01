@@ -12,7 +12,7 @@ RSpec.bdd.uic "Reset Password" do
   end
 
   def _I_visit_with_a_valid_token
-    @reset_token ||= given_I_have_an_email_credential_and_forgot_my_password
+    @reset_token ||= given_I_have_a_user_and_forgot_my_password
     p = PasswordCredential.last
     visit hello.reset_password_path(p.id, p.user_id, @reset_token)
   end

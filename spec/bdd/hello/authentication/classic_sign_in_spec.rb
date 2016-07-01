@@ -5,7 +5,7 @@ RSpec.bdd.capability 'I can Sign In With Email' do
   role 'User' do
 
     before do
-      given_I_have_an_email_credential
+      given_I_have_a_user
       expect(Access.count).to eq(0)
     end
 

@@ -4,8 +4,7 @@ describe PasswordCredential do
   describe 'validations' do
     it 'presence of name' do
       subject.valid?
-      expect(subject.errors.messages).to eq(user: ["can't be blank"],
-                                            password: ["can't be blank"])
+      expect(subject.errors.messages).to eq(password: ["can't be blank"])
     end
   end
 

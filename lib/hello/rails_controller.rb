@@ -106,9 +106,7 @@ module Hello
         logger.info "  #{'Hello Session'.bold.light_blue} expires in #{expires_in}"
         # end keep-alive
 
-        Thread.current['Hello.destroying_user'] = nil
         Time.use_zone(current_user.time_zone, &block)
-        Thread.current['Hello.destroying_user'] = nil
       else
         yield
       end
