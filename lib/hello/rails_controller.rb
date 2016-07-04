@@ -46,7 +46,7 @@ module Hello
     end
 
     def hello_manager
-      env['hello'] ||= Hello::RequestManager.create(request)
+      request.env['hello'] ||= Hello::RequestManager.create(request)
     end
 
 
