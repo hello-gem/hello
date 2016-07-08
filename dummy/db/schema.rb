@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20_140_920_192_959) do
     t.datetime 'created_at'
     t.datetime 'updated_at'
     t.string 'name'
-    t.string 'role'
+    t.string 'role', default: "onboarding"
     t.string 'locale'
     t.string 'time_zone'
     t.string 'username'

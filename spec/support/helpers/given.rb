@@ -4,34 +4,26 @@ USER_TEST_EMAIL    = 'foo@bar.com'.freeze
 USER_TEST_USERNAME = 'foobar'.freeze
 
 def given_I_have_a_classic_access_token
-  user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, city: 'Brasilia')
-  create(:email_credential, user: user, email: USER_TEST_EMAIL)
+  user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, email: USER_TEST_EMAIL, city: 'Brasilia')
   Access.create!(user: user, user_agent_string: 'testing', expires_at: 24.hours.from_now)
 end
 
-def given_I_have_an_email_credential
-  user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, city: 'Brasilia')
-  create(:email_credential, user: user, email: USER_TEST_EMAIL)
-end
-
-def given_I_have_an_onboarding_password_credential
-  user = create(:onboarding)
-  create(:email_credential, user: user, email: USER_TEST_EMAIL)
+def given_I_have_a_user
+  create(:user, name: 'James Pinto', email: USER_TEST_EMAIL, username: USER_TEST_USERNAME, city: 'Brasilia')
 end
 
 def given_I_have_a_webmaster_password_credential
-  user = create(:webmaster_user)
-  create(:email_credential, user: user, email: 'webmaster@bar.com')
+  create(:user_webmaster)
 end
 
-def given_I_have_an_email_credential_and_forgot_my_password
-  credential = given_I_have_an_email_credential
-  unencrypted_token = credential.user.password_credential.reset_verifying_token!
+def given_I_have_a_user_and_forgot_my_password
+  user = given_I_have_a_user
+  unencrypted_token = user.password_credential.reset_verifying_token!
 end
 
 def given_I_am_logged_in_with_a_classic_credential
   # when_sign_up_with_standard_data(expect_welcome_mailer: true)
-  given_I_have_an_email_credential
+  given_I_have_a_user
   when_sign_in_with_standard_data
   then_I_should_be_logged_in
 end

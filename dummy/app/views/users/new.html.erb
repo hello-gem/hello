@@ -6,9 +6,9 @@
   <% end %>
 
   <div class="form-group">
-    <%= label_tag :role, nil, class: "col-sm-4 control-label" %>
+    <%= f.label :role, class: "col-sm-4 control-label" %>
     <div class="col-sm-4">
-      <%= text_field_tag :role, @starting_role, class: "form-control", placeholder: "Role" %>
+      <%= f.text_field :role, class: "form-control", placeholder: "Role" %>
     </div>
   </div>
 

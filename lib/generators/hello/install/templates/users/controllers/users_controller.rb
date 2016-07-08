@@ -36,16 +36,14 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @starting_role = 'onboarding'
   end
 
   # POST /users
   def create
-    if @user.register(params.require(:user))
-      @user.user.update!(role: params[:role])
+    create_user_params = params.require(:user).permit!
+    if @user.register(create_user_params)
       redirect_to new_user_path, notice: t('hello.business.registration.sign_up.success')
     else
-      @starting_role = params[:role]
       render action: :new
     end
   end

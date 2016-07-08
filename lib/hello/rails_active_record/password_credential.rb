@@ -4,10 +4,7 @@ module Hello
 
       # VALIDATIONS
       validates_presence_of :password, on: :create
-      # validates_presence_of :digest
-
-      # before_destroy :cannot_destroy_last_password_credential
-      validate :hello_validations
+      validate :hello_validations, if: :digest_changed?
 
       # SETTERS
 
@@ -34,37 +31,13 @@ module Hello
       private
 
       def hello_validations
-        return true unless digest_changed?
-
-        return false if errors[:password].any?
+        return if errors.has_key?(:password)
         c = Hello.configuration
-
         validates_length_of :password, in: c.password_length
-        return false if errors[:password].any?
-
+        return if errors.has_key?(:password)
         validates_format_of :password, with: c.password_regex
-        return false if errors[:password].any?
       end
 
-      def complex_encryptor
-        Hello::Encryptors::Complex.instance
-      end
-
-      def simple_encryptor
-        Hello::Encryptors::Simple.instance
-      end
-
-      # # TODO: code for multiple passwords
-      # def cannot_destroy_last_password_credential
-      #   return if hello_is_user_being_destroyed?
-      #   return if not is_last_password_credential?
-      #   errors[:base] << "must have at least one credential"
-      #   false
-      # end
-
-      # def is_last_password_credential?
-      #   user.password_credentials.count == 1
-      # end
     end
   end
 end

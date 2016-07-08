@@ -23,7 +23,7 @@ RSpec.describe 'Forgot Password', type: :request do
     end
 
     it 'Success' do
-      given_I_have_an_email_credential
+      given_I_have_a_user
 
       forgot_password_params = { login: 'foobar', password: '1234' }
       post '/hello/passwords/forgot.json', forgot_password: forgot_password_params

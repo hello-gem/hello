@@ -4,16 +4,27 @@ module Hello
       self.table_name = 'credentials'
 
       # ASSOCIATIONS
-      belongs_to :user, counter_cache: true, class_name: '::User'
+      belongs_to :user, validate: true, counter_cache: true, class_name: '::User'
 
       # VALIDATIONS
-      validates_presence_of :user, :type
+      # validates_presence_of :user
+      before_save do
+        if user.nil?
+          self.errors.add_on_blank([:user])
+          fail ActiveRecord::Rollback
+        end
+      end
+
+      after_destroy do
+        if destroyed_by_association.nil?
+          if user.invalid?
+            user.errors.each { |k, v| errors.add(k, v) if k.to_s.include?('credentials')}
+            fail ActiveRecord::Rollback
+          end
+        end
+      end
 
       # CUSTOM METHODS
-
-      # def is_email?
-      #   is_a?(EmailCredential)
-      # end
 
       def first_error_message
         errors.messages.values.flatten.first if errors.any?
@@ -32,19 +43,16 @@ module Hello
         uuid
       end
 
-      def invalidate_verifying_token!
-        update(verifying_token_digest: nil, verifying_token_digested_at: nil)
-      end
+      protected
 
-      private
-
-      def hello_is_user_being_destroyed?
-        !!Thread.current['Hello.destroying_user']
+      def complex_encryptor
+        Hello::Encryptors::Complex.instance
       end
 
       def simple_encryptor
         Hello::Encryptors::Simple.instance
       end
+
     end
   end
 end

@@ -13,7 +13,15 @@ module Hello
         before do
           subject.register({})
         end
-        it('a lot of errors') { expect(subject.errors.messages).to eq(email: ["can't be blank"], name: ["can't be blank"], city: ["can't be blank"], password: ["can't be blank"], username: ["can't be blank"]) }
+        it('has a lot of errors') do
+          expect(subject.errors.messages).to eq({
+            email: ["can't be blank"],
+            name: ["can't be blank"],
+            city: ["can't be blank"],
+            password: ["can't be blank"],
+            username: ["can't be blank"]
+          })
+        end
       end # describe
 
       describe 'by field' do
@@ -252,6 +260,7 @@ module Hello
             end # describe
           end # describe config
         end # describe password
+
       end # describe by field
     end # describe .register
   end # describe Business::SignUp

@@ -34,7 +34,7 @@ module Hello
         end
 
         def get_reset_password_url
-          p      = @user.main_password_credential
+          p      = @user.password_credential
           token  = p.reset_verifying_token!
           hello.reset_password_url(p.id, @user.id, token)
         end

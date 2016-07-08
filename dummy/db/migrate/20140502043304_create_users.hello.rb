@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
 
     add_users_column_safe :name,      :string
 
-    add_users_column_safe :role,      :string
+    add_users_column_safe :role,      :string, default: 'onboarding'
     add_users_column_safe :locale,    :string
     add_users_column_safe :time_zone, :string
     add_users_column_safe :username,  :string
