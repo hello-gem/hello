@@ -1,26 +1,20 @@
 # This migration comes from hello (originally 3)
 class CreateUsers < ActiveRecord::Migration
   def change
-    must_create_user_table = !table_exists?(:users)
-    create_table(:users, &:timestamps) if must_create_user_table
+    create_table :users do |t|
+      t.string :name
+      t.string :city
 
-    add_users_column_safe :name,      :string
+      t.string :role, default: 'onboarding'
 
-    add_users_column_safe :role,      :string, default: 'onboarding'
-    add_users_column_safe :locale,    :string
-    add_users_column_safe :time_zone, :string
-    add_users_column_safe :username,  :string
+      t.string :locale
+      t.string :time_zone
+      t.string :username
 
-    add_users_column_safe :credentials_count, :integer, default: 0
-    add_users_column_safe :accesses_count, :integer, default: 0
+      t.integer :credentials_count, default: 0
+      t.integer :accesses_count, default: 0
 
-    add_users_column_safe :city, :string
-  end
-
-  private
-
-  def add_users_column_safe(column_name, type, options = {})
-    return if column_exists?(:users, column_name)
-    add_column(:users, column_name, type, options)
+      t.timestamps
+    end
   end
 end
