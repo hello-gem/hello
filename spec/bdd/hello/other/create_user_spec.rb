@@ -17,8 +17,7 @@ RSpec.bdd.capability "I can Create Users" do
         end
 
         Given 'I visit New User Webmaster Page with Sudo Mode' do
-          visit '/'
-          click_link 'User List'
+          visit '/users'
           click_link "View User List as a Webmaster"
           fill_in 'user_password', with: '1234'
           click_button 'Confirm'

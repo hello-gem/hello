@@ -1,0 +1,10 @@
+Description:
+    Suggested scaffold for users
+
+Example:
+    rails generate hello:users
+
+    This will create:
+        app/controller/users_controller.rb
+        app/views/users/[...]
+

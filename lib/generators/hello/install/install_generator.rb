@@ -55,21 +55,6 @@ class Hello::InstallGenerator < Rails::Generators::Base
     directory 'models', 'app/models'
   end
 
-  def generate_profile
-    route %(
-  resources :users, only: [:index, :show, :new, :create] do
-    collection do
-      get 'list'
-    end
-    member do
-      post 'impersonate'
-    end
-  end
-)
-    directory 'users/controllers', 'app/controllers'
-    directory 'users/views', 'app/views'
-  end
-
   def generate_onboarding
     route %(
   get  'onboarding' => 'onboarding#index'

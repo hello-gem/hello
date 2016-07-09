@@ -44,6 +44,7 @@ Terminal
 
 bundle install
 bundle exec rails generate hello:install
+bundle exec rails generate hello:users # our customized scaffold controller
 bundle exec rake db:migrate
 ```
 

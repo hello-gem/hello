@@ -15,8 +15,7 @@ RSpec.bdd.capability "I can List Users" do
           scenario 'I have access to the page' do
 
             When 'I visit the users page' do
-              visit '/'
-              click_link 'User List'
+              visit '/users'
             end
 
             Then 'I should be on the users page' do
@@ -37,8 +36,7 @@ RSpec.bdd.capability "I can List Users" do
 
             scenario "Via User List Page" do
               When 'I visit james profile from the User List page' do
-                visit '/'
-                click_link 'User List'
+                visit '/users'
                 click_link 'james'
               end
             end # scenario

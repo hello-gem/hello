@@ -18,8 +18,7 @@ RSpec.bdd.capability "I can Impersonate Users" do
 
         scenario "Success" do
           Given 'I visit Users List Webmaster Page with Sudo Mode' do
-            visit '/'
-            click_link 'User List'
+            visit '/users'
             click_link "View User List as a Webmaster"
           end
 
