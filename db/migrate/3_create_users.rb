@@ -1,7 +1,6 @@
 class CreateUsers < ActiveRecord::Migration
   def change
-    must_create_user_table = !table_exists?(:users)
-    create_table(:users, &:timestamps) if must_create_user_table
+    create_table(:users, &:timestamps) if !table_exists?(:users)
 
     add_users_column_safe :name,      :string
 
