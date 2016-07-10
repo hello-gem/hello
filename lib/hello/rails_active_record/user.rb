@@ -13,7 +13,7 @@ module Hello
       # VALIDATIONS
 
       validates_presence_of :role, :locale, :time_zone
-      validates_uniqueness_of :username
+      validates_uniqueness_of :username, if: :username?
       validate :hello_validations
 
       # DELEGATIONS
