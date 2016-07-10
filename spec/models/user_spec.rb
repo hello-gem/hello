@@ -57,20 +57,75 @@ describe User do
   describe 'username' do
     describe 'validations' do
       describe 'uniqueness' do
-        def test_uniqueness(a, b)
-          create(:user, username: a)
-          user = build(:user, username: b)
-          user.valid?
-          # expect(user.errors.messages).to eq(1)
-          expect(user.errors.added?(:username, :taken)).to eq(true)
+        def expects_uniqueness_to_be_applied(a, b)
+          user1 = build(:user)
+          user1.username = a
+          user1.save!
+
+          user2 = build(:user)
+          user2.username = b
+          user2.valid?
+          expect(user2.errors.messages).to eq({:username=>["has already been taken"]})
         end
 
-        it 'normal case' do
-          test_uniqueness('james', 'james')
+        def expects_uniqueness_to_be_ignored(a, b)
+          user1 = build(:user)
+          user1.username = a
+          user1.save!
+
+          user2 = build(:user)
+          user2.username = b
+          user2.save!
+          expect(user2.errors.messages).to eq({})
         end
 
-        it 'downcase' do
-          test_uniqueness('JaMeS', 'james')
+        describe "config" do
+          subject { build(:user, username: '', email: 'foo@bar.com') }
+          after do
+            reload_initializer!
+          end
+
+          describe 'config.username_presence = true' do
+            before do
+              Hello.configure { |config| config.username_presence = true }
+            end
+
+            it 'requires a username' do
+              expect(subject).to be_invalid
+              expect(subject.errors.messages).to eq({:username=>["can't be blank"]})
+            end
+
+            it 'expects uniqueness to be applied for normal-cased usernames' do
+              expects_uniqueness_to_be_applied('james', 'james')
+            end
+
+            it 'expects uniqueness to be applied for down-cased usernames' do
+              expects_uniqueness_to_be_applied('JaMeS', 'james')
+            end
+          end
+
+          describe 'config.username_presence = false' do
+            before do
+              Hello.configure { |config| config.username_presence = false }
+            end
+
+            it 'does not require a username' do
+              expect(subject).to be_valid
+              expect(subject.errors.messages).to eq({})
+            end
+
+            it 'expects uniqueness to be applied for normal-cased usernames' do
+              expects_uniqueness_to_be_applied('james', 'james')
+            end
+
+            it 'expects uniqueness to be applied for down-cased usernames' do
+              expects_uniqueness_to_be_applied('JaMeS', 'james')
+            end
+
+            it 'expects uniqueness to be ignored for blank usernames' do
+              expects_uniqueness_to_be_ignored('', '')
+            end
+          end
         end
       end
 
