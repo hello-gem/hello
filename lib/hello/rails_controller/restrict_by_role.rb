@@ -21,9 +21,9 @@ module Hello
       end
 
       def to_home_page
-        if current_user.guest?
+        if current_user.role_is? 'guest'
           to_sign_in
-        elsif current_user.onboarding?
+        elsif current_user.role_is? 'onboarding'
           to_onboarding
         else
           to_root

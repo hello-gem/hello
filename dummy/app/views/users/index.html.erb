@@ -1,6 +1,6 @@
 <h1>Listing Users (<%= @count %>)</h1>
 
-<% if current_user && current_user.webmaster? %>
+<% if current_user && current_user.role_is?(:webmaster) %>
   <p><%= link_to "View User List as a Webmaster", list_users_path %></p>
 <% end %>
 

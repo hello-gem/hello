@@ -68,10 +68,6 @@ module Hello
         as_json
       end
 
-      def role_is?(role)
-        send("#{role}?")
-      end
-
       def in_any_role?(roles)
         roles.each { |r| role_is?(r) and return true }
         false
