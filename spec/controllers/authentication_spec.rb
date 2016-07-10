@@ -46,7 +46,7 @@ module Hello::Management
           json_body = JSON(response.body)
           expect(response.status).to eq(200)
           expect(response.status_message).to eq('OK')
-          expect(json_body.keys).to match_array(%w(id created_at updated_at name role username locale time_zone credentials_count accesses_count city))
+          expect(json_body.keys).to match_array(%w(id created_at updated_at name role username locale time_zone credentials_count accesses_count))
         end
 
         it 'SESSION' do
@@ -56,7 +56,7 @@ module Hello::Management
           json_body = JSON(response.body)
           expect(response.status).to eq(200)
           expect(response.status_message).to eq('OK')
-          expect(json_body.keys).to match_array(%w(id created_at updated_at name role username locale time_zone credentials_count accesses_count city))
+          expect(json_body.keys).to match_array(%w(id created_at updated_at name role username locale time_zone credentials_count accesses_count))
         end
 
         it 'HEADER' do
@@ -66,7 +66,7 @@ module Hello::Management
           json_body = JSON(response.body)
           expect(response.status).to eq(200)
           expect(response.status_message).to eq('OK')
-          expect(json_body.keys).to match_array(%w(id created_at updated_at name role username locale time_zone credentials_count accesses_count city))
+          expect(json_body.keys).to match_array(%w(id created_at updated_at name role username locale time_zone credentials_count accesses_count))
         end
       end
     end

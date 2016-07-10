@@ -14,7 +14,7 @@ Hello.configure do |config|
   config.password_length = 4..250
 
   config.sign_up_disabled = false # {reason: "standard maintenance", until: "3PM"}
-  config.sign_up_fields = %w(username email password time_zone locale name city)
+  config.sign_up_fields = %w(username email password time_zone locale name)
 
   config.locales    = %w(en es fr pl pt-BR zh-CN)
   config.time_zones = Hello::TimeZones.all

@@ -10,7 +10,6 @@ describe User do
          :locale=>["can't be blank", "is not included in the list"],
          :time_zone=>["can't be blank", "is not included in the list"],
          :name=>["can't be blank"],
-         :city=>["can't be blank"],
          :email_credentials=>["is too short (minimum is 1 character)"],
          :username => ["can't be blank"],
          :email => ["can't be blank"],

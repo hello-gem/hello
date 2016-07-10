@@ -20,12 +20,10 @@ describe User do
   describe 'validations' do
     it 'creating' do
       @user.valid?
-      # city is only here because we need to test code customization, and this is how we are currently testing it
       expect(@user.errors.messages).to eq(
         :name=>["can't be blank"],
         :locale=>["can't be blank", 'is not included in the list'],
         :time_zone=>["can't be blank", 'is not included in the list'],
-        :city=>["can't be blank"],
         :username=>["can't be blank"],
         :email=>["can't be blank"],
         :password=>["can't be blank"],
@@ -42,7 +40,6 @@ describe User do
         :name=>["can't be blank"],
         :locale=>["can't be blank", 'is not included in the list'],
         :time_zone=>["can't be blank", 'is not included in the list'],
-        :city=>["can't be blank"],
         :username=>["can't be blank"],
         :role=>["can't be blank"],
       )

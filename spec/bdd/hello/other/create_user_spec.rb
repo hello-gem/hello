@@ -27,7 +27,6 @@ RSpec.bdd.capability "I can Create Users" do
         scenario "Success" do
 
           When 'I submit a new user John' do
-            fill_in 'user_city', with: 'Brasilia'
             fill_in 'user_name', with: 'john'
             fill_in 'user_username', with: 'john'
             fill_in 'user_email', with: 'john@test.com'

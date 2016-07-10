@@ -46,7 +46,7 @@ RSpec.bdd.capability "I can Sign Up With Email" do
       api "API", type: :request do
         scenario "Valid Parameters" do
           When "I sign up with valid parameters" do
-            post "/hello/sign_up.json", sign_up: {email: "foo@bar.com", password: "foobar", name: "Foo Bar", city: "Brasilia", username: "foobar"}
+            post "/hello/sign_up.json", sign_up: {email: "foo@bar.com", password: "foobar", name: "Foo Bar", username: "foobar"}
           end
         end # scenario
 
@@ -168,12 +168,12 @@ RSpec.bdd.capability "I can Sign Up With Email" do
       api "API", type: :request do
         scenario "Valid Parameters" do
           When "I sign up with valid parameters" do
-            post "/hello/sign_up.json", sign_up: {email: "foo@bar.com", password: "foobar", name: "Foo Bar", city: "Brasilia", username: "foobar"}
+            post "/hello/sign_up.json", sign_up: {email: "foo@bar.com", password: "foobar", name: "Foo Bar", username: "foobar"}
           end
 
           Then "I should see the access object" do
             expect(json_response.keys).to match_array ["expires_at", "token", "user", "user_id"]
-            expect(json_response["user"].keys).to match_array ["id", "accesses_count", "city", "created_at", "credentials_count", "locale", "name", "role", "time_zone", "updated_at", "username"]
+            expect(json_response["user"].keys).to match_array ["id", "accesses_count", "created_at", "credentials_count", "locale", "name", "role", "time_zone", "updated_at", "username"]
           end
 
           Then "I should get a 201 response" do
@@ -204,7 +204,6 @@ RSpec.bdd.capability "I can Sign Up With Email" do
               "email"=>["can't be blank"],
               "password"=>["can't be blank"],
               "name"=>["can't be blank"],
-              "city"=>["can't be blank"]
             })
           end
 

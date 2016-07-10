@@ -24,7 +24,6 @@ RSpec.bdd.uic "Profile Page" do
     scenario "Valid" do
       When "I submit new valid values in the form" do
         fill_in 'user_name',     with: (@new_name     = 'James Pinto')
-        fill_in 'user_city',     with: (@new_city     = 'Brasilia')
         fill_in 'user_username', with: (@new_username = 'new_username')
         click_button 'Update'
       end
@@ -40,7 +39,6 @@ RSpec.bdd.uic "Profile Page" do
       Then "and the new values should reflect on the database" do
         user = User.last
         expect(user.name).to eq(@new_name)
-        expect(user.city).to eq(@new_city)
         expect(user.username).to eq(@new_username)
       end
     end

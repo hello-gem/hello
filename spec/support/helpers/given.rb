@@ -4,12 +4,12 @@ USER_TEST_EMAIL    = 'foo@bar.com'.freeze
 USER_TEST_USERNAME = 'foobar'.freeze
 
 def given_I_have_a_classic_access_token
-  user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, email: USER_TEST_EMAIL, city: 'Brasilia')
+  user = create(:user, name: 'James Pinto', username: USER_TEST_USERNAME, email: USER_TEST_EMAIL)
   Access.create!(user: user, user_agent_string: 'testing', expires_at: 24.hours.from_now)
 end
 
 def given_I_have_a_user
-  create(:user, name: 'James Pinto', email: USER_TEST_EMAIL, username: USER_TEST_USERNAME, city: 'Brasilia')
+  create(:user, name: 'James Pinto', email: USER_TEST_EMAIL, username: USER_TEST_USERNAME)
 end
 
 def given_I_have_a_webmaster_password_credential

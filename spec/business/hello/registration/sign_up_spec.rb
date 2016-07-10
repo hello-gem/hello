@@ -3,7 +3,7 @@ require 'spec_helper'
 module Hello
   describe Business::Registration::SignUp do
     describe '.register(email:string, username:string, password:string)' do
-      let(:valid_attrs) { { city: 'Brasilia', name: 'James Pinto', email: 'foo@bar.com', username: 'foobar', password: 'foobar' } }
+      let(:valid_attrs) { { name: 'James Pinto', email: 'foo@bar.com', username: 'foobar', password: 'foobar' } }
 
       describe 'original state' do
         it('no errors') { expect(subject.errors.messages).to eq({}) }
@@ -17,7 +17,6 @@ module Hello
           expect(subject.errors.messages).to eq({
             email: ["can't be blank"],
             name: ["can't be blank"],
-            city: ["can't be blank"],
             password: ["can't be blank"],
             username: ["can't be blank"]
           })

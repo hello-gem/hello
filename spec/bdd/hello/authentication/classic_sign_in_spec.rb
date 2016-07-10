@@ -222,7 +222,7 @@ RSpec.bdd.capability 'I can Sign In With Email' do
 
         Then 'I should see the access object' do
           expect(json_response.keys).to match_array ['expires_at', 'token', 'user', 'user_id']
-          expect(json_response['user'].keys).to match_array ['id', 'accesses_count', 'city', 'created_at', 'credentials_count', 'locale', 'name', 'role', 'time_zone', 'updated_at', 'username']
+          expect(json_response['user'].keys).to match_array ['id', 'accesses_count', 'created_at', 'credentials_count', 'locale', 'name', 'role', 'time_zone', 'updated_at', 'username']
         end
 
         Then 'I should get a 201 response' do
