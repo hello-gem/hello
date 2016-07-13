@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "colorize", '~> 0.7'
   s.add_runtime_dependency "user_agent_parser", '~> 2.3'
   s.add_runtime_dependency "http_accept_language", '~> 2.0'
-  s.add_runtime_dependency "rails-i18n", '~> 4.0'
+  s.add_runtime_dependency "rails-i18n", '~> 5.0'
 
   s.add_development_dependency "sqlite3", '~> 1.3'
   s.add_development_dependency 'rspec-rails', '~> 3.4'
