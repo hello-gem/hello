@@ -7,7 +7,12 @@ describe Credential do
   end
 
   example 'Saving Validations' do
-    expect(subject.save).to eq(nil)
+    # can save without a user
+    expect(subject.save).to eq(true)
+    expect(subject.errors.messages).to eq({})
+
+    # cannot update without a user
+    expect(subject.save).to eq(false)
     expect(subject.errors.messages).to eq({:user => ["can't be blank"]})
   end
 end

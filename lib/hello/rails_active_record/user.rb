@@ -33,7 +33,7 @@ module Hello
         if email_credentials.any?
           fail "use 'email_credentials.build(email: v)' instead"
         else
-          email_credentials.build(email: v)
+          email_credentials.build(user: self, email: v)
         end
       end
 
@@ -61,7 +61,7 @@ module Hello
       end
 
       def password_credential
-        @password_credential ||= password_credentials.first_or_initialize
+        @password_credential ||= password_credentials.first_or_initialize(user: self)
       end
 
       # CUSTOM METHODS

@@ -6,16 +6,10 @@ module Hello
       included do
 
         # ASSOCIATIONS
-        belongs_to :user, validate: true, counter_cache: true
+        belongs_to :user, counter_cache: true
 
         # VALIDATIONS
-        # validates_presence_of :user
-        before_save do
-          if user.nil?
-            self.errors.add_on_blank([:user])
-            fail ActiveRecord::Rollback
-          end
-        end
+        validates_presence_of :user, on: :update
 
         after_destroy do
           if destroyed_by_association.nil?

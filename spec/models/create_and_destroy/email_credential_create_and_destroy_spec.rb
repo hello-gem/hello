@@ -14,24 +14,25 @@ describe EmailCredential do
       subject { EmailCredential.new(email: 'foo@example.com') }
 
       describe "invalid examples" do
-        describe "does not save without a user" do
-          it "does not save without a user" do
-            expect(subject.user).to eq(nil)
-            expect(subject.save).to eq(nil)
-            expect(Credential.count).to eq(0)
-          end
-
-          it "does not save with an invalid user" do
-            subject.user = User.new
-            expect(subject.save).to eq(false)
-            expect(subject.errors.messages).to eq({:user=>["is invalid"]})
-            expect(Credential.count).to eq(0)
-          end
-        end
 
       end
 
       describe "valid examples" do
+        describe "does save without a user" do
+          it "does save without a user" do
+            expect(subject.user).to eq(nil)
+            expect(subject.save).to eq(true)
+            expect(Credential.count).to eq(1)
+          end
+
+          it "does save with an invalid user" do
+            subject.user = User.new
+            expect(subject.save).to eq(true)
+            expect(subject.errors.messages).to eq({})
+            expect(Credential.count).to eq(1)
+          end
+        end
+
         it "saves with a valid user" do
           user = create(:user)
           expect(Credential.count).to eq(2)
