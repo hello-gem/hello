@@ -1,4 +1,5 @@
-class User < Hello::RailsActiveRecord::User
+class User < ApplicationRecord
+  include Hello::RailsActiveRecord::User
   include Authorization
 
   def to_param

@@ -1,11 +1,18 @@
 module Hello
   module RailsActiveRecord
-    class EmailCredential < ::Credential
+    module EmailCredential
 
-      # VALIDATIONS
-      validates_uniqueness_of :email
-      validates_presence_of :email
-      validate :hello_validations, if: :email?
+      extend ActiveSupport::Concern
+
+      included do
+        include Credential
+
+        # VALIDATIONS
+        validates_uniqueness_of :email
+        validates_presence_of :email
+        validate :hello_validations, if: :email?
+
+      end
 
       # SETTERS
       def email=(v)
@@ -39,7 +46,6 @@ module Hello
         validates_length_of :email, in: c.email_length
         validates_format_of :email, with: c.email_regex
       end
-
 
     end
   end

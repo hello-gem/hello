@@ -1,2 +1,3 @@
-class Access < Hello::RailsActiveRecord::Access
+class Access < ApplicationRecord
+  include Hello::RailsActiveRecord::Access
 end

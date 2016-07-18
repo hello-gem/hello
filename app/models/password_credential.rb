@@ -1,2 +1,3 @@
-class PasswordCredential < Hello::RailsActiveRecord::PasswordCredential
+class PasswordCredential < Credential
+  include Hello::RailsActiveRecord::PasswordCredential
 end

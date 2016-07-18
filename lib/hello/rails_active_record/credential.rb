@@ -1,25 +1,28 @@
 module Hello
   module RailsActiveRecord
-    class Credential < ::ActiveRecord::Base
-      self.table_name = 'credentials'
+    module Credential
+      extend ActiveSupport::Concern
 
-      # ASSOCIATIONS
-      belongs_to :user, validate: true, counter_cache: true, class_name: '::User'
+      included do
 
-      # VALIDATIONS
-      # validates_presence_of :user
-      before_save do
-        if user.nil?
-          self.errors.add_on_blank([:user])
-          fail ActiveRecord::Rollback
-        end
-      end
+        # ASSOCIATIONS
+        belongs_to :user, validate: true, counter_cache: true
 
-      after_destroy do
-        if destroyed_by_association.nil?
-          if user.invalid?
-            user.errors.each { |k, v| errors.add(k, v) if k.to_s.include?('credentials')}
+        # VALIDATIONS
+        # validates_presence_of :user
+        before_save do
+          if user.nil?
+            self.errors.add_on_blank([:user])
             fail ActiveRecord::Rollback
+          end
+        end
+
+        after_destroy do
+          if destroyed_by_association.nil?
+            if user.invalid?
+              user.errors.each { |k, v| errors.add(k, v) if k.to_s.include?('credentials')}
+              fail ActiveRecord::Rollback
+            end
           end
         end
       end

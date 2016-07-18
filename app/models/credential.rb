@@ -1,2 +1,3 @@
-class Credential < Hello::RailsActiveRecord::Credential
+class Credential < ApplicationRecord
+  include Hello::RailsActiveRecord::Credential
 end

@@ -1,17 +1,19 @@
 module Hello
   module RailsActiveRecord
-    class Access < ::ActiveRecord::Base
-      self.table_name = 'accesses'
+    module Access
+      extend ActiveSupport::Concern
 
-      # ASSOCIATIONS
-      belongs_to :user, counter_cache: true, class_name: '::User'
+      included do
+        # ASSOCIATIONS
+        belongs_to :user, counter_cache: true
 
-      # VALIDATIONS
-      validates_presence_of :user, :expires_at, :user_agent_string, :token
-      validates_uniqueness_of :token
+        # VALIDATIONS
+        validates_presence_of :user, :expires_at, :user_agent_string, :token
+        validates_uniqueness_of :token
 
-      before_validation on: :create do
-        self.token = "#{user_id}-#{Hello::Encryptors::Simple.instance.single(16)}"
+        before_validation on: :create do
+          self.token = "#{user_id}-#{Hello::Encryptors::Simple.instance.single(16)}"
+        end
       end
 
       # CUSTOM METHODS
@@ -50,7 +52,7 @@ module Hello
         update_attributes!(expires_at: 30.minutes.from_now)
       end
 
-      class << self
+      module ClassMethods
         def destroy_all_expired
           where('expires_at < ?', Time.now).destroy_all
           true

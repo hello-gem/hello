@@ -1,24 +1,26 @@
 module Hello
   module RailsActiveRecord
-    class User < ::ActiveRecord::Base
-      self.table_name = 'users'
+    module User
+      extend ActiveSupport::Concern
 
-      # ASSOCIATIONS
+      included do
+        # ASSOCIATIONS
 
-      has_many :credentials,          dependent: :destroy, class_name: '::Credential'
-      has_many :email_credentials,    dependent: :destroy, class_name: '::EmailCredential'
-      has_many :password_credentials, dependent: :destroy, class_name: '::PasswordCredential'
-      has_many :accesses,             dependent: :destroy, class_name: '::Access'
+        has_many :credentials,          dependent: :destroy
+        has_many :email_credentials,    dependent: :destroy
+        has_many :password_credentials, dependent: :destroy
+        has_many :accesses,             dependent: :destroy
 
-      # VALIDATIONS
+        # VALIDATIONS
 
-      validates_presence_of :role, :locale, :time_zone
-      validates_uniqueness_of :username, if: :username?
-      validate :hello_validations
+        validates_presence_of :role, :locale, :time_zone
+        validates_uniqueness_of :username, if: :username?
+        validate :hello_validations
 
-      # DELEGATIONS
+        # DELEGATIONS
 
-      delegate :password_is?, to: :password_credential
+        delegate :password_is?, to: :password_credential
+      end
 
       # SETTERS
 

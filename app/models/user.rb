@@ -1,2 +1,3 @@
-class User < Hello::RailsActiveRecord::User
+class User < ApplicationRecord
+  include Hello::RailsActiveRecord::User
 end

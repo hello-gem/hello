@@ -1,2 +1,3 @@
-class EmailCredential < Hello::RailsActiveRecord::EmailCredential
+class EmailCredential < Credential
+  include Hello::RailsActiveRecord::EmailCredential
 end

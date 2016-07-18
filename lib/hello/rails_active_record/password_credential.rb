@@ -1,10 +1,16 @@
 module Hello
   module RailsActiveRecord
-    class PasswordCredential < ::Credential
+    module PasswordCredential
+      extend ActiveSupport::Concern
 
-      # VALIDATIONS
-      validates_presence_of :password, on: :create
-      validate :hello_validations, if: :digest_changed?
+      included do
+        include Credential
+
+        # VALIDATIONS
+        validates_presence_of :password, on: :create
+        validate :hello_validations, if: :digest_changed?
+
+      end
 
       # SETTERS
 
