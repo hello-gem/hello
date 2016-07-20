@@ -19,8 +19,8 @@ BUNDLE_GEMFILE=gemfiles/rails-master.gemfile bundle exec rspec
 ```
 
 ```bash
-BUNDLE_GEMFILE=gemfiles/rails-4-2-stable.gemfile bundle install
-BUNDLE_GEMFILE=gemfiles/rails-4-2-stable.gemfile bundle exec rspec
+BUNDLE_GEMFILE=gemfiles/rails-5-0-stable.gemfile bundle install
+BUNDLE_GEMFILE=gemfiles/rails-5-0-stable.gemfile bundle exec rspec
 ```
 
 
