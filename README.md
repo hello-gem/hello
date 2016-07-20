@@ -31,21 +31,32 @@ Provides a set of valuable features for Registration, Authentication, Management
 
 ## Install
 
+##### Gemfile
 ```ruby
-Gemfile
 
 gem 'hello-rails'
 gem 'bcrypt'   # bcrypt is a requirement
 gem 'nav_lynx' # nav_lynx is optional, add it if you are using hello for the first time
 ```
 
+##### Terminal
 ```shell
-Terminal
 
 bundle install
 bundle exec rails generate hello:install
-bundle exec rails generate hello:users # our customized scaffold controller
 bundle exec rake db:migrate
+```
+
+## Generators
+
+After you are comfortable with this gem, come back and give these guys a try!
+
+```shell
+bundle exec rails generate hello:install # initial setup
+bundle exec rails generate hello:users # our secret-sauce scaffold for users
+bundle exec rails generate hello:views # copies our view files to your project
+bundle exec rails generate hello:locales # copies our translation files to your project
+bundle exec rails generate hello:concerns # copies our key-behavior files to your project
 ```
 
 
