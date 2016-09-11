@@ -3,6 +3,10 @@ class Hello::InstallGenerator < Rails::Generators::Base
 
   def copy_the_initializer
     copy_file 'initializer.rb', 'config/initializers/hello.rb'
+    append_file 'config/initializers/session_store.rb', "
+# Suggestion added by gem 'hello-rails'
+Rails.application.config.session_options[:expire_after] = 10.years
+"
   end
 
   def locale_fix
