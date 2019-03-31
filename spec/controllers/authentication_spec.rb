@@ -42,7 +42,7 @@ module Hello::Management
 
         it 'PARAMS' do
           @request.host = 'api.test.host'
-          get :show, format: :json, access_token: @access.token
+          get :show, format: :json, params: { access_token: @access.token }
           json_body = JSON(response.body)
           expect(response.status).to eq(200)
           expect(response.status_message).to eq('OK')
@@ -77,7 +77,7 @@ module Hello::Management
           @access = given_I_have_a_classic_access_token
           @access.update! expires_at: 1.second.ago
 
-          get :show, format: :json, access_token: @access.token
+          get :show, format: :json, params: { access_token: @access.token }
           json_body = JSON(response.body)
           expect(response.status).to eq(401)
           expect(response.status_message).to eq('Unauthorized')

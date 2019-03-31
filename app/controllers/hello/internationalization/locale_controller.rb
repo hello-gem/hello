@@ -19,7 +19,7 @@ module Hello
         use_locale(business.locale)
 
         respond_to do |format|
-          format.html { redirect_to :back, notice: business.success_message }
+          format.html { redirect_back fallback_location: root_path, notice: business.success_message }
           format.json { fail Hello::Errors::JsonNotSupported }
         end
       end

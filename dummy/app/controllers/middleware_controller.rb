@@ -1,5 +1,5 @@
 class MiddlewareController < ApplicationController
   def bad_kitty
-    render text: '200 OK'
+    render plain: '200 OK'
   end
 end

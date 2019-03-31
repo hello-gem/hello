@@ -46,13 +46,13 @@ RSpec.bdd.capability "I can Sign Up With Email" do
       api "API", type: :request do
         scenario "Valid Parameters" do
           When "I sign up with valid parameters" do
-            post "/hello/sign_up.json", sign_up: {email: "foo@bar.com", password: "foobar", name: "Foo Bar", username: "foobar"}
+            post "/hello/sign_up.json", params: { sign_up: {email: "foo@bar.com", password: "foobar", name: "Foo Bar", username: "foobar"} }
           end
         end # scenario
 
         scenario "Blank Parameters" do
           When "I sign up with an empty parameters" do
-            post "/hello/sign_up.json", sign_up: {email: ''}
+            post "/hello/sign_up.json", params: { sign_up: {email: ''} }
           end
         end # scenario
 
@@ -168,7 +168,7 @@ RSpec.bdd.capability "I can Sign Up With Email" do
       api "API", type: :request do
         scenario "Valid Parameters" do
           When "I sign up with valid parameters" do
-            post "/hello/sign_up.json", sign_up: {email: "foo@bar.com", password: "foobar", name: "Foo Bar", username: "foobar"}
+            post "/hello/sign_up.json", params: { sign_up: { email: "foo@bar.com", password: "foobar", name: "Foo Bar", username: "foobar" } }
           end
 
           Then "I should see the access object" do
@@ -195,7 +195,7 @@ RSpec.bdd.capability "I can Sign Up With Email" do
 
         scenario "Blank Parameters" do
           When "I sign up with an empty parameters" do
-            post "/hello/sign_up.json", sign_up: {email: ''}
+            post "/hello/sign_up.json", params: { sign_up: {email: ''} }
           end
 
           Then "I should see errors" do

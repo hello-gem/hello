@@ -8,9 +8,8 @@ RSpec.describe 'Security', type: :request do
     end
 
     it 'Role' do
-      user_params = { user: { role: 'webmaster' } }
       expect do
-        patch '/hello/profile.json', user_params, @auth_headers
+        patch '/hello/profile.json', params: { user: { role: 'webmaster' } }, headers: @auth_headers
 
         expect(response.status).to eq(200)
       end.not_to change { User.last.role }.from('user')

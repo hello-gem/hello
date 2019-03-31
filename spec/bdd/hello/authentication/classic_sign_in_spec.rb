@@ -217,7 +217,7 @@ RSpec.bdd.capability 'I can Sign In With Email' do
 
       scenario 'Valid Parameters' do
         When 'I sign in with valid parameters' do
-          post '/hello/sign_in.json', sign_in: {login: 'foo@bar.com', password: '1234'}
+          post '/hello/sign_in.json', params: { sign_in: {login: 'foo@bar.com', password: '1234'} }
         end
 
         Then 'I should see the access object' do
@@ -237,7 +237,7 @@ RSpec.bdd.capability 'I can Sign In With Email' do
 
       scenario 'Blank Parameters' do
         When 'I sign in with an empty parameters' do
-          post '/hello/sign_in.json', sign_in: {login: ''}
+          post '/hello/sign_in.json', params: { sign_in: {login: ''} }
         end
 
         Then 'I should see errors' do
