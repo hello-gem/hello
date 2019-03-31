@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails', '~> 3.4'
   s.add_development_dependency 'capybara', '~> 2.6'
   s.add_development_dependency 'email_spec', '~> 2.0'
-  s.add_development_dependency 'factory_girl_rails', '~> 4.5'
+  s.add_development_dependency 'factory_bot_rails', '~> 4.11'
   s.add_development_dependency 'faker', '~> 1.6'
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0'
   s.add_development_dependency 'bdd', '~> 0.1'

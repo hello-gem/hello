@@ -12,7 +12,7 @@ RSpec.configure do |config|
   config.include Hello::FeatureSupportGiven, type: :feature
   config.include Hello::RequestSupport, type: :request
 
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)

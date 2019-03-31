@@ -1,6 +1,6 @@
 require DUMMY_ROOT.join('config/environment.rb')
 
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 require 'faker'
 require 'rspec/rails'
 require 'capybara/rails'
