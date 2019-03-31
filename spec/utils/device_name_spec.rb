@@ -57,8 +57,12 @@ module Hello::Utils
 
       describe 'Microsoft' do
         it 'Windows 7 - Internet Explorer 10' do
-          expect_device_name 'Mozilla/5.0 (compatible; MSIE 10.6; Windows NT 6.1; Trident/5.0; InfoPath.2; SLCC1; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET CLR 2.0.50727) 3gpp-gba UNTRUSTED/1.0',
+          expect_device_name 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)',
                              'Windows 7 - Internet Explorer 10'
+        end
+        it 'Windows 7 - Internet Explorer 10 with compatibility view' do
+          expect_device_name 'Mozilla/5.0 (compatible; MSIE 10.6; Windows NT 6.1; Trident/5.0; InfoPath.2; SLCC1; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET CLR 2.0.50727) 3gpp-gba UNTRUSTED/1.0',
+                             'Windows 7 - Internet Explorer 9'
         end
         it 'Windows 7 - Internet Explorer 9' do
           expect_device_name 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0',
