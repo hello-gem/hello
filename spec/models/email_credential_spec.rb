@@ -133,7 +133,7 @@ describe EmailCredential do
             create(:email_credential, email: a)
             subject.email = b
             subject.valid?
-            expect(subject.errors.added?(:email, :taken)).to eq(true)
+            expect(subject.errors.added?(:email, :taken, value: b)).to eq(true)
           end
 
           example 'With normal case' do

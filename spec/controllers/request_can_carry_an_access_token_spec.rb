@@ -160,7 +160,7 @@ RSpec.describe 'Hello Gem', type: :controller do
             end
             scenario 'As HTML' do
               When 'I send a GET HTML request' do
-                get :show, format: :html, access_token: @token
+                get :show, format: :html, params: { access_token: @token }
               end
 
               Then 'it should have a status 302 Found' do
@@ -171,7 +171,7 @@ RSpec.describe 'Hello Gem', type: :controller do
 
             scenario 'As JSON' do
               When 'I send a GET JSON request' do
-                get :show, format: :json, access_token: @token
+                get :show, format: :json, params: { access_token: @token }
               end
               Then 'it should have a status 401 Unauthorized' do
                 expect(response.status).to eq(401)
@@ -188,7 +188,7 @@ RSpec.describe 'Hello Gem', type: :controller do
             end
             scenario 'As HTML' do
               When 'I send a GET HTML request' do
-                get :show, format: :html, access_token: @token
+                get :show, format: :html, params: { access_token: @token }
               end
 
               Then 'it should have a status 200 OK' do
@@ -199,7 +199,7 @@ RSpec.describe 'Hello Gem', type: :controller do
 
             scenario 'As JSON' do
               When 'I send a GET JSON request' do
-                get :show, format: :json, access_token: @token
+                get :show, format: :json, params: { access_token: @token }
               end
 
               Then 'it should have a status 200 OK' do

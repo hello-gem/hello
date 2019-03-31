@@ -1,0 +1,129 @@
+.specs: &specs
+  cache:
+    key: "$CI_JOB_NAME"
+    paths:
+      - vendor/ruby
+  before_script:
+    - ruby -v                                   # Print out ruby version for debugging
+    - bundle install -j $(nproc) --path vendor  # Install dependencies into ./vendor/ruby
+  script:
+    - bundle exec rake
+  artifacts:
+    reports:
+      junit: rspec.xml
+
+.rubocop: &rubocop
+  cache:
+    key: "$CI_JOB_NAME"
+    paths:
+      - vendor/ruby
+  before_script:
+    - ruby -v                                   # Print out ruby version for debugging
+    - bundle install -j $(nproc) --path vendor  # Install dependencies into ./vendor/ruby
+  script:
+    - bundle exec rubocop
+
+rubocop ruby2.6:
+  image: "ruby:2.6"
+  <<: *rubocop
+
+rubocop ruby2.5:
+  image: "ruby:2.5"
+  <<: *rubocop
+
+rubocop ruby2.4:
+  image: "ruby:2.4"
+  <<: *rubocop
+
+ruby-2.6 rails-master:
+  image: "ruby:2.6"
+  variables:
+    GEMFILE: gemfiles/rails-master.gemfile
+  allow_failure: true
+  <<: *specs
+
+ruby-2.6 rails5.2:
+  image: "ruby:2.6"
+  variables:
+    GEMFILE: gemfiles/rails-5-2-stable.gemfile
+  <<: *specs
+
+ruby-2.6 rails5.1:
+  image: "ruby:2.6"
+  variables:
+    GEMFILE: gemfiles/rails-5-1-stable.gemfile
+  <<: *specs
+
+ruby-2.6 rails5.0:
+  image: "ruby:2.6"
+  variables:
+    GEMFILE: gemfiles/rails-5-0-stable.gemfile
+  <<: *specs
+
+ruby-2.5 rails-master:
+  image: "ruby:2.5"
+  variables:
+    GEMFILE: gemfiles/rails-master.gemfile
+  allow_failure: true
+  <<: *specs
+
+ruby-2.5 rails5.2:
+  image: "ruby:2.5"
+  variables:
+    GEMFILE: gemfiles/rails-5-2-stable.gemfile
+  <<: *specs
+
+ruby-2.5 rails5.1:
+  image: "ruby:2.5"
+  variables:
+    GEMFILE: gemfiles/rails-5-1-stable.gemfile
+  <<: *specs
+
+ruby-2.5 rails5.0:
+  image: "ruby:2.5"
+  variables:
+    GEMFILE: gemfiles/rails-5-0-stable.gemfile
+  <<: *specs
+
+ruby-2.4 rails-master:
+  image: "ruby:2.4"
+  variables:
+    GEMFILE: gemfiles/rails-master.gemfile
+  allow_failure: true
+  <<: *specs
+
+ruby-2.4 rails5.2:
+  image: "ruby:2.4"
+  variables:
+    GEMFILE: gemfiles/rails-5-2-stable.gemfile
+  <<: *specs
+
+ruby-2.4 rails5.1:
+  image: "ruby:2.4"
+  variables:
+    GEMFILE: gemfiles/rails-5-1-stable.gemfile
+  <<: *specs
+
+ruby-2.4 rails5.0:
+  image: "ruby:2.4"
+  variables:
+    GEMFILE: gemfiles/rails-5-0-stable.gemfile
+  <<: *specs
+
+code_quality:
+  image: docker:stable
+  variables:
+    DOCKER_DRIVER: overlay2
+  allow_failure: true
+  services:
+    - docker:stable-dind
+  script:
+    - export SP_VERSION=$(echo "$CI_SERVER_VERSION" | sed 's/^\([0-9]*\)\.\([0-9]*\).*/\1-\2-stable/')
+    - docker run
+        --env SOURCE_CODE="$PWD"
+        --volume "$PWD":/code
+        --volume /var/run/docker.sock:/var/run/docker.sock
+        "registry.gitlab.com/gitlab-org/security-products/codequality:$SP_VERSION" /code
+  artifacts:
+    reports:
+      codequality: gl-code-quality-report.json

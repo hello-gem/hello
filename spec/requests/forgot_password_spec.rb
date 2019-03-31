@@ -14,7 +14,7 @@ RSpec.describe 'Forgot Password', type: :request do
 
       it 'blank' do
         forgot_password_params = { login: '' }
-        post '/hello/passwords/forgot.json', forgot_password: forgot_password_params
+        post '/hello/passwords/forgot.json', params: { forgot_password: forgot_password_params }
 
         expect(response.status).to eq(422)
         expect(response.status_message).to eq('Unprocessable Entity')
@@ -26,7 +26,7 @@ RSpec.describe 'Forgot Password', type: :request do
       given_I_have_a_user
 
       forgot_password_params = { login: 'foobar', password: '1234' }
-      post '/hello/passwords/forgot.json', forgot_password: forgot_password_params
+      post '/hello/passwords/forgot.json', params: { forgot_password: forgot_password_params }
 
       expect(response.status).to eq(201)
       expect(response.status_message).to eq('Created')

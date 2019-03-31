@@ -44,6 +44,6 @@ class MyAreasController < ApplicationController
   private
 
   def yes
-    render text: 'yes!'
+    render plain: 'yes!'
   end
 end

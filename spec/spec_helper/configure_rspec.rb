@@ -2,6 +2,11 @@ RSpec.configure do |config|
   config.color = true
   config.default_formatter = Bdd::RSpec::Formatter
 
+  if ENV['GITLAB_CI']
+    config.formatters << 'RspecJunitFormatter'
+    config.formatters << Bdd::RSpec::Formatter
+  end
+
   config.mock_with :rspec
   config.use_transactional_fixtures = true
   config.infer_base_class_for_anonymous_controllers = false
@@ -12,7 +17,7 @@ RSpec.configure do |config|
   config.include Hello::FeatureSupportGiven, type: :feature
   config.include Hello::RequestSupport, type: :request
 
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)

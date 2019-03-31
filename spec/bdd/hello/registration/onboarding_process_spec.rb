@@ -50,7 +50,7 @@ RSpec.bdd.capability "I can Complete the Onboarding Process" do
       scenario "Continue As Invalid" do
 
         When "I Continue As a User" do
-          post "/onboarding.json", access_token: @access_token, role: 'invalid'
+          post "/onboarding.json", params: { access_token: @access_token, role: 'invalid' }
         end
 
         Then "I should get a 422 Unprocessable Entity response" do
@@ -66,7 +66,7 @@ RSpec.bdd.capability "I can Complete the Onboarding Process" do
       scenario "Continue As a User" do
 
         When "I Continue As a User" do
-          post "/onboarding.json", access_token: @access_token, role: 'user'
+          post "/onboarding.json", params: { access_token: @access_token, role: 'user' }
         end
 
         Then "I should get a 200 OK response" do
@@ -82,7 +82,7 @@ RSpec.bdd.capability "I can Complete the Onboarding Process" do
       scenario "Continue As a Webmaster" do
 
         When "I Continue As a User" do
-          post "/onboarding.json", access_token: @access_token, role: 'webmaster'
+          post "/onboarding.json", params: { access_token: @access_token, role: 'webmaster' }
         end
 
         Then "I should get a 200 OK response" do

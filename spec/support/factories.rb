@@ -1,9 +1,9 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-# https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md
+# Read about factories at https://github.com/thoughtbot/factory_bot
+# https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md
 
 # https://github.com/stympy/faker#usage
 
-FactoryGirl.define do
+FactoryBot.define do
 
   factory :user do
     name { Faker::Name.name }
