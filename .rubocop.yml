@@ -3,6 +3,7 @@ AllCops:
     - '**/Rakefile'
   Exclude:
     - 'spec/bdd/**/*'
+    - 'vendor/**/*'
 
 Metrics/LineLength:
   Max: 120

@@ -11,3 +11,5 @@ Gemfile.lock
 gemfiles/*.lock
 ignore/
 *.gem
+.idea/
+rspec.xml
